@@ -30,6 +30,7 @@ body{
     color: var(--black);
     background-color: var(--white);
     z-index: -1;
+    height: 100vh;
 }
 
 li,ul{
