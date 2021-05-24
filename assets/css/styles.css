@@ -287,7 +287,7 @@ img{
 
 .banner img.special_01{
     width: 85rem;
-    right: -10%;
+    right: -5%;
 }
 
 .banner img.special_02{
@@ -297,7 +297,7 @@ img{
 
 .banner img.special_03{
     width: 100rem;
-    right: -5%;
+    right: -10%;
 }
 
 .banner-content{
@@ -395,4 +395,117 @@ Button -> Shop
 
 .glide__arrow--right{
     right: 5%;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .hero,.glide__hero,.banner{
+        height: 90vh;
+    }
+
+    .banner img.special_01{
+        width: 60rem;
+    }
+    
+    .banner img.special_02{
+        width: 70rem;
+    }
+    
+    .banner img.special_03{
+        width: 70rem;
+    }
+}
+
+@media only screen and (max-width: 996px){
+
+    .hero,.glide__hero,.banner{
+        height: 60vh;
+    }
+    
+    .banner-content{
+        width: 90%;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .banner img.special_01{
+        left: 70%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+    
+    .banner img.special_02{
+        left: 70%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+    
+    .banner img.special_03{
+        left: 75%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+}
+
+@media only screen and (max-width: 768px){
+
+    /* Este es el que estaba */
+    /* .banner-content{
+        width: 100%;
+    }*/
+
+    .hero,.glide__hero,.banner{
+        height: 95vh;
+    }
+
+    .banner-content{
+        width: 100%;
+        margin: 25px;
+    }
+} 
+
+@media only screen and (max-width: 567px){
+
+    .hero,.glide__hero,.banner{
+        height: 95vh;
+    }
+
+    .banner-content{
+        width: 100%;
+        margin: 25px;
+    }
+
+
+    .banner-content h1{
+        font-size: 3rem;
+    }
+    
+    .banner-content h3{
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .banner img.special_01{
+        left: 50%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+    
+    .banner img.special_02{
+        left: 50%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+    
+    .banner img.special_03{
+        left: 50%;
+        width: 50rem;
+        transform: translateX(-50%);
+    }
+
+    .buttons-group button{
+        padding: 1rem 2.5rem;
+        font-size: 1.5rem;
+    }
 }
