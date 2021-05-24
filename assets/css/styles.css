@@ -77,6 +77,16 @@ img{
     justify-content: space-between;
 }
 
+.fix-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1200;
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 .logo{
     color: var(--black);
 } 
@@ -277,6 +287,16 @@ img{
 
 .banner img.special_01{
     width: 85rem;
+    right: -10%;
+}
+
+.banner img.special_02{
+    width: 100rem;
+    right: -10%;
+}
+
+.banner img.special_03{
+    width: 100rem;
     right: -5%;
 }
 
@@ -338,4 +358,41 @@ Button -> Shop
     color: var(--black);
 }
 
-/*55:01*/
+/* ----------------- Glide arrows -------------------*/
+.glide__arrows{
+    top: 50%;
+}
+
+.glide__arrow {
+    position: absolute;
+    top: 50%;
+    background-color: #555;
+    border: 1px solid var(--black);
+    outline: none;
+    padding: 1.3rem 1.5rem;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    color: var(--white);
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.glide__arrow:hover{
+    color: var(--black);
+    background-color: transparent;
+}
+
+.glide:hover .glide__arrow {
+    visibility: visible;
+    opacity: 1;
+}
+
+.glide__arrow--left{
+    left: 5%;
+}
+
+.glide__arrow--right{
+    right: 5%;
+}

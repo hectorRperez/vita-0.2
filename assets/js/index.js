@@ -19,3 +19,16 @@ closeBtn.addEventListener("click", ()=>{
         document.body.classList.remove("show");
     }
 });
+
+//Fixed Nav
+const navBar = document.querySelector('.navigation');
+const navHeight = navBar.getBoundingClientRect().height;
+
+window.addEventListener("scroll",()=>{
+    const scrollHeight = window.pageXOffset;
+    if (scrollHeight > navHeight) {
+        navBar.classList.add("fix-nav");
+    } else {
+        navBar.classList.remove("fix-nav");
+    }
+})
