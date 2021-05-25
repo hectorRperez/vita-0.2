@@ -1,0 +1,11 @@
+{
+	"port": 8080,
+
+	"mysql": {
+		"host": "",
+		"username": "",
+		"password": "",
+		"db": ""
+	}
+
+}

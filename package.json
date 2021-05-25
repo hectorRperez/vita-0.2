@@ -1,0 +1,30 @@
+{
+  "name": "vita-0.2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hectorRperez/vita-0.2.git"
+  },
+  "keywords": [],
+  "author": "Hector and Jesus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hectorRperez/vita-0.2/issues"
+  },
+  "homepage": "https://github.com/hectorRperez/vita-0.2#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
