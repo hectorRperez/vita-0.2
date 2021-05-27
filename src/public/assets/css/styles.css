@@ -25,7 +25,7 @@ html{
 
 body{
     position: relative;
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
     /* font-family: 'Poppins', sans-serif; */
     font-size: 1.6rem;
     font-weight: 400;
@@ -67,7 +67,7 @@ img{
 
 /* ---------------------- Navigation ----------------------*/
 
-.navigation{
+/* .navigation{
     padding: 1.6rem 0; 
 }
 
@@ -270,9 +270,105 @@ img{
         z-index: 999;
     }
 
-}
+} */
 
-/* Hero */
+/* Prueba navigation  */
+
+.image {
+    background-color: #490D40;
+    background: url(https://sonorangirl.github.io/Earth-Quotes/img/google-earth-view-South-Iceland3.jpg) no-repeat center center;
+    background-size: cover;
+    height: 570px;
+    margin-top: -20px;
+  }
+  .image .heading {
+    color: white;
+    text-align: center;
+    padding-top: 200px;
+  }
+  .image p {
+    text-align: center;
+    padding: 20px 60px;
+  }
+  .image p .btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  .image p .btn:hover {
+    color: #C57ED3;
+    border-color: #C57ED3;
+  }
+  
+  .navbar {
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    z-index: 100;
+    transition: background-color 1s ease 0s;
+  }
+
+  /* Logo de vita */
+  .navbar-default .navbar-brand {
+    color: #fff;
+    width: 140px;
+    height: 100px;
+    cursor: pointer;
+  }
+  .navbar-default .navbar-brand:hover {
+    color: #fff;
+    border: 1px solid #3595db;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: white;
+    margin: 10px 5px 5px 5px;
+  }
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus {
+    color: #C57ED3;
+    border: 1px solid #fff;
+  }
+  .navbar-default .navbar-nav > li > a:visited {
+    color: #3595db;
+    text-decoration: none;
+  }
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: transparent;
+    color: #C57ED3;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #3595db;
+  }
+  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #3595db;
+  }
+  .navbar-default .navbar-toggle .icon-bar {
+    color: #C57ED3;
+    background-color: #fff;
+  }
+  .navbar-default .navbar-collapse.collapse.in ul {
+    background-color: #d9c4ac;
+  }
+  
+  /* Solid class attached on scroll past first section */
+  .navbar.solid {
+    background-color:#fff;
+    transition: background-color 1s ease 0s;
+    box-shadow: 0 0 4px grey;
+    height: 95px;
+  }
+  .navbar.solid .navbar-brand {
+    color: #d9c4ac;
+    transition: color 1s ease 0s;
+  }
+  .navbar.solid .navbar-nav > li > a {
+    color: #3595db;
+    transition: color 1s ease 0s;
+  }
+
+/* -------------------------------- Hero -------------------------------- */
 .hero,.glide__hero,.banner{
     position: relative;
     height: 100vh;
@@ -302,19 +398,21 @@ img{
 .banner-content{
     position: absolute;
     top: 50%;
-    transform: translate(25%,-50%);
+    transform: translate(15%,-50%);
 }
 
-.banner-content span{
+/* No se esta utilizando */
+/* .banner-content span{
     display: inline-block;
     font-size: 2.1rem;
     color: var(--grey);
     margin-bottom: 1rem;
-}
+} */
 
 .banner-content h1{
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     font-weight: 500;
+    color: var(--white);
     margin-bottom: 1rem;
 }
 
@@ -322,6 +420,7 @@ img{
     font-weight: 400;
     color: var(--grey);
     margin-bottom: 2rem;
+    color: var(--white);
 }
 
 .buttons-group button{
@@ -348,13 +447,13 @@ Button -> Shop
 
 */
 .buttons-group button{
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--black);
 }
 
 .buttons-group button:hover{
-    background-color: transparent;
-    color: var(--black);
+    background-color: var(--blue);
+    color: var(--white);
 }
 
 /* ----------------- Glide arrows -------------------*/
