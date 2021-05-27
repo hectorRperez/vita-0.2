@@ -304,6 +304,7 @@ img{
   
   .navbar {
     height: 80px;
+    width: 100%;
     background-color: transparent;
     border: none;
     color: white;
@@ -314,9 +315,11 @@ img{
   /* Logo de vita */
   .navbar-default .navbar-brand {
     color: #fff;
-    width: 140px;
+    width: 130px;
     height: 100px;
+    /* position: relative; */
     cursor: pointer;
+    /* margin-left: 80px; */
   }
   .navbar-default .navbar-brand:hover {
     color: #fff;
@@ -324,8 +327,11 @@ img{
   }
   .navbar-default .navbar-nav > li > a {
     color: white;
-    margin: 10px 5px 5px 5px;
+    margin: 25px 25px 25px 5px;
   }
+
+
+
   .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus {
     color: #C57ED3;
     border: 1px solid #fff;
@@ -348,8 +354,14 @@ img{
     color: #C57ED3;
     background-color: #fff;
   }
-  .navbar-default .navbar-collapse.collapse.in ul {
+  .navbar-default .navbar-collapse.collapse.in ul{
     background-color: #d9c4ac;
+  }
+
+  .navbar-nav.navbar-center{
+    position: absolute;
+    left: 30%;
+    transform: translatex(-5%);
   }
   
   /* Solid class attached on scroll past first section */
