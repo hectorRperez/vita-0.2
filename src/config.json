@@ -2,10 +2,10 @@
 	"port": 8080,
 
 	"mysql": {
-		"host": "",
-		"username": "",
+		"host": "localhost",
+		"user": "root",
 		"password": "",
-		"db": ""
+		"database": "vita02"
 	}
 
 }
