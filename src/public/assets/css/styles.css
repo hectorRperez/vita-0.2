@@ -315,7 +315,7 @@ img{
   /* Logo de vita */
   .navbar-default .navbar-brand {
     color: #fff;
-    width: 130px;
+    width: 145px;
     height: 100px;
     /* position: relative; */
     cursor: pointer;
@@ -395,7 +395,7 @@ img{
 
 .banner img.special_01{
     width: auto;
-    height: auto;
+    background-size: contain;
 }
 
 .banner img.special_02{
