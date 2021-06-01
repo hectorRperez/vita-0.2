@@ -1,18 +1,22 @@
 'use strict'
 
 const express = require('express');
-const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const fs = require('fs');
+const bcrypt = require('bcrypt');
+const mysql = require('mysql');
 const path = require('path');
 
 const app = express();
 
-
 // carga de archivo de configuración
-let config = JSON.parse( fs.readFileSync('src/config.json') );
+const config = require('./config.js');
+
+const connection = require("./connection.js");
+const { chownSync } = require('fs');
+const { request } = require('http');
 
 app.use(express.urlencoded( {extended: true } ));
 
@@ -29,14 +33,49 @@ app.use( passport.session() );
 
 
 // definiendo la estrategia de autenticacion
-passport.use('login', new LocalStrategy( {}, function(email, password, done) {
-	 
-	console.log(email, password);
+passport.use('local', new LocalStrategy({
+
+	usernameField: 'email',
+	passwordField: 'password',
+	passReqToCallback: true
+
+}, function(req, email, password, done) {
+	console.log(req.body);
+
+	if(req.body.signup != null) {
+
+		bcrypt.hash(req.body.password, 10, function(err, hash) {
+			if(err) throw err.sqlMessage;
 	
-	if(email == "jesus.m.423@hotmail.com" && password == "12345")
-		done(null, {name: 'jesus', id: 1});
-	else
-		done(err, false);
+			connection.query('INSERT INTO users (full_name, email, password) VALUES (?,?,?)', [req.body.full_name, req.body.email, hash], function (err, results, fields) {
+				if(err) throw err;
+
+				console.log(results, fields);
+	
+			});
+		});
+
+	}else if( req.body.login != null) {
+
+		connection.query('SELECT * FROM `users` WHERE `email` = ?', [email], function (err, results, fields) {
+
+			if(results[0] != null){
+				
+				bcrypt.compare(password, results[0].password, function(err, hashResult) {
+					if(err) throw err;
+
+					if(hashResult)
+						done(null, results[0]);
+					else
+						done('verifica tu correo o contraseña', false);
+				});
+			}
+	
+		});
+
+	}
+	
+
 }));
 
 
