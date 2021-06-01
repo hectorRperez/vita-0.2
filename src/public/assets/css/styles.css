@@ -73,9 +73,9 @@ img{
 
 .adverts{
     padding: 5px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.6rem;
-    height: 2rem;
+    height: 3rem;
     background-color: #3595db;
     display: flex;
     justify-content: space-around;
@@ -89,11 +89,12 @@ img{
 
 .adverts i{
     color: #fff;
+    font-size: 15px;
 }
 
 .adverts .item-redes{
     text-align: center;
-    margin-right: 120px;
+    margin-right: 200px;
 }
 
 
@@ -346,11 +347,12 @@ img{
 
   /* Logo de vita */
   .navbar-default .navbar-brand {
-    margin-top: 8px;
+    margin-top: 30px;
     color: #fff;
-    width: 135px;
+    width: 130px;
     height: 100px;
     cursor: pointer;
+    /* background-color: red; */
   }
   .navbar-default .navbar-brand:hover {
     color: #fff;
@@ -358,7 +360,7 @@ img{
   }
   .navbar-default .navbar-nav > li > a {
     color: white;
-    margin: 25px 25px 25px 5px;
+    margin: 45px 25px 25px 5px;
   }
 
 
@@ -400,7 +402,7 @@ img{
     background-color:#fff;
     transition: background-color 1s ease 0s;
     box-shadow: 0 0 4px grey;
-    height: 95px;
+    height: 120px;
   }
   .navbar.solid .navbar-brand {
     color: #d9c4ac;
@@ -415,8 +417,9 @@ img{
 .hero,.glide__hero,.banner{
     position: relative;
     height: 100vh;
-    width: 100%;
-    background-color: var(--brown2);
+    width: 400vh;
+    /* width: 100%; */
+    /* background-color: var(--brown2); */
 }
 
 .banner img {
