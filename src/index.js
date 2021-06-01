@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 const express = require('express');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const passportLocal = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const fs = require('fs');
 const path = require('path');
 
@@ -29,7 +29,7 @@ app.use( passport.session() );
 
 
 // definiendo la estrategia de autenticacion
-passport.use('login', new passportLocal( {}, function(email, password, done) {
+passport.use('login', new LocalStrategy( {}, function(email, password, done) {
 	 
 	console.log(email, password);
 	
@@ -58,9 +58,8 @@ app.use( express.static( path.join(__dirname, '/public') ) );
 app.use( require('./routes.js') );
 
 
-// servidor a la escucha
+// escuchando
 app.listen(config.port, () => {
-	console.log("server run");
+	console.log(`App listening at http://localhost:${config.port}`)
 });
-
 

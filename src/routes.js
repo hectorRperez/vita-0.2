@@ -32,8 +32,8 @@ router.get('/login', (req, res) => {
 
 
 // ruta que se encarga de iniciar sesion
-router.post('/auth', passport.authenticate('local', {
-	successRedirect: "/",
+router.post('/auth', passport.authenticate("local", {
+	successRedirect: "/p",
 	failureRedirect: "/login"
 }) );
 
