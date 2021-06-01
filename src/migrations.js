@@ -30,7 +30,7 @@ connection.query("CREATE TABLE users_types ( id int(11) NOT NULL AUTO_INCREMENT,
 
 
 //creando tabla users types users
-connection.query("CREATE TABLE users_types_users ( id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, user_type_id int(11) NOT NULL,  PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN (user_type_id) REFERENCES users_types(id) )", null, function(err, result, fields) {
+connection.query("CREATE TABLE users_types_users ( id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, user_type_id int(11) NOT NULL,  PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (user_type_id) REFERENCES users_types(id) )", null, function(err, result, fields) {
 	if(err) throw err.sqlMessage;
 	console.log('Table users_types_users has been created');
 });
