@@ -1,11 +1,14 @@
+'use strict'
 const express = require('express');
 const passport = require('passport');
+const bcrypt  = require('bcrypt');
 const path = require('path');
-const mysql = require('mysql');
 
 const router = express.Router();
 
 const dir = path.join( __dirname, '/views/');
+
+const connection = require("./connection.js");
 
 // ruta inicial
 router.get('/', (req, res) => {
@@ -32,17 +35,26 @@ router.get('/login', (req, res) => {
 
 
 // ruta que se encarga de iniciar sesion
-router.post('/auth', passport.authenticate("local", {
-	successRedirect: "/p",
-	failureRedirect: "/login"
-}) );
-
-
+router.post('/auth', 
+	passport.authenticate('local', { failureRedirect: '/login' } ),
+	function(req, res) {
+		res.redirect('/p');
+	}
+);
 
 // ruta para mostrar el formulario de registro de usuario
-router.post('/signin', (req, res) => {
+router.get('/signup', (req, res) => {
+	res.sendFile(dir + 'signup.html');
 
 });
+
+// ruta para mostrar el formulario de registro de usuario
+router.post('/signup',
+	passport.authenticate('local', { failureRedirect: '/signup'}),
+	(req, res) => {
+		res.redirect("/p");
+	}
+);
 
 
 
