@@ -1,18 +1,13 @@
 :root{
     --white: #fff;
     --black: #222;
-    --pink: #f60091;
-    --grey: #444;
-    --grey2: #959595;
-    --grey-alt: #d1e2e9;
-    --yellow: #ffd800;
-    --green: #59b210;
-    --blue: #3595db;
-    --brown1: #a07f65;
-    --brown2: #d9c4ac;
+    --primary: #3595db;
 }
 
-*,*::before,*::after{
+
+*,
+*::before,
+*::after{
     margin: 0;
     padding: 0;
     box-sizing: inherit;
@@ -24,31 +19,28 @@ html{
 }
 
 body{
-    position: relative;
-    font-family: 'Nanum Gothic', sans-serif;
-    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 100;
     font-size: 1.6rem;
-    font-weight: 400;
     color: var(--black);
     background-color: var(--white);
-    z-index: -1;
-    height: 100vh;
 }
 
-li,ul{
-    list-style: none;
+ul,
+li{
+    list-style-type: none;
 }
 
-a{
+a {
+    color: inherit;
     text-decoration: none;
 }
 
-img{
+img {
     max-width: 100%;
-    max-height: 100%;
 }
 
-.container {
+.container{
     max-width: 114rem;
     margin: 0 auto;
 }
@@ -59,98 +51,71 @@ img{
     }
 }
 
-@media only screen and (max-width: 768px){
-    .container{
-        padding: 0 5rem;
-    }
-}
-
-/* ----------------------- Banner de ofertas  -----------------------  */
-.preloader{
-    width: 100%;
-    background-color: red;
-}
-
-.adverts{
-    padding: 5px;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    height: 2rem;
-    background-color: #3595db;
+/* ------------- PROMO ------------------ */
+.promo{
+    /* padding-left: 20px; */
+    /* padding-right: 20px; */
+    /* padding-bottom: 5px; */
     display: flex;
-    justify-content: space-around;
-    color: #fff;
+    justify-content: space-between;
+    background-color: var(--primary);
     text-align: center;
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
 }
 
-/* .elemt-adverts{
-    margin-right: 250px;
-} */
-
-.adverts i{
-    color: #fff;
+.media_social li{
+    font-size: 20px;
+    padding-right: 170px;
 }
 
-.adverts .item-redes{
-    text-align: center;
-    margin-right: 120px;
+/*       Navigation    */
+
+/* ----------- Elemento 1 -----------*/
+
+
+.hamburger{
+    display: none;
 }
 
-
-/* ---------------------- Navigation ----------------------*/
-
-/* .navigation{
-    padding: 1.6rem 0; 
+.menu .top{
+    display: none;
 }
 
-.nav-center{
+.d-flex{
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    background-color: transparent;
 }
 
-.fix-nav{
-    position: fixed;
-    top: 0;
-    left: 0;
+.navigation {
     width: 100%;
-    z-index: 1200;
-    background-color: var(--white);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 7rem;
+    justify-content: space-between;
+    background-color: transparent;
 }
 
 .logo{
-    color: var(--black);
-} 
-
-.logo span{
-    color: var(--blue);
-}
-
-.nav-top{
-    display: none;
+    width: 90px;
+    height: 60px;
 }
 
 .nav-list{
     display: flex;
-    align-items: center;
-}
-
-.nav-item:not(:last-child){
-    margin-right: 0.5rem;
+    justify-content: center;
 }
 
 .nav-item{
-    padding: 0 1rem;
+    margin: 0 30px;
 }
 
-.nav-link{
-    position: relative; 
+.nav-link {
+    position: relative;
     display: inline-block;
     padding: 0.5rem 0 0.2rem;
     font-size: 1.5rem;
-    color: var(--blue);
-    text-transform: uppercase;
+    color: var(--black);
     transition: all 500ms ease-in-out;
 }
 
@@ -161,48 +126,22 @@ img{
     height: 2px;
     top: 100%;
     left: 0;
-    background-color: var(--blue);
+    background-color: var(--primary);
     transition: transform 500ms;
     transform: scaleX(0);
     transform-origin: left;
 }
 
-.nav-link:hover:after{
+.nav-link:hover::after{
     transform: scaleX(1);
     transform-origin: left;
 }
 
-.nav-icons span:not(:last-child){
-    margin-right: 0.5rem;
-}
-
-.nav-icons span {
-    font-size: 1.6rem;
-    padding: 0.3rem 0.7rem;
-    cursor: pointer;
-    transition: all 300ms case-in-out;
-}
-
-.nav-icons .fas {
-    transition: all 300ms ease-in-out;
-}
-
-.nav-icons span:hover .fas {
-    color: var(--blue);
-}
-
-
-.hamburger{
-    display: none;
-}
-
-@media only screen and (max-width: 996px){
-    .nav-item:not(:last-child){
-        margin-right: 0.3rem;
-    }
-
+@media only screen and (max-width:996px){
+    
     .nav-item{
-
+        margin: 0.3rem;
+        background-color: seagreen;
         padding: 0 0.5rem;
     }
 
@@ -210,444 +149,47 @@ img{
         font-size: 1.4rem;
     }
 
-    .nav-icons span {
+    .nav-icons span{
         font-size: 1.2rem;
     }
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width:996px){
     .navigation.show{
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: skyblue;
     }
 
     .nav-menu{
         position: fixed;
         top: 0;
-        left: -100%;
+        left: 0;
         width: 80%;
         height: 100vh;
-        z-index: 9990;
-        background-color: var(--white);
-        transition: all 500ms linear;
     }
+}
 
-    .nav-menu.show{
-        left: 0;
-    }
-
-    .nav-list{
-        flex-direction: column;
-        align-items: start;
-        padding: 2rem 0;
-    }
-
-    .nav-top{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: var(--blue);
-        padding: 1.6rem 2rem;
-    }
-
-    .nav-top .logo h1{
-        font-size: 1.8rem;
-        font-weight: 500;
-        color: var(--white);
-    }
-
-    .nav-top .logo h1 span{
-        color: var(--white);
-    }
-
-    .hamburger{
-        display: block;
-        font-size: 2.5rem;
-        cursor: pointer;
-    }
-
-    .close{
-        font-size: 2rem;
-        color: var(--white);
-        cursor: pointer;
-    }
-
-    .nav-item:not(:last-child){
-        margin-bottom: 1rem;
-    }
-
-    .nav-link{
-        font-size: 1.8rem;
-        width: 100%;
-        padding: 1rem 2rem;
-    }
-
-    .nav-icons span{
-        display: none;
-        border: none;
-        font-size: 1.6rem;
-    }
-
-    .nav-icons span:last-child{
-        display: block; 
-    }
-
-    body.show::before{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        z-index: 999;
-    }
-
-} */
-
-/* Prueba navigation  */
-
-.image {
-    background-color: #490D40;
-    background: url(https://sonorangirl.github.io/Earth-Quotes/img/google-earth-view-South-Iceland3.jpg) no-repeat center center;
-    background-size: cover;
-    height: 570px;
-    margin-top: -20px;
-  }
-  .image .heading {
-    color: white;
-    text-align: center;
-    padding-top: 200px;
-  }
-  .image p {
-    text-align: center;
-    padding: 20px 60px;
-  }
-  .image p .btn {
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-    padding: 10px;
-    font-size: 1.2em;
-  }
-  .image p .btn:hover {
-    color: #C57ED3;
-    border-color: #C57ED3;
-  }
-  
-  .navbar {
-    height: 80px;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    color: white;
-    z-index: 100;
-    transition: background-color 1s ease 0s;
-  }
-
-  /* Logo de vita */
-  .navbar-default .navbar-brand {
-    margin-top: 8px;
-    color: #fff;
-    width: 135px;
-    height: 100px;
-    cursor: pointer;
-  }
-  .navbar-default .navbar-brand:hover {
-    color: #fff;
-    border: 1px solid #3595db;
-  }
-  .navbar-default .navbar-nav > li > a {
-    color: white;
-    margin: 25px 25px 25px 5px;
-  }
-
-
-
-  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus {
-    color: #C57ED3;
-    border: 1px solid #fff;
-  }
-  .navbar-default .navbar-nav > li > a:visited {
-    color: #3595db;
-    text-decoration: none;
-  }
-  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    background-color: transparent;
-    color: #C57ED3;
-  }
-  .navbar-default .navbar-toggle {
-    border-color: #3595db;
-  }
-  .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #3595db;
-  }
-  .navbar-default .navbar-toggle .icon-bar {
-    color: #C57ED3;
-    background-color: #fff;
-  }
-  .navbar-default .navbar-collapse.collapse.in ul{
-    background-color: #d9c4ac;
-  }
-
-  .navbar-nav.navbar-center{
-    position: absolute;
-    left: 30%;
-    transform: translatex(-5%);
-  }
-  
-  /* Solid class attached on scroll past first section */
-  .navbar.solid {
-    background-color:#fff;
-    transition: background-color 1s ease 0s;
-    box-shadow: 0 0 4px grey;
-    height: 95px;
-  }
-  .navbar.solid .navbar-brand {
-    color: #d9c4ac;
-    transition: color 1s ease 0s;
-  }
-  .navbar.solid .navbar-nav > li > a {
-    color: #3595db;
-    transition: color 1s ease 0s;
-  }
-
-/* -------------------------------- Hero -------------------------------- */
-.hero,.glide__hero,.banner{
+/* Hero */
+.hero,
+.glide__hero,
+.banner{
     position: relative;
     height: 100vh;
     width: 100%;
-    background-color: var(--brown2);
+    background-color: var(--primary);
 }
 
 .banner img {
-    position: absolute;
+    height: 100vh;
     bottom: 0;
 }
 
 .banner img.special_01{
-    width: auto;
-    background-size: cover;
+    width: 100%;
 }
 
-.banner img.special_02{
-    width: 100rem;
-    right: -10%;
-}
-
-.banner img.special_03{
-    width: 100rem;
-    right: -10%;
-}
-
+/* Todo: 50:09*/
 .banner-content{
     position: absolute;
     top: 50%;
-    transform: translate(15%,-50%);
-}
-
-/* No se esta utilizando */
-/* .banner-content span{
-    display: inline-block;
-    font-size: 2.1rem;
-    color: var(--grey);
-    margin-bottom: 1rem;
-} */
-
-.banner-content h1{
-    font-size: 2.8rem;
-    font-weight: 500;
-    color: var(--white);
-    margin-bottom: 1rem;
-}
-
-.banner-content h3{
-    font-weight: 400;
-    color: var(--grey);
-    margin-bottom: 2rem;
-    color: var(--white);
-}
-
-.buttons-group button{
-    display: inline-block;
-    background-color: transparent;
-    border: 1px solid var(--black);
-    outline: none;
-    padding: 1.2rem 3rem;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    font-weight: 1200px;
-    cursor: pointer;
-    transition: all 300ms ease-in-out;
-}
-
-/*En el tutorial se usan dos configuraciones de estilos para cada boton.
-    En este se usa un solo estilo para los dos
-*/
-
-/*
-
-Button -> Skin care
-Button -> Shop
-
-*/
-.buttons-group button{
-    background-color: var(--white);
-    color: var(--black);
-}
-
-.buttons-group button:hover{
-    background-color: var(--blue);
-    color: var(--white);
-}
-
-/* ----------------- Glide arrows -------------------*/
-.glide__arrows{
-    top: 50%;
-}
-
-.glide__arrow {
-    position: absolute;
-    top: 50%;
-    background-color: #555;
-    border: 1px solid var(--black);
-    outline: none;
-    padding: 1.3rem 1.5rem;
-    border-radius: 50%;
-    font-size: 1.6rem;
-    color: var(--white);
-    visibility: hidden;
-    opacity: 0;
-    cursor: pointer;
-    transition: all 300ms ease-in-out;
-}
-
-.glide__arrow:hover{
-    color: var(--black);
-    background-color: transparent;
-}
-
-.glide:hover .glide__arrow {
-    visibility: visible;
-    opacity: 1;
-}
-
-.glide__arrow--left{
-    left: 5%;
-}
-
-.glide__arrow--right{
-    right: 5%;
-}
-
-
-@media only screen and (max-width: 1200px) {
-    .hero,.glide__hero,.banner{
-        height: 90vh;
-    }
-
-    .banner img.special_01{
-        width: 60rem;
-    }
-    
-    .banner img.special_02{
-        width: 70rem;
-    }
-    
-    .banner img.special_03{
-        width: 70rem;
-    }
-}
-
-@media only screen and (max-width: 996px){
-
-    .hero,.glide__hero,.banner{
-        height: 60vh;
-    }
-    
-    .banner-content{
-        width: 90%;
-        top: 30%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-    }
-
-    .banner img.special_01{
-        left: 70%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-    
-    .banner img.special_02{
-        left: 70%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-    
-    .banner img.special_03{
-        left: 75%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-}
-
-@media only screen and (max-width: 768px){
-
-    /* Este es el que estaba */
-    /* .banner-content{
-        width: 100%;
-    }*/
-
-    .hero,.glide__hero,.banner{
-        height: 95vh;
-    }
-
-    .banner-content{
-        width: 100%;
-        margin: 25px;
-    }
-} 
-
-@media only screen and (max-width: 567px){
-
-    .hero,.glide__hero,.banner{
-        height: 95vh;
-    }
-
-    .banner-content{
-        width: 100%;
-        margin: 25px;
-    }
-
-
-    .banner-content h1{
-        font-size: 3rem;
-    }
-    
-    .banner-content h3{
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .banner img.special_01{
-        left: 50%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-    
-    .banner img.special_02{
-        left: 50%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-    
-    .banner img.special_03{
-        left: 50%;
-        width: 50rem;
-        transform: translateX(-50%);
-    }
-
-    .buttons-group button{
-        padding: 1rem 2.5rem;
-        font-size: 1.5rem;
-    }
+    transform: translate(25%, -50%);
 }
