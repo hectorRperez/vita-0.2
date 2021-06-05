@@ -73,6 +73,18 @@ img {
 
 /* ----------- Elemento 1 -----------*/
 
+/* .header{
+    background-image: linear-gradient(180deg, #ffffffb5, transparent);
+    background-color: #DFCFB8;
+} */
+
+.header{
+    /* background-image: linear-gradient(180deg, #ffffffb5, transparent); */
+    /* background-color: #DFCFB8; */
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
 
 .hamburger{
     display: none;
@@ -179,7 +191,7 @@ img {
 }
 
 .banner img {
-    height: 100vh;
+    /* height: 100vh; */
     bottom: 0;
 }
 
