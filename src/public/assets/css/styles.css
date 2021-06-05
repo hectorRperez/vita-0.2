@@ -246,7 +246,7 @@ img {
     border: 1px solid var(--primary);
     outline: none;
     padding: 1.2rem 3rem;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
     text-transform: uppercase;
     font-weight: 500%;
     cursor: pointer;
