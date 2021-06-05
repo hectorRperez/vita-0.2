@@ -80,7 +80,11 @@ img {
 
 .media_social li{
     font-size: 20px;
-    padding-right: 170px;
+    /*padding-right: 170px;*/
+}
+
+.promo span{
+    flex: 1 0 0;
 }
 
 /*       Navigation    */
