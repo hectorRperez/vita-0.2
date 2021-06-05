@@ -127,8 +127,12 @@ img {
     display: inline-block;
     padding: 0.5rem 0 0.2rem;
     font-size: 1.5rem;
-    color: var(--black);
+    color: var(--primary);
     transition: all 500ms ease-in-out;
+}
+
+.nav-link .fa-shopping-bag{
+    font-size: 2.3rem;
 }
 
 .nav-link::after{
