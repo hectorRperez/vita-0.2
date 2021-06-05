@@ -206,12 +206,11 @@ img {
 .banner-content{
     position: absolute;
     top: 50%;
-    transform: translate(12%, -50%);
+    transform: translate(12%, -70%);
 }
 
 .banner-content h1{
     color: var(--white);
-    
     font-weight: 500;
 }
 
