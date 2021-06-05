@@ -206,18 +206,22 @@ img {
 .banner-content{
     position: absolute;
     top: 50%;
-    transform: translate(25%, -50%);
+    transform: translate(12%, -50%);
 }
 
 .banner-content h1{
     color: var(--white);
-    font-size: 3.2rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
+    
+    font-weight: 500;
+}
+
+.firts_title{
+    width: 100%;
+    font-size: 4.2rem;
 }
 
 .banner-content h3 {
-    font-weight: 500;
+    font-weight: 300;
     font-size: 35px;
     color: var(--white);
     margin-bottom: 2rem;
@@ -226,7 +230,7 @@ img {
 .buttons-group button{
     display: inline-block;
     background-color: transparent;
-    border: 1px solid var(--black);
+    border: 1px solid var(--primary);
     outline: none;
     padding: 1.2rem 3rem;
     font-size: 1.6rem;
