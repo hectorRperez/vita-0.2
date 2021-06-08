@@ -13,6 +13,8 @@
     box-sizing: inherit;
 }
 
+/*Font size formula*/
+
 html{
     box-sizing: border-box;
     font-size: clamp(4px, 2px + 0.8vw, 1.0rem);
