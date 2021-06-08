@@ -13,15 +13,30 @@
     box-sizing: inherit;
 }
 
+/*Font size formula*/
+
 html{
     box-sizing: border-box;
-    font-size: 62.5%;
+    font-size: clamp(4px, 2px + 0.8vw, 1.0rem);
 }
 
+h1{
+    font-size: 3rem;
+}
+h2{
+    font-size: 2.8rem;
+}
+h3{
+    font-size: 2.6rem;
+}
+
+p{
+   /* font-size: 0.8rem;*/
+}
 body{
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 100;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
     color: var(--black);
     background-color: var(--white);
 }
@@ -34,6 +49,7 @@ li{
 a {
     color: inherit;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
 img {
@@ -66,7 +82,11 @@ img {
 
 .media_social li{
     font-size: 20px;
-    padding-right: 170px;
+    /*padding-right: 170px;*/
+}
+
+.promo span{
+    flex: 1 0 0;
 }
 
 /*       Navigation    */
@@ -126,7 +146,7 @@ img {
     position: relative;
     display: inline-block;
     padding: 0.5rem 0 0.2rem;
-    font-size: 1.5rem;
+    /*font-size: 1.5rem;*/
     color: var(--primary);
     transition: all 500ms ease-in-out;
 }
@@ -205,8 +225,9 @@ img {
 
 .banner-content{
     position: absolute;
-    top: 50%;
-    transform: translate(12%, -70%);
+    top: 17%;
+    /* transform: translate(13%, -70%); */
+    left: 5%;
 }
 
 .banner-content h1{
@@ -216,12 +237,12 @@ img {
 
 .firts_title{
     width: 100%;
-    font-size: 4.2rem;
+    /*font-size: 4.2rem;*/
 }
 
 .banner-content h3 {
     font-weight: 300;
-    font-size: 35px;
+    /*font-size: 35px;*/
     color: var(--white);
     margin-bottom: 2rem;
 }
@@ -232,7 +253,7 @@ img {
     border: 1px solid var(--primary);
     outline: none;
     padding: 1.2rem 3rem;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
     text-transform: uppercase;
     font-weight: 500%;
     cursor: pointer;
