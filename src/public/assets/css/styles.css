@@ -30,9 +30,6 @@ h3{
     font-size: 2.6rem;
 }
 
-p{
-   /* font-size: 0.8rem;*/
-}
 body{
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 100;
@@ -115,6 +112,7 @@ img {
 }
 
 .d-flex{
+    margin-left: -5%;
     width: 100%;
     display: flex;
     align-items: center;
