@@ -225,8 +225,9 @@ img {
 
 .banner-content{
     position: absolute;
-    top: 50%;
-    transform: translate(12%, -70%);
+    top: 17%;
+    /* transform: translate(13%, -70%); */
+    left: 5%;
 }
 
 .banner-content h1{
