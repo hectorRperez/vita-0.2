@@ -268,3 +268,49 @@ img {
     color: var(--black);
 }
 
+/* -------------- Nuevos productos --------------*/
+.title{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-weight: 600;
+}
+
+.title h1{
+    font-weight: 400;
+}
+
+.title span{
+    color: var(--primary);
+}
+
+.product-center{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    gap: 5rem;
+    margin-bottom: 5rem;
+}
+
+.product {
+    text-align: center;
+    padding-bottom: 1rem;
+    transition: all 500ms ease-in-out;
+}
+
+.product .img-cover{
+    overflow: hidden;
+}
+
+.product img{
+    transition: all 500ms ease-in-out;
+}
+
+.product:hover img{
+    transform: scale(1.2);
+}
+
+@media only screen and (max-width:567px) {
+    .title{
+        font-size: 2rem;
+    }
+}
