@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const fs = require('fs');
 
 // carga de archivo de configuración
-const config = JSON.parse( fs.readFileSync('src/config.json') );
+const config = require('./config.js');
 
 // creo la conexion
 let connection = mysql.createConnection(config.mysql);
@@ -42,7 +42,7 @@ connection.query("CREATE TABLE categories ( id int(11) NOT NULL AUTO_INCREMENT, 
 });
 
 // crando tabla de productos
-connection.query("CREATE TABLE products ( id int(11) NOT NULL, name varchar(50) NOT NULL, category_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (category_id) REFERENCES categories(id) )", null, function(err, result, fields) {
+connection.query("CREATE TABLE products ( id int(11) NOT NULL, name varchar(50) NOT NULL, price double(11,2) NOT NULL, quantity int(4) NOT NULL, category_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (category_id) REFERENCES categories(id) )", null, function(err, result, fields) {
 	if(err) throw err;
 	console.log('Table products has been created');
 });
