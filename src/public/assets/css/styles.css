@@ -287,8 +287,9 @@ img {
 .product-center{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
-    gap: 5rem;
+    gap: 2rem;
     margin-bottom: 5rem;
+    margin: 0 2rem;
 }
 
 .product {
