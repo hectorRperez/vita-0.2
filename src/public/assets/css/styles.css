@@ -30,9 +30,6 @@ h3{
     /*font-size: 2.6rem;*/
 }
 
-p{
-   /* font-size: 0.8rem;*/
-}
 body{
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 100;
@@ -113,6 +110,7 @@ a {
 }
 
 .d-flex{
+    margin-left: -5%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -209,7 +207,6 @@ a {
     position: relative;
     height: 100vh;
     width: 100%;
-    background-color: var(--primary);
 }
 
 .banner img {
@@ -244,7 +241,7 @@ a {
 
 .firts_title{
     width: 100%;
-    /*font-size: 4.2rem;*/
+    font-size: 3.2rem;
 }
 
 .banner-content h3 {
@@ -278,3 +275,50 @@ a {
     color: var(--black);
 }
 
+/* -------------- Nuevos productos --------------*/
+.title{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-weight: 600;
+}
+
+.title h1{
+    font-weight: 400;
+}
+
+.title span{
+    color: var(--primary);
+}
+
+.product-center{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(20rem,1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+    margin: 0 2rem;
+}
+
+.product {
+    text-align: center;
+    padding-bottom: 1rem;
+    transition: all 500ms ease-in-out;
+}
+
+.product .img-cover{
+    overflow: hidden;
+}
+
+.product img{
+    transition: all 500ms ease-in-out;
+}
+
+.product:hover img{
+    transform: scale(1.2);
+}
+
+@media only screen and (max-width:567px) {
+    .title{
+        font-size: 2rem;
+    }
+}
