@@ -229,6 +229,13 @@ a {
     left: 5%;
 }
 
+@media (max-width:  1060px){
+    .banner-content{
+        top: 7vw;
+    }
+
+}
+
 .banner-content h1{
     color: var(--white);
     font-weight: 500;
