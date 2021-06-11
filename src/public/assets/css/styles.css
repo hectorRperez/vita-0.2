@@ -80,8 +80,11 @@ a {
     /*padding-right: 170px;*/
 }
 
-.promo span{
-    flex: 1 0 0;
+
+@media (min-width:  733px){
+    .promo span{
+        flex: 1 0 0;
+    }
 }
 
 /*       Navigation    */
