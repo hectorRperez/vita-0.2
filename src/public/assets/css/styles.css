@@ -295,6 +295,7 @@ img {
     text-align: center;
     padding-bottom: 1rem;
     transition: all 500ms ease-in-out;
+    cursor: pointer;
 }
 
 .product .img-cover{
@@ -313,4 +314,51 @@ img {
     .title{
         font-size: 2rem;
     }
+}
+
+/* ------------- Sección de about Us ------------- */
+
+.section{
+    padding: 25px;
+}
+
+.header-container{
+    position: relative;
+}
+
+.header-container hr{
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+    z-index: -2;
+    border: 1px solid #ededed;
+}
+
+.title-back{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.title-back::after{
+    content: '';
+    position: absolute;
+    width: 50%;
+    background: white;
+    height: 3rem;
+    z-index: -1;
+}
+
+.title-paragraph{
+    /* background-color: aqua; */
+    font-weight: 100;
+    font-size: 20px;
+    margin: 50px;
+}
+
+.firma{
+    font-family: 'Alex Brush', cursive;
+    margin: 25px;
 }
