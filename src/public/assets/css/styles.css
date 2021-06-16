@@ -112,8 +112,18 @@ a {
     display: none;
 }
 
-.menu .top{
-    display: none;
+.hamburger i{
+    font-size: 3rem;
+}
+
+@media (max-width: 1040px){
+    .hamburger{
+        display: block;
+    }
+    .menu .nav-list{
+        display:  none;
+    }
+
 }
 
 .d-flex{
