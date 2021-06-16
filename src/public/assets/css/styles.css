@@ -156,6 +156,12 @@ a {
 .opened.menu .nav-list .nav-logo{
     position: absolute;
     top: 0;
+    max-width: 20vw;
+}
+
+.opened.menu .nav-list .nav-logo .logo{
+    width: 100%;
+    height: auto;
 }
 
 .opened.menu .hamburger .menu-open{
