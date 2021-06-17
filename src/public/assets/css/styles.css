@@ -350,7 +350,7 @@ a {
     top: 2rem;
     width: 100%;
     z-index: -2;
-    border: 1px solid rgb(20, 91, 143);
+    border: 1px solid var(--primary);
 }
 
 .title-back{
