@@ -113,20 +113,20 @@ a {
 }
 
 .nav{
-    padding-left: 5%;
+    padding-left: 4%;
 }
+
 
 .hamburger{
     display: none;
-    margin-top: 1rem;
+    margin-top: 1vw;
 }
 
 .hamburger i{
     font-size: 3rem;
     color:  var(--primary);
 }
-
-.hamburger .menu-open + .menu-close{
+.close{
     display: none;
 }
 
@@ -141,6 +141,17 @@ a {
     padding-top: 80px;
     height:  100vh ;
     overflow: auto;
+}
+
+.opened.menu + .close{
+    position: fixed;
+    float: left;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    top: 0;
+    background-color: #00000044;
+    display: block;
 }
 
 .opened.menu .nav-list{
@@ -168,9 +179,6 @@ a {
     display: none;
 }
 
-.opened.menu .hamburger .menu-open + .menu-close{
-    display: block;
-}
 
 @media (max-width: 1040px){
     .hamburger{
@@ -179,6 +187,7 @@ a {
     .menu .nav-list{
         display:  none;
     }
+
 
 }
 
