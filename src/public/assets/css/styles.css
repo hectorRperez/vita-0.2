@@ -38,6 +38,10 @@ body{
     background-color: var(--white);
 }
 
+.no-scroll{
+    overflow: hidden;
+}
+
 img{
     width: 100%;
 }
@@ -108,12 +112,128 @@ a {
     z-index: 1;
 }
 
+.nav{
+    padding-left: 4%;
+}
+
+
 .hamburger{
+    display: none;
+    margin-top: 1vw;
+}
+
+.hamburger i{
+    font-size: 3rem;
+    color:  var(--primary);
+}
+.close{
     display: none;
 }
 
-.menu .top{
+/*menu opened
+*/
+.opened{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 30vw;
+    background-color: white;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    padding-top: 80px;
+    height:  100vh ;
+    overflow: auto;
+}
+
+
+/*Close functionality only when menu is open*/
+.opened.menu + .close{
+    position: fixed;
+    float: left;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    top: 0;
+    background-color: #00000044;
+    display: block;
+}
+
+.opened.menu .nav-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.opened.menu .nav-list .nav-item{
+    margin: 1rem 0 ;
+}
+
+.opened.menu .nav-list .nav-logo{
+    position: absolute;
+    top: 0;
+    max-width: 20vw;
+}
+
+.opened.menu .nav-list .nav-logo .logo{
+    width: 100%;
+    height: auto;
+}
+
+/*hide menu hamburger when open*/
+.opened.menu .nav-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.opened.menu .nav-list .nav-item{
+    margin: 1rem 0 ;
+}
+
+/*adapt logo to responsive menu*/
+.opened.menu .nav-list .nav-logo{
+    position: absolute;
+    top: 0;
+    max-width: 20vw;
+}
+
+.opened.menu .nav-list .nav-logo .logo{
+    width: 100%;
+    height: auto;
+}
+
+/*aaaand hide hamburger when menu open*/
+.opened.menu .hamburger {
     display: none;
+}
+
+
+@media (max-width: 1040px){
+    .hamburger{
+        display: block;
+    }
+    .menu .nav-list{
+        display:  none;
+    }
+
+
+}n
+.opened.menu .hamburger {
+    display: none;
+}
+
+
+@media (max-width: 1040px){
+    .hamburger{
+        display: block;
+    }
+    .menu .nav-list{
+        display:  none;
+    }
+
+
 }
 
 .d-flex{
@@ -212,7 +332,6 @@ a {
 .glide__hero,
 .banner{
     position: relative;
-    height: 100vh;
     width: 100%;
 }
 
