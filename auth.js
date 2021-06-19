@@ -1,7 +1,7 @@
 
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const connection = require("./connection.js");
+const connection = require("./config/connection");
 
 module.exports = (passport) => {
     
@@ -48,8 +48,8 @@ module.exports = (passport) => {
                             done(null, results[0]);
                         else
                             done('verifica tu credenciales');
-        
                     });
+                    
                 }else {
                     done('Este usuario no ha sido registrado');
                 }
@@ -67,9 +67,9 @@ module.exports = (passport) => {
         done(null, user.id);
     });
 
-    // deserializacion de usuarios
+    // deserializacion de un usuario
     passport.deserializeUser( function(id,done) {
-        connection.query('SELECT * FROM `users` WHERE `id` = ?', [id], function (err, results, fields) {
+        connection.query('SELECT id, full_name, email FROM `users` WHERE `id` = ?', [id], function (err, results, fields) {
             if(err) throw err.sqlMessage;
 
             if(results[0] != null){
