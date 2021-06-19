@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const queryBuilder = require("../queryBuilder.js");
-const connection = require("../connection.js");
+const queryBuilder = require("../config/queryBuilder.js");
 
 
 // ruta que se carga de traer los productos
@@ -13,6 +12,7 @@ router.get('/get_products', (req, res, next) => {
 
 }, (req, res) => {
 
+    // obtengo los parametros
     let params = req.body;
 
     // defino los selects
@@ -31,16 +31,12 @@ router.get('/get_products', (req, res, next) => {
         {type: 'INNER', join: ['categories', 'products.category_id', '=', 'categories.id'] }
     ];
 
-   let sql = queryBuilder('products', params);
+    // realizo la consulta
+    const results = queryBuilder('products', params).then( result => result ).catch( err => {throw err} );
 
-   connection.query(sql, null, function (err, results, fields) {
-        if(err) throw err.sqlMessage;
+    console.log(results);
 
-        console.log(results);
-
-        res.render('products.ejs', {products: results, user: req.user} );
-
-    });
+    res.render('products', {products: results, user: req.user});
 
 });
 
