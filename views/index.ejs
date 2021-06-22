@@ -2,31 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&display=swap" rel="stylesheet">
-
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-
-    <!-- Glidejs -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
-
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-    <title>Vita health center- Acupuncture | Skincare- Vegan&organic beauty</title>
+    <%- include('partials/head.ejs'); %>
 </head>
 
 <body>
@@ -43,56 +19,14 @@
             </ul>
         </span>
     </div>
+    
 
     <!-- ------------------ HEADER ------------------------ -->
     <div class="header">
-
-        <!-- NAVIGATION -->
-        <nav class="nav container">
-            <div class="navigation">
-
-                <!-- Elemento 1 -->
-
-                <!-- Elemento 2 -->
-                <div class="menu">
-
-                    <div class="hamburger">
-                        <i class='bx bx-menu menu-open'></i>
-                    </div>
-
-                    <ul class="nav-list d-flex">
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> HOME </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> SKINCARE </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> BLOG </a>
-                        </li>
-
-                        <li class="nav-item nav-logo">
-                            <a href="" class="nav-link "> <img class="logo" src="./img/1.png" alt=""> </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> MY ACCOUNT <i class="fas fa-user"></i> </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="" class="nav-link"> <i class="fas fa-shopping-bag"></i> </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="close"></div>
-            </div>
-        </nav>
+        <%- include('partials/header.ejs'); %>
     </div>
     <!-- ------------------ End Header ------------------------ -->
+
 
     <!-- -------------- Main ---------------->
     <main>
@@ -257,10 +191,8 @@
     </section>
 
     <!-- Scripts-->
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/product.js"></script>
-    <script src="assets/js/slider.js"></script>
-    <script src="assets/js/menu.js"></script>
+    <%- include('partials/script.ejs'); %>
+    
 </body>
 
 </html>

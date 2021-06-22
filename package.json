@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src",
-    "dev": "nodemon src"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "install": "node config/migrations.js"
   },
   "repository": {
     "type": "git",
