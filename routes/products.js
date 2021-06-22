@@ -10,7 +10,7 @@ router.get('/get_products', (req, res, next) => {
 	
 	res.redirect("/login");
 
-}, (req, res) => {
+}, async (req, res) => {
 
     // obtengo los parametros
     let params = req.body;
@@ -32,7 +32,7 @@ router.get('/get_products', (req, res, next) => {
     ];
 
     // realizo la consulta
-    const results = queryBuilder('products', params).then( result => result ).catch( err => {throw err} );
+    const results = await queryBuilder('products', params);
 
     console.log(results);
 
