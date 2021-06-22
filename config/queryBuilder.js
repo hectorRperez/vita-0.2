@@ -80,12 +80,19 @@ module.exports = (table, params) => {
 
     // envuelvo el metodo query con una promesa para poder obtener los resultado 
     // en una variable diferente
-    return new Promise((resolve, reject) => {
+
+    const result = (sql) => {
+        return new Promise((resolve, reject) => {
             connection.query(sql, (error, results, fields) => {
                 if(error) return reject(error);
+
+                console.log(results, 'aqui dentro');
+
                 return resolve(results);
             });
-    });
+        });
+    }
 
-
+    return result(sql).then( result => result ).catch( err => {throw err} );
+    
 };
