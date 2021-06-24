@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "install": "node config/migrations.js"
+    "int-db": "node config/migrations.js"
   },
   "repository": {
     "type": "git",
