@@ -1,5 +1,5 @@
 'use strict'
-
+const bcrypt = require('bcrypt');
 // obtengo la connexion;
 let connection = require('./connection.js');
 
@@ -27,6 +27,77 @@ for (let i = 0; i < tables.length; i++) {
 	
 }
 
-connection.end();
+// funcion que genera los hash de constraseña
+const genHash = (password) => {
+	return new Promise((resolve, reject) => {
+		bcrypt.hash(password, 10, function(err, hash) {
+			if(err) reject(err);
+			resolve(hash);
+		});
+	});
+}
+
+//funcion que envia las consultas
+const querySync = (sql, name) => {
+	return new Promise((resolve, reject) => {
+		connection.query(sql, null, function(err, result, fields) {
+			if(err) reject(err);
+			
+			resolve(`${name} has been created`);
+		});
+	});
+}
+
+
+
+const seed = async function() {
+
+	const password = 'manager';
+	const seeds = [
+
+		// creando usuarios
+		[
+			{name:'Admin Jesus', sql: `INSERT INTO users (name, lastname, email, password) VALUES ('Jesus','Rogliero','rogliero@admin.com','${await genHash(password)}')`},
+			{name:'Admin hector', sql: `INSERT INTO users (name, lastname, email, password) VALUES ('Hector','Perez','perez@admin.com','${await genHash(password)}')`},
+		],
+	
+		// creando categorias
+		[
+			{name:'Category 1', sql: "INSERT INTO categories (name) VALUES ('Categoria 1')"},
+			{name:'Category 2', sql: "INSERT INTO categories (name) VALUES ('Categoria 2')"},
+			{name:'Category 3', sql: "INSERT INTO categories (name) VALUES ('Categoria 3')"},
+			{name:'Category 4', sql: "INSERT INTO categories (name) VALUES ('Categoria 4')"},
+		],
+	
+		// creando productos
+		[
+			{name:'product 1', sql: "INSERT INTO products (name, image, price, quantity, category_id) VALUES ('Tacones Rosas', 'img/pic2.png', 75.66, 3, 1 )"},
+			{name:'product 2', sql: "INSERT INTO products (name, image, price, quantity, category_id) VALUES ('Mochila Moderna', 'img/pic12.png', 6.99, 1, 3 )"},
+			{name:'product 3', sql: "INSERT INTO products (name, image, price, quantity, category_id) VALUES ('Zapatos Deportivos', 'img/pic8.png', 24.99, 4, 2 )"},
+			{name:'product 4', sql: "INSERT INTO products (name, image, price, quantity, category_id) VALUES ('Chaqueta Deportiva', 'img/pic4.png', 17.45, 10, 4 )"},
+			{name:'product 5', sql: "INSERT INTO products (name, image, price, quantity, category_id) VALUES ('Laptop', 'img/product1.jpg', 349.99, 1, 1 )"},
+		]
+	
+	];
+	
+	// recorriendo cada array para insertar los datos
+	for (let i = 0; i < seeds.length; i++) {
+	
+		for (let j = 0; j < seeds[i].length; j++) {
+			
+			const log = await querySync(seeds[i][j].sql, seeds[i][j].name).then(r => r);
+			console.log(log);
+		}
+		
+	}
+
+	connection.end();
+}
+
+
+seed();
+
+
+
 
 
