@@ -9,15 +9,41 @@
 <body>
     <h1>Bienvenido <%= user.full_name %> </h1>
     <table>
-        <% for (let product in products) { %>
+      <% for(var i=0; i < products.length; i++) { %>
            <tr>
-             <td><%= product.id %></td>
-             <td><%= product.name %></td>
-             <td><%= product.price %></td>
-             <td><%= product.quantity %></td>
-             <td><%= product.category %></td>
+             <td> ID:<%= products[i].id %></td>
+             <td> <img src="<%= products[i].image %>" width="100"></td>
+             <td> Nombre: <%= products[i].name %></td>
+             <td> Precio: <%= products[i].price %></td>
+             <td> Cantidad: <%= products[i].quantity %></td>
+             <td> Categoria: <%= products[i].category %></td>
            </tr>
-        <% } %>
+           <% } %>
         </table>
+
+
+        <form action="/create_product" method="post"  enctype="multipart/form-data">
+        
+          <input type="text" name="name" id="" placeholder="Nombre">
+          <input type="text" name="price" id="" placeholder="Precio">
+          <input type="text" name="quantity" id="" placeholder="Cantidad">
+          <input type="text" name="category_id" id="" placeholder="categoria">
+          <input type="file" name="image" id="" placeholder="image">
+          <input type="submit" value="Agregar">
+        </form>
+
+
+
+
+        <form action="/update_product" method="post" style="margin-top: 2em;">
+          <input type="text" name="id" id="" placeholder="ID">
+          <input type="text" name="name" id="" placeholder="Nombre">
+          <input type="text" name="price" id="" placeholder="Precio">
+          <input type="text" name="quantity" id="" placeholder="Cantidad">
+          <input type="text" name="category_id" id="" placeholder="categoria">
+      
+          <input type="submit" value="Actualizar">
+        </form>
+
 </body>
 </html>
