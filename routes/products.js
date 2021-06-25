@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const queryBuilder = require("../config/queryBuilder.js");
+const connection = require('../config/connection');
 
 
 // ruta que se carga de traer los productos
@@ -19,6 +20,7 @@ router.get('/get_products', (req, res, next) => {
     params.selects = [ 
         {field: 'id', condition: 'products.id'},
         {field: 'name', condition: 'products.name'},
+        {field: 'image', condition: 'products.image'},
         {field: 'quantity', condition: 'products.quantity'},
         {field: 'price', condition: 'products.price'},
         {field: 'category', condition: 'categories.name'},
@@ -34,9 +36,62 @@ router.get('/get_products', (req, res, next) => {
     // realizo la consulta
     const results = await queryBuilder('products', params);
 
-    console.log(results);
-
     res.render('products', {products: results, user: req.user});
+
+});
+
+
+// ruta que se carga de traer los productos
+router.post('/create_product', (req, res, next) => {
+	
+	if( req.isAuthenticated() ) return next();
+	
+	res.redirect("/login");
+
+}, async (req, res) => {
+
+    const {file, body} = req; 
+    const route_image = `img/${file.filename}`;
+
+    // defino la consulta y los valores que se va a guardar
+    let sql = "INSERT INTO products (image, name, price, quantity, category_id) VALUES (?,?,?,?,?)";
+    let values = [ route_image, body.name, body.price, body.quantity, body.category_id]
+
+    // ejecuto la consulta
+    connection.query(sql,values, function (err, result) {
+      if (err) throw err;
+      console.log("agregado correctamente");
+    });
+
+   // res.render('products', {products: results, user: req.user});
+   res.redirect('get_products');
+
+
+});
+
+
+// ruta que se carga de traer los productos
+router.post('/update_product', (req, res, next) => {
+	
+	if( req.isAuthenticated() ) return next();
+	
+	res.redirect("/login");
+
+}, (req, res) => {
+    const { body } = req;
+
+    // defino la consulta sql
+    const sql = "UPDATE products SET name = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
+    const values = [body.name, body.price, body.quantity, body.category_id, body.id];
+
+    // ejecuto la consulta
+    connection.query(sql, values, function (err, result) {
+      if (err) throw err;
+      console.log(result.affectedRows + " record(s) updated");
+    });
+
+   // res.render('products', {products: results, user: req.user});
+   res.redirect('get_products');
 
 });
 

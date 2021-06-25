@@ -85,9 +85,7 @@ module.exports = (table, params) => {
         return new Promise((resolve, reject) => {
             connection.query(sql, (error, results, fields) => {
                 if(error) return reject(error);
-
-                console.log(results, 'aqui dentro');
-
+                
                 return resolve(results);
             });
         });

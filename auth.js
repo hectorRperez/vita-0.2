@@ -21,12 +21,24 @@ module.exports = (passport) => {
             bcrypt.hash(req.body.password, 10, function(err, hash) {
                 if(err) throw done(err.sqlMessage, false);
                 
+                //defino la consulta sql
+                const values = [req.body.name, req.body.lastname, req.body.email, hash];
+                const sql = 'INSERT INTO users (name, lastname, email, password) VALUES (?,?,?,?)';
+
                 // guardo los datos del usuario en la BD
-                connection.query('INSERT INTO users (full_name, email, password) VALUES (?,?,?)', [req.body.full_name, req.body.email, hash], function (err, results, fields) {
-                    if(err) throw done(err.sqlMessage, false);
+                connection.query(sql, values, function (err, results, fields) {
+                    if(err) throw done(err, false);
                     
-                    if(results.affectedRows > 0)
-                        done(null, { id: results.insertId, full_name : req.body.full_name, email: req.body.email } );
+                    // si la insercion fue correcta serializo los datos
+                    if(results.affectedRows > 0) {
+                        done(null, {
+                            id: results.insertId,
+                            name : req.body.name,
+                            lastname: req.body.lastname,
+                            email: req.body.email
+                        });
+                    }
+
         
                 });
             });
@@ -69,7 +81,7 @@ module.exports = (passport) => {
 
     // deserializacion de un usuario
     passport.deserializeUser( function(id,done) {
-        connection.query('SELECT id, full_name, email FROM `users` WHERE `id` = ?', [id], function (err, results, fields) {
+        connection.query('SELECT id, name, lastname, email FROM `users` WHERE `id` = ?', [id], function (err, results, fields) {
             if(err) throw err.sqlMessage;
 
             if(results[0] != null){

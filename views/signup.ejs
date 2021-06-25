@@ -6,8 +6,9 @@
 <body>
 
 	<h1>registro de prueba</h1>
-	<form action="/signup" method="post">
-		<input type="text" name="full_name" placeholder="full_name">
+	<form action="/signup" method="post" enctype="multipart/form-data">
+		<input type="text" name="name" placeholder="Nombre">
+		<input type="text" name="lastname" placeholder="Apellido">
 		<input type="email" name="email" placeholder="email">
 		<input type="password" name="password" placeholder="password">
 		<input type="submit" name="signup">
