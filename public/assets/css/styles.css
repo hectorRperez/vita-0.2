@@ -153,6 +153,7 @@ Submenu
 
 .has-submenu .submenu li{
         padding: 8px 8px;
+        box-shadow: 0 2px 4px #b7b7b7;
 }
 
 /*menu opened
