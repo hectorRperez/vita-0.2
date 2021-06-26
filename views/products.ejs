@@ -7,33 +7,33 @@
     <title>Tienda</title>
 </head>
 <body>
-    <h1>Bienvenido <%= user.full_name %> </h1>
+    <h1>Bienvenido <%= user.name %> </h1>
     <table>
       <% for(var i=0; i < products.length; i++) { %>
            <tr>
              <td> ID:<%= products[i].id %></td>
              <td> <img src="<%= products[i].image %>" width="100"></td>
              <td> Nombre: <%= products[i].name %></td>
-             <td> Precio: <%= products[i].price %></td>
+             <td> Precio: <%= products[i].price %>$</td>
              <td> Cantidad: <%= products[i].quantity %></td>
              <td> Categoria: <%= products[i].category %></td>
            </tr>
            <% } %>
         </table>
 
+        <h2>Crear productos productos</h2>
 
         <form action="/create_product" method="post"  enctype="multipart/form-data">
-        
           <input type="text" name="name" id="" placeholder="Nombre">
           <input type="text" name="price" id="" placeholder="Precio">
           <input type="text" name="quantity" id="" placeholder="Cantidad">
           <input type="text" name="category_id" id="" placeholder="categoria">
           <input type="file" name="image" id="" placeholder="image">
-          <input type="submit" value="Agregar">
+          <input type="submit" value="create">
         </form>
 
 
-
+        <h2>Actualizar productos</h2>
 
         <form action="/update_product" method="post" style="margin-top: 2em;">
           <input type="text" name="id" id="" placeholder="ID">
@@ -41,9 +41,19 @@
           <input type="text" name="price" id="" placeholder="Precio">
           <input type="text" name="quantity" id="" placeholder="Cantidad">
           <input type="text" name="category_id" id="" placeholder="categoria">
-      
-          <input type="submit" value="Actualizar">
+          <input type="submit" value="update">
         </form>
+
+
+        <h2>Eliminar productos</h2>
+
+        <form action="/delete_product" method="post" style="margin-top: 2em;">
+          <input type="text" name="product_id" id="" placeholder="ID">
+          <input type="submit" value="delete">
+        </form>
+
+
+
 
 </body>
 </html>

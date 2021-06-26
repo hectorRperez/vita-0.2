@@ -5,6 +5,7 @@ const router = require('express').Router();
 // ruta inicial
 router.get('/', async (req, res) => {
    
+	/*
 	let params = {};
 
 	params.selects = [
@@ -33,6 +34,11 @@ router.get('/', async (req, res) => {
 	let products = await queryBuilder('home_products', params2);
 
 	res.render('index.ejs', {info: info, products: products});
+
+	*/
+
+	res.render('index.ejs');
+
 });
 
 module.exports = router;
