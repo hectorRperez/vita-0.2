@@ -17,4 +17,12 @@ window.onload = () => {
 			document.body.classList.remove("no-scroll")
 
 	}
+
+	// if(document.querySelector(".menu.opened")){
+
+	// 	document.querySelector(".menu.opened .has-submenu").onclick = x => {
+	// 		x.preventDefault()
+	// 		console.log("culo")
+	// 	}
+	// }
 }

@@ -130,6 +130,31 @@ a {
     display: none;
 }
 
+
+/*
+Submenu
+*/
+
+.has-submenu  .submenu{
+       overflow: hidden;
+       position: absolute;
+       transition: all 1s;
+       max-height: 0;
+       color: var(--primary);
+}
+
+.has-submenu:hover .submenu{
+    max-height: 100px;
+    overflow: visible;
+    position: absolute;
+    margin-left: -8px;
+    background-color: #c0c0c068;
+}
+
+.has-submenu .submenu li{
+        padding: 8px 8px;
+}
+
 /*menu opened
 */
 .opened{
@@ -218,8 +243,13 @@ a {
         display:  none;
     }
 
+    .menu.opened .has-submenu:hover .submenu{
+            margin-top: 1rem;
+            background-color: transparent;
+            position: relative;
+    }
+}
 
-}n
 .opened.menu .hamburger {
     display: none;
 }
