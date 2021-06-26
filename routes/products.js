@@ -51,7 +51,19 @@ router.post('/create_product', (req, res, next) => {
 }, async (req, res) => {
 
     const {file, body} = req; 
-    const route_image = `img/${file.filename}`;
+
+    if( isNaN(body.price) || body.price == undefined )
+      throw "Ingresa un precio valido";
+    
+    if( isNaN(body.quantity) ||body.quantity == undefined )
+      throw "Ingrese una cantidad correcta";
+      
+    if(body.category_id == undefined)
+      throw "Ingrese una categoria";
+
+    let route_image = "";
+    if(file == undefined)
+      route_image = `img/${file.filename}`;
 
     // defino la consulta y los valores que se va a guardar
     let sql = "INSERT INTO products (image, name, price, quantity, category_id) VALUES (?,?,?,?,?)";
