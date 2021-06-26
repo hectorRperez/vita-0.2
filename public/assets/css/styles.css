@@ -541,7 +541,8 @@ Submenu
     max-width: 1170px;
     margin: auto;
     text-align: center;
-    padding: 50px 150px;
+    padding: 50px 15%;
+    
 }
 
 .container-testimonials .slider{
