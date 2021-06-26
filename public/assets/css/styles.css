@@ -495,12 +495,21 @@ Submenu
     position: relative;
 }
 
+
 .header-container hr{
     position: absolute;
     top: 2rem;
     width: 100%;
     z-index: -2;
     border: 1px solid var(--primary);
+}
+
+@media(max-width: 900px){
+
+    .header-container.header-history hr{
+        display: none;
+    }
+
 }
 
 .title-back{
