@@ -542,7 +542,49 @@ Submenu
     margin: 25px;
 }
 
+/* ------------- Sección de OUR SERVICES ------------- */
 
+.services-container{
+    max-width: 1170px;
+    margin: auto;
+
+}
+
+.services{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.services figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.services figure img{
+    width: 80px;
+}
+
+.services figure i{
+    visibility: hidden;
+}
+
+.services figure.active i{
+    visibility: visible;
+}
+
+.services-container .services-desc{
+    min-height: 20vh;
+    margin-top: 2rem;
+    margin: 1rem 5%;
+    background: #c0c0c044;
+    padding: 1rem 2rem;
+}
+
+.services-container .services-desc article{
+    display: none;
+}
 /* ------------- Sección de TESTIMONIALS ------------- */
 
 .container-testimonials{
@@ -551,10 +593,6 @@ Submenu
     margin: auto;
     text-align: center;
     padding: 50px 15%;
-<<<<<<< HEAD
-    
-=======
->>>>>>> 0d97c4753619aeda45fa104b33a84c66536afacc
 }
 
 .container-testimonials .slider{
