@@ -567,6 +567,11 @@ Submenu
     width: 80px;
 }
 
+.services h3{
+    font-weight: 300;
+    font-size: 1.6em;
+}
+
 .services figure i{
     visibility: hidden;
 }
@@ -581,6 +586,8 @@ Submenu
     margin: 1rem 5%;
     background: #c0c0c044;
     padding: 1rem 2rem;
+    border: 1px solid red;
+    border-radius: 3px;
 }
 
 .services-container .services-desc article{
