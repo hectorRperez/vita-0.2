@@ -567,7 +567,8 @@ Submenu
 }
 
 .services figure img{
-    width: 180px;
+    max-width: 180px;
+    width: 100%;
 }
 
 .services h3{
@@ -587,11 +588,11 @@ Submenu
 .services-container .services-desc{
     min-height: 20vh;
     margin-top: 2rem;
-    margin: 1rem 5%;
+    margin: 1rem 0 ;
     border-radius: 3px;
 }
 
-.service1-desc{
+/*.service1-desc{
     background-size: cover;
     height: 80vh;
     margin: 0 auto;
@@ -602,6 +603,7 @@ Submenu
     height: 80vh;
     width: 100%;
 }
+
 
 .service3-desc{
     background-size: cover;
@@ -619,12 +621,16 @@ Submenu
     background-size: cover;
     height: 80vh;
     width: 100%;
-}
+}*/
 
 .services-container .services-desc article{
     display: none;
     min-height: 20vh;
-    padding: 1rem 2rem;
+    /*padding: 1rem 2rem;*/
+}
+
+.services-container .services-desc article img{
+    width: 100%;
 }
 /* ------------- Sección de TESTIMONIALS ------------- */
 
