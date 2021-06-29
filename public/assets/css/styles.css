@@ -593,7 +593,7 @@ Submenu
 .service1-desc{
     background-size: cover;
     height: 80vh;
-    width: 100%;
+    margin: 0 auto;
 }
 
 .service2-desc{
