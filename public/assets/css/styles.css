@@ -563,6 +563,7 @@ Submenu
     cursor: pointer;
     max-width: 20%;
     text-align: center;
+    margin: 0 1rem;
 }
 
 .services figure img{
