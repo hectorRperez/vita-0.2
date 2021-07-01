@@ -821,3 +821,94 @@ Submenu
         margin: 30px 30px;
     }
 }
+
+/* ------------------------ Footer ------------------------*/
+
+.container-footer{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.row-footer{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.footer{
+    background-color: #d9c4ac;
+    color: var(--primary);
+    font-size: 14px;
+    padding: 60px 0 20px;
+}
+
+.footer p{
+    color: seashell;
+}
+
+.footer h3{
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-col-1{
+    flex-basis: 30%;
+}
+
+.footer-col-2{
+    flex: 1;
+    text-align: center;
+}
+
+.footer-col-2 img{
+    width: 120px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.footer-col-3, .footer-col-4{
+    flex-basis: 12%;
+    text-align: center;
+}
+
+.footer-col-3 li{
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.footer-col-4 li{
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+ul{
+    list-style-type: none;
+}
+
+
+.app-logo{
+    margin-top: 20px;
+}
+
+.app-logo img{
+    width: 140px;
+}
+
+.footer hr{
+    border: none;
+    background: #fff;
+    height: 1px;
+    margin: 20px 0;
+}
+
+.copyright{
+    text-align: center;
+}
