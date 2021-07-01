@@ -1,4 +1,5 @@
-window.onload = () => {
+    
+//Doesnt works with window on load anymore
     const services = document.querySelectorAll(".service-btn")
     const serviceArticles = document.querySelectorAll(".services-desc article")
 
@@ -11,4 +12,6 @@ window.onload = () => {
         s.classList.add("active")
     }))
     })
-}
+
+
+
