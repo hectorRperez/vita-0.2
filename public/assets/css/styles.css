@@ -839,18 +839,18 @@ Submenu
 }
 
 .footer{
-    background-color: #d9c4ac;
+    background-color: rgb(20, 91, 143);;
     color: var(--primary);
     font-size: 14px;
     padding: 60px 0 20px;
 }
 
 .footer p{
-    color: seashell;
+    color: var(--primary);
 }
 
 .footer h3{
-    color: #fff;
+    color: var(--primary);
     margin-bottom: 20px;
 }
 
@@ -884,9 +884,17 @@ Submenu
     margin-bottom: 5px;
 }
 
+.footer-col-3 li:hover{
+    color: #fff;
+}
+
 .footer-col-4 li{
     margin-bottom: 5px;
     cursor: pointer;
+}
+
+.footer-col-4 li:hover{
+    color: #fff;
 }
 
 ul{
