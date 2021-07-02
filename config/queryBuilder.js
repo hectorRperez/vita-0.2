@@ -75,7 +75,7 @@ module.exports = (table, params) => {
         order_by = `order by ${params.order_by[0]} ${params.order_by[1]} `;
 
     // genero la consulta sql
-    const sql = `SELECT ${selects} FROM ${table} ${join} ${where} ${group_by} ${order_by}`;
+    const sql = `SELECT ${selects} FROM ${table} ${join} ${where} ${group_by} ${order_by} limit ${limit}`;
     
 
     // envuelvo el metodo query con una promesa para poder obtener los resultado 

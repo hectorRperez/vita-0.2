@@ -31,12 +31,14 @@ router.get('/', async (req, res) => {
         {type: 'INNER', join: ['products', 'home_products.product_id', '=', 'products.id'] }
     ];
 
+	// establezco el limite de filas a mostrar
+	params2.limit = 4;
+
 	let products = await queryBuilder('home_products', params2);
 
 	res.render('index.ejs', {info: info, products: products});
 
 	*/
-
 	res.render('index.ejs');
 
 });
