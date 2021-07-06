@@ -2,7 +2,7 @@
 
 module.exports = {
 	
-	"port": 4500,
+	"port": 8080,
 
 	"mysql": {
 		"host": "localhost",
