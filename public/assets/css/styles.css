@@ -537,6 +537,29 @@ Submenu
     margin: 50px;
 }
 
+.paragraph-left{
+    text-align: left;
+}
+
+[class*=paragraph] > * {
+    padding-top: 1rem;
+}
+
+[class*=paragraph] ul{
+    padding-left: 2rem;
+}
+
+[class*=paragraph] li{
+    text-indent: -5px;
+}
+
+[class*=paragraph] li::before{
+    text-indent: -5px;
+    content: "-";
+}
+
+
+
 .firma{
     font-family: 'Alex Brush', cursive;
     margin: 25px;
