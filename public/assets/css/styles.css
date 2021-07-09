@@ -388,12 +388,19 @@ Submenu
         top: 7vw;
     }
 
+
 }
 
 .banner-content h1{
     color: var(--white);
     font-weight: 500;
     font-size: 3em;
+}
+
+.banner-content.shop-now_btn{
+    top: auto;
+    bottom: 15%;
+    left: 25%;
 }
 
 .firts_title{
