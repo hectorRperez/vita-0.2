@@ -2,6 +2,8 @@
     --white: #fff;
     --black: #222;
     --primary: #3595db;
+    --primary-skinscare: rgb(156, 131, 109);
+    --secundary-skinscare: rgb(125, 84, 56);
 }
 
 
@@ -432,6 +434,12 @@ Submenu
 .buttons-group button{
     background-color: var(--primary);
     color: var(--white);
+    border: none;
+}
+
+.shop-buttons-now button{
+    background-color: #fff;
+    color: var(--primary-skinscare);
 }
 
 .buttons-group button:hover{
@@ -449,6 +457,7 @@ Submenu
 
 .title h1{
     font-weight: 400;
+    color: red;
 }
 
 .title span{
@@ -494,6 +503,10 @@ Submenu
     color: var(--primary);
 }
 
+.title-shop-skinscare h1{
+    color: rgb(156, 131, 109);
+}
+
 .section{
     padding: 25px;
 }
@@ -526,6 +539,10 @@ Submenu
     font-size: 35px;
     font-weight: 400;
     color: rgb(20, 91, 143);
+}
+
+.title-back-skinscare{
+    color: rgb(125, 84, 56);
 }
 
 .title-back::after{
@@ -621,6 +638,11 @@ Submenu
     margin: 1rem 0 ;
     border-radius: 3px;
 }
+
+.services .caption-skinscare{
+    margin-top: 15px;
+}
+
 
 /*.service1-desc{
     background-size: cover;
