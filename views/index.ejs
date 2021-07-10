@@ -62,69 +62,21 @@
     <section class="section">
         <div class="product-center container">
 
-            <!-- Producto #1 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product8.jpg" alt="">
+            <% for(let i=0; i < products.length; i++) { %>
+                <!-- Producto # <%= i + 1 %> -->
+                <div class="product">
+                    <div class="img-cover">
+                        <img src="<%= products[i].image %>">
+                    </div>
+                    <p><%= products[i].name %> </p>
+                    <div class="rating">
+                        <% for(var j=0; j < products[i].assessment; j++) { %>
+                            <i class='bx bxs-star'></i>
+                        <% } %>
+                    </div>
+                    <div class="price">$<%= products[i].price %> </div>
                 </div>
-                <p>Acid hyaluronic 30ml</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$895</div>
-            </div>
-
-            <!-- Producto #2 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product9.jpg" alt="">
-                </div>
-                <p>Anti-Aging 20ml</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$895</div>
-            </div>
-
-            <!-- Producto #3 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product10.jpg" alt="">
-                </div>
-                <p>Vitamin C 30 ml</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$895</div>
-            </div>
-
-            <!-- Producto #4 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product10.jpg" alt="">
-                </div>
-                <p>Derma Roller</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$895</div>
-            </div>
+            <% } %>
 
         </div>
     </section>

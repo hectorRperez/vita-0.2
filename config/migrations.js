@@ -99,12 +99,21 @@ try {
 			
 			// creando productos
 			[
-				{name:'product 1', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id) VALUES ('Tacones Rosas', 'img/pic2.png', 75.66, 3, 1, 1 )"},
-				{name:'product 2', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id) VALUES ('Mochila Moderna', 'img/pic12.png', 6.99, 1, 3, 1 )"},
-				{name:'product 3', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id) VALUES ('Zapatos Deportivos', 'img/pic8.png', 24.99, 4, 2, 1 )"},
-				{name:'product 4', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id) VALUES ('Chaqueta Deportiva', 'img/pic4.png', 17.45, 10, 4, 1 )"},
-				{name:'product 5', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id) VALUES ('Laptop', 'img/product1.jpg', 349.99, 1, 1, 1 )"},
-			]
+				{name:'product 1', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Tacones Rosas', 'img/pic2.png', 75.66, 3, 1, 1, 1 )"},
+				{name:'product 2', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Mochila Moderna', 'img/pic12.png', 6.99, 1, 3, 1, 3 )"},
+				{name:'product 3', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Zapatos Deportivos', 'img/pic8.png', 24.99, 4, 2, 1, 4 )"},
+				{name:'product 4', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Chaqueta Deportiva', 'img/pic4.png', 17.45, 10, 4, 1,2 )"},
+				{name:'product 5', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Laptop', 'img/product1.jpg', 349.99, 1, 1, 1, 5 )"},
+			],
+
+
+			// creando los home products
+			[
+				{name:'Home_product 1', sql: "INSERT INTO home_products (product_id) VALUES (1)"},
+				{name:'Home_product 2', sql: "INSERT INTO home_products (product_id) VALUES (2)"},
+				{name:'Home_product 3', sql: "INSERT INTO home_products (product_id) VALUES (3)"},
+				{name:'Home_product 4', sql: "INSERT INTO home_products (product_id) VALUES (4)"},
+			],
 		
 		];
 		
