@@ -626,7 +626,7 @@ Submenu
 .services h3{
     font-weight: 300;
     font-size: 1.3em;
-    color: rgb(20, 91, 143);
+    color: var(--secundary-skinscare);
 }
 
 .services figure i{
