@@ -785,6 +785,10 @@ Submenu
     text-align: center;
 }
 
+.section-blog-skinscare{
+    background-color: var(--primary-skinscare);
+}
+
 .container-blog{
     max-width: 1200px;
     width: 100%;
