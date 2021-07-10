@@ -525,6 +525,10 @@ Submenu
     border: 1px solid var(--primary);
 }
 
+.header-container .hr-skinscares{
+    border: 1px solid var(--secundary-skinscare);
+}
+
 @media(max-width: 900px){
 
     .header-container.header-history hr{
