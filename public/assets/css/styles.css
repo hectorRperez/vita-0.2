@@ -402,7 +402,14 @@ Submenu
 .banner-content.shop-now_btn{
     top: auto;
     bottom: 15%;
-    left: 25%;
+    left: 28%;
+}
+
+@media (max-width : 700px)
+{
+    .banner-content.shop-now_btn{
+        left: 26%;
+    }
 }
 
 .firts_title{
