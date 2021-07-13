@@ -44,11 +44,11 @@ try {
 			{name:'Table users_types', sql: "CREATE TABLE users_types ( id int(11) NOT NULL AUTO_INCREMENT, type varchar(50) NOT NULL, PRIMARY KEY (id))"},
 			{name:'Table users_types_users', sql: "CREATE TABLE users_types_users ( id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, user_type_id int(11) NOT NULL,  PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (user_type_id) REFERENCES users_types(id) )"},
 			{name:'Table categories', sql: "CREATE TABLE categories ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, PRIMARY KEY (id) )"},
-			{name:'Table taxes', sql: "CREATE TABLE taxes ( id int(11) NOT NULL AUTO_INCREMENT, tax decimal(2,2), name varchar(50) NOT NULL, PRIMARY KEY (id))"},
+			{name:'Table taxes', sql: "CREATE TABLE taxes ( id int(11) NOT NULL AUTO_INCREMENT, tax decimal(2,2), PRIMARY KEY (id))"},
 			{name:'Table products', sql: "CREATE TABLE products ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, image varchar(255), price double(10,2) NOT NULL, quantity int(4) NOT NULL, assessment INT(1) NOT NULL DEFAULT 1, sales_quantity INT(5) NOT NULL DEFAULT 0, category_id int(11) NOT NULL, tax_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (category_id) REFERENCES categories(id), FOREIGN KEY (tax_id) REFERENCES taxes(id) )"},
 			{name:'Table orders_states', sql: "CREATE TABLE orders_states ( id int(11) NOT NULL AUTO_INCREMENT, state varchar(50) NOT NULL, PRIMARY KEY (id) )"},
-			{name:'Table orders', sql: "CREATE TABLE orders ( id int(11) NOT NULL AUTO_INCREMENT, total_products int(3), subtotal decimal(10,2) NOT NULL, total double(10,2) NOT NULL, user_id int(4) NOT NULL, state_id int(10) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (state_id) REFERENCES orders_states(id) )"},
-			{name:'Table orders_items', sql: "CREATE TABLE orders_items ( id int(11) NOT NULL AUTO_INCREMENT, product_id int(10) NOT NULL, quantity int(10) NOT NULL, subtotal decimal(10,2) NOT NULL, total decimal(10,2) NOT NULL, order_id int(10), PRIMARY KEY (id), FOREIGN KEY (order_id) REFERENCES orders(id), FOREIGN KEY (product_id) REFERENCES products(id) )"},
+			{name:'Table orders', sql: "CREATE TABLE orders ( id int(11) NOT NULL AUTO_INCREMENT, total_products int(3), tax_amount decimal(10,2) NOT NULL, subtotal decimal(10,2) NOT NULL, total double(10,2) NOT NULL, user_id int(4) NOT NULL, state_id int(10) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (state_id) REFERENCES orders_states(id) )"},
+			{name:'Table orders_items', sql: "CREATE TABLE orders_items ( id int(11) NOT NULL AUTO_INCREMENT, product_id int(10) NOT NULL, quantity int(10) NOT NULL, tax_amount decimal(10,2) NOT NULL, subtotal decimal(10,2) NOT NULL, total decimal(10,2) NOT NULL, order_id int(10), PRIMARY KEY (id), FOREIGN KEY (order_id) REFERENCES orders(id), FOREIGN KEY (product_id) REFERENCES products(id) )"},
 			{name:'Table home_products', sql: "CREATE TABLE home_products ( id int(2) NOT NULL AUTO_INCREMENT, product_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (product_id) REFERENCES products(id))"},
 			{name:'Table home_info', sql: "CREATE TABLE home_info ( id int(2) NOT NULL AUTO_INCREMENT, mision TEXT NOT NULL, history TEXT NOT NULL, vision TEXT NOT NULL, PRIMARY KEY (id) )"}
 		];
@@ -90,11 +90,17 @@ try {
 				{name:'Category 3', sql: "INSERT INTO categories (name) VALUES ('Categoria 3')"},
 				{name:'Category 4', sql: "INSERT INTO categories (name) VALUES ('Categoria 4')"},
 			],
-			
 
+			// creando los estados de los pedidos
+			[
+				{name:'pending status', sql: "INSERT INTO orders_states (state) VALUES ('pending')"},
+				{name:'generated status', sql: "INSERT INTO orders_states (state) VALUES ('generated')"},
+				{name:'paid status', sql: "INSERT INTO orders_states (state) VALUES ('paid')"},
+			],
+			
 			// creando los impuestos
 			[
-				{name:'Tax 1', sql: "INSERT INTO taxes (tax, name) VALUES (0.16, 'Impuesto')"},
+				{name:'Tax 1', sql: "INSERT INTO taxes (tax) VALUES (0.16)"},
 			],
 			
 			// creando productos
