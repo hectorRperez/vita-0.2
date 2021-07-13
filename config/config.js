@@ -7,7 +7,7 @@ module.exports = {
 	"mysql": {
 		"host": "localhost",
 		"user": "root",
-		"password": "password",
+		"password": "",
 		"database": "vita02"
 	}
 
