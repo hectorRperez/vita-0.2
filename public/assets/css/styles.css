@@ -477,15 +477,20 @@ Submenu
     gap: 2rem;
     margin-bottom: 5rem;
     margin: 0 2rem;
-    display: flex;
-    justify-content: center;
-    /*flex: 25%;*/
+    
+}
 
-    flex-wrap: wrap;
+.products-three{
+   display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.products-three .product{
+    min-width: 30%;
 }
 
 .product {
-    min-width: 25%;
     text-align: center;
     padding-bottom: 1rem;
     transition: all 500ms ease-in-out;
