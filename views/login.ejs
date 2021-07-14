@@ -39,27 +39,27 @@
 				<div class="col-lg-7 pl-4 justify-content-center">
 					<img src="./img/logo vitaskincare arena.png" class="logo">
 					<h5> Sign into your account </h5> 
-					<form">
+					<form" action="/login" method="post">
 						<div class="form-row">
 							<div class="col-lg-7 col-8">
-								<input type="email" placeholder="johndoe@gmail.com" class="form-control my-1 py-2">
+								<input type="email" name="email" placeholder="johndoe@gmail.com" class="form-control my-1 py-2">
 							</div>
 						</div>
 
 						<div class="form-row">
 							<div class="col-lg-7 col-8">
-								<input type="password" placeholder="*******************" class="form-control my-1 p-2">
+								<input type="password" name="password" placeholder="*******************" class="form-control my-1 p-2">
 							</div>
 						</div>
 
 						<div class="form-row">
 							<div class="col-lg-7 col-8">
-								<button type="button" class="btn1">Login</button>
+								<button type="submit" name="login" class="btn1">Login</button>
 							</div>
 						</div>
 
 						<a href="#">Forgot password</a>
-						<p>Dont't have an account? <a href="#">Rigister here</a> </p>
+						<p>Dont't have an account? <a href="/signup">Register here</a> </p>
 					</form>
 				</div>
 			</div>
