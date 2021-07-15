@@ -2,12 +2,12 @@
 
 module.exports = {
 	
-	"port": 4500,
+	"port": 5500,
 
 	"mysql": {
 		"host": "localhost",
 		"user": "root",
-		"password": "password",
+		"password": "",
 		"database": "vita02"
 	}
 
