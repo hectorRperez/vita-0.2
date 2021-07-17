@@ -32,7 +32,7 @@ app.use( multer({
 	storage,
 	dest: path.join(__dirname, 'public/img'),
 	limits: {fileSize: 500000}
-}).single('image'));
+}).array('image', 6));
 
 // configuracion de la cookies
 app.use( cookieParser('5654534jk34kjnk346kjn652gf2') );
