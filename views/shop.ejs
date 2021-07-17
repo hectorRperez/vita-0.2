@@ -32,35 +32,22 @@
         <div class="row-product">
             
             <div class="col-2-product">
-                <img src="./img/product7.jpg" width="100%" id="ProductImg">
+                <img src="<%= product.image %>" width="100%" id="ProductImg">
 
                 <div class="small-img-row">
 
-                    <!-- Miniatura 1 -->
-                    <div class="small-img-col">
-                        <img src="./img/product8.jpg" width="100%" class="small-img">
-                    </div>
+                    <% for(let i=0; i < product_images.length; i++) { %>
+                        <div class="small-img-col">
+                            <img src="<%= product_images[i].image %>" width="100%" class="small-img">
+                        </div>
+                    <% } %>
 
-                    <!-- Miniatura 2 -->
-                    <div class="small-img-col">
-                        <img src="./img/pic10.png" width="100%" class="small-img">
-                    </div>
-
-                    <!-- Miniatura 3 -->
-                    <div class="small-img-col">
-                        <img src="./img/pic11.png" width="100%" class="small-img">
-                    </div>
-
-                    <!-- Miniatura 4 -->
-                    <div class="small-img-col">
-                        <img src="./img/pic12.png" width="100%" class="small-img">
-                    </div>
                 </div>
             </div>
 
             <div class="col-2-product">
-                <h1>Prueba nombre producto</h1>
-                <h3>$100.0</h3>
+                <h1><%= product.name %></h1>
+                <h3>$<%= product.price %></h3>
                 <select>
                     <option>Select Size</option>
                     <option>XXL</option>
@@ -74,9 +61,7 @@
 
                 <h3>Product Details <i class="fa fa-indent"></i> </h3>
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio adipisci praesentium accusamus ea quo
-                    laudantium, minima odit obcaecati tenetur fugiat eum maxime id aliquid laboriosam sequi quaerat
-                    tempora molestiae perferendis!
+                    <%= product.description %>
                 </p>
             </div>
         </div>
