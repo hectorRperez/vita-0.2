@@ -38,16 +38,16 @@ try {
 
 		const tables = [
 			{name: "", sql:"SET FOREIGN_KEY_CHECKS = 0"},
-			{name:'Drop all table', sql: "DROP TABLE IF EXISTS home_products, orders_items, orders, orders_states, taxes, products, categories, users_types_users, users, users_types, home_info"},
+			{name:'Drop all table', sql: "DROP TABLE IF EXISTS home_products, orders_items, orders, orders_states, taxes, products_images, products, categories, users_types_users, users, users_types, home_info"},
 			{name: "", sql:"SET FOREIGN_KEY_CHECKS = 1"},
 			{name:'Table users', sql: "CREATE TABLE users ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, lastname varchar(50) NOT NULL, image varchar(255), email varchar(255) NOT NULL UNIQUE, password varchar(255) NOT NULL, PRIMARY KEY (id) )"},
 			{name:'Table users_types', sql: "CREATE TABLE users_types ( id int(11) NOT NULL AUTO_INCREMENT, type varchar(50) NOT NULL, PRIMARY KEY (id))"},
 			{name:'Table users_types_users', sql: "CREATE TABLE users_types_users ( id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, user_type_id int(11) NOT NULL,  PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (user_type_id) REFERENCES users_types(id) )"},
 			{name:'Table categories', sql: "CREATE TABLE categories ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, PRIMARY KEY (id) )"},
-			{name:'Table taxes', sql: "CREATE TABLE taxes ( id int(11) NOT NULL AUTO_INCREMENT, tax decimal(2,2), PRIMARY KEY (id))"},
-			{name:'Table products', sql: "CREATE TABLE products ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, image varchar(255), price double(10,2) NOT NULL, quantity int(4) NOT NULL, assessment INT(1) NOT NULL DEFAULT 1, sales_quantity INT(5) NOT NULL DEFAULT 0, category_id int(11) NOT NULL, tax_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (category_id) REFERENCES categories(id), FOREIGN KEY (tax_id) REFERENCES taxes(id) )"},
+			{name:'Table products', sql: "CREATE TABLE products ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, description MEDIUMTEXT NOT NULL, price double(10,2) NOT NULL, quantity int(4) NOT NULL, assessment INT(1) NOT NULL DEFAULT 1, sales_quantity INT(5) NOT NULL DEFAULT 0, category_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (category_id) REFERENCES categories(id))"},
+			{name:'products_images', sql: "CREATE TABLE products_images (id int(11) NOT NULL AUTO_INCREMENT, product_id int(11) NOT NULL, image varchar(255) NOT NULL, is_first tinyint(1) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (product_id) REFERENCES products(id))"},
 			{name:'Table orders_states', sql: "CREATE TABLE orders_states ( id int(11) NOT NULL AUTO_INCREMENT, state varchar(50) NOT NULL, PRIMARY KEY (id) )"},
-			{name:'Table orders', sql: "CREATE TABLE orders ( id int(11) NOT NULL AUTO_INCREMENT, total_products int(3), tax_amount decimal(10,2) NOT NULL, subtotal decimal(10,2) NOT NULL, total double(10,2) NOT NULL, user_id int(4) NOT NULL, state_id int(10) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (state_id) REFERENCES orders_states(id) )"},
+			{name:'Table orders', sql: "CREATE TABLE orders ( id int(11) NOT NULL AUTO_INCREMENT, total_products int(3) NOT NULL, tax_amount decimal(10,2) NOT NULL, subtotal decimal(10,2) NOT NULL, total double(10,2) NOT NULL, user_id int(4) NOT NULL, state_id int(10) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (state_id) REFERENCES orders_states(id) )"},
 			{name:'Table orders_items', sql: "CREATE TABLE orders_items ( id int(11) NOT NULL AUTO_INCREMENT, product_id int(10) NOT NULL, quantity int(10) NOT NULL, tax_amount decimal(10,2) NOT NULL, subtotal decimal(10,2) NOT NULL, total decimal(10,2) NOT NULL, order_id int(10), PRIMARY KEY (id), FOREIGN KEY (order_id) REFERENCES orders(id), FOREIGN KEY (product_id) REFERENCES products(id) )"},
 			{name:'Table home_products', sql: "CREATE TABLE home_products ( id int(2) NOT NULL AUTO_INCREMENT, product_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (product_id) REFERENCES products(id))"},
 			{name:'Table home_info', sql: "CREATE TABLE home_info ( id int(2) NOT NULL AUTO_INCREMENT, mision TEXT NOT NULL, history TEXT NOT NULL, vision TEXT NOT NULL, PRIMARY KEY (id) )"}
@@ -98,18 +98,29 @@ try {
 				{name:'paid status', sql: "INSERT INTO orders_states (state) VALUES ('paid')"},
 			],
 			
-			// creando los impuestos
-			[
-				{name:'Tax 1', sql: "INSERT INTO taxes (tax) VALUES (0.16)"},
-			],
 			
 			// creando productos
 			[
-				{name:'product 1', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Tacones Rosas', 'img/pic2.png', 75.66, 3, 1, 1, 1 )"},
-				{name:'product 2', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Mochila Moderna', 'img/pic12.png', 6.99, 1, 3, 1, 3 )"},
-				{name:'product 3', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Zapatos Deportivos', 'img/pic8.png', 24.99, 4, 2, 1, 4 )"},
-				{name:'product 4', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Chaqueta Deportiva', 'img/pic4.png', 17.45, 10, 4, 1,2 )"},
-				{name:'product 5', sql: "INSERT INTO products (name, image, price, quantity, category_id, tax_id, assessment) VALUES ('Laptop', 'img/product1.jpg', 349.99, 1, 1, 1, 5 )"},
+				{name:'product 1', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Tacones Rosas', 'Esta es la descricion del producto', 75.66, 3, 1, 1 )"},
+				{name:'product 2', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Mochila Moderna', 'Esta es la descricion del producto', 6.99, 1, 3, 3 )"},
+				{name:'product 3', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Zapatos Deportivos', 'Esta es la descricion del producto', 24.99, 4, 2, 4 )"},
+				{name:'product 4', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Chaqueta Deportiva', 'Esta es la descricion del producto', 17.45, 10, 4, 2 )"},
+				{name:'product 5', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Laptop', 'Esta es la descricion del producto', 349.99, 1, 1, 5 )"},
+				
+			],
+
+			// creando las imagenes de productos
+			[
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (1, 'img/pic2.png', 1)"},
+				{name:'product_image 2', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (2, 'img/pic5.png', 1)"},
+				{name:'product_image 3', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (2, 'img/pic12.png', 0)"},
+				{name:'product_image 4', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (3, 'img/pic8.png', 1)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (3, 'img/pic14.png', 0)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (3, 'img/pic15.png', 0)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (3, 'img/pic13.png', 0)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (3, 'img/pic11.png', 0)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (4, 'img/pic4.png', 1)"},
+				{name:'product_image 1', sql: "INSERT INTO products_images (product_id, image, is_first) VALUES (5, 'img/product1.jpg', 1)"},
 			],
 
 
