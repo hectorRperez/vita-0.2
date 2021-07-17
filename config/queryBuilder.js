@@ -42,7 +42,7 @@ module.exports = (table, params) => {
     let join = '';
     if( !empty(params.joins) ) {
         for (let j of params.joins) {
-            join += `${j.type} JOIN ${j.join[0]} on ${j.join[1]} ${j.join[2]} ${j.join[3]} `;
+            join += `${j.type} JOIN ${j.join[0]} ON ${j.join[1]} ${j.join[2]} ${j.join[3]} `;
         }
     }
 
@@ -76,7 +76,6 @@ module.exports = (table, params) => {
 
     // genero la consulta sql
     const sql = `SELECT ${selects} FROM ${table} ${join} ${where} ${group_by} ${order_by} limit ${limit}`;
-    
 
     // envuelvo el metodo query con una promesa para poder obtener los resultado 
     // en una variable diferente
