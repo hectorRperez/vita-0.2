@@ -85,10 +85,10 @@ try {
 		
 			// creando categorias
 			[
-				{name:'Category 1', sql: "INSERT INTO categories (name) VALUES ('Categoria 1')"},
-				{name:'Category 2', sql: "INSERT INTO categories (name) VALUES ('Categoria 2')"},
-				{name:'Category 3', sql: "INSERT INTO categories (name) VALUES ('Categoria 3')"},
-				{name:'Category 4', sql: "INSERT INTO categories (name) VALUES ('Categoria 4')"},
+				{name:'Category 1', sql: "INSERT INTO categories (name) VALUES ('Zapatos')"},
+				{name:'Category 2', sql: "INSERT INTO categories (name) VALUES ('Sueters')"},
+				{name:'Category 3', sql: "INSERT INTO categories (name) VALUES ('Laptops')"},
+				{name:'Category 4', sql: "INSERT INTO categories (name) VALUES ('Mochilas')"},
 			],
 
 			// creando los estados de los pedidos
@@ -102,10 +102,10 @@ try {
 			// creando productos
 			[
 				{name:'product 1', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Tacones Rosas', 'Esta es la descricion del producto', 75.66, 3, 1, 1 )"},
-				{name:'product 2', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Mochila Moderna', 'Esta es la descricion del producto', 6.99, 1, 3, 3 )"},
-				{name:'product 3', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Zapatos Deportivos', 'Esta es la descricion del producto', 24.99, 4, 2, 4 )"},
-				{name:'product 4', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Chaqueta Deportiva', 'Esta es la descricion del producto', 17.45, 10, 4, 2 )"},
-				{name:'product 5', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Laptop', 'Esta es la descricion del producto', 349.99, 1, 1, 5 )"},
+				{name:'product 2', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Mochila Moderna', 'Esta es la descricion del producto', 6.99, 1, 4, 3 )"},
+				{name:'product 3', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Zapatos Deportivos', 'Esta es la descricion del producto', 24.99, 4, 1, 4 )"},
+				{name:'product 4', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Chaqueta Deportiva', 'Esta es la descricion del producto', 17.45, 10, 2, 2 )"},
+				{name:'product 5', sql: "INSERT INTO products (name, description, price, quantity, category_id, assessment) VALUES ('Laptop', 'Esta es la descricion del producto', 349.99, 1, 3, 5 )"},
 				
 			],
 
