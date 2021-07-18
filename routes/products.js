@@ -18,34 +18,40 @@ router.get('/get_products/:page?', (req, res, next) => {
 
     const {body, params} = req;
 
-    // obtengo los parametros
-    let data = body;
+    try {
 
-    // la pagina a mostrar
-    data.page = req.params.page;
+      // obtengo los parametros
+      let data = body;
 
-    // defino los selects
-    data.selects = [ 
-        {field: 'id', condition: 'products.id'},
-        {field: 'name', condition: 'products.name'},
-        {field: 'image', condition: 'products_images.image'},
-        {field: 'quantity', condition: 'products.quantity'},
-        {field: 'price', condition: 'products.price'},
-        {field: 'assessment', condition: 'products.assessment'},
-        {field: 'sales_quantity', condition: 'products.sales_quantity'}
-    ];
+      // la pagina a mostrar
+      data.page = req.params.page;
 
-    data.joins = [
-      {type: "INNER", join: ["products_images", 'products_images.product_id', '=', 'products.id'] }
-    ];
+      // defino los selects
+      data.selects = [ 
+          {field: 'id', condition: 'products.id'},
+          {field: 'name', condition: 'products.name'},
+          {field: 'image', condition: 'products_images.image'},
+          {field: 'quantity', condition: 'products.quantity'},
+          {field: 'price', condition: 'products.price'},
+          {field: 'assessment', condition: 'products.assessment'},
+          {field: 'sales_quantity', condition: 'products.sales_quantity'}
+      ];
 
-    // realizo la consulta
-    const results = await queryBuilder('products', data);
+      data.joins = [
+        {type: "INNER", join: ["products_images", 'products_images.product_id', '=', 'products.id'] }
+      ];
 
-    let num_items = await querySync('select count(name) as quantity from products', null);
-    num_items = num_items[0].quantity / 20;
+      // realizo la consulta
+      const results = await queryBuilder('products', data);
 
-    res.render('products', {products: results, pagination_items: num_items,  user: req.user});
+      let num_items = await querySync('select count(name) as quantity from products', null);
+      num_items = num_items[0].quantity / 20;
+
+      res.render('products', {products: results, pagination_items: num_items,  user: req.user});
+
+    } catch (error) {
+      console.error(error);
+    }
 
 });
 
@@ -91,6 +97,7 @@ router.post('/create_product', (req, res, next) => {
 		const result = await querySync(sql, [body.name, body.price, body.quantity, body.category_id]).catch(error => {throw error});
 
 
+    // defino las imagenes del producto
 		for (let i = 0; i < files.length; i++) {
 
 			let image = `img/${files[i].filename}`;
@@ -102,8 +109,7 @@ router.post('/create_product', (req, res, next) => {
 
 
     } catch (error) {
-
-      res.send(error);
+      console.error(error);
     }
     
 });
@@ -116,7 +122,7 @@ router.post('/update_product', (req, res, next) => {
 	
 	res.redirect("/login");
 
-}, (req, res) => {
+}, async (req, res) => {
     try {
       const { body } = req;
 
@@ -146,18 +152,12 @@ router.post('/update_product', (req, res, next) => {
 
       // defino la consulta sql
       const sql = "UPDATE products SET name = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
-      const values = [body.name, body.price, body.quantity, body.category_id, body.id];
+      await querySync(sql, [body.name, body.price, body.quantity, body.category_id, body.id] ).catch(error => {throw error});
 
-      // ejecuto la consulta
-      connection.query(sql, values, function (err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
-      });
-
-      // res.render('products', {products: results, user: req.user});
       res.redirect('get_products');
+    
     } catch (error) {
-        res.send(error);
+      console.error(error);
     }
 
 });
@@ -175,36 +175,30 @@ router.post('/delete_product', (req, res, next) => {
     try {
     	const { body } = req;
 
-		// busco la informacion de la imagen
-		connection.query("SELECT image FROM products WHERE id = ?", [body.product_id], function(err, results, fields) {
+      // busco el producto
+      const product =  await querySync("SELECT image FROM products WHERE id = ?", [body.product_id] ).then(r => r[0]).catch(error => {throw error});
 
-			if(results === undefined || results === null) {
+      // verifico si hay un producto
+      if(product.length == 0) {
 				throw "El producto no existe";
 			}
-			
-			// defino la consulta sql
-			const sql = "DELETE FROM products WHERE id = ?";
 
-			// ejecuto la consulta
-			connection.query(sql, [body.product_id], function (err, results, fields) {
-				if (err) throw err;
+      // en caso que lo haya lo elimino
+      const result = await querySync("DELETE FROM products WHERE id = ?", [body.product_id] ).catch(error => {throw error});
+
+      // verifico que se haya eliminado
+      if(result.affectedRows === 1) {
         
-			if(results.affectedRows === 1) {
-				// elimino el archivo si se elimino el producto
+        // elimino las imagenes guardadas
 				fs.unlinkSync( path.join("public/", results[0].image ) );
 			}
 
-			});
-
-		});
-
     	res.redirect('get_products'); 
     
+
     } catch (error) {
-    	res.send(error);
+    	console.error(error);
     }
-
-
 
 });
 
