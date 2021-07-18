@@ -22,7 +22,7 @@
         
         <div>
           <% for(var i=0; i < pagination_items; i++) { %>
-              <a href="/get_products/<%=i+1%>"><%=i+1%></a>
+              <a href="/get_products<%=i+1%>"><%=i+1%></a>
             <% } %>
         </div>
 
@@ -31,6 +31,7 @@
         <form action="/create_product" method="post"  enctype="multipart/form-data">
           <input type="text" name="name" id="" placeholder="Nombre">
           <input type="text" name="price" id="" placeholder="Precio">
+          <textarea name="description" id="" cols="20" rows="5"></textarea>
           <input type="text" name="quantity" id="" placeholder="Cantidad">
           <input type="text" name="category_id" id="" placeholder="categoria">
           <br>
@@ -54,6 +55,7 @@
           <input type="text" name="id" id="" placeholder="ID">
           <input type="text" name="name" id="" placeholder="Nombre">
           <input type="text" name="price" id="" placeholder="Precio">
+          <textarea name="description" id="" cols="20" rows="5"></textarea>
           <input type="text" name="quantity" id="" placeholder="Cantidad">
           <input type="text" name="category_id" id="" placeholder="categoria">
           <input type="submit" value="update">
