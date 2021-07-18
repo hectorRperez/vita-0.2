@@ -81,54 +81,22 @@
         </div>
         <div class="product-center container">
 
-            <!-- Product 1 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product7.jpg">
+            <% for(let i=0; i < products_related.length; i++) { %>
+                <div class="product">
+                    <div class="img-cover">
+                        <img src="<%= products_related[i].image %>">
+                    </div>
+                    <p><%= products_related[i].name %></p>
+                    <div class="rating">
+                        <% for(var j=0; j < products_related[i].assessment; j++) { %>
+                            <i class='bx bxs-star'></i>
+                        <% } %>
+                    </div>
+                    <div class="price">$<%= products_related[i].price %></div>
+                    <a href="/shop">aqui</a>
                 </div>
-                <p>nombre prueba 1</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$75.66</div>
-                <a href="/shop">aqui</a>
-            </div>
+            <% } %>
 
-            <!-- Product 2 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product7.jpg">
-                </div>
-                <p>nombre prueba 1</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$75.66</div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product7.jpg">
-                </div>
-                <p>nombre prueba 1</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$75.66</div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="product">
-                <div class="img-cover">
-                    <img src="./img/product7.jpg">
-                </div>
-                <p>nombre prueba 1</p>
-                <div class="rating">
-                    <i class='bx bxs-star'></i>
-                </div>
-                <div class="price">$75.66</div>
-            </div>
 
         </div>
     </section>
