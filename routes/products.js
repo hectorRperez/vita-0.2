@@ -3,12 +3,11 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const queryBuilder = require("../config/queryBuilder.js");
-const querySync = require("../config/querySync.js");
-const connection = require('../config/connection');
+const {querySync, beginTransaction, commit, rollback} = require("../config/querySync.js");
 
 
 // ruta que se carga de traer los productos
-router.get('/get_products/:page?', (req, res, next) => {
+router.get('/get_products:page?', (req, res, next) => {
 	
 	if( req.isAuthenticated() ) return next();
 	
@@ -18,34 +17,44 @@ router.get('/get_products/:page?', (req, res, next) => {
 
     const {body, params} = req;
 
-    // obtengo los parametros
-    let data = body;
+    try {
 
-    // la pagina a mostrar
-    data.page = req.params.page;
+      // obtengo los parametros
+      let data = body;
 
-    // defino los selects
-    data.selects = [ 
-        {field: 'id', condition: 'products.id'},
-        {field: 'name', condition: 'products.name'},
-        {field: 'image', condition: 'products_images.image'},
-        {field: 'quantity', condition: 'products.quantity'},
-        {field: 'price', condition: 'products.price'},
-        {field: 'assessment', condition: 'products.assessment'},
-        {field: 'sales_quantity', condition: 'products.sales_quantity'}
-    ];
+      // la pagina a mostrar
+      data.page = req.params.page;
 
-    data.joins = [
-      {type: "INNER", join: ["products_images", 'products_images.product_id', '=', 'products.id'] }
-    ];
+      // defino los selects
+      data.selects = [ 
+          {field: 'id', condition: 'products.id'},
+          {field: 'name', condition: 'products.name'},
+          {field: 'image', condition: 'products_images.image'},
+          {field: 'quantity', condition: 'products.quantity'},
+          {field: 'price', condition: 'products.price'},
+          {field: 'assessment', condition: 'products.assessment'},
+          {field: 'sales_quantity', condition: 'products.sales_quantity'}
+      ];
 
-    // realizo la consulta
-    const results = await queryBuilder('products', data);
+      data.joins = [
+        {type: "INNER", join: ["products_images", 'products_images.product_id', '=', 'products.id'] }
+      ];
 
-    let num_items = await querySync('select count(name) as quantity from products', null);
-    num_items = num_items[0].quantity / 20;
+      data.where = [
+        ['products_images.is_first', '=', 1]
+      ];
 
-    res.render('products', {products: results, pagination_items: num_items,  user: req.user});
+      // realizo la consulta
+      const results = await queryBuilder('products', data);
+
+      let num_items = await querySync('select count(name) as quantity from products', null);
+      num_items = num_items[0].quantity / 5;
+
+      res.render('products', {products: results, pagination_items: num_items,  user: req.user});
+
+    } catch (error) {
+      console.error(error);
+    }
 
 });
 
@@ -62,13 +71,16 @@ router.post('/create_product', (req, res, next) => {
 	try {
 		const {files, body} = req; 
 
-		console.log(files);
 		// validaciones de formulario ---------
 
 		if(body.name == "" )
 		throw "El nombre del producto es obligatorio";
 
 		if(body.price == "" )
+		throw "El precio del producto es obligatorio";
+
+    
+		if(body.description == "" )
 		throw "El precio del producto es obligatorio";
 
 		if( isNaN(body.price) )
@@ -84,26 +96,30 @@ router.post('/create_product', (req, res, next) => {
 		throw "La categoria es obligatoria";
 		
 		//------------------------------------------
-		
+
+    await beginTransaction();
 
 		// defino la consulta y los valores que se va a guardar
-		let sql = "INSERT INTO products (name, price, quantity, category_id) VALUES (?,?,?,?)";
-		const result = await querySync(sql, [body.name, body.price, body.quantity, body.category_id]).catch(error => {throw error});
+		let sql = "INSERT INTO products (name, description, price, quantity, category_id) VALUES (?,?,?,?,?)";
+		const result = await querySync(sql, [body.name, body.description, body.price, body.quantity, body.category_id]).catch(error => {throw error});
 
-
+    // defino las imagenes del producto
 		for (let i = 0; i < files.length; i++) {
 
 			let image = `img/${files[i].filename}`;
 			sql = "INSERT INTO products_images (product_id, image, is_first) VALUES (?,?,?)"
-			await querySync(sql, [result[0].insertId], image, i == 0).catch(error => {throw error});
+			await querySync(sql, [result.insertId, image, i == 0]).catch(error => {throw error});
 		}
+
+    await commit();
 
 		res.redirect('get_products');
 
 
     } catch (error) {
+      await rollback();
 
-      res.send(error);
+      console.error(error);
     }
     
 });
@@ -116,48 +132,35 @@ router.post('/update_product', (req, res, next) => {
 	
 	res.redirect("/login");
 
-}, (req, res) => {
+}, async (req, res) => {
     try {
       const { body } = req;
 
       // valido que se envien los datos correctos
       // validaciones de formulario ---------
 
-      if(body.name == "" )
-        throw "El nombre del producto es obligatorio";
+      if(body.name == "" ) throw "El nombre del producto es obligatorio";
 
-      if(body.price == "" )
-        throw "El precio del producto es obligatorio";
+      if(body.price == "" ) throw "El precio del producto es obligatorio";
 
-      if( isNaN(body.price) )
-      throw "El precio del producto no es correcto";
+      if( isNaN(body.price) ) throw "El precio del producto no es correcto";
       
-      if( isNaN(body.quantity) || body.quantity == "" )
-        throw "Ingrese una cantidad correcta";
+      if( isNaN(body.quantity) || body.quantity == "" ) throw "Ingrese una cantidad correcta";
         
-      if( isNaN(body.category_id) )
-        throw "Ingrese una categoria correcta";
+      if( isNaN(body.category_id) ) throw "Ingrese una categoria correcta";
 
-      if(body.category_id == "" )
-      throw "La categoria es obligatoria";
+      if(body.category_id == "" ) throw "La categoria es obligatoria";
       
       //------------------------------------------
 
-
       // defino la consulta sql
       const sql = "UPDATE products SET name = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
-      const values = [body.name, body.price, body.quantity, body.category_id, body.id];
+      await querySync(sql, [body.name, body.price, body.quantity, body.category_id, body.id] ).catch(error => {throw error});
 
-      // ejecuto la consulta
-      connection.query(sql, values, function (err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
-      });
-
-      // res.render('products', {products: results, user: req.user});
       res.redirect('get_products');
+    
     } catch (error) {
-        res.send(error);
+      console.error(error);
     }
 
 });
@@ -175,36 +178,38 @@ router.post('/delete_product', (req, res, next) => {
     try {
     	const { body } = req;
 
-		// busco la informacion de la imagen
-		connection.query("SELECT image FROM products WHERE id = ?", [body.product_id], function(err, results, fields) {
+      await beginTransaction();
 
-			if(results === undefined || results === null) {
+      // busco el producto
+      const product =  await querySync("SELECT id, name FROM products WHERE id = ?", [body.product_id] ).then(r => r[0]).catch(error => {throw error});
+
+      // verifico si hay un producto
+      if(product.id == undefined || product.id == null) {
 				throw "El producto no existe";
 			}
-			
-			// defino la consulta sql
-			const sql = "DELETE FROM products WHERE id = ?";
 
-			// ejecuto la consulta
-			connection.query(sql, [body.product_id], function (err, results, fields) {
-				if (err) throw err;
-        
-			if(results.affectedRows === 1) {
-				// elimino el archivo si se elimino el producto
-				fs.unlinkSync( path.join("public/", results[0].image ) );
-			}
+      // obtengo todas las imagenes
+      const product_images = await querySync("SELECT * FROM products_images WHERE product_id = ?", [body.product_id] ).catch(error => {throw error});
+      
+      // elimino las imagenes
+      const result = await querySync("DELETE FROM products_images WHERE product_id = ?", [body.product_id] ).catch(error => {throw error});
 
-			});
+      // elimino el producto
+      const result2 = await querySync("DELETE FROM products WHERE id = ?", [body.product_id] ).catch(error => {throw error});
 
-		});
+      if(result.affectedRows < 1) throw "Error al eliminar las imagenes";
+      if(result2.affectedRows < 1) throw "Error al eliminar el producto";
 
+      // recorro la lista de imagenes y las voy borrando una a una
+      for (let i = 0; i < product_images.length; i++) {
+          fs.unlinkSync( path.join("public/", product_images[0].image ) );
+      }
+      
     	res.redirect('get_products'); 
     
     } catch (error) {
-    	res.send(error);
+    	console.error(error);
     }
-
-
 
 });
 

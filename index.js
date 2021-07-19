@@ -12,6 +12,7 @@ const app = express();
 // carga de archivo de configuración
 const config = require('./config/config');
 
+
 // configurando donde se guardan las imagenes
 const storage = multer.diskStorage({
 
@@ -20,7 +21,8 @@ const storage = multer.diskStorage({
 	}, 
 
 	filename: function(req, file, cb) {
-		cb(null, `product-${Date.now()}.jpeg`);
+		const img = `${Date.now()}${Math.floor(Math.random() * 100)}`;
+		cb(null, `product-${ img }.jpeg`);
 	}
 	
 });
