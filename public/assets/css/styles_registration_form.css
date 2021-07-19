@@ -11,8 +11,9 @@
 }
 
 #registrationForm  .col-md-8 img{
-    height: 570px;
+    height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 
 #registrationForm .col-md-4{
