@@ -28,20 +28,20 @@
 
 			<div class="col-md-4">
 
-				<form class="form">
+				<form class="form" action="/signup" method="POST">
 
 					<h3> <b>Sign Up</b> </h3>
 					<br>
 					<!-- ---------- Name ------------>
 					<div class="form-group">
 						<label for="">Name</label>
-						<input type="text" placeholder="Name" class="form-control">
+						<input type="text" name="name" placeholder="Name" class="form-control">
 					</div>
 
 					<!-- ---------- Lasta name ------------>
 					<div class="form-group">
 						<label for="">Last name</label>
-						<input type="text" placeholder="last name" class="form-control">
+						<input type="text" name="lastname" placeholder="last name" class="form-control">
 					</div>
 
 					<!-- ---------- Email ------------>
@@ -59,10 +59,10 @@
 					<!-- ---------- repeat password ------------>
 					<div class="form-group">
 						<label for="">repeat password</label>
-						<input type="password" name="password" placeholder="*******************" class="form-control"/>
+						<input type="password" name="password_confirm" placeholder="*******************" class="form-control"/>
 					</div>
 
-					<button type="button" class="btn btn-primary">Sign Up</button>
+					<button type="submit" name="signup" class="btn btn-primary">Sign Up</button>
 
 				</form>
 			</div>
