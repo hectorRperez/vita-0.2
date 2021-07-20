@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 		// consulto los productos
 		let products = await queryBuilder('home_products', params).catch( err => {throw err} );
 
-		res.render('index.ejs', {products: products});
+		res.render('index.ejs', {products: products, user: req.user});
 
 
 	} catch (error) {

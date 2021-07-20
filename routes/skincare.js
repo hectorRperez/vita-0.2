@@ -28,7 +28,7 @@ router.get('/skincare', async (req, res) => {
 
 		let products = await queryBuilder('products', params).catch( err => {throw err} );
 
-		res.render('skincare', {products: products});
+		res.render('skincare', {products: products, user: req.user});
 
 
 	} catch (error) {
