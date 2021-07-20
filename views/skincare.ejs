@@ -22,7 +22,11 @@
 
     <!-- ------------------ HEADER ------------------------ -->
     <div class="header">
-        <%- include('partials/header.ejs'); %>
+        <%if (user == undefined) { %>
+            <%- include('partials/header.ejs', { account: "LOGIN"}); %>
+        <% } else { %>
+            <%- include('partials/header.ejs', { account: user.name}); %>
+        <% } %>
     </div>
     <!-- ------------------ End Header ------------------------ -->
 
