@@ -155,12 +155,12 @@ router.post('/update_product', (req, res, next) => {
 
       // defino la consulta sql
       const sql = "UPDATE products SET name = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
-      await querySync(sql, [body.name, body.price, body.quantity, body.category_id, body.id] ).catch(error => {throw error});
+      await querySync(sql, [body.name, body.price, body.quantity, body.category_id, body.id] ).catch(e => {throw e});
 
       res.redirect('get_products');
     
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
 
 });
@@ -181,7 +181,7 @@ router.post('/delete_product', (req, res, next) => {
       await beginTransaction();
 
       // busco el producto
-      const product =  await querySync("SELECT id, name FROM products WHERE id = ?", [body.product_id] ).then(r => r[0]).catch(error => {throw error});
+      const product =  await querySync("SELECT id, name FROM products WHERE id = ?", [body.product_id] ).then(r => r[0]).catch(e => {throw e});
 
       // verifico si hay un producto
       if(product.id == undefined || product.id == null) {
@@ -189,26 +189,29 @@ router.post('/delete_product', (req, res, next) => {
 			}
 
       // obtengo todas las imagenes
-      const product_images = await querySync("SELECT * FROM products_images WHERE product_id = ?", [body.product_id] ).catch(error => {throw error});
+      const product_images = await querySync("SELECT * FROM products_images WHERE product_id = ?", [body.product_id] ).catch(e => {throw e});
       
       // elimino las imagenes
-      const result = await querySync("DELETE FROM products_images WHERE product_id = ?", [body.product_id] ).catch(error => {throw error});
+      const result = await querySync("DELETE FROM products_images WHERE product_id = ?", [body.product_id] ).catch(e => {throw e});
 
       // elimino el producto
-      const result2 = await querySync("DELETE FROM products WHERE id = ?", [body.product_id] ).catch(error => {throw error});
+      const result2 = await querySync("DELETE FROM products WHERE id = ?", [body.product_id] ).catch(e => {throw e});
 
       if(result.affectedRows < 1) throw "Error al eliminar las imagenes";
       if(result2.affectedRows < 1) throw "Error al eliminar el producto";
 
       // recorro la lista de imagenes y las voy borrando una a una
       for (let i = 0; i < product_images.length; i++) {
-          fs.unlinkSync( path.join("public/", product_images[0].image ) );
+          fs.unlinkSync( path.join("public/", product_images[i].image ) );
       }
       
+      await commit();
+
     	res.redirect('get_products'); 
     
-    } catch (error) {
-    	console.error(error);
+    } catch (e) {
+      await rollback();
+    	console.error(e);
     }
 
 });
