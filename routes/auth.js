@@ -11,7 +11,7 @@ router.get('/login', (req, res) => {
 router.post('/login', 
 	passport.authenticate('local', { failureRedirect: '/login' } ),
 	function(req, res) {
-		res.redirect('/shop');
+		res.redirect('/shop1');
 	}
 );
 
@@ -25,7 +25,7 @@ router.get('/signup', (req, res) => {
 router.post('/signup',
 	passport.authenticate('local', { failureRedirect: '/signup'}),
 	(req, res) => {
-		res.redirect("/shop");
+		res.redirect("/shop1");
 	}
 );
 
