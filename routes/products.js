@@ -7,10 +7,22 @@ const {querySync, beginTransaction, commit, rollback} = require("../config/query
 
 
 // ruta que se carga de traer los productos
-router.get('/get_products:page?', (req, res, next) => {
+router.get('/get_products:page?', async (req, res, next) => {
 	
-	if( req.isAuthenticated() ) return next();
-	
+  // verifico que este autenticado
+	if( req.isAuthenticated() ) {
+
+    // busco si el usuario tiene permiso de ver esta vista
+    const sql = 'SELECT * FROM users_types_users WHERE user_id = ? AND user_type_id = ?';
+    const values = [req.user.id, 1];
+    let user_type = await querySync(sql, values).catch(e => {throw e});
+
+    // sui tiene permiso continua
+    if(user_type.length != 0)
+      return next();
+   
+  } 
+	// sino solo redirige
 	res.redirect("/login");
 
 }, async (req, res) => {
@@ -60,10 +72,22 @@ router.get('/get_products:page?', (req, res, next) => {
 
 
 // ruta que se encarga de crear un producto
-router.post('/create_product', (req, res, next) => {
+router.post('/create_product', async (req, res, next) => {
 	
-	if( req.isAuthenticated() ) return next();
-	
+  // verifico que este autenticado
+	if( req.isAuthenticated() ) {
+
+    // busco si el usuario tiene permiso de ver esta vista
+    const sql = 'SELECT * FROM users_types_users WHERE user_id = ? AND user_type_id = ?';
+    const values = [req.user.id, 1];
+    let user_type = await querySync(sql, values).catch(e => {throw e});
+
+    // sui tiene permiso continua
+    if(user_type.length != 0)
+      return next();
+   
+  } 
+	// sino solo redirige
 	res.redirect("/login");
 
 }, async (req, res) => {
@@ -73,27 +97,19 @@ router.post('/create_product', (req, res, next) => {
 
 		// validaciones de formulario ---------
 
-		if(body.name == "" )
-		throw "El nombre del producto es obligatorio";
+		if(body.name == "" ) throw "El nombre del producto es obligatorio";
 
-		if(body.price == "" )
-		throw "El precio del producto es obligatorio";
+		if(body.price == "" ) throw "El precio del producto es obligatorio";
 
-    
-		if(body.description == "" )
-		throw "El precio del producto es obligatorio";
+		if(body.description == "" ) throw "El precio del producto es obligatorio";
 
-		if( isNaN(body.price) )
-		throw "El precio del producto no es correcto";
+		if( isNaN(body.price) ) throw "El precio del producto no es correcto";
 		
-		if( isNaN(body.quantity) || body.quantity == "" )
-		throw "Ingrese una cantidad correcta";
+		if( isNaN(body.quantity) || body.quantity == "" ) throw "Ingrese una cantidad correcta";
 		
-		if( isNaN(body.category_id) )
-		throw "Ingrese una categoria correcta";
+		if( isNaN(body.category_id) ) throw "Ingrese una categoria correcta";
 
-		if(body.category_id == "" )
-		throw "La categoria es obligatoria";
+		if(body.category_id == "" ) throw "La categoria es obligatoria";
 		
 		//------------------------------------------
 
@@ -101,14 +117,14 @@ router.post('/create_product', (req, res, next) => {
 
 		// defino la consulta y los valores que se va a guardar
 		let sql = "INSERT INTO products (name, description, price, quantity, category_id) VALUES (?,?,?,?,?)";
-		const result = await querySync(sql, [body.name, body.description, body.price, body.quantity, body.category_id]).catch(error => {throw error});
+		const result = await querySync(sql, [body.name, body.description, body.price, body.quantity, body.category_id]).catch(e => {throw e});
 
     // defino las imagenes del producto
 		for (let i = 0; i < files.length; i++) {
 
 			let image = `img/${files[i].filename}`;
 			sql = "INSERT INTO products_images (product_id, image, is_first) VALUES (?,?,?)"
-			await querySync(sql, [result.insertId, image, i == 0]).catch(error => {throw error});
+			await querySync(sql, [result.insertId, image, i == 0]).catch(e => {throw e});
 		}
 
     await commit();
@@ -116,20 +132,32 @@ router.post('/create_product', (req, res, next) => {
 		res.redirect('get_products');
 
 
-    } catch (error) {
+    } catch (e) {
       await rollback();
 
-      console.error(error);
+      console.error(e);
     }
     
 });
 
 
 // ruta que se encarga de actualizar un producto
-router.post('/update_product', (req, res, next) => {
+router.post('/update_product', async (req, res, next) => {
 	
-	if( req.isAuthenticated() ) return next();
-	
+  // verifico que este autenticado
+	if( req.isAuthenticated() ) {
+
+    // busco si el usuario tiene permiso de ver esta vista
+    const sql = 'SELECT * FROM users_types_users WHERE user_id = ? AND user_type_id = ?';
+    const values = [req.user.id, 1];
+    let user_type = await querySync(sql, values).catch(e => {throw e});
+
+    // sui tiene permiso continua
+    if(user_type.length != 0)
+      return next();
+   
+  } 
+	// sino solo redirige
 	res.redirect("/login");
 
 }, async (req, res) => {
@@ -145,6 +173,8 @@ router.post('/update_product', (req, res, next) => {
 
       if( isNaN(body.price) ) throw "El precio del producto no es correcto";
       
+      if(body.description == "" ) throw "El precio del producto es obligatorio";
+      
       if( isNaN(body.quantity) || body.quantity == "" ) throw "Ingrese una cantidad correcta";
         
       if( isNaN(body.category_id) ) throw "Ingrese una categoria correcta";
@@ -154,8 +184,8 @@ router.post('/update_product', (req, res, next) => {
       //------------------------------------------
 
       // defino la consulta sql
-      const sql = "UPDATE products SET name = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
-      await querySync(sql, [body.name, body.price, body.quantity, body.category_id, body.id] ).catch(e => {throw e});
+      const sql = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ?, category_id = ? WHERE id = ?";
+      await querySync(sql, [body.name, body.description, body.price, body.quantity, body.category_id, body.id] ).catch(e => {throw e});
 
       res.redirect('get_products');
     
@@ -167,10 +197,22 @@ router.post('/update_product', (req, res, next) => {
 
 
 // ruta que se carga de eliminar un producto
-router.post('/delete_product', (req, res, next) => {
+router.post('/delete_product', async (req, res, next) => {
 	
-	if( req.isAuthenticated() ) return next();
-	
+  // verifico que este autenticado
+	if( req.isAuthenticated() ) {
+
+    // busco si el usuario tiene permiso de ver esta vista
+    const sql = 'SELECT * FROM users_types_users WHERE user_id = ? AND user_type_id = ?';
+    const values = [req.user.id, 1];
+    let user_type = await querySync(sql, values).catch(e => {throw e});
+
+    // sui tiene permiso continua
+    if(user_type.length != 0)
+      return next();
+   
+  } 
+	// sino solo redirige
 	res.redirect("/login");
 
 }, async (req, res) => {
