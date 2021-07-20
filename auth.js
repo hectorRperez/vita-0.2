@@ -17,6 +17,12 @@ module.exports = (passport) => {
         // si el usuario esta registrandose
         if(req.body.signup != null) {
 
+            if( req.body.password != req.body.password_confirm){
+                done("Las contraseñas no coinciden", false);
+            }
+                
+            
+
             // encrypto la contraseña
             bcrypt.hash(req.body.password, 10, function(err, hash) {
                 if(err) throw done(err.sqlMessage, false);
