@@ -5,7 +5,7 @@ router.get('/faq', (req, res) => {
    
 
 	try {
-		res.render('faq.ejs');
+		res.render('faq_views.ejs');
 	} catch (error) {
 		console.error(error);
 	}
