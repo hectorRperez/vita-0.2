@@ -9,6 +9,8 @@ router.use( require('./routes/products.js') );
 router.use( require('./routes/home.js') );
 router.use( require('./routes/skincare.js') );
 router.use( require('./routes/orders.js') );
+router.use( require("./routes/faq.js") );
+router.use( require("./routes/contact_us.js") );
 
 module.exports = router;
 
