@@ -22,11 +22,11 @@
 
     <!-- ------------------ HEADER ------------------------ -->
     <div class="header">
-        <%if (user == undefined) { %>
-            <%- include('partials/header.ejs', { account: "LOGIN"}); %>
-        <% } else { %>
-            <%- include('partials/header.ejs', { account: user.name}); %>
-        <% } %>
+        <%if (user==undefined) { %>
+            <%- include('partials/header.ejs', { account: "LOGIN" }); %>
+                <% } else { %>
+                    <%- include('partials/header.ejs', { account: user.name}); %>
+                        <% } %>
     </div>
     <!-- ------------------ End Header ------------------------ -->
 
@@ -194,18 +194,21 @@
                         <div class="img-cover">
                             <img src="<%= products[i].image %>">
                         </div>
-                        <p><%= products[i].name %></p>
+                        <p>
+                            <%= products[i].name %>
+                        </p>
                         <div class="rating">
                             <% for(var j=0; j < products[i].assessment; j++) { %>
                                 <i class='bx bxs-star'></i>
-                            <% } %>
+                                <% } %>
                         </div>
-                        <div class="price">$<%= products[i].price %></div>
+                        <div class="price">$<%= products[i].price %>
+                        </div>
                     </a>
                 </div>
-            <% } %>
-            
-        
+                <% } %>
+
+
         </div>
     </section>
 
@@ -284,7 +287,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section-blog section-blog-skinscare">
         <div class="container-blog">
             <main class="main-blog">
@@ -343,7 +346,9 @@
                     <h3>Vita Health Center </h3>
                     <ul>
                         <li class="li-footer"></li>
-                        <li>FAQ</li>
+                        <li>
+                            <a href="/faq">FAQ</a>
+                        </li>
                         <li>Blogs Post</li>
                         <li>My Account</li>
                         <li>Contact us</li>
