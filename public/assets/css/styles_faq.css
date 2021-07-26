@@ -1,0 +1,107 @@
+
+
+:root{
+    --white: #fff;
+    --black: #222;
+    --primary: #3595db;
+    --primary-skinscare: rgb(156, 131, 109);
+    --secundary-skinscare: rgb(125, 84, 56);
+    --third-skinscare: rgb(220, 193, 176);
+}
+
+*,
+*::before,
+*::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+/* html{
+    font-size: 10px;
+    box-sizing: border-box;
+} */
+
+/* Section used for centering process */
+section{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    text-align: center;
+    justify-content: center;
+}
+
+.container_faq{
+    width: auto;
+    max-width: 70%;
+    margin: 70px auto;
+    margin-top: 9.5rem;
+}
+
+.accordion-item{
+    background-color: var(--primary);
+    border-radius: .4rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-shadow: .5rem 2px .5rem rgb(102, 102, 102);
+}
+
+.according-link{
+    font-size: 1.6em;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.according-link ion-icon{
+    color: var(--white);
+    padding: .5rem;
+}
+
+.according-link .remove{
+    display: none;
+}
+
+.answer{
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 700ms;
+    text-align: start;
+    font-size: .5em;
+}
+
+.answer::before{
+    content: "";
+    position: absolute;
+    width: .3rem;
+    height: 90%;
+    background-color: var(--white);
+    top: 5%;
+    left: 0;
+    transform: translateY(-50);
+}
+
+.answer p{
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 2rem;
+}
+
+.accordion-item:target .answer{
+    max-height: 20rem;
+}
+
+.accordion-item:target .according-link .add{
+    display: none;
+}
+
+.accordion-item:target .according-link .remove{
+    display: block;
+}
