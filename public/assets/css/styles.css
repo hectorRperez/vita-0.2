@@ -839,6 +839,10 @@ Submenu
     transition: all .5s;
 }
 
+.blog-content-skincare{
+    background: linear-gradient(45deg, rgb(156, 131, 109)0%,rgba(144,192,229,.4)100%);
+}
+
 .single-blog:hover .blog-content{
     bottom: 0;
     transition: all .5s;
@@ -872,12 +876,18 @@ Submenu
 }
 
 
+
 .blog-content .btn:hover{
     background: var(--primary);
     transition: all .5s;
     text-decoration: none;
 }
 
+.blog-content .btn-skincare:hover{
+    background: var(--secundary-skinscare);
+    transition: all .5s;
+    text-decoration: none;
+}
 
 @media (max-width:992px){
     .main-blog{
@@ -925,7 +935,8 @@ Submenu
 }
 
 .footer-skincare{
-    color: var(--white);
+    color: var(--primary-skinscare);
+    background-color: var(--secundary-skinscare);
 }
 
 .footer p{
@@ -935,6 +946,10 @@ Submenu
 .footer h3{
     color: var(--primary);
     margin-bottom: 20px;
+}
+
+.footer-skincare h3{
+    color: var(--primary-skinscare);
 }
 
 .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
