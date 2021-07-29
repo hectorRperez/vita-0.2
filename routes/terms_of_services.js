@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 // ruta inicial
-router.get('/faq', (req, res) => {
+router.get('/terms_of_services', (req, res) => {
    
 
 	try {
-		res.render('ter.ejs');
+		res.render('terms_of_services.ejs');
 	} catch (error) {
 		console.error(error);
 	}
