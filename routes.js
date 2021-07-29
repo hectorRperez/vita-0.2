@@ -13,6 +13,7 @@ router.use( require("./routes/faq.js") );
 router.use( require("./routes/contact_us.js") );
 router.use( require("./routes/blog.js") );
 router.use( require("./routes/returns_exchanges.js") );
+router.use( require("./routes/terms_of_services.js") );
 
 module.exports = router;
 
