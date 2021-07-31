@@ -12,6 +12,8 @@ const app = express();
 // carga de archivo de configuración
 const config = require('./config/config');
 
+console.log(process.env.NODE_ENV);
+
 
 // configurando donde se guardan las imagenes
 const storage = multer.diskStorage({
