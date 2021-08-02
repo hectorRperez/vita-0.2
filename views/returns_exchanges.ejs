@@ -1,1 +1,162 @@
-prueba
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/head.ejs'); %>
+
+		<!-- Custom Stylesheet for Privacy policies only-->
+		<link rel="stylesheet" href="assets/css/styles_view_policies.css" />
+	</head>
+
+	<body>
+		<!--  ------------------ PROMO ------------------ -->
+		<div class="promo">
+			<span>
+				<a href="#">
+					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+				</a></span
+			>
+			<span>Get 30% OFF This Christmas Holidays</span>
+			<span>
+				<ul class="media_social">
+					<li>
+						<a href="#"><i class="fab fa-facebook-square"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+					</li>
+				</ul>
+			</span>
+		</div>
+
+		<!-- ------------------ HEADER ------------------------ -->
+		<div class="header">
+			<%- include('partials/header.ejs', { account: "LOGIN" }); %>
+		</div>
+
+		<div class="container_wrap">
+			<div class="content_l animate__animated animate__backInRight">
+				<h3>Frequently Asked Questions</h3>
+				<ul>
+					<li>
+						<a href="/returns_exchanges">Return Policy</a>
+					</li>
+					<li>
+						<a href="/privacy_policies">Privacy Policy</a>
+					</li>
+					<li>
+						<a href="/terms_of_services">Terms of Service</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="content_r">
+				<h3>Return Policy</h3>
+				<h4>Returns</h4>
+				<p>
+					If you are not 100% happy with our products, then we are not either.
+					We offer a risk-free, 60-day, 100%-full-refund return policy. If
+					within 60 days you are not satisfied with your order, please email us
+					at contactvitahealthc@gmail.com with your full name and order number,
+					and we will assist you in processing your return. Please note that
+					your original shipping charges will not be refunded. Exchanges
+				</p>
+				<h4>Exchanges</h4>
+				<p>
+					Just reach out to contactvitahealthc@gmail.com your full name and
+					order number, along with the product(s) you would like to exchange,
+					and we will help you from there.
+				</p>
+				<p>
+					Regrettably, we are unable to cover the costs of returns, so we highly
+					recommend you use a signed-for or tracked returns postage as we do not
+					accept responsibility for any lost returns.
+				</p>
+				<p>
+					Once your return is inspected and refunded you will receive a
+					confirmation email. Please note all refunds will be made back to the
+					original payment method. Please allow 2 to 5 working days from
+					receiving your refund confirmation email for the funds to show back in
+					your account.
+				</p>
+				<p>
+					Our Products are created to the highest quality, and we want to ensure
+					you are happy with your purchase, however, if you receive a faulty
+					item, an incorrect item, or it is not up to our usual standards please
+					contact our customer service so that we can resolve the issue.
+				</p>
+				<p>
+					Our international customers need to ensure they declare their goods as
+					returns. When the goods are not declared as returns a is fee charged
+					at Vita Skincare expense which will then be deducted from the refund
+					amount.
+				</p>
+			</div>
+		</div>
+
+		<!-- ------------------------  Footer ------------------------  -->
+		<div class="footer">
+			<div class="container-footer">
+				<div class="row-footer">
+					<div class="footer-col-3">
+						<a href="/">
+							<h3>Vita Health Center</h3>
+						</a>
+						<ul>
+							<li>
+								<a href="/faq">FAQ</a>
+							</li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>
+								<a href="/contact">Contact us</a>
+							</li>
+							<li>
+								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer-col-2">
+						<a href="/">
+							<img src="./img/1.png" />
+						</a>
+					</div>
+
+					<div class="footer-col-3">
+						<a href="/skincare">
+							<h3>Vita Skincare</h3>
+						</a>
+						<ul>
+							<li class="li-footer"></li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>instructions</li>
+							<li>
+								<a href="/returns_exchanges">Return Policy</a>
+							</li>
+							<li>
+								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+							</li>
+						</ul>
+					</div>
+					<div class="footer-col-4">
+						<h3>Follow us</h3>
+						<ul>
+							<li>Facebook</li>
+							<li>
+								<a href="https://www.instagram.com/vitahealthc/" target="_blank"
+									>Instagram</a
+								>
+							</li>
+							<li>Pinterest</li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<p class="copyright">Copyright 2021 - Vita Inc</p>
+			</div>
+		</div>
+	</body>
+</html>
