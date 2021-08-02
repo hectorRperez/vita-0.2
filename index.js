@@ -3,15 +3,17 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session); //agregamos esta linea
 const passport = require('passport');
 const path = require('path');
 const multer = require('multer');
 
 const app = express();
 
-// carga de archivo de configuración
-const config = require('./config/config');
-
+// defino la variable de entorno
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV || 'development'}`
+})
 
 // configurando donde se guardan las imagenes
 const storage = multer.diskStorage({
@@ -39,10 +41,23 @@ app.use( multer({
 // configuracion de la cookies
 app.use( cookieParser('5654534jk34kjnk346kjn652gf2') );
 
+// configuro el almacen de sesion de mysql
+const sessionStore = new MySQLStore({
+	host: process.env.DB_HOST,
+	port: process.env.DB_PORT,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	database: process.env.DATABASE,
+	clearExpired: true,
+	checkExpirationInterval: 900000,
+	expiration: 3600000
+});
+
 // configurando la sesion
 app.use( session({
 	secret: "ertt0923723kjnf29v762vl23ov8",
-	maxAge : new Date(Date.now() + 21600000),
+	cookie: {maxAge: 3600000, secure:false},
+	store: sessionStore,
 	resave: true,
 	saveUninitialized: true
 } ));
@@ -66,7 +81,7 @@ app.use( require('./routes.js') );
 
 
 // escuchando
-app.listen(config.port, '127.0.0.1' , () => {
-	console.log(`App listening at http://localhost:${config.port}`)
+app.listen(process.env.PORT, process.env.HOST , () => {
+	console.log(`App listening at http://localhost:${process.env.PORT}`)
 });
 

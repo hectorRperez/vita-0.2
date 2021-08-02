@@ -1,7 +1,13 @@
 'use strict'
+
+
+// defino la variable de entorno
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV || 'development'}`
+})
+
 const bcrypt = require('bcrypt');
-// obtengo la connexion;
-let connection = require('./connection.js');
+const connection = require('./connection.js');
 
 try {
 	
