@@ -1,0 +1,19 @@
+.title {
+	margin-top: 3em;
+	margin-bottom: 0;
+}
+
+.section-blog {
+	background: none;
+	padding: 0;
+	margin-bottom: 3em;
+}
+
+.container-blog {
+	margin-bottom: 2em;
+}
+
+.main-blog {
+	margin: 30px 25px 45px 25px;
+	padding: 0 25px;
+}
