@@ -85,8 +85,8 @@ try {
 
 			// estableciendo los tipos a los usuarios de prueba
 			[
-				{name:'Admin type for jesus', sql: `INSERT INTO users_types_users (user_id, user_type_id) VALUES (1, 2)`},
-				{name:'Admin type for hector', sql: `INSERT INTO users_types_users (user_id, user_type_id) VALUES (2, 2)`},
+				{name:'Admin type for jesus', sql: `INSERT INTO users_types_users (user_id, user_type_id) VALUES (1, 1)`},
+				{name:'Admin type for hector', sql: `INSERT INTO users_types_users (user_id, user_type_id) VALUES (2, 1)`},
 			],
 		
 			// creando categorias
