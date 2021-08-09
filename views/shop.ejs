@@ -1,184 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<%- include('partials/head.ejs'); %>
+	</head>
 
-<head>
-    <%- include('partials/head.ejs'); %>
-</head>
+	<body>
+		<!--  ------------------ PROMO ------------------ -->
+		<div class="promo">
+			<span>
+				<a href="#">
+					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+				</a></span
+			>
+			<span>Get 30% OFF This Christmas Holidays</span>
+			<span>
+				<ul class="media_social">
+					<li>
+						<a href="#"><i class="fab fa-facebook-square"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+					</li>
+				</ul>
+			</span>
+		</div>
 
-<body>
-    <!--  ------------------ PROMO ------------------ -->
-    <div class="promo">
-        <span> <a href="#"> <i class="fas fa-envelope"></i> contactvitahealthc@gmail.com </a></span>
-        <span>Get 30% OFF This Christmas Holidays</span>
-        <span>
-            <ul class="media_social">
-                <li>
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </li>
-            </ul>
-        </span>
-    </div>
+		<!-- ------------------ HEADER ------------------------ -->
+		<div class="header">
+			<%- include('partials/header.ejs', {account: user.name}); %>
+		</div>
+		<!-- ------------------ End Header ------------------------ -->
 
-    <!-- ------------------ HEADER ------------------------ -->
-    <div class="header">
-        <%- include('partials/header.ejs',  {account: user.name}); %>
-    </div>
-    <!-- ------------------ End Header ------------------------ -->
+		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
 
-    <!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
+		<div class="small-container-product single-product">
+			<div class="row-product">
+				<!-- Element 1 -->
+				<div class="col-2-product">
+					<img src="<%= product.image %>" width="100%" id="ProductImg" />
 
-    <div class="small-container-product single-product">
-        <div class="row-product">
-            
-            <div class="col-2-product">
-                <img src="<%= product.image %>" width="100%" id="ProductImg">
+					<div class="small-img-row">
+						<% for(let i=0; i < product_images.length; i++) { %>
+						<div class="small-img-col">
+							<img
+								src="<%= product_images[i].image %>"
+								width="100%"
+								class="small-img"
+							/>
+						</div>
+						<% } %>
+					</div>
+				</div>
 
-                <div class="small-img-row">
+				<!-- Element 2 -->
+				<form action="/add_cart" method="post">
+					<div class="col-2-product">
+						<h1><%= product.name %></h1>
+						<h3>$<%= product.price %></h3>
+						<select>
+							<option>Select Size</option>
+							<option>XXL</option>
+							<option>XL</option>
+							<option>Medium</option>
+							<option>Small</option>
+						</select>
+						<input
+							style="display: none"
+							type="number"
+							name="product_id"
+							value="<%= product.id %>"
+						/>
+						<input type="number" name="quantity" value="1" />
 
-                    <% for(let i=0; i < product_images.length; i++) { %>
-                        <div class="small-img-col">
-                            <img src="<%= product_images[i].image %>" width="100%" class="small-img">
-                        </div>
-                    <% } %>
+						<button type="submit" class="btn-product" name="add_cart">
+							Add To Card
+						</button>
 
-                </div>
-            </div>
+						<h3>Product Details <i class="fa fa-indent"></i></h3>
+						<p><%= product.description %></p>
+					</div>
+				</form>
+			</div>
+		</div>
 
-            <form action="/add_cart" method="post">
-                <div class="col-2-product">
-                    <h1><%= product.name %></h1>
-                    <h3>$<%= product.price %></h3>
-                    <select>
-                        <option>Select Size</option>
-                        <option>XXL</option>
-                        <option>XL</option>
-                        <option>Medium</option>
-                        <option>Small</option>
-                    </select>
-                    <input style="display: none;" type="number" name="product_id" value="<%= product.id %>">
-                    <input type="number" name="quantity" value="1">
-                    
-                    <button type="submit" class="btn-product" name="add_cart">Add To Card</button>
-                    
-                    <h3>Product Details <i class="fa fa-indent"></i> </h3>
-                    <p>
-                        <%= product.description %>
-                    </p>
-                </div>
+		<!--    Title -->
+		<div class="small-container-product">
+			<div class="row-product row-2">
+				<h2>Related Products</h2>
+			</div>
+		</div>
 
-            </form>
-            
-        </div>
-    </div>
+		<!-- ----------------- Related products -----------------  -->
+		<section class="section">
+			<div class="title title-shop-skinscare"></div>
+			<div class="product-center container">
+				<% for(let i=0; i < products_related.length; i++) { %>
+				<div class="product">
+					<div class="img-cover">
+						<img src="<%= products_related[i].image %>" />
+					</div>
+					<p><%= products_related[i].name %></p>
+					<div class="rating">
+						<% for(var j=0; j < products_related[i].assessment; j++) { %>
+						<i class="bx bxs-star"></i>
+						<% } %>
+					</div>
+					<div class="price">$<%= products_related[i].price %></div>
+					<a href="/shop">aqui</a>
+				</div>
+				<% } %>
+			</div>
+		</section>
 
-    <!--    Title -->
-    <div class="small-container-product">
-        <div class="row-product row-2">
-            <h2>Related Products</h2>
-        </div>
-    </div>
+		<!-- ------------------------  Footer ------------------------  -->
+		<div class="footer">
+			<div class="container-footer">
+				<div class="row-footer">
+					<div class="footer-col-3">
+						<h3>Vita Health Center</h3>
+						<ul>
+							<li class="li-footer"></li>
+							<li>FAQ</li>
+							<li>Blogs Post</li>
+							<li>My Account</li>
+							<li>Contact us</li>
+							<li>Terms of Use — Privacy Policy</li>
+						</ul>
+					</div>
+					<div class="footer-col-2">
+						<img src="./img/1.png" />
+					</div>
+					<div class="footer-col-3">
+						<h3>Vita Skincare</h3>
+						<ul>
+							<li class="li-footer"></li>
+							<li>Blogs Post</li>
+							<li>My Account</li>
+							<li>instructions</li>
+							<li>Return Policy</li>
+							<li>Terms of Use — Privacy Policy</li>
+						</ul>
+					</div>
+					<div class="footer-col-4">
+						<h3>Follow us</h3>
+						<ul>
+							<li>Facebook</li>
+							<li>Instagram</li>
+							<li>Pinterest</li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<p class="copyright">Copyright 2021 - Vita Inc</p>
+			</div>
+		</div>
+		<script>
+			console.log('hector');
 
+			/* js for prodcut gallery */
+			let ProductImg = document.getElementById('ProductImg');
+			let SmallImg = document.getElementsByClassName('small-img');
 
-    <!-- ----------------- Related products -----------------  -->
-    <section class="section">
-        <div class="title title-shop-skinscare">
-        </div>
-        <div class="product-center container">
+			SmallImg[0].onclick = function () {
+				ProductImg.src = SmallImg[0].src;
+			};
 
-            <% for(let i=0; i < products_related.length; i++) { %>
-                <div class="product">
-                    <div class="img-cover">
-                        <img src="<%= products_related[i].image %>">
-                    </div>
-                    <p><%= products_related[i].name %></p>
-                    <div class="rating">
-                        <% for(var j=0; j < products_related[i].assessment; j++) { %>
-                            <i class='bx bxs-star'></i>
-                        <% } %>
-                    </div>
-                    <div class="price">$<%= products_related[i].price %></div>
-                    <a href="/shop">aqui</a>
-                </div>
-            <% } %>
+			SmallImg[1].onclick = function () {
+				ProductImg.src = SmallImg[1].src;
+			};
 
+			SmallImg[2].onclick = function () {
+				ProductImg.src = SmallImg[2].src;
+			};
 
-        </div>
-    </section>
+			SmallImg[3].onclick = function () {
+				ProductImg.src = SmallImg[3].src;
+			};
 
-
-    <!-- ------------------------  Footer ------------------------  -->
-    <div class="footer">
-        <div class="container-footer">
-            <div class="row-footer">
-                <div class="footer-col-3">
-                    <h3>Vita Health Center </h3>
-                    <ul>
-                        <li class="li-footer"></li>
-                        <li>FAQ</li>
-                        <li>Blogs Post</li>
-                        <li>My Account</li>
-                        <li>Contact us</li>
-                        <li>Terms of Use — Privacy Policy</li>
-                    </ul>
-                </div>
-                <div class="footer-col-2">
-                    <img src="./img/1.png">
-                </div>
-                <div class="footer-col-3">
-                    <h3> Vita Skincare</h3>
-                    <ul>
-                        <li class="li-footer"></li>
-                        <li>Blogs Post</li>
-                        <li>My Account</li>
-                        <li>instructions</li>
-                        <li>Return Policy</li>
-                        <li>Terms of Use — Privacy Policy</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3> Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Instagram</li>
-                        <li>Pinterest</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright"> Copyright 2021 - Vita Inc</p>
-        </div>
-    </div>
-    <script>
-        console.log('hector');
-
-        /* js for prodcut gallery */
-        let ProductImg = document.getElementById('ProductImg');
-        let SmallImg = document.getElementsByClassName('small-img');
-
-        SmallImg[0].onclick = function () {
-            ProductImg.src = SmallImg[0].src;
-        }
-
-        SmallImg[1].onclick = function () {
-            ProductImg.src = SmallImg[1].src;
-        }
-
-        SmallImg[2].onclick = function () {
-            ProductImg.src = SmallImg[2].src;
-        }
-
-        SmallImg[3].onclick = function () {
-            ProductImg.src = SmallImg[3].src;
-        }
-
-        SmallImg[4].onclick = function () {
-            ProductImg.src = SmallImg[4].src;
-        }
-
-
-    </script>
-    <%- include('partials/script.ejs'); %>
-</body>
-
+			SmallImg[4].onclick = function () {
+				ProductImg.src = SmallImg[4].src;
+			};
+		</script>
+		<%- include('partials/script.ejs'); %>
+	</body>
 </html>
