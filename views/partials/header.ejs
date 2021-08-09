@@ -1,48 +1,49 @@
 <!-- NAVIGATION -->
 <nav class="nav container">
-    <div class="navigation">
+	<div class="navigation">
+		<!-- Elemento 1 -->
 
-        <!-- Elemento 1 -->
+		<!-- Elemento 2 -->
+		<div class="menu">
+			<div class="hamburger">
+				<i class="bx bx-menu menu-open"></i>
+			</div>
 
-        <!-- Elemento 2 -->
-        <div class="menu">
+			<ul class="nav-list d-flex">
+				<li class="nav-item">
+					<a href="/" class="nav-link"> HOME </a>
+				</li>
 
-            <div class="hamburger">
-                <i class='bx bx-menu menu-open'></i>
-            </div>
+				<li class="nav-item has-submenu">
+					<a href="/skincare" class="nav-link">
+						SKINCARE <i class="fas fa-angle-down"> </i>
+					</a>
+					<ul class="submenu">
+						<li>instructions</li>
+					</ul>
+				</li>
 
-            <ul class="nav-list d-flex">
+				<li class="nav-item">
+					<a href="/blog" class="nav-link"> BLOG </a>
+				</li>
 
-                <li class="nav-item ">
-                    <a href="/" class="nav-link"> HOME </a>
-                    
-                </li>
+				<li class="nav-item nav-logo">
+					<a href="" class="nav-link">
+						<img class="logo" src="./img/1.png" alt="" />
+					</a>
+				</li>
 
-                <li class="nav-item has-submenu">
-                    <a href="/skincare" class="nav-link"> SKINCARE <i class="fas fa-angle-down"> </i> </a>
-                    <ul class="submenu"> 
-                        <li> instructions </li>
-                    </ul> 
-                </li>
+				<li class="nav-item">
+					<a href="/skincare" class="nav-link">
+						<%= account %> <i class="fas fa-user"></i>
+					</a>
+				</li>
 
-                <li class="nav-item">
-                    <a href="" class="nav-link"> BLOG </a>
-                </li>
-
-                <li class="nav-item nav-logo">
-                    <a href="" class="nav-link "> <img class="logo" src="./img/1.png" alt=""> </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="/skincare" class="nav-link"> <%= account %> <i class="fas fa-user"></i> </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="" class="nav-link"> <i class="fas fa-shopping-bag"></i> </a>
-                </li>
-            </ul>
-        </div>
-        <div class="close"></div>
-    </div>
+				<li class="nav-item">
+					<a href="" class="nav-link"> <i class="fas fa-shopping-bag"></i> </a>
+				</li>
+			</ul>
+		</div>
+		<div class="close"></div>
+	</div>
 </nav>
