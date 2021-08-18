@@ -1,408 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<%- include('partials/head.ejs'); %>
+	</head>
 
-<head>
-    <%- include('partials/head.ejs'); %>
-</head>
+	<body>
+		<!--  ------------------ PROMO ------------------ -->
+		<div class="promo">
+			<span>
+				<a href="#">
+					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+				</a></span
+			>
+			<span>Get 30% OFF This Christmas Holidays</span>
+			<span>
+				<ul class="media_social">
+					<li>
+						<a href="#"><i class="fab fa-facebook-square"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+					</li>
+				</ul>
+			</span>
+		</div>
 
-<body>
-    <!--  ------------------ PROMO ------------------ -->
-    <div class="promo">
-        <span> <a href="#"> <i class="fas fa-envelope"></i> contactvitahealthc@gmail.com </a></span>
-        <span>Get 30% OFF This Christmas Holidays</span>
-        <span>
-            <ul class="media_social">
-                <li>
-                    <a href="#"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </li>
-            </ul>
-        </span>
-    </div>
+		<!-- ------------------ HEADER ------------------------ -->
+		<div class="header">
+			<%if (user==undefined) { %> <%- include('partials/header.ejs', { account:
+			"LOGIN" }); %> <% } else { %> <%- include('partials/header.ejs', {
+			account: user.name}); %> <% } %>
+		</div>
+		<!-- ------------------ End Header ------------------------ -->
 
-    <!-- ------------------ HEADER ------------------------ -->
-    <div class="header">
-        <%if (user==undefined) { %>
-            <%- include('partials/header.ejs', { account: "LOGIN" }); %>
-                <% } else { %>
-                    <%- include('partials/header.ejs', { account: user.name}); %>
-                        <% } %>
-    </div>
-    <!-- ------------------ End Header ------------------------ -->
+		<!-- -------------- Main ---------------->
+		<main>
+			<!-- Hero -->
+			<section class="hero">
+				<div class="glide" id="glide1">
+					<div class="glide__track" data-glide-el="track">
+						<ul class="glide__slides glide__hero">
+							<li class="glide__slide">
+								<div class="banner">
+									<div class="banner-content shop-now_btn">
+										<div class="buttons-group shop-buttons-now">
+											<button>SHOP NOW</button>
+										</div>
+									</div>
+									<img
+										src="./img/BANNER SKINCARE DEFINITIVO.jpg"
+										class="special_01"
+										alt=""
+									/>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</main>
 
-    <!-- -------------- Main ---------------->
-    <main>
-        <!-- Hero -->
-        <section class="hero">
-            <div class="glide" id="glide1">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides glide__hero">
-                        <li class="glide__slide">
-                            <div class="banner">
-                                <div class="banner-content shop-now_btn">
+		<!-- ----------- Sección About Us------------- -->
+		<section class="section">
+			<div class="title title-shop-skinscare">
+				<h1>About us</h1>
+				<div>
+					<header class="header-container header-history">
+						<!-- - HISTORY ABOUT VITAHEALTHC - -->
+						<h2 class="title-back title-back-skinscare">
+							History Vita Skincare
+						</h2>
+						<hr class="hr-skinscares" />
+					</header>
+					<div class="title-paragraph paragraph-left">
+						<p class="">
+							When I was an acupuncture student in October 2020, I did a facial
+							acupuncture specialization.  I discovered with the use of a good
+							serum and  the derma roller or hydra roller, it is possible that
+							you can rejuvenate your face and more without using chemical and
+							plastic surgery to look younger. This process  can deform your
+							appearance over time
+						</p>
 
-                                    <div class="buttons-group shop-buttons-now">
-                                        <button>SHOP NOW</button>
-                                    </div>
-                                </div>
-                                <img src="./img/BANNER SKINCARE DEFINITIVO.jpg" class="special_01" alt="">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
+						<ul>
+							<li>
+								  Hydra roller which is a serum infuser. Statistic South Korea,
+								Europe and USA clinically conducted studies have shown that the
+								roller can increase serum absorption by as much as 300 times.
+							</li>
+							<li>
+								Derma Roller with titanium needle eliminates wrinkles, dark
+								spots, acne scars. It produces collagen, smooths the skin, and
+								improves hair growth.  Studies in 10 patients demonstrated an
+								average increase in collagen and elastin fiber of 206% in one
+								case a 1000%
+							</li>
+						</ul>
+					</div>
+					<p class="title-paragraph">
+						Vita Skincare is supported by Vita Health Center. It was created to
+						give his clients and anybody who likes noninvasive facial
+						rejuvenation, vegan, and organic skincare products.
+					</p>
 
-    <!-- ----------- Sección About Us------------- -->
-    <section class="section">
+					<header class="header-container">
+						<!-- - MISSION - -->
+						<h2 class="title-back title-back-skinscare">
+							Vita Skincare Organic & Vegan Beauty
+						</h2>
+						<hr class="hr-skinscares" />
+					</header>
+					<p class="title-paragraph">
+						We are proud to offer high quality natural products infused with
+						organic ingredients. Products formulated without parabens or harsh
+						chemicals and never tested on animals. Vita skin care provides love,
+						peace of mind, satisfaction and enjoyment. We are  transparent in
+						our disclosures and make you  conscious of our global impact on
+						nature. Vita skin care is for someone who is looking for a natural
+						way to rejuvenate the skin in an organic, vegan and noninvasive way.
+					</p>
+				</div>
+			</div>
+		</section>
 
-        <div class="title title-shop-skinscare">
-            <h1>About us</h1>
-            <div>
-                <header class="header-container header-history">
-                    <!-- - HISTORY ABOUT VITAHEALTHC - -->
-                    <h2 class="title-back title-back-skinscare">History Vita Skincare</h2>
-                    <hr class="hr-skinscares">
-                </header>
-                <div class="title-paragraph paragraph-left">
+		<!-- ----------------- Our Values -----------------  -->
+		<section class="section services-container">
+			<div class="title">
+				<div>
+					<header class="header-container">
+						<h2 class="title-back title-back-skinscare">Our Values</h2>
+						<hr class="hr-skinscares" />
+					</header>
+				</div>
+			</div>
+			<div>
+				<nav class="services">
+					<!-- Service 1 -->
+					<figure class="service-btn">
+						<img src="./img/natural.jpg" alt="" />
+						<h3 title-back-skinscare>
+							We promote natural and noninvasive skin care solution
+						</h3>
+						<figcaption class="caption-skinscare">
+							We promote a conscious lifestyle for all our community and the use
+							our derma roller and hydra roller.
+						</figcaption>
+					</figure>
 
-                    <p class="">
-                        When I was an acupuncture student in October 2020, I did a facial acupuncture
-                        specialization.  I discovered with the use of a good serum and  the derma roller or hydra
-                        roller,
-                        it is possible that you can rejuvenate your face and more without using chemical and plastic
-                        surgery
-                        to look younger. This process  can deform your appearance over time
-                    </p>
+					<!-- Service 2 -->
+					<figure class="service-btn">
+						<img src="./img/protecanimals.jpg" alt="" />
+						<h3>We protect the life of all Animals.</h3>
+						<figcaption class="caption-skinscare">
+							Our products are vegan, never tested on animals, parabens, harsh
+							chemicals and solely derived botanically infused.
+						</figcaption>
+					</figure>
 
-                    <ul>
-                        <li> 
-                            Hydra roller which is a serum infuser. Statistic South Korea, Europe and USA clinically
-                            conducted studies have shown that the roller can increase serum absorption by as much as 300
-                            times.
-                        </li>
-                        <li>
-                            Derma Roller with titanium needle eliminates wrinkles, dark spots, acne scars. It produces
-                            collagen, smooths the skin, and improves hair growth.  Studies in 10 patients demonstrated
-                            an
-                            average increase in collagen and elastin fiber of 206% in one case a 1000%
-                        </li>
-                    </ul>
+					<!-- Service 3 -->
+					<figure class="service-btn">
+						<img src="./img/recicle.jpg" alt="" />
+						<h3>We love our earth</h3>
+						<figcaption class="caption-skinscare">
+							We want our packaging be made by recycle material with the
+							intension encourage our Vita Skincare community to use more
+							recycle products and educating them of the importance a preserving
+							nature.
+						</figcaption>
+					</figure>
 
-                </div>
-                <p class="title-paragraph">
-                    Vita Skincare is supported by Vita Health Center. It was created to give his clients and anybody who
-                    likes noninvasive facial rejuvenation, vegan, and organic skincare products.
-                </p>
+					<!-- Service 4 -->
+					<figure class="service-btn">
+						<img src="./img/donation.jpg" alt="" />
+						<h3>We help others</h3>
+						<figcaption class="caption-skinscare">
+							We support others when you are buying our skincare products. A
+							portion of your purchases are donated to the Care for Skin Care
+							Foundation. it is a non-profit organization created to support
+							people who have suffered loss of skin due to accidents, tumors,
+							burns, scars or genetic abnormalities.
+							<a href="www.careforskin.org">www.careforskin.org</a>
+						</figcaption>
+					</figure>
+				</nav>
+			</div>
+		</section>
 
-                <header class="header-container">
-                    <!-- - MISSION - -->
-                    <h2 class="title-back title-back-skinscare">Vita Skincare Organic & Vegan Beauty </h2>
-                    <hr class="hr-skinscares">
-                </header>
-                <p class="title-paragraph">
-                    We are proud to offer high quality natural products infused with organic
-                    ingredients. Products formulated without parabens or harsh chemicals and never tested
-                    on animals. Vita skin care provides love, peace of mind, satisfaction and enjoyment. We are 
-                    transparent in our disclosures and make you  conscious of our global impact on nature. Vita skin
-                    care is for someone who is looking for a natural way to rejuvenate the skin in an organic, vegan and
-                    noninvasive way.
-                </p>
-            </div>
-        </div>
-    </section>
+		<!-- ----------------- SHOP -----------------  -->
+		<section class="section">
+			<div class="title title-shop-skinscare">
+				<h1>Shop</h1>
+				<div>
+					<header class="header-container">
+						<h2 class="title-back title-back-skinscare">
+							Healthy skin start here
+						</h2>
+						<hr class="hr-skinscares" />
+					</header>
+				</div>
+			</div>
+			<div class="product-center products-three container">
+				<% for(let i=0; i < products.length; i++) { %>
+				<!-- Producto # <%= i + 1 %> -->
+				<div class="product">
+					<a href="/shop<%= products[i].id %>">
+						<div class="img-cover">
+							<img src="<%= products[i].image %>" />
+						</div>
+						<p><%= products[i].name %></p>
+						<div class="rating">
+							<% for(var j=0; j < products[i].assessment; j++) { %>
+							<i class="bx bxs-star"></i>
+							<% } %>
+						</div>
+						<div class="price">$<%= products[i].price %></div>
+					</a>
+				</div>
+				<% } %>
+			</div>
+		</section>
 
-    <!-- ----------------- Our Values -----------------  -->
-    <section class="section services-container">
-        <div class="title">
-            <div>
-                <header class="header-container">
-                    <h2 class="title-back title-back-skinscare">Our Values</h2>
-                    <hr class="hr-skinscares">
-                </header>
-            </div>
-        </div>
-        <div>
-            <nav class="services">
+		<!-- ----------------- Sección TESTIMONIALS -----------------  -->
+		<section class="section">
+			<div class="title title-shop-skinscare">
+				<h1>Testimonials</h1>
+				<div>
+					<header class="header-container">
+						<h2 class="title-back title-back-skinscare">Clients</h2>
+						<hr class="hr-skinscares" />
+					</header>
+				</div>
+			</div>
+			<div class="container-testimonials">
+				<div class="slider">
+					<!-- Cliente #1 -->
+					<div class="slide active">
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+							rem quam veritatis amet sed alias ab aliquam harum accusamus
+							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
+							Aliquam, qui.
+						</p>
+						<div class="client-info">
+							<h3>Golge Gam</h3>
+							<span>CEO at Google</span>
+						</div>
+					</div>
 
-                <!-- Service 1 -->
-                <figure class="service-btn">
-                    <img src="./img/natural.jpg" alt="">
-                    <h3 title-back-skinscare>We promote natural and noninvasive skin care solution</h3>
-                    <figcaption class="caption-skinscare">
-                        We promote a conscious lifestyle for all our community and the use our derma roller and hydra
-                        roller.
-                    </figcaption>
-                </figure>
+					<!-- Cliente #2 -->
+					<div class="slide">
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+							rem quam veritatis amet sed alias ab aliquam harum accusamus
+							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
+							Aliquam, qui.
+						</p>
+						<div class="client-info">
+							<h3>Kylie Jenner</h3>
+							<span>Empresaria</span>
+						</div>
+					</div>
 
-                <!-- Service 2 -->
-                <figure class="service-btn">
-                    <img src="./img/protecanimals.jpg" alt="">
-                    <h3>We protect the life of all Animals.</h3>
-                    <figcaption class="caption-skinscare">
-                        Our products are vegan, never tested on animals, parabens, harsh chemicals and solely derived
-                        botanically infused.
-                    </figcaption>
-                </figure>
+					<!-- Cliente #3 -->
+					<div class="slide">
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+							rem quam veritatis amet sed alias ab aliquam harum accusamus
+							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
+							Aliquam, qui.
+						</p>
+						<div class="client-info">
+							<h3>Carolina Herrera</h3>
+							<span>Diseñadora de moda</span>
+						</div>
+					</div>
+				</div>
 
-                <!-- Service 3 -->
-                <figure class="service-btn">
-                    <img src="./img/recicle.jpg" alt="">
-                    <h3>We love our earth</h3>
-                    <figcaption class="caption-skinscare">
-                        We want our packaging be made by recycle material with the intension encourage our Vita Skincare
-                        community to use more recycle products and educating them of the importance a preserving nature.
-                    </figcaption>
-                </figure>
+				<div class="slider-indicator">
+					<img src="./img/client-01.png" class="active" alt="" data-id="0" />
+					<img src="./img/client-04.png" alt="" data-id="1" />
+					<img src="./img/client-05.png" alt="" data-id="2" />
+				</div>
+			</div>
+		</section>
 
-                <!-- Service 4 -->
-                <figure class="service-btn">
-                    <img src="./img/donation.jpg" alt="">
-                    <h3>We help others</h3>
-                    <figcaption class="caption-skinscare">
-                        We support others when you are buying our skincare products. A portion of your purchases are
-                        donated to the Care for Skin Care Foundation. it is a non-profit organization created to support
-                        people who have suffered loss of skin due to accidents, tumors, burns, scars or genetic
-                        abnormalities.
-                        <a href="www.careforskin.org">www.careforskin.org</a>
-                    </figcaption>
-                </figure>
+		<!-- ------------------------  LATEST BLOGS ------------------------  -->
+		<section class="section">
+			<div class="title title-shop-skinscare">
+				<h1>Blog</h1>
+				<div>
+					<header class="header-container">
+						<h2 class="title-back title-back-skinscare">Latest Articles</h2>
+						<hr class="hr-skinscares" />
+					</header>
+				</div>
+			</div>
+		</section>
 
-            </nav>
-        </div>
+		<section class="section-blog section-blog-skinscare">
+			<div class="container-blog">
+				<main class="main-blog">
+					<!-- Blog 1 -->
+					<div class="single-blog">
+						<img src="./img/blog_1.jpeg" class="img-blog" alt="" />
+						<div class="blog-content blog-content-skincare">
+							<h3>
+								Driven by a constant need to do better <span>Vita Style</span>
+							</h3>
+							<p>
+								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+							</p>
+							<a href="/blog" class="btn btn-skincare">Read More</a>
+						</div>
+					</div>
 
-    </section>
+					<!-- Blog 1 -->
+					<div class="single-blog">
+						<img src="./img/blog_2.jpeg" class="img-blog" alt="" />
+						<div class="blog-content blog-content-skincare">
+							<h3>We're changing the game <span>Vita Style</span></h3>
+							<p>
+								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+							</p>
+							<a href="/blog" class="btn btn-skincare">Read More</a>
+						</div>
+					</div>
 
-    <!-- ----------------- SHOP -----------------  -->
-    <section class="section">
-        <div class="title title-shop-skinscare">
-            <h1>Shop</h1>
-            <div>
-                <header class="header-container">
-                    <h2 class="title-back title-back-skinscare">Healthy skin start here</h2>
-                    <hr class="hr-skinscares">
-                </header>
-            </div>
-        </div>
-        <div class="product-center products-three container">
+					<!-- Blog 1 -->
+					<div class="single-blog">
+						<img src="./img/blog_3.jpeg" class="img-blog" alt="" />
+						<div class="blog-content blog-content-skincare">
+							<h3>A chair of Million <span>Vita Style</span></h3>
+							<p>
+								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+							</p>
+							<a href="/blog" class="btn btn-skincare">Read More</a>
+						</div>
+					</div>
 
-            <% for(let i=0; i < products.length; i++) { %>
-                <!-- Producto # <%= i + 1 %> -->
-                <div class="product">
-                    <a href="/shop<%= products[i].id %>">
-                        <div class="img-cover">
-                            <img src="<%= products[i].image %>">
-                        </div>
-                        <p>
-                            <%= products[i].name %>
-                        </p>
-                        <div class="rating">
-                            <% for(var j=0; j < products[i].assessment; j++) { %>
-                                <i class='bx bxs-star'></i>
-                                <% } %>
-                        </div>
-                        <div class="price">$<%= products[i].price %>
-                        </div>
-                    </a>
-                </div>
-                <% } %>
+					<!-- Blog 1 -->
+					<div class="single-blog">
+						<img src="./img/blog_4.jpeg" class="img-blog" alt="" />
+						<div class="blog-content blog-content-skincare">
+							<h3>A chair of Million <span>Art</span></h3>
+							<p>
+								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+							</p>
+							<a href="/blog" class="btn btn-skincare">Read More</a>
+						</div>
+					</div>
+				</main>
+			</div>
+		</section>
 
+		<!-- ------------------------  Footer ------------------------  -->
+		<div class="footer footer-skincare">
+			<div class="container-footer">
+				<div class="row-footer">
+					<div class="footer-col-3">
+						<a href="/">
+							<h3>Vita Health Center</h3>
+						</a>
+						<ul>
+							<li>
+								<a href="/faq">FAQ</a>
+							</li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>
+								<a href="/contact">Contact us</a>
+							</li>
+							<li>
+								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+							</li>
+						</ul>
+					</div>
 
-        </div>
-    </section>
+					<div class="footer-col-2">
+						<a href="/skincare">
+							<img src="./img/logo vitaskincare arena.png" />
+						</a>
+					</div>
 
-    <!-- ----------------- Sección TESTIMONIALS -----------------  -->
-    <section class="section">
-        <div class="title title-shop-skinscare">
-            <h1>Testimonials</h1>
-            <div>
-                <header class="header-container">
-                    <h2 class="title-back title-back-skinscare">Clients</h2>
-                    <hr class="hr-skinscares">
-                </header>
-            </div>
-        </div>
-        <div class="container-testimonials">
-            <div class="slider">
+					<div class="footer-col-3">
+						<h3>Vita Skincare</h3>
+						<ul>
+							<li class="li-footer"></li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>instructions</li>
+							<li>
+								<a href="/returns_exchanges">Return Policy</a>
+							</li>
+							<li>
+								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+							</li>
+						</ul>
+					</div>
 
-                <!-- Cliente #1 -->
-                <div class="slide active">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem quam veritatis amet sed
-                        alias ab aliquam harum accusamus blanditiis sunt nulla, perferendis ad fugiat dolore eum
-                        tempore? Aliquam, qui.
-                    </p>
-                    <div class="client-info">
-                        <h3>Golge Gam</h3>
-                        <span>CEO at Google</span>
-                    </div>
-                </div>
+					<div class="footer-col-4">
+						<h3>Follow us</h3>
+						<ul>
+							<li>Facebook</li>
+							<li>Instagram</li>
+							<li>Pinterest</li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<p class="copyright" style="color: #fff">Copyright 2021 - Vita Inc</p>
+			</div>
+		</div>
 
-                <!-- Cliente #2 -->
-                <div class="slide">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem quam veritatis amet sed
-                        alias ab aliquam harum accusamus blanditiis sunt nulla, perferendis ad fugiat dolore eum
-                        tempore? Aliquam, qui.
-                    </p>
-                    <div class="client-info">
-                        <h3>Kylie Jenner</h3>
-                        <span>Empresaria</span>
-                    </div>
-                </div>
-
-                <!-- Cliente #3 -->
-                <div class="slide">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore rem quam veritatis amet sed
-                        alias ab aliquam harum accusamus blanditiis sunt nulla, perferendis ad fugiat dolore eum
-                        tempore? Aliquam, qui.
-                    </p>
-                    <div class="client-info">
-                        <h3>Carolina Herrera</h3>
-                        <span>Diseñadora de moda</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-indicator">
-                <img src="./img/client-01.png" class="active" alt="" data-id="0">
-                <img src="./img/client-04.png" alt="" data-id="1">
-                <img src="./img/client-05.png" alt="" data-id="2">
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ------------------------  LATEST BLOGS ------------------------  -->
-    <section class="section">
-        <div class="title title-shop-skinscare">
-            <h1>Blog</h1>
-            <div>
-                <header class="header-container">
-                    <h2 class="title-back title-back-skinscare">Latest Articles</h2>
-                    <hr class="hr-skinscares">
-                </header>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-blog section-blog-skinscare">
-        <div class="container-blog">
-            <main class="main-blog">
-
-
-                <!-- Blog 1 -->
-                <div class="single-blog">
-                    <img src="./img/blog_1.jpeg" class="img-blog" alt="">
-                    <div class="blog-content blog-content-skincare">
-                        <h3>Driven by a constant need to do better <span>Vita Style</span> </h3>
-                        <p>By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018</p>
-                        <a href="#" class="btn btn-skincare">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Blog 1 -->
-                <div class="single-blog">
-                    <img src="./img/blog_2.jpeg" class="img-blog" alt="">
-                    <div class="blog-content blog-content-skincare">
-                        <h3>We're changing the game <span>Vita Style</span> </h3>
-                        <p>By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018</p>
-                        <a href="#" class="btn btn-skincare">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Blog 1 -->
-                <div class="single-blog">
-                    <img src="./img/blog_3.jpeg" class="img-blog" alt="">
-                    <div class="blog-content blog-content-skincare">
-                        <h3>A chair of Million <span>Vita Style</span> </h3>
-                        <p>By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018</p>
-                        <a href="#" class="btn btn-skincare">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Blog 1 -->
-                <div class="single-blog">
-                    <img src="./img/blog_4.jpeg" class="img-blog" alt="">
-                    <div class="blog-content blog-content-skincare">
-                        <h3>A chair of Million <span>Art</span> </h3>
-                        <p>By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018</p>
-                        <a href="#" class="btn btn-skincare">Read More</a>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </section>
-
-    <!-- ------------------------  Footer ------------------------  -->
-    <div class="footer footer-skincare">
-        <div class="container-footer">
-
-            <div class="row-footer">
-
-                <div class="footer-col-3">
-                    <a href="/">
-                        <h3>Vita Health Center </h3>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/faq">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="/blog">Blogs Post</a>
-                        </li>
-                        <li>My Account</li>
-                        <li>
-                            <a href="/contact">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-col-2">
-                    <a href="/skincare">
-                        <img src="./img/logo vitaskincare arena.png">
-                    </a>
-                </div>
-
-                <div class="footer-col-3">
-                    <h3> Vita Skincare</h3>
-                    <ul>
-                        <li class="li-footer"></li>
-                        <li>
-                            <a href="/blog">Blogs Post</a>
-                        </li>
-                        <li>My Account</li>
-                        <li>instructions</li>
-                        <li>
-                            <a href="/returns_exchanges">Return Policy</a>
-                        </li>
-                        <li>
-                            <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-col-4">
-                    <h3> Follow us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Instagram</li>
-                        <li>Pinterest</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright" style="color: #fff;"> Copyright 2021 - Vita Inc</p>
-        </div>
-    </div>
-
-    <!-- Scripts-->
-    <%- include('partials/script.ejs'); %>
-</body>
-
+		<!-- Scripts-->
+		<%- include('partials/script.ejs'); %>
+	</body>
 </html>
