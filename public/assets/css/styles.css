@@ -1007,105 +1007,61 @@ ul {
 
 /* -------- SINGLE PRODUCT DETAILS -------------- */
 
-.small-container-product {
+.content-product {
+	margin-top: 120px;
+	margin-bottom: 90px;
+	height: 330;
+}
+
+.content-wrapper {
 	max-width: 1080px;
+	height: 100%;
 	margin: auto;
-	padding-left: 25px;
-	padding-right: 25px;
+	display: grid;
+	grid-template-columns: 30% 70%;
 }
 
-.row-product {
-	margin-top: 75px;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-around;
+.col-2 {
+	height: 100%;
 }
 
-.col-2-product {
-	flex-basis: 45%;
-	min-width: 300px;
-	padding: 0;
-}
-
-.col-2-product img {
-	max-width: 100%;
-	padding: 0;
-}
-
-.col-2-product h1 {
-	color: var(--primary-skinscare);
-	font-size: 3em;
-}
-
-.col-2-product select {
-	margin-bottom: 5px;
-	color: var(--secundary-skinscare);
-}
-
-.col-2-product .btn-product {
-	display: inline-block;
-	background-color: var(--primary-skinscare);
-	color: #fff;
-	border: none;
-	outline: none;
-	padding: 0.3em 1em;
-	/* font-size: 1.6rem; */
-	font-size: 1.5em;
-	text-transform: uppercase;
-	font-weight: 500%;
-	cursor: pointer;
-	transition: all 300ms ease-in-out;
-}
-
-.col-2-product .btn-product:hover {
-	background-color: #d9c4ac;
-	color: var(--black);
-}
-
-.single-product {
-	margin-top: 80px;
-}
-
-.single-product .col-2-product img {
-	padding: 0;
-}
-
-.single-product .col-2-product {
-	padding: 20px;
-}
-
-.single-product h3 {
-	margin: 20px 0;
-	font-size: 22px;
-	font-weight: bold;
-}
-
-.single-product select {
-	display: block;
-	padding: 10px;
-	margin-top: 20px;
-}
-
-.single-product input {
-	width: 50px;
-	height: 40px;
-	padding-left: 10px;
-	font-size: 20px;
-	margin-right: 10px;
-	border: 1px solid var(--primary-skinscare);
-}
-
-input:focus {
-	outline: none;
+.col-2 img {
+	height: 300px;
+	margin: 5px;
 }
 
 .small-img-row {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .small-img-col {
 	flex-basis: 24%;
 	cursor: pointer;
+}
+
+.small-img-col img {
+	width: 90px;
+	height: 90px;
+}
+
+.info-producto {
+	text-align: center;
+	padding: 2em;
+	text-align: left;
+}
+
+.info-producto h2 {
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+
+.info-producto .product-price {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.info-producto .size-product {
+	display: block;
+	font-size: 15px;
 }
