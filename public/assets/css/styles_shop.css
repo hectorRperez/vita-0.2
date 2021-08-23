@@ -1,50 +1,50 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 100;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Noto Sans TC', sans-serif;
+	font-weight: 100;
 }
 
-body{
-    background-color: rgb(219, 226, 226);
+body {
+	background-color: rgb(219, 226, 226);
 }
 
-.row{
-    background-color: white;
-    border-radius: 30px;
+.row {
+	background-color: white;
+	border-radius: 30px;
 }
 
-img{
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+img {
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
 }
 
-.logo{
-    width: 150px;
-    height: 150px;
+.logo {
+	width: 150px;
+	height: 150px;
 }
 
-.btn1{
-    border: none;
-    outline: none;
-    height: 50px;
-    width: 100%;
-    background-color: #d9c4ac;
-    color: white;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: all 450ms ease-in-out;
+.btn1 {
+	border: none;
+	outline: none;
+	height: 50px;
+	width: 100%;
+	background-color: #d9c4ac;
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+	transition: all 450ms ease-in-out;
 }
 
-.btn1:hover{
-    background: rgb(125, 84, 56);
-    border: 1px solid;
-    color: #fff;
+.btn1:hover {
+	background: rgb(125, 84, 56);
+	border: 1px solid;
+	color: #fff;
 }
 
-.img img{
-    height: 100%;
-    width: 100%;
-    background-size: cover;
+.img img {
+	height: 100%;
+	width: 100%;
+	background-size: cover;
 }
