@@ -21,7 +21,7 @@ function empty(value) {
 module.exports = (table, params) => {
 
     // establezco los limites y el punto de partida de la consulta
-    let limit = empty(params.limit) ? 20 : (params.limit > 20 ? 20 : params.limit);
+    let limit = empty(params.limit) ? 5 : (params.limit > 5 ? 5 : params.limit);
     let page = empty(params.page) ? 1 : (params.page > 0 ? params.page : 1);
     let offset = ( limit * (page - 1) );
     
@@ -75,7 +75,7 @@ module.exports = (table, params) => {
         order_by = `order by ${params.order_by[0]} ${params.order_by[1]} `;
 
     // genero la consulta sql
-    const sql = `SELECT ${selects} FROM ${table} ${join} ${where} ${group_by} ${order_by} limit ${limit}`;
+    const sql = `SELECT ${selects} FROM ${table} ${join} ${where} ${group_by} ${order_by} limit ${offset}, ${limit}`;
 
     // envuelvo el metodo query con una promesa para poder obtener los resultado 
     // en una variable diferente
