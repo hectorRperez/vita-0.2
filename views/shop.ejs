@@ -2,6 +2,12 @@
 <html lang="en">
 	<head>
 		<%- include('partials/head.ejs'); %>
+		<!-- <link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+			rel="stylesheet"
+			id="bootstrap-css"
+		/> -->
+		<link rel="stylesheet" href="assets/css/styles_shop.css" />
 	</head>
 
 	<body>
@@ -87,98 +93,107 @@
 		</div>
 
 		<!-- Descrition for products -->
-		<section class="section services-container">
-			<div>
-				<nav class="services">
-					<!-- Service 1 -->
-					<figure class="service-btn service1 active">
-						<h3>Description</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
+		<section class="section">
+			<div class="tabs">
+				<div class="tab-header">
+					<div class="active">Description</div>
+					<div>Additional information</div>
+					<div>Video</div>
+				</div>
 
-					<!-- Service 1 -->
-					<figure class="service-btn service1 active">
-						<h3>Additional information</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
-
-					<!-- Service 1 -->
-					<figure class="service-btn service1 active">
-						<h3>Video</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
-
-					<!-- Service 1 -->
-					<figure class="service-btn service1 active">
-						<h3>Reviews</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
-				</nav>
-
-				<div class="services-desc">
-					<!-- Services 1 -->
-					<article class="service1-desc" style="display: block">
+				<div class="tab-content">
+					<!-- Element 1 -->
+					<div class="active">
+						<h2>Description</h2>
 						<p>
-							The perfect finishing touch in our skin care regimen! with
-							hyaluronic acid to lift and tighten, rejuvenate, and reduce
-							inflammation. Great for AM and PM! Handmade in the United States.
-							Organic, Vegan. Our Shelf life is truly short; we process and make
-							your order when you order it. The product does not sit on the
-							shelves of factories where the product heats up and pesticides are
-							sprayed. We do not use any “hidden” chemicals” Our ingredient list
-							is true, transparent and natural. All products made in the United
-							States. Each bottle packaged with hands not by a conveyor belt
-							that has been sprayed with chemical. Fulfillment is by hand not by
-							machine sprayed with chemicals. Our bottles are even labeled by
-							hand so that the product is not touched by machinery. Made with
-							rose hip apple pectin stem cells, CBD, arnica and camillia oil
-							infused with vitamins, shea butter, pearl powder and camillia oil.
-							All ingredients are organic and vegan.
+							<span
+								>The perfect finishing touch in our skin care regimen! with
+								hyaluronic acid to lift and tighten, rejuvenate, and reduce
+								inflammation. Great for AM and PM!</span
+							>
 						</p>
-					</article>
-
-					<!-- Services 2 -->
-					<article class="service2-desc">
+						<br />
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quod
-							debitis, totam fugiat recusandae atque odio alias quas ullam
-							impedit obcaecati animi sapiente? Ab, corporis repellat sapiente
-							fuga laboriosam tempore?
-						</p>
-					</article>
+							<span
+								>Handmade in the United States. Organic, Vegan
 
-					<!-- Services 3 -->
-					<article class="service3-desc">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quod
-							debitis, totam fugiat recusandae atque odio alias quas ullam
-							impedit obcaecati animi sapiente? Ab, corporis repellat sapiente
-							fuga laboriosam tempore?
-						</p>
-					</article>
+								<br />
+								1) Our Shelf life is truly short; we process and make your order
+								when you order it.
 
-					<!-- Services 4 -->
-					<article class="service4-desc">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quod
-							debitis, totam fugiat recusandae atque odio alias quas ullam
-							impedit obcaecati animi sapiente? Ab, corporis repellat sapiente
-							fuga laboriosam tempore?
-						</p>
-					</article>
+								<br />
+								2) The product does not sit on the shelves of factories where
+								the product heats up and pesticides are sprayed.
 
-					<!-- Services 5 -->
-					<article class="service5-desc">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quod
-							debitis, totam fugiat recusandae atque odio alias quas ullam
-							impedit obcaecati animi sapiente? Ab, corporis repellat sapiente
-							fuga laboriosam tempore?
+								<br />
+								3) We do not use any “hidden” chemicals” Our ingredient list is
+								true, transparent and natural.
+
+								<br />
+								4) All products made in the United States.
+
+								<br />
+								5) Each bottle packaged with hands not by a conveyor belt that
+								has been sprayed with chemical.
+
+								<br />
+								6) Fulfillment is by hand not by machine sprayed with chemicals
+
+								<br />
+								7) Our bottles are even labeled by hand so that the product is
+								not touched by machinery
+
+								<br /><br />
+								Made with rose hip apple pectin stem cells, CBD, arnica and
+								camillia oil infused with vitamins, shea butter, pearl powder
+								and camillia oil. All ingredients are organic and vegan
+							</span>
 						</p>
-					</article>
+					</div>
+
+					<!-- Element 2 -->
+					<div>
+						<h2>Additional information</h2>
+						<table class="table-information">
+							<tr>
+								<th>Weight</th>
+								<th>Dimensions</th>
+								<th>Size:</th>
+							</tr>
+							<tr>
+								<td>2 oz</td>
+								<td>4 × 1.5 × 1 in</td>
+								<td>.5mm, 1mm</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- Element 3 -->
+					<div>
+						<h2>this is service section</h2>
+						<p>
+							<span
+								>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed
+								quia ipsam, accusamus similique quaerat fugit incidunt
+								consequatur optio beatae corrupti quasi, unde corporis
+								voluptatibus adipisci nobis delectus recusandae non?
+								Optio!</span
+							>
+						</p>
+						<p>
+							<span
+								>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi
+								reiciendis laboriosam fugiat esse? Reiciendis sint quam
+								voluptatum minus, quis commodi consequuntur. Fugiat
+								reprehenderit voluptatibus sint atque consequuntur laudantium
+								praesentium saepe?</span
+							>
+						</p>
+					</div>
 				</div>
 			</div>
 		</section>
+		<!-- Descrition end-->
 
 		<!--    Title -->
 		<!-- <div class="small-container-product">
@@ -188,7 +203,7 @@
 		</div> -->
 
 		<!-- ----------------- Related products -----------------  -->
-		<section class="section">
+		<!-- <section class="section">
 			<div class="title title-shop-skinscare"></div>
 			<div class="product-center container">
 				<% for(let i=0; i < products_related.length; i++) { %>
@@ -207,7 +222,7 @@
 				</div>
 				<% } %>
 			</div>
-		</section>
+		</section> -->
 
 		<!-- ------------------------  Footer ------------------------  -->
 		<div class="footer">
@@ -251,6 +266,9 @@
 				<p class="copyright">Copyright 2021 - Vita Inc</p>
 			</div>
 		</div>
+
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script>
 			console.log('hola mundo desde js');
 			var ProductImg = document.getElementById('ProductImg');
@@ -269,6 +287,30 @@
 			SmallImg[2].onclick = function () {
 				ProductImg.src = SmallImg[2].src;
 			};
+		</script>
+		<script>
+			let tabPanes = document
+				.getElementsByClassName('tab-header')[0]
+				.getElementsByTagName('div');
+
+			for (let i = 0; i < tabPanes.length; i++) {
+				tabPanes[i].addEventListener('click', function () {
+					document
+						.getElementsByClassName('tab-header')[0]
+						.getElementsByClassName('active')[0]
+						.classList.remove('active');
+					tabPanes[i].classList.add('active');
+
+					document
+						.getElementsByClassName('tab-content')[0]
+						.getElementsByClassName('active')[0]
+						.classList.remove('active');
+					document
+						.getElementsByClassName('tab-content')[0]
+						.getElementsByTagName('div')
+						[i].classList.add('active');
+				});
+			}
 		</script>
 		<%- include('partials/script.ejs'); %>
 	</body>
