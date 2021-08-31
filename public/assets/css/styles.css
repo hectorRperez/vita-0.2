@@ -19,6 +19,7 @@
 html {
 	box-sizing: border-box;
 	font-size: clamp(10px, 6px + 1vw, 0.8rem);
+	scroll-behavior: smooth;
 }
 
 h1 {
