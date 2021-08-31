@@ -61,7 +61,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
 
 		<!-- ----------- Sección de productos ------------- -->
-		<section class="section">
+		<section class="section section-scroll">
 			<div class="product-center container">
 				<% for(let i=0; i < products.length; i++) { %>
 				<!-- Producto # <%= i + 1 %> -->
@@ -82,7 +82,7 @@
 		</section>
 
 		<!-- ----------- Sección About Us------------- -->
-		<section class="section">
+		<section class="section section-scroll">
 			<div class="title">
 				<h1>About us</h1>
 				<div>
@@ -157,7 +157,7 @@
 		<!-- ---------------------- -->
 		<!-- Seccion OUR SERVICES -->
 
-		<section class="section services-container">
+		<section class="section services-container section-scroll">
 			<div class="title">
 				<h1>Our Services</h1>
 				<div>
@@ -235,7 +235,7 @@
 		</section>
 
 		<!-- ----------- Sección TESTIMONIALS ------------- -->
-		<section class="section">
+		<section class="section section-scroll">
 			<div class="title">
 				<h1>Testimonials</h1>
 				<div>
@@ -299,7 +299,7 @@
 		</section>
 
 		<!-- ------------------------  LATEST BLOGS ------------------------  -->
-		<section class="section">
+		<section class="section section-scroll">
 			<div class="title">
 				<h1>Blog</h1>
 				<div>
@@ -452,6 +452,7 @@
 		</div>
 
 		<!-- Scripts-->
+		<script src="https://unpkg.com/scrollreveal"></script>
 		<%- include('partials/script.ejs'); %>
 	</body>
 </html>
