@@ -26,8 +26,8 @@
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
 			<%if (user == undefined) { %> <%- include('partials/header.ejs', {
-			account: "LOGIN"}); %> <% } else { %> <%- include('partials/header.ejs', {
-			account: user.name}); %> <% } %>
+			account: "LOGIN"}); %> <% } else { %> <%-
+			include('partials/header.ejs', { account: user.name}); %> <% } %>
 		</div>
 		<!-- ------------------ End Header ------------------------ -->
 
@@ -39,16 +39,29 @@
 					<div class="glide__track" data-glide-el="track">
 						<ul class="glide__slides glide__hero">
 							<li class="glide__slide">
-								<div class="banner animate__animated animate__fadeInUp">
+								<div
+									class="
+										banner
+										animate__animated animate__fadeInUp
+									"
+								>
 									<div class="banner-content">
-										<h1 class="firts_title">DISCOVER OUR NEW SKIN</h1>
-										<h1 class="firts_title">CARE PRODUCTS</h1>
+										<h1 class="firts_title">
+											DISCOVER OUR NEW SKIN
+										</h1>
+										<h1 class="firts_title">
+											CARE PRODUCTS
+										</h1>
 										<h3>Healthy skin start here</h3>
 										<div class="buttons-group">
 											<button>SHOP NOW</button>
 										</div>
 									</div>
-									<img src="./img/banner_07.jpg" class="special_01" alt="" />
+									<img
+										src="./img/banner_07.jpg"
+										class="special_01"
+										alt=""
+									/>
 								</div>
 							</li>
 						</ul>
@@ -93,23 +106,28 @@
 					</header>
 					<div class="title-paragraph paragraph-left">
 						<p>
-							Vita Health Center was born as a result of the love, dedication,
-							perseverance of a Venezuela woman who came to this country, the
-							United States, with a focus and determination to study and train
-							in the area of acupuncture and thus be able to provide knowledge
-							in such a beautiful profession. Vita Health Center is a clinical
-							center created to provide healing therapies through acupuncture
-							and traditional Chinese medicine. Vita is focused on facial
-							rejuvenation, fertility, neuro acupunture, sports acupuncture,
-							orthopedic acupuncture, and body care. All oriented to integral
-							well-being. Join me to live this dream today.
+							Vita Health Center was born as a result of the love,
+							dedication, perseverance of a Venezuela woman who
+							came to this country, the United States, with a
+							focus and determination to study and train in the
+							area of acupuncture and thus be able to provide
+							knowledge in such a beautiful profession. Vita
+							Health Center is a clinical center created to
+							provide healing therapies through acupuncture and
+							traditional Chinese medicine. Vita is focused on
+							facial rejuvenation, fertility, neuro acupunture,
+							sports acupuncture, orthopedic acupuncture, and body
+							care. All oriented to integral well-being. Join me
+							to live this dream today.
 						</p>
 						<ul>
 							<li>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-								ducimus numquam dignissimos et tenetur delectus quisquam quaerat
-								facilis, eum, cum non aliquid ipsa dolor totam provident
-								deserunt, molestiae repellendus, iusto.
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Eveniet ducimus numquam
+								dignissimos et tenetur delectus quisquam quaerat
+								facilis, eum, cum non aliquid ipsa dolor totam
+								provident deserunt, molestiae repellendus,
+								iusto.
 							</li>
 						</ul>
 					</div>
@@ -122,16 +140,18 @@
 						<hr />
 					</header>
 					<p class="title-paragraph">
-						Vita Health Center is an Acupuncture Clinic that provides excellent
-						service to our community. We want to help our community to use
-						alternative medicine to prevent or treat health conditions by using
-						different techniques such as needle, moxa, cupping, gua sha,
-						electroacupuncture and others. Our specializations are facial
-						acupuncture, rejuvenation acupuncture, neuro acupuncture, sport &
-						orthopedic acupuncture, fertility, and massage therapy. Our clinic
-						is proud of Vita skincare products because we want to make sure we
-						can give our clients vegan and organic skincare products and better
-						cosmetic acupuncture results.
+						Vita Health Center is an Acupuncture Clinic that
+						provides excellent service to our community. We want to
+						help our community to use alternative medicine to
+						prevent or treat health conditions by using different
+						techniques such as needle, moxa, cupping, gua sha,
+						electroacupuncture and others. Our specializations are
+						facial acupuncture, rejuvenation acupuncture, neuro
+						acupuncture, sport & orthopedic acupuncture, fertility,
+						and massage therapy. Our clinic is proud of Vita
+						skincare products because we want to make sure we can
+						give our clients vegan and organic skincare products and
+						better cosmetic acupuncture results.
 					</p>
 
 					<header class="header-container">
@@ -140,14 +160,16 @@
 						<hr />
 					</header>
 					<p class="title-paragraph">
-						We strive to work with the community to improve the lives of our
-						patients and their families. We provide Acupuncturist and Oriental
-						Medicine expertise to our community as well as other health
-						professionals. We work professionally with our referring Doctors and
-						Acupuncturist to help as needed. We work with conventional doctors
-						and incorporate western medical practices to ensure the best outcome
-						for our patients. We use primarily Vita Skincare products. We
-						support the use of these products as well as provide professional
+						We strive to work with the community to improve the
+						lives of our patients and their families. We provide
+						Acupuncturist and Oriental Medicine expertise to our
+						community as well as other health professionals. We work
+						professionally with our referring Doctors and
+						Acupuncturist to help as needed. We work with
+						conventional doctors and incorporate western medical
+						practices to ensure the best outcome for our patients.
+						We use primarily Vita Skincare products. We support the
+						use of these products as well as provide professional
 						advice on how to use the products successfully
 					</p>
 				</div>
@@ -162,7 +184,9 @@
 				<h1>Our Services</h1>
 				<div>
 					<header class="header-container">
-						<h2 class="title-back">Better Felling-Better Healing</h2>
+						<h2 class="title-back">
+							Better Felling-Better Healing
+						</h2>
 						<hr />
 					</header>
 				</div>
@@ -208,29 +232,58 @@
 				<div class="services-desc">
 					<!-- Services 1 -->
 					<article
-						class="service1-desc animate__animated animate__slideInLeft"
+						class="
+							service1-desc
+							animate__animated animate__slideInLeft
+						"
 						style="display: block"
 					>
-						<img src="./img/FACIAL & REJUVENATION ACUPUNCTURE.jpg" alt="" />
+						<img
+							src="./img/FACIAL & REJUVENATION ACUPUNCTURE.jpg"
+							alt=""
+						/>
 					</article>
 
 					<!-- Services 2 -->
-					<article class="service2-desc animate__animated animate__slideInLeft">
+					<article
+						class="
+							service2-desc
+							animate__animated animate__slideInLeft
+						"
+					>
 						<img src="./img/Neuro Acupuncture.jpg" alt="" />
 					</article>
 
 					<!-- Services 3 -->
-					<article class="service3-desc animate__animated animate__slideInLeft">
-						<img src="./img/SPORT & ORTHOPEDIC ACUPUNCTURE.jpg" alt="" />
+					<article
+						class="
+							service3-desc
+							animate__animated animate__slideInLeft
+						"
+					>
+						<img
+							src="./img/SPORT & ORTHOPEDIC ACUPUNCTURE.jpg"
+							alt=""
+						/>
 					</article>
 
 					<!-- Services 4 -->
-					<article class="service4-desc animate__animated animate__slideInLeft">
+					<article
+						class="
+							service4-desc
+							animate__animated animate__slideInLeft
+						"
+					>
 						<img src="./img/Fertility-plantilla.jpg" alt="" />
 					</article>
 
 					<!-- Services 5 -->
-					<article class="service5-desc animate__animated animate__slideInLeft">
+					<article
+						class="
+							service5-desc
+							animate__animated animate__slideInLeft
+						"
+					>
 						<img src="./img/Massage Therapy.jpg" alt="" />
 					</article>
 				</div>
@@ -253,10 +306,11 @@
 					<!-- Cliente #1 -->
 					<div class="slide active">
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Inventore rem quam veritatis amet sed alias ab
+							aliquam harum accusamus blanditiis sunt nulla,
+							perferendis ad fugiat dolore eum tempore? Aliquam,
+							qui.
 						</p>
 						<div class="client-info">
 							<h3>Golge Gam</h3>
@@ -267,10 +321,11 @@
 					<!-- Cliente #2 -->
 					<div class="slide">
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Inventore rem quam veritatis amet sed alias ab
+							aliquam harum accusamus blanditiis sunt nulla,
+							perferendis ad fugiat dolore eum tempore? Aliquam,
+							qui.
 						</p>
 						<div class="client-info">
 							<h3>Kylie Jenner</h3>
@@ -281,10 +336,11 @@
 					<!-- Cliente #3 -->
 					<div class="slide">
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Inventore rem quam veritatis amet sed alias ab
+							aliquam harum accusamus blanditiis sunt nulla,
+							perferendis ad fugiat dolore eum tempore? Aliquam,
+							qui.
 						</p>
 						<div class="client-info">
 							<h3>Carolina Herrera</h3>
@@ -294,7 +350,12 @@
 				</div>
 
 				<div class="slider-indicator">
-					<img src="./img/client-01.png" class="active" alt="" data-id="0" />
+					<img
+						src="./img/client-01.png"
+						class="active"
+						alt=""
+						data-id="0"
+					/>
 					<img src="./img/client-04.png" alt="" data-id="1" />
 					<img src="./img/client-05.png" alt="" data-id="2" />
 				</div>
@@ -322,10 +383,12 @@
 						<img src="./img/blog_1.jpeg" class="img-blog" alt="" />
 						<div class="blog-content">
 							<h3>
-								Driven by a constant need to do better <span>Vita Style</span>
+								Driven by a constant need to do better
+								<span>Vita Style</span>
 							</h3>
 							<p>
-								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+								By <a href="#"></a> Hector Perez |
+								<a href="#"></a> Nov 21, 2018
 							</p>
 							<a href="/blog" class="btn">Read More</a>
 						</div>
@@ -335,9 +398,12 @@
 					<div class="single-blog">
 						<img src="./img/blog_2.jpeg" class="img-blog" alt="" />
 						<div class="blog-content">
-							<h3>We're changing the game <span>Vita Style</span></h3>
+							<h3>
+								We're changing the game <span>Vita Style</span>
+							</h3>
 							<p>
-								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+								By <a href="#"></a> Hector Perez |
+								<a href="#"></a> Nov 21, 2018
 							</p>
 							<a href="/blog" class="btn">Read More</a>
 						</div>
@@ -349,7 +415,8 @@
 						<div class="blog-content">
 							<h3>A chair of Million <span>Vita Style</span></h3>
 							<p>
-								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+								By <a href="#"></a> Hector Perez |
+								<a href="#"></a> Nov 21, 2018
 							</p>
 							<a href="/blog" class="btn">Read More</a>
 						</div>
@@ -361,7 +428,8 @@
 						<div class="blog-content">
 							<h3>A chair of Million <span>Art</span></h3>
 							<p>
-								By <a href="#"></a> Hector Perez | <a href="#"></a> Nov 21, 2018
+								By <a href="#"></a> Hector Perez |
+								<a href="#"></a> Nov 21, 2018
 							</p>
 							<a href="/blog" class="btn">Read More</a>
 						</div>
@@ -406,7 +474,9 @@
 								<a href="/contact">Contact us</a>
 							</li>
 							<li>
-								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+								<a href="/privacy_policies"
+									>Terms of Use — Privacy Policy</a
+								>
 							</li>
 						</ul>
 					</div>
@@ -432,7 +502,9 @@
 								<a href="/returns_exchanges">Return Policy</a>
 							</li>
 							<li>
-								<a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+								<a href="/privacy_policies"
+									>Terms of Use — Privacy Policy</a
+								>
 							</li>
 						</ul>
 					</div>
@@ -441,7 +513,9 @@
 						<ul>
 							<li>Facebook</li>
 							<li>
-								<a href="https://www.instagram.com/vitahealthc/" target="_blank"
+								<a
+									href="https://www.instagram.com/vitahealthc/"
+									target="_blank"
 									>Instagram</a
 								>
 							</li>
