@@ -3,21 +3,22 @@
 //
 
 let openFlag = false;
-const menu = document.querySelector('.menu');
-console.log(document.querySelector('.hamburger'));
-document.querySelector('.hamburger').onclick = (x) => {
+const menu = document.querySelector(".menu");
+console.log(document.querySelector(".hamburger"));
+document.querySelector(".hamburger").onclick = (x) => {
 	if (!openFlag) {
-		menu.classList.add('opened');
+		menu.classList.add("opened");
 		openFlag = !openFlag;
-		document.body.classList.add('no-scroll');
+		document.body.classList.add("no-scroll");
 	}
 };
-document.querySelector('.menu + .close').onclick = (x) => {
-	menu.classList.remove('opened');
+document.querySelector(".menu + .close").onclick = (x) => {
+	menu.classList.remove("opened");
 	openFlag = !openFlag;
-	document.body.classList.remove('no-scroll');
+	document.body.classList.remove("no-scroll");
 };
 
-console.log('scroll');
+console.log("scroll");
 // scrollreveal APLICADO AL HOME Y A SKINCARE
-ScrollReveal().reveal('.section-scroll', { delay: 400 });
+// scrollreveal se aplica directo a la clase section-scroll
+ScrollReveal().reveal(".section-scroll", {delay: 500});
