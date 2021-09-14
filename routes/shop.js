@@ -91,7 +91,7 @@ router.get('/shop:product_id?', (req, res, next) => {
 
 		let products_related = await queryBuilder('products', params).catch( err => {throw err} );
 
-		res.render('shop', {user: req.user, product: product, product_images: product_images, products_related: products_related});
+		res.render('view_products', {user: req.user, product: product, product_images: product_images, products_related: products_related});
 	} catch (error) {
 		console.error(error);
 	}
