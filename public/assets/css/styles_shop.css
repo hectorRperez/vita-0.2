@@ -18,6 +18,7 @@
 	height: 100%;
 	text-align: center;
 	line-height: 80px;
+	/* color: rgb(125, 84, 56); */
 	color: rgb(125, 84, 56);
 	cursor: pointer;
 	z-index: 2;
@@ -48,8 +49,9 @@
 }
 
 .tabs .tab-header > div.active {
-	/* color: #fff; */
 	color: rgb(125, 84, 56);
+
+	/* color: rgb(125, 84, 56); */
 	font-weight: 100;
 }
 
