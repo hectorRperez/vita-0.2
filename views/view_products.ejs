@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('partials/head.ejs'); %>
+		<!-- <link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+			rel="stylesheet"
+			id="bootstrap-css"
+		/> -->
+		<link rel="stylesheet" href="assets/css/styles_shop.css" />
+	</head>
+
+	<body>
+		<!--  ------------------ PROMO ------------------ -->
+		<div class="promo">
+			<span>
+				<a href="#">
+					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+				</a></span
+			>
+			<span>Get 30% OFF This Christmas Holidays</span>
+			<span>
+				<ul class="media_social">
+					<li>
+						<a href="#"><i class="fab fa-facebook-square"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+					</li>
+				</ul>
+			</span>
+		</div>
+
+		<!-- ------------------ HEADER ------------------------ -->
+		<div class="header">
+			<%- include('partials/header.ejs', {account: user.name}); %>
+		</div>
+		<!-- ------------------ End Header ------------------------ -->
+
+		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
+
+		<div class="content-product">
+			<div class="content-wrapper">
+				<!-- Elemento 1 -->
+				<div class="view-product">
+					<div class="col-2">
+						<img
+							src="./img/dermaroller .jpg"
+							width="4px"
+							id="ProductImg"
+						/>
+
+						<div class="small-img-row">
+							<div class="small-img-col">
+								<img
+									src="./img/View recent photos (1).png"
+									class="small-img"
+								/>
+							</div>
+
+							<div class="small-img-col">
+								<img
+									src="./img/View recent photos.png"
+									class="small-img"
+								/>
+							</div>
+
+							<div class="small-img-col">
+								<img
+									src="./img/IMG_4664.jpg"
+									class="small-img"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Elemento 2 -->
+				<div class="info-producto">
+					<h2>AcuLift Face & Body Derma Roller Combo</h2>
+					<p class="product-price">$250</p>
+					<label class="size-product">Size</label>
+					<select class="select-css">
+						<option>Selecciona una opción</option>
+						<option>.5 mm</option>
+						<option>1mm</option>
+					</select>
+					<!-- <select>
+						<option>Select Size</option>
+						<option>.5m</option>
+						<option>1mm</option>
+					</select> -->
+					<div class="container-flex">
+						<input type="number" value="1" />
+						<a href="something" class="button1">Add to card</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Descrition for products -->
+		<section class="section">
+			<div class="tabs">
+				<div class="tab-header">
+					<div class="active">Description</div>
+					<div>Additional information</div>
+					<div>Video</div>
+					<div>Instructions</div>
+					<div>Precautions & S. Effects</div>
+				</div>
+
+				<div class="tab-content">
+					<!-- Element 1 -->
+					<div class="active">
+						<h2>Description</h2>
+						<p>
+							<span
+								>The perfect finishing touch in our skin care
+								regimen! with hyaluronic acid to lift and
+								tighten, rejuvenate, and reduce inflammation.
+								Great for AM and PM!</span
+							>
+						</p>
+						<br />
+						<p>
+							<span
+								>Handmade in the United States. Organic, Vegan
+
+								<br />
+								1) Our Shelf life is truly short; we process and
+								make your order when you order it.
+
+								<br />
+								2) The product does not sit on the shelves of
+								factories where the product heats up and
+								pesticides are sprayed.
+
+								<br />
+								3) We do not use any “hidden” chemicals” Our
+								ingredient list is true, transparent and
+								natural.
+
+								<br />
+								4) All products made in the United States.
+
+								<br />
+								5) Each bottle packaged with hands not by a
+								conveyor belt that has been sprayed with
+								chemical.
+
+								<br />
+								6) Fulfillment is by hand not by machine sprayed
+								with chemicals
+
+								<br />
+								7) Our bottles are even labeled by hand so that
+								the product is not touched by machinery
+
+								<br /><br />
+								Made with rose hip apple pectin stem cells, CBD,
+								arnica and camillia oil infused with vitamins,
+								shea butter, pearl powder and camillia oil. All
+								ingredients are organic and vegan
+							</span>
+						</p>
+					</div>
+
+					<!-- Element 2 -->
+					<div>
+						<h2>Additional information</h2>
+						<table class="table-information">
+							<tr>
+								<th>Weight</th>
+								<th>Dimensions</th>
+								<th>Size:</th>
+							</tr>
+							<tr>
+								<td>2 oz</td>
+								<td>4 × 1.5 × 1 in</td>
+								<td>.5mm, 1mm</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- Element 3 -->
+					<div>
+						<h2>this is service section</h2>
+						<p>
+							<span
+								>Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Sed quia ipsam, accusamus
+								similique quaerat fugit incidunt consequatur
+								optio beatae corrupti quasi, unde corporis
+								voluptatibus adipisci nobis delectus recusandae
+								non? Optio!</span
+							>
+						</p>
+						<p>
+							<span
+								>Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Modi reiciendis laboriosam
+								fugiat esse? Reiciendis sint quam voluptatum
+								minus, quis commodi consequuntur. Fugiat
+								reprehenderit voluptatibus sint atque
+								consequuntur laudantium praesentium saepe?</span
+							>
+						</p>
+					</div>
+
+					<!-- Element 4 -->
+					<div>
+						<h2>this is service section</h2>
+						<p>
+							<span
+								>Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Sed quia ipsam, accusamus
+								similique quaerat fugit incidunt consequatur
+								optio beatae corrupti quasi, unde corporis
+								voluptatibus adipisci nobis delectus recusandae
+								non? Optio!</span
+							>
+						</p>
+						<p>
+							<span
+								>Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Modi reiciendis laboriosam
+								fugiat esse? Reiciendis sint quam voluptatum
+								minus, quis commodi consequuntur. Fugiat
+								reprehenderit voluptatibus sint atque
+								consequuntur laudantium praesentium saepe?</span
+							>
+						</p>
+					</div>
+
+					<!-- Element 5 -->
+					<div>
+						<h2>this is service section</h2>
+						<p>
+							<span
+								>Lorem ipsum dolor sit, amet consectetur
+								adipisicing elit. Sed quia ipsam, accusamus
+								similique quaerat fugit incidunt consequatur
+								optio beatae corrupti quasi, unde corporis
+								voluptatibus adipisci nobis delectus recusandae
+								non? Optio!</span
+							>
+						</p>
+						<p>
+							<span
+								>Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Modi reiciendis laboriosam
+								fugiat esse? Reiciendis sint quam voluptatum
+								minus, quis commodi consequuntur. Fugiat
+								reprehenderit voluptatibus sint atque
+								consequuntur laudantium praesentium saepe?</span
+							>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Descrition end-->
+
+		<!--    Title -->
+		<!-- <div class="small-container-product">
+			<div class="row-product row-2">
+				<h2>Related Products</h2>
+			</div>
+		</div> -->
+
+		<!-- ----------------- Related products -----------------  -->
+		<!-- <section class="section">
+			<div class="title title-shop-skinscare"></div>
+			<div class="product-center container">
+				<% for(let i=0; i < products_related.length; i++) { %>
+				<div class="product">
+					<div class="img-cover">
+						<img src="<%= products_related[i].image %>" />
+					</div>
+					<p><%= products_related[i].name %></p>
+					<div class="rating">
+						<% for(var j=0; j < products_related[i].assessment; j++) { %>
+						<i class="bx bxs-star"></i>
+						<% } %>
+					</div>
+					<div class="price">$<%= products_related[i].price %></div>
+					<a href="/shop">aqui</a>
+				</div>
+				<% } %>
+			</div>
+		</section> -->
+
+		<!-- ------------------------  Footer ------------------------  -->
+		<div class="footer footer-skincare">
+			<div class="container-footer">
+				<div class="row-footer">
+					<div class="footer-col-3">
+						<a href="/">
+							<h3>Vita Health Center</h3>
+						</a>
+						<ul>
+							<li>
+								<a href="/faq">FAQ</a>
+							</li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>
+								<a href="/contact">Contact us</a>
+							</li>
+							<li>
+								<a href="/privacy_policies"
+									>Terms of Use — Privacy Policy</a
+								>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer-col-2">
+						<a href="/skincare">
+							<img src="./img/logo vitaskincare arena.png" />
+						</a>
+					</div>
+
+					<div class="footer-col-3">
+						<h3>Vita Skincare</h3>
+						<ul>
+							<li class="li-footer"></li>
+							<li>
+								<a href="/blog">Blogs Post</a>
+							</li>
+							<li>My Account</li>
+							<li>instructions</li>
+							<li>
+								<a href="/returns_exchanges">Return Policy</a>
+							</li>
+							<li>
+								<a href="/privacy_policies"
+									>Terms of Use — Privacy Policy</a
+								>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer-col-4">
+						<h3>Follow us</h3>
+						<ul>
+							<li>Facebook</li>
+							<li>Instagram</li>
+							<li>Pinterest</li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<p class="copyright" style="color: #fff">
+					Copyright 2021 - Vita Inc
+				</p>
+			</div>
+		</div>
+
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			console.log("hola mundo desde js");
+			var ProductImg = document.getElementById("ProductImg");
+
+			var SmallImg = document.getElementsByClassName("small-img");
+
+			SmallImg[0].onclick = function () {
+				ProductImg.src = SmallImg[0].src;
+				console.log(ProductImg);
+			};
+
+			SmallImg[1].onclick = function () {
+				ProductImg.src = SmallImg[1].src;
+			};
+
+			SmallImg[2].onclick = function () {
+				ProductImg.src = SmallImg[2].src;
+			};
+		</script>
+		<script>
+			let tabPanes = document
+				.getElementsByClassName("tab-header")[0]
+				.getElementsByTagName("div");
+
+			for (let i = 0; i < tabPanes.length; i++) {
+				tabPanes[i].addEventListener("click", function () {
+					document
+						.getElementsByClassName("tab-header")[0]
+						.getElementsByClassName("active")[0]
+						.classList.remove("active");
+					tabPanes[i].classList.add("active");
+
+					document
+						.getElementsByClassName("tab-content")[0]
+						.getElementsByClassName("active")[0]
+						.classList.remove("active");
+					document
+						.getElementsByClassName("tab-content")[0]
+						.getElementsByTagName("div")
+						[i].classList.add("active");
+				});
+			}
+		</script>
+		<%- include('partials/script.ejs'); %>
+	</body>
+</html>

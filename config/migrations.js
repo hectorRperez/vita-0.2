@@ -44,7 +44,7 @@ try {
 
 		const tables = [
 			{name: "", sql:"SET FOREIGN_KEY_CHECKS = 0"},
-			{name:'Drop all table', sql: "DROP TABLE IF EXISTS home_products, orders_items, orders, orders_states, taxes, products_images, products, categories, users_types_users, users, users_types, home_info"},
+			{name:'Drop all table', sql: "DROP TABLE IF EXISTS home_products, orders_items, orders, orders_states, taxes, products_images, products, categories, posts, users_types_users, users, users_types, home_info"},
 			{name: "", sql:"SET FOREIGN_KEY_CHECKS = 1"},
 			{name:'Table users', sql: "CREATE TABLE users ( id int(11) NOT NULL AUTO_INCREMENT, name varchar(50) NOT NULL, lastname varchar(50) NOT NULL, image varchar(255), email varchar(255) NOT NULL UNIQUE, password varchar(255) NOT NULL, PRIMARY KEY (id) )"},
 			{name:'Table users_types', sql: "CREATE TABLE users_types ( id int(11) NOT NULL AUTO_INCREMENT, type varchar(50) NOT NULL, PRIMARY KEY (id))"},
@@ -56,7 +56,8 @@ try {
 			{name:'Table orders', sql: "CREATE TABLE orders ( id int(11) NOT NULL AUTO_INCREMENT, total_products int(3) NOT NULL, total double(10,2) NOT NULL, user_id int(4) NOT NULL, state_id int(10) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (state_id) REFERENCES orders_states(id) )"},
 			{name:'Table orders_items', sql: "CREATE TABLE orders_items ( id int(11) NOT NULL AUTO_INCREMENT, product_id int(10) NOT NULL, quantity int(10) NOT NULL, total decimal(10,2) NOT NULL, order_id int(10), PRIMARY KEY (id), FOREIGN KEY (order_id) REFERENCES orders(id), FOREIGN KEY (product_id) REFERENCES products(id) )"},
 			{name:'Table home_products', sql: "CREATE TABLE home_products ( id int(2) NOT NULL AUTO_INCREMENT, product_id int(11) NOT NULL, PRIMARY KEY (id), FOREIGN KEY (product_id) REFERENCES products(id))"},
-			{name:'Table home_info', sql: "CREATE TABLE home_info ( id int(2) NOT NULL AUTO_INCREMENT, mision TEXT NOT NULL, history TEXT NOT NULL, vision TEXT NOT NULL, PRIMARY KEY (id) )"}
+			{name:'Table home_info', sql: "CREATE TABLE home_info ( id int(2) NOT NULL AUTO_INCREMENT, mision TEXT NOT NULL, history TEXT NOT NULL, vision TEXT NOT NULL, PRIMARY KEY (id) )"},
+			{name:'Table posts', sql: "CREATE TABLE posts ( id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, title varchar(255) NOT NULL, content TEXT NOT NULL, image varchar(255) NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY (id), FOREIGN KEY (user_id) REFERENCES users(id) )"},
 		];
 
 		// Genero las tablas

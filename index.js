@@ -15,28 +15,13 @@ require('dotenv').config({
 	path: `.env.${process.env.NODE_ENV || 'development'}`
 })
 
-// configurando donde se guardan las imagenes
-const storage = multer.diskStorage({
-
-	destination: function(req, file, cb) {
-		cb(null, path.join(__dirname, 'public/img') );
-	}, 
-
-	filename: function(req, file, cb) {
-		const img = `${Date.now()}${Math.floor(Math.random() * 100)}`;
-		cb(null, `product-${ img }.jpeg`);
-	}
-	
-});
 
 // configuracion de formulario 
 app.use(express.urlencoded( {extended: true } ));
 
-app.use( multer({
-	storage,
-	dest: path.join(__dirname, 'public/img'),
-	limits: {fileSize: 500000}
-}).array('image', 6));
+
+// la ruta de archivos de imagen
+app.use( require('./config/storage.js'));
 
 // configuracion de la cookies
 app.use( cookieParser('5654534jk34kjnk346kjn652gf2') );
