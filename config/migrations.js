@@ -211,7 +211,6 @@ try {
         { name: 'Home_product 2', sql: 'INSERT INTO home_products (product_id) VALUES (2)' },
         { name: 'Home_product 3', sql: 'INSERT INTO home_products (product_id) VALUES (3)' },
         { name: 'Home_product 4', sql: 'INSERT INTO home_products (product_id) VALUES (4)' },
-        { name: 'Home product 5', sql: 'INSERT INTO home_products (product_id) VALUES (5)' },
       ],
     ];
 
