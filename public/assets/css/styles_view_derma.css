@@ -7,7 +7,6 @@
 .content-product {
 	margin-top: 150px;
 	margin-bottom: 20px;
-	height: 330;
 }
 
 .content-wrapper {
@@ -55,6 +54,9 @@
 
 .info-producto {
 	width: 100%;
+	text-align: center;
+	padding: 2em;
+	text-align: left;
 }
 
 .info-producto h2 {
