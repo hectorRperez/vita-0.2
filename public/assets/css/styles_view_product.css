@@ -1,0 +1,153 @@
+.content-product {
+	margin-top: 120px;
+	margin-bottom: 20px;
+	height: 330;
+}
+
+.content-wrapper {
+	max-width: 1080px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 40% 70%;
+}
+
+.col-2 {
+	height: 100%;
+}
+
+.col-2 img {
+	height: 300px;
+	margin: 5px;
+}
+
+.small-img-row {
+	display: flex;
+	justify-content: center;
+}
+
+.small-img-col {
+	flex-basis: 24%;
+	cursor: pointer;
+}
+
+.small-img-col img {
+	width: 90px;
+	height: 90px;
+}
+
+.info-producto {
+	text-align: center;
+	padding: 2em;
+	text-align: left;
+}
+
+.info-producto h2 {
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+
+.info-producto .product-price {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.info-producto .size-product {
+	display: block;
+	font-size: 15px;
+}
+
+.info-producto .paragraph-product {
+	padding: 1em;
+}
+
+.info-producto select {
+	margin: 1em;
+}
+
+/* Button  */
+.info-producto .button1 {
+	display: block;
+	font-family: 'Noto Sans TC', sans-serif;
+	width: 300px;
+	padding: 0.35em 1.2em;
+	/* margin: 1 0.3em 0.3em 0; */
+	border-radius: 0.5em;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: #fff;
+	text-align: center;
+	transition: all 0.2s;
+	background-color: var(--primary-skinscare);
+}
+.info-producto .button1:hover {
+	color: #fff;
+	background-color: var(--primary);
+}
+
+.info-producto input {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.container-flex {
+	margin-top: 25px;
+	display: flex;
+}
+
+.container-flex input,
+.container-flex a {
+	margin: 5px;
+}
+
+.description-product {
+	width: 70%;
+	padding: 5px;
+}
+
+.iconos-vita ul {
+	display: flex;
+}
+
+.iconos-vita ul li {
+	width: 65px;
+}
+
+.description-product p {
+	margin-top: 10px;
+	text-align: justify;
+}
+
+.related-product {
+	width: 95%;
+	margin: auto;
+	padding: 25px;
+}
+
+.related-product h2 {
+	margin-bottom: 25px;
+}
+
+.related-product .products ul {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 25px;
+	grid-row-gap: 0px;
+	margin: auto;
+}
+
+.related-product .products img {
+}
+
+@media only screen and (max-width: 500px) {
+	.related-product .products ul {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: 1fr;
+		grid-column-gap: 25px;
+		grid-row-gap: 35px;
+		margin: auto;
+	}
+}
