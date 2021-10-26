@@ -1,3 +1,5 @@
+/* FIXME: Al parecer esta hoja de estilo no tiene ninguna funcionalidad */
+
 .tabs {
 	/* transform: translate(-50%, -50%); */
 	width: 800px;
@@ -29,7 +31,7 @@
 }
 
 .tabs .tab-header > div::before {
-	content: "";
+	content: '';
 	position: absolute;
 	bottom: 0px;
 	left: 0px;

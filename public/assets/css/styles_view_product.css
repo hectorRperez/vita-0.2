@@ -138,7 +138,8 @@
 	margin: auto;
 }
 
-.related-product .products img {
+.related-product .products ul li {
+	text-align: center;
 }
 
 @media only screen and (max-width: 500px) {
