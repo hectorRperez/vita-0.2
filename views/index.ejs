@@ -80,18 +80,20 @@
 			<div class="product-center container">
 				<% for(let i=0; i < products.length; i++) { %>
 				<!-- Producto # <%= i + 1 %> -->
-				<div class="product">
-					<div class="img-cover">
-						<img src="<%= products[i].image %>" />
-					</div>
-					<p><%= products[i].name %></p>
-					<div class="rating">
-						<% for(var j=0; j < products[i].assessment; j++) { %>
-						<i class="bx bxs-star"></i>
-						<% } %>
-					</div>
-					<div class="price">$<%= products[i].price %></div>
-				</div>
+					<a href = "/shop<%= products[i].id %>">
+						<div class="product">
+							<div class="img-cover">
+								<img src="<%= products[i].image %>" />
+							</div>
+							<p><%= products[i].name %></p>
+							<div class="rating">
+								<% for(var j=0; j < products[i].assessment; j++) { %>
+									<i class="bx bxs-star"></i>
+								<% } %>
+							</div>
+							<div class="price">$<%= products[i].price %></div>
+						</div>
+					</a>
 				<% } %>
 			</div>
 		</section>
