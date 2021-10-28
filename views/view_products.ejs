@@ -71,8 +71,12 @@
 					>
 					<p class="product-price">$250</p>
 					<div class="container-flex">
-						<input type="number" value="1" />
-						<a href="something" class="button1">Add to card</a>
+						<form action="/add_cart" method="post">
+							<input type="number" value="1" / name="quantity">
+							<input type="hidden" name="product_id" />
+							<button type="submit" class="button1">Add to card</button>
+						</form>
+						<!-- <a href="something" class="button1">Add to card</a> -->
 					</div>
 
 					<div class="description-product">
