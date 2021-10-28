@@ -67,8 +67,7 @@
 /* Button  */
 .info-producto .button1 {
 	display: block;
-	font-family: 'Noto Sans TC', sans-serif;
-	width: 300px;
+	width: 250px;
 	padding: 0.35em 1.2em;
 	/* margin: 1 0.3em 0.3em 0; */
 	border-radius: 0.5em;
@@ -80,6 +79,8 @@
 	text-align: center;
 	transition: all 0.2s;
 	background-color: var(--primary-skinscare);
+	cursor: pointer;
+	border-style: none;
 }
 .info-producto .button1:hover {
 	color: #fff;
@@ -91,7 +92,7 @@
 	margin-bottom: 10px;
 }
 
-.container-flex {
+.container-flex form {
 	margin-top: 25px;
 	display: flex;
 }
