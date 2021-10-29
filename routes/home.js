@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
 
 		// defino los selects
 		params.selects = [
+			{field: "id", condition: "products.id"},
 			{field: 'name', condition: 'products.name'},
 			{field: 'image', condition: 'products_images.image'},
 			{field: 'price', condition: 'products.price'},
