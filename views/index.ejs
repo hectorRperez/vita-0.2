@@ -80,7 +80,7 @@
 			<div class="product-center container">
 				<% for(let i=0; i < products.length; i++) { %>
 				<!-- Producto # <%= i + 1 %> -->
-					<a href = "/shop<%= products[i].id %>">
+					<a href = "<%= '/shop' + products[i].id %>">
 						<div class="product">
 							<div class="img-cover">
 								<img src="<%= products[i].image %>" />
