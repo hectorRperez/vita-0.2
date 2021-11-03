@@ -2,11 +2,6 @@
 <html lang="en">
 	<head>
 		<%- include('partials/head.ejs'); %>
-		<!-- <link
-			href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-			rel="stylesheet"
-			id="bootstrap-css"
-		/> -->
 		<!-- FIXME: -->
 		<!-- QUITAR LA REFERENCIA A ESTE ARCHIVO YA QUE NO APLICA NADA -->
 		<!-- <link rel="stylesheet" href="assets/css/styles_shop.css" /> -->
@@ -40,10 +35,109 @@
 
 		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
 
-		<div class="content-product">
+		<section class="section">
+			<div class="section__col-1">
+				<img src="./img/product10.jpg" class="prueba_img" id="ProductImg" />
+
+				<div class="section__col-1__img">
+					<div class="section__col-1__img_small">
+						<img src="./img/product10.jpg" class="small-img" />
+					</div>
+
+					<div class="section__col-1__img_small">
+						<img src="./img/product10.jpg" class="small-img" />
+					</div>
+
+					<div class="section__col-1__img_small">
+						<img src="./img/product10.jpg" class="small-img" />
+					</div>
+				</div>
+			</div>
+			<div class="section__col-2">
+				<div class="section__col-2__content">
+					<h2>Antioxidant Vitamin C Serum</h2>
+					<p>Size: 1.0 fl. oz/30 ml</p>
+					<p class="section__col-2-price">$250</p>
+
+					<div class="section__col-2 section__col-2--flex">
+						<form action="/add_cart" method="post">
+							<input type="number" value="1" / name="quantity">
+							<input type="hidden" name="product_id" />
+							<button type="submit" class="section__col-2-btn"
+								>Add to card</button
+							>
+						</form>
+					</div>
+
+					<div class="section__col-2__iconos">
+						<ul class="section__col-2__iconos-flex">
+							<li>
+								<img src="./img/1.jpg" class="section__col-2__img" />
+							</li>
+							<li>
+								<img src="./img/2.jpg" class="section__col-2__img" />
+							</li>
+							<li>
+								<img src="./img/3.jpg" class="section__col-2__img" />
+							</li>
+							<li>
+								<img src="./img/4.jpg" class="section__col-2__img" />
+							</li>
+							<li>
+								<img src="./img/5.jpg" class="section__col-2__img" />
+							</li>
+							<li>
+								<img src="./img/6.jpg" class="section__col-2__img" />
+							</li>
+						</ul>
+					</div>
+
+					<p>
+						<strong>How to use: </strong>
+						Dispense one pump onto fingertips and apply to clean skin. Smooth
+						over entire face, focusing on wrinkle-prone areas.
+					</p>
+
+					<p>
+						<strong>Full Ingredient List:</strong>
+						Water (Agua), Carthamus Tinctorius (Organic Safflower) Oil,
+						Emulsifying Wax, Aloe Barbadensis (Organic Aloe) Leaf Juice,
+						Simmondsia Chinesis (Organic Jojoba) Oil, Xanthan Gum, Cocos
+						Nucifera (Organic Coconut) Oil, Tocopheryl Acetate (Vitamin E),
+						Glyceryl Linoleate, Retinyl Palmitate (Vitamin A), Retinol (Vitamin
+						A), Zinc Oxide, Lecithin, Sorbitol, Vanilla Planifolia Extract,
+						Butyrospermum Parkii (Organic Shea Butter), Sodium Hyaluronate
+						(Hyaluronic Acid), Sodium Ascorbate, Panthenol (Vitamin B5),
+						Palmitoyl Oligopeptide, Palmitoyl Tetrapeptide-7, Polysorbate 20,
+						Helianthus Annuus (Organic Sunflower) Oil, Phenoxyethanol, Glycerin,
+						Natural Fragrant Oil, Punica Granatum, (Organic Pomegranate) Oil.
+					</p>
+
+					<p>
+						<strong>Caution: </strong>
+						For external use only. Avoid contact with eyes and mouth. If
+						irritation occurs, discontinue use. Keep out of reach of children.
+						*This product has natural ingredients and cream/serum color will
+						change. We do not use bleaching agents to control the color/shade
+					</p>
+
+					<p>
+						<strong>Key Benefits:</strong>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
+						tempore odio quisquam officiis ipsam perspiciatis. Deserunt quisquam
+						id natus laboriosam aut nemo, porro ad et suscipit velit ducimus
+						odit nesciunt.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- TODO: BORRAR SE VA A RESTRUCTURA EL CODIGO -->
+		<!-- TODO: USAR ESTE CODIGO COMENTADO PARA MANIPULAR EL DOM -->
+		<!-- <div class="content-product">
 			<div class="content-wrapper">
-				<!-- Elemento 1 -->
 				<div class="view-product">
+
 					<div class="col-2">
 						<img src="./img/product10.jpg" width="4px" id="ProductImg" />
 
@@ -61,9 +155,9 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 
-				<!-- Elemento 2 -->
 				<div class="info-producto">
 					<h2>Antioxidant Vitamin C Serum</h2>
 					<p style="margin-top: 5px; margin-bottom: 15px"
@@ -76,7 +170,6 @@
 							<input type="hidden" name="product_id" />
 							<button type="submit" class="button1">Add to card</button>
 						</form>
-						<!-- <a href="something" class="button1">Add to card</a> -->
 					</div>
 
 					<div class="description-product">
@@ -138,7 +231,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- Descrition end-->
 
@@ -273,6 +366,8 @@
 
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- TODO: TRABAJAR EN EL JS -->
 		<script>
 			console.log('hola mundo desde js');
 			var ProductImg = document.getElementById('ProductImg');
