@@ -76,28 +76,9 @@
 	flex-direction: row;
 }
 
-.section__col-2__img {
-	width: 60px;
-}
-
-.section__col-2__iconos-flex li:nth-child(1) {
-	position: relative;
-	top: 5px;
-}
-
-.section__col-2__iconos-flex li:nth-child(2) {
-	position: relative;
-	top: 10px;
-}
-
-.section__col-2__iconos-flex li:nth-child(3) {
-	position: relative;
-	top: 10px;
-}
-
 .section__col-2__iconos {
 	text-align: center;
-	width: 350px;
+	width: 300px;
 }
 
 /* .content-product {
