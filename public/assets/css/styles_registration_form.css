@@ -1,63 +1,61 @@
-
-#registrationForm{
-    border: 1px solid #ddd;
-    margin: 40px 0;
-    font-family: 'Noto Sans TC', sans-serif;
+#registrationForm {
+  border: 1px solid #ddd;
+  margin: 40px 0;
+  font-family: "Noto Sans TC", sans-serif;
 }
 
-#registrationForm .col-md-8{
-    padding: 0;   
-    background-color: yellow;
+#registrationForm .col-md-8 {
+  padding: 0;
+  background-color: yellow;
 }
 
-#registrationForm  .col-md-8 img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+#registrationForm .col-md-8 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-#registrationForm .col-md-4{
-    padding: 40px 20px;
-    background-color: #EBEDEC;
+#registrationForm .col-md-4 {
+  padding: 40px 20px;
+  background-color: #ebedec;
 }
 
-
-#registrationForm label{
-    font-weight: 500;
+#registrationForm label {
+  font-weight: 500;
 }
 
-#registrationForm .form-control{
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #ddd;
-    padding: 0;
-    font-size: 18px;
+#registrationForm .form-control {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+  font-size: 18px;
 }
 
-#registrationForm .btn-primary{
-    margin-top: 15px;
-    background-color: #d9c4ac;
-    width: 100%;
-    border-radius: 10px;
-    height: 50px;
-    border: 1px solid #d9c4ac;
+#registrationForm .btn-primary {
+  margin-top: 15px;
+  background-color: #d9c4ac;
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  border: 1px solid #d9c4ac;
 }
 
-#registrationForm button:focus{
-    border-color: none;
-    box-shadow: 0 1px #d9c4ac;
-    outline: 0 none;
-    border: 1px solid #d9c4ac;
+#registrationForm button:focus {
+  border-color: none;
+  box-shadow: 0 1px #d9c4ac;
+  outline: 0 none;
+  border: 1px solid #d9c4ac;
 }
 
-#registrationForm input{
-    margin: 10px 2px;
-    font-weight: 100;
+#registrationForm input {
+  margin: 10px 2px;
+  font-weight: 100;
 }
 
-#registrationForm input:focus{
-    border-color: none;
-    box-shadow: 0 1px #d9c4ac;
-    outline: 0 none;
+#registrationForm input:focus {
+  border-color: none;
+  box-shadow: 0 1px #d9c4ac;
+  outline: 0 none;
 }

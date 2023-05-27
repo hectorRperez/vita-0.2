@@ -1,19 +1,19 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* -------- SINGLE PRODUCT DETAILS -------------- */
 
 .content-product {
-	margin-top: 150px;
-	margin-bottom: 20px;
+  margin-top: 150px;
+  margin-bottom: 20px;
 }
 
 .content-wrapper {
-	max-width: 1080px;
-	margin: auto;
-	display: grid;
-	grid-template-columns: 30% 70%;
+  max-width: 1080px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
 /* .content-wrapper {
@@ -29,203 +29,203 @@
 } */
 
 .col-2 {
-	height: 100%;
+  height: 100%;
 }
 
 .col-2 img {
-	height: 300px;
-	margin: 5px;
+  height: 300px;
+  margin: 5px;
 }
 
 .small-img-row {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .small-img-col {
-	flex-basis: 24%;
-	cursor: pointer;
+  flex-basis: 24%;
+  cursor: pointer;
 }
 
 .small-img-col img {
-	width: 90px;
-	height: 90px;
+  width: 90px;
+  height: 90px;
 }
 
 .info-producto {
-	width: 100%;
-	text-align: center;
-	padding: 2em;
-	text-align: left;
+  width: 100%;
+  text-align: center;
+  padding: 2em;
+  text-align: left;
 }
 
 .info-producto h2 {
-	font-size: 30px;
-	margin-bottom: 15px;
+  font-size: 30px;
+  margin-bottom: 15px;
 }
 
 .info-producto .product-price {
-	font-size: 25px;
-	font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .info-producto .size-product {
-	display: block;
-	font-size: 15px;
+  display: block;
+  font-size: 15px;
 }
 
 .info-producto .paragraph-product {
-	padding: 1em;
+  padding: 1em;
 }
 
 .info-producto select {
-	margin: 1em;
+  margin: 1em;
 }
 
 /* Button  */
 .info-producto .button1 {
-	display: block;
-	font-family: 'Noto Sans TC', sans-serif;
-	width: 300px;
-	padding: 0.35em 1.2em;
-	/* margin: 1 0.3em 0.3em 0; */
-	border-radius: 0.5em;
-	box-sizing: border-box;
-	text-decoration: none;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
-	color: #fff;
-	text-align: center;
-	transition: all 0.2s;
-	background-color: var(--primary-skinscare);
+  display: block;
+  font-family: "Noto Sans TC", sans-serif;
+  width: 300px;
+  padding: 0.35em 1.2em;
+  /* margin: 1 0.3em 0.3em 0; */
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: var(--primary-skinscare);
 }
 .info-producto .button1:hover {
-	color: #fff;
-	background-color: var(--primary);
+  color: #fff;
+  background-color: var(--primary);
 }
 
 .info-producto .select-css {
-	font-family: 'Noto Sans TC', sans-serif;
-	font-size: 16px;
-	font-weight: 100;
-	color: #444;
-	line-height: 1.3;
-	padding: 0.4em 1.4em 0.3em 0.8em;
-	width: 210px;
-	max-width: 100%;
-	box-sizing: border-box;
-	margin: 20px auto;
-	border: 1px solid #aaa;
-	box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
-	border-radius: 0.3em;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	background-color: #fff;
-	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22242.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-		linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
-	background-repeat: no-repeat, repeat;
-	background-position: right 0.7em top 50%, 0 0;
-	background-size: 0.65em auto, 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.4em 1.4em 0.3em 0.8em;
+  width: 210px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
+  border-radius: 0.3em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22242.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
 }
 
 .info-producto input {
-	display: block;
-	margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .container-flex {
-	display: flex;
+  display: flex;
 }
 
 .container-flex input,
 .container-flex a {
-	margin: 5px;
+  margin: 5px;
 }
 
 /* Sections details */
 [data-tab-content] {
-	display: none;
+  display: none;
 }
 
 .container-taps {
-	margin-top: 3rem;
-	margin-bottom: 3.5rem;
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .active[data-tab-content] {
-	display: block;
+  display: block;
 }
 
 .taps__header {
-	display: flex;
-	justify-content: space-around;
-	list-style-type: none;
-	width: 65%;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 2rem;
-	color: rgb(125, 84, 56);
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  color: rgb(125, 84, 56);
 }
 
 .taps__headers {
-	margin: 2px;
-	cursor: pointer;
+  margin: 2px;
+  cursor: pointer;
 }
 
 .taps__content {
-	padding: 1.5rem;
-	width: 65%;
-	margin-left: auto;
-	margin-right: auto;
+  padding: 1.5rem;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .taps__title {
-	color: rgb(125, 84, 56);
-	font-weight: 100;
-	padding: 0.3rem;
+  color: rgb(125, 84, 56);
+  font-weight: 100;
+  padding: 0.3rem;
 }
 
 .taps__info {
-	padding: 0.2rem;
-	font-size: 18px;
+  padding: 0.2rem;
+  font-size: 18px;
 }
 
 .taps__table {
-	border-collapse: collapse;
-	width: 100%;
-	text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
 }
 
 .taps__table tbody {
-	padding: 2rem;
-	width: 100%;
-	font-size: 18px;
+  padding: 2rem;
+  width: 100%;
+  font-size: 18px;
 }
 
 .taps__table tbody tr th {
-	text-align: center;
+  text-align: center;
 }
 
 .instructions__info {
-	font-size: 15px;
+  font-size: 15px;
 }
 
 .instructions__info li {
-	margin: 10px 0;
-	list-style-type: disc;
+  margin: 10px 0;
+  list-style-type: disc;
 }
 
 .instructions__img {
 }
 
 .instructions__imgs {
-	margin: 25px 10px;
-	width: 120px;
+  margin: 25px 10px;
+  width: 120px;
 }
 
 .prueba-lista {
-	list-style-type: disc;
+  list-style-type: disc;
 }
 
 /* Sections details end */
@@ -233,28 +233,28 @@
 /* MEDIA QUERYS */
 
 @media only screen and (max-width: 950px) {
-	.content-product {
-		margin-top: 80px;
-	}
+  .content-product {
+    margin-top: 80px;
+  }
 
-	.content-wrapper {
-		padding: 1.5rem;
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
+  .content-wrapper {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-	.content-wrapper .view-product {
-		min-width: 330px;
-		flex: 1 0 30%;
-	}
+  .content-wrapper .view-product {
+    min-width: 330px;
+    flex: 1 0 30%;
+  }
 
-	.taps__header {
-		width: 100%;
-	}
+  .taps__header {
+    width: 100%;
+  }
 
-	.taps__content {
-		width: 80%;
-		text-align: center;
-	}
+  .taps__content {
+    width: 80%;
+    text-align: center;
+  }
 }
