@@ -6,14 +6,11 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session); //agregamos esta linea
 const passport = require('passport');
 const path = require('path');
-const multer = require('multer');
 
 const app = express();
 
 // defino la variable de entorno
-require('dotenv').config({
-	path: `.env.${process.env.NODE_ENV || 'development'}`
-})
+require('dotenv').config()
 
 
 // configuracion de formulario 
