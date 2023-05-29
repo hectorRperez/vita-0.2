@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 services:
   cabin_db:
     image: mysql:latest

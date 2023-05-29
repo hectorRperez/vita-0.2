@@ -5,9 +5,7 @@ const {
 } = require("./seeds/descriptions_products");
 
 // defino la variable de entorno
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "development"}`,
-});
+require("dotenv").config();
 
 const bcrypt = require("bcrypt");
 const connection = require("./connection.js");

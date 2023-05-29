@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(50)
+  products products[]
+}
+
+model descriptions_types_products {
+  id                              Int                               @id @default(autoincrement())
+  name                            String?                           @db.VarChar(100)
+  created_at                      DateTime?                         @default(now()) @db.DateTime(0)
+  updated_at                      DateTime?                         @default(now()) @db.DateTime(0)
+  relations_descriptions_products relations_descriptions_products[]
+}
+
+model home_info {
+  id      Int    @id @default(autoincrement())
+  mision  String @db.Text
+  history String @db.Text
+  vision  String @db.Text
+}
+
+model home_products {
+  id         Int      @id @default(autoincrement())
+  product_id Int
+  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "home_products_ibfk_1")
+
+  @@index([product_id], map: "product_id")
+}
+
+model orders {
+  id             Int            @id @default(autoincrement())
+  total_products Int
+  total          Float
+  user_id        Int
+  state_id       Int
+  users          users          @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_ibfk_1")
+  orders_states  orders_states  @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_ibfk_2")
+  orders_items   orders_items[]
+
+  @@index([state_id], map: "state_id")
+  @@index([user_id], map: "user_id")
+}
+
+model orders_items {
+  id         Int      @id @default(autoincrement())
+  product_id Int
+  quantity   Int
+  total      Decimal  @db.Decimal(10, 2)
+  order_id   Int?
+  orders     orders?  @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_items_ibfk_1")
+  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_items_ibfk_2")
+
+  @@index([order_id], map: "order_id")
+  @@index([product_id], map: "product_id")
+}
+
+model orders_states {
+  id     Int      @id @default(autoincrement())
+  state  String   @db.VarChar(50)
+  orders orders[]
+}
+
+model posts {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  title      String   @db.VarChar(255)
+  content    String   @db.Text
+  image      String   @db.VarChar(255)
+  created_at DateTime @db.DateTime(0)
+  users      users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "posts_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+model products {
+  id                              Int                               @id @default(autoincrement())
+  name                            String                            @db.VarChar(50)
+  description                     String                            @db.MediumText
+  price                           Float
+  quantity                        Int
+  assessment                      Int                               @default(1)
+  sales_quantity                  Int                               @default(0)
+  category_id                     Int
+  home_products                   home_products[]
+  orders_items                    orders_items[]
+  categories                      categories                        @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_ibfk_1")
+  products_images                 products_images[]
+  relations_descriptions_products relations_descriptions_products[]
+
+  @@index([category_id], map: "category_id")
+}
+
+model products_images {
+  id         Int      @id @default(autoincrement())
+  product_id Int
+  image      String   @db.VarChar(255)
+  is_first   Boolean
+  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_images_ibfk_1")
+
+  @@index([product_id], map: "product_id")
+}
+
+model relations_descriptions_products {
+  id                            Int                         @id @default(autoincrement())
+  product_id                    Int
+  descriptions_types_product_id Int
+  content                       String?                     @db.Text
+  created_at                    DateTime?                   @default(now()) @db.DateTime(0)
+  updated_at                    DateTime?                   @default(now()) @db.DateTime(0)
+  products                      products                    @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_descriptions_products_ibfk_1")
+  descriptions_types_products   descriptions_types_products @relation(fields: [descriptions_types_product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_descriptions_products_ibfk_2")
+
+  @@index([descriptions_types_product_id], map: "descriptions_types_product_id")
+  @@index([product_id], map: "product_id")
+}
+
+model sessions {
+  session_id String  @id @db.VarChar(128)
+  expires    Int     @db.UnsignedInt
+  data       String? @db.MediumText
+  car car?
+}
+
+model car {
+  session sessions @relation(fields: [session_id], references: [session_id])
+  session_id String @unique
+}
+
+model users {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(50)
+  lastname          String              @db.VarChar(50)
+  image             String?             @db.VarChar(255)
+  email             String              @unique(map: "email") @db.VarChar(255)
+  password          String              @db.VarChar(255)
+  orders            orders[]
+  posts             posts[]
+  users_types_users users_types_users[]
+}
+
+model users_types {
+  id                Int                 @id @default(autoincrement())
+  type              String              @db.VarChar(50)
+  users_types_users users_types_users[]
+}
+
+model users_types_users {
+  id           Int         @id @default(autoincrement())
+  user_id      Int
+  user_type_id Int
+  users        users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_types_users_ibfk_1")
+  users_types  users_types @relation(fields: [user_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_types_users_ibfk_2")
+
+  @@index([user_id], map: "user_id")
+  @@index([user_type_id], map: "user_type_id")
+}

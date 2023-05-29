@@ -1,179 +1,222 @@
-const connection = require('../config/connection');
-const queryBuilder = require('../config/queryBuilder');
-const {querySync, beginTransaction, commit, rollback} = require("../config/querySync");
-const router = require('express').Router();
+const connection = require("../config/connection");
+const queryBuilder = require("../config/queryBuilder");
+const {
+  querySync,
+  beginTransaction,
+  commit,
+  rollback,
+} = require("../config/querySync");
+const router = require("express").Router();
 
 // ruta que se encarga de crear un producto
-router.get('/get_order', (req, res, next) => {
-	
-	if( req.isAuthenticated() ) return next();
-	
-	res.redirect("/login");
+router.get(
+  "/get_order",
+  (req, res, next) => {
+    if (req.isAuthenticated()) return next();
 
-}, async (req, res) => {
+    res.redirect("/login");
+  },
+  async (req, res) => {
     try {
-      let {body, user} = req;
+      let { body, user } = req;
 
       // obtengo los parametros
-    let params = body;
+      let params = body;
 
-    // defino los selects
-    params.selects = [ 
-        {field: 'id', condition: 'orders.id'},
-        {field: 'total_products', condition: 'orders.total_products'},
-        {field: 'total', condition: 'orders.total'},
-    ];
+      // defino los selects
+      params.selects = [
+        { field: "id", condition: "orders.id" },
+        { field: "total_products", condition: "orders.total_products" },
+        { field: "total", condition: "orders.total" },
+      ];
 
-    // defino los joins
-    params.where = [
-        ['user_id', '=', user.id],
-        ['orders.state_id', '=', 1]
-    ];
+      // defino los joins
+      params.where = [
+        ["user_id", "=", user.id],
+        ["orders.state_id", "=", 1],
+      ];
 
-    // realizo la consulta
-    const order = await queryBuilder('orders', params);
+      // realizo la consulta
+      const order = await queryBuilder("orders", params);
 
-    res.render('orders', {order: order});
-
+      res.render("orders", { order: order });
     } catch (error) {
       res.send(error);
     }
-    
-});
-
-
+  }
+);
 
 // ruta que se encarga de crear un producto
-router.post('/add_cart', (req, res, next) => {
-	
-	if( req.isAuthenticated() ) return next();
-	
-	res.redirect("/login");
+router.post(
+  "/add_cart",
+  (req, res, next) => {
+    if (req.isAuthenticated()) return next();
 
-}, async (req, res) => {
+    res.redirect("/login");
+  },
+  async (req, res) => {
     try {
-    	const {body, user} = req;
+      const { body, user } = req;
 
-    	// validaciones de formulario ---------
+      // validaciones de formulario ---------
 
-    	if( body.product_id == "" )
-        	throw "El producto es obligatorio";
+      if (body.product_id == "") throw "El producto es obligatorio";
 
-    	if( body.quantity == "" )
-        	throw "Debe agregar al menos uno";
-      
-    	if( isNaN(body.quantity) || body.quantity == "" || body.quantity < 1)
-        	throw "Ingrese una cantidad correcta";
-        
-      	//------------------------------------------
+      if (body.quantity == "") throw "Debe agregar al menos uno";
 
-		await beginTransaction();
+      if (isNaN(body.quantity) || body.quantity == "" || body.quantity < 1)
+        throw "Ingrese una cantidad correcta";
 
-		// busco el producto
-		let sql = `SELECT * FROM products WHERE products.id = ?`;
-		let product = await querySync(sql, [body.product_id]).then(r => r[0]).catch(e => {throw e});
+      //------------------------------------------
 
-		// busco si existe una orden
-		sql = `SELECT * FROM orders WHERE orders.user_id = ? AND orders.state_id = ?`;
-		let order = await querySync(sql, [user.id, 1]).then(r => r).catch(e => {throw e});
-		
-		// en caso que no exista genere un nuevo pedido
-		if(order.length  === 0) {
-			sql = `INSERT INTO orders (total_products,user_id, state_id) values (?,?,?)`;
-			order = await querySync(sql, [1,user.id, 1]).then(r => r).catch(e => {throw e});
-		}
+      await beginTransaction();
 
-		// si se acaba de crear un nuevo pedido creo el primer item
-		if(order.insertId != undefined || order.insertId != null ) {
+      // busco el producto
+      let sql = `SELECT * FROM products WHERE products.id = ?`;
+      let product = await querySync(sql, [body.product_id])
+        .then((r) => r[0])
+        .catch((e) => {
+          throw e;
+        });
 
-			// calculo el precio total e inserto el producto a la orden
-			let total = product.price * body.quantity;
-			sql = `INSERT INTO orders_items (product_id, quantity, total, order_id) values (?,?,?,?)`;
-			item = await querySync(sql, [product.id, body.quantity, total, order.insertId]).then(r => r).catch(e => {throw e});
+      // busco si existe una orden
+      sql = `SELECT * FROM orders WHERE orders.user_id = ? AND orders.state_id = ?`;
+      let order = await querySync(sql, [user.id, 1])
+        .then((r) => r)
+        .catch((e) => {
+          throw e;
+        });
 
-			if(item.affectedRows == 0)
-				throw "Error al agregar el articulo al carrito";
-			
+      // en caso que no exista genere un nuevo pedido
+      if (order.length === 0) {
+        sql = `INSERT INTO orders (total_products,user_id, state_id) values (?,?,?)`;
+        order = await querySync(sql, [1, user.id, 1])
+          .then((r) => r)
+          .catch((e) => {
+            throw e;
+          });
+      }
 
-			// actualizo el total del pedido con el total del item nuevo
-			sql = `UPDATE orders SET total=? WHERE id = ?`;
-			order = await querySync(sql, [total, order.insertId]).then(r => r).catch(e => {throw e});
+      // si se acaba de crear un nuevo pedido creo el primer item
+      if (order.insertId != undefined || order.insertId != null) {
+        // calculo el precio total e inserto el producto a la orden
+        let total = product.price * body.quantity;
+        sql = `INSERT INTO orders_items (product_id, quantity, total, order_id) values (?,?,?,?)`;
+        item = await querySync(sql, [
+          product.id,
+          body.quantity,
+          total,
+          order.insertId,
+        ])
+          .then((r) => r)
+          .catch((e) => {
+            throw e;
+          });
 
-			if(order.affectedRows == 0)
-				throw "Error al ajustar el pedido";
-			
-		
-		// en caso que ya la orden exista
-		}else {
+        if (item.affectedRows == 0)
+          throw "Error al agregar el articulo al carrito";
 
-			order = order[0];
+        // actualizo el total del pedido con el total del item nuevo
+        sql = `UPDATE orders SET total=? WHERE id = ?`;
+        order = await querySync(sql, [total, order.insertId])
+          .then((r) => r)
+          .catch((e) => {
+            throw e;
+          });
 
-			// busco si existe el producto en la orden
-			sql = `SELECT * FROM orders_items WHERE order_id = ? AND product_id = ?`;
-			item = await querySync(sql, [order.id, product.id]).then(r => r[0]).catch(e => {throw e});
+        if (order.affectedRows == 0) throw "Error al ajustar el pedido";
 
-			// si el producto no existe
-			if(item == undefined || item == null) {
-				
-				// calculo el precio total y lo inserto a la orden
-				let total = product.price * body.quantity;
-				sql = `INSERT INTO orders_items (product_id, quantity, total, order_id) values (?,?,?,?)`;
-				item = await querySync(sql, [product.id, body.quantity, total, order.id]).then(r => r).catch(e => {throw e});
+        // en caso que ya la orden exista
+      } else {
+        order = order[0];
 
-				if(item.affectedRows == 0)
-					throw "Error al agregar el articulo al carrito";
+        // busco si existe el producto en la orden
+        sql = `SELECT * FROM orders_items WHERE order_id = ? AND product_id = ?`;
+        item = await querySync(sql, [order.id, product.id])
+          .then((r) => r[0])
+          .catch((e) => {
+            throw e;
+          });
 
-				// agrego el nuevo producto y calculo el total del pedido
-				order.total_products++;
-				order.total = parseFloat(order.total) + parseFloat(total);
+        // si el producto no existe
+        if (item == undefined || item == null) {
+          // calculo el precio total y lo inserto a la orden
+          let total = product.price * body.quantity;
+          sql = `INSERT INTO orders_items (product_id, quantity, total, order_id) values (?,?,?,?)`;
+          item = await querySync(sql, [
+            product.id,
+            body.quantity,
+            total,
+            order.id,
+          ])
+            .then((r) => r)
+            .catch((e) => {
+              throw e;
+            });
 
-				// ajusto los datos del pedido
-				sql = `UPDATE orders SET total_products=?, total=? WHERE id = ?`;
-				order = await querySync(sql, [order.total_products, order.total, order.id]).then(r => r).catch(e => {throw e});
+          if (item.affectedRows == 0)
+            throw "Error al agregar el articulo al carrito";
 
-				if(order.affectedRows == 0)
-					throw "Error al ajustar el pedido";
-				
-			
-			// en caso que el producto si exista	
-			}else {
-				// reto el total de item en el pedido
-				order.total = order.total - item.total;
+          // agrego el nuevo producto y calculo el total del pedido
+          order.total_products++;
+          order.total = parseFloat(order.total) + parseFloat(total);
 
-				// sumo la cantidad solicitada y calculo el precio total
-				item.quantity =  parseInt( item.quantity) + parseInt( body.quantity ); 
-				item.total = item.quantity * parseFloat( product.price );
-				
-				order.total = order.total + item.total;
+          // ajusto los datos del pedido
+          sql = `UPDATE orders SET total_products=?, total=? WHERE id = ?`;
+          order = await querySync(sql, [
+            order.total_products,
+            order.total,
+            order.id,
+          ])
+            .then((r) => r)
+            .catch((e) => {
+              throw e;
+            });
 
-				// actualizo el item 
-				sql = `UPDATE orders_items SET quantity=?, total=? WHERE id = ?`;
-				item = await querySync(sql, [item.quantity, item.total, item.id]).then(r => r).catch(e => {throw e});
+          if (order.affectedRows == 0) throw "Error al ajustar el pedido";
 
-				if(item.affectedRows == 0)
-					throw "Error al agregar el articulo al carrito";
-				
-				// actualizo el pedido 
-				sql = `UPDATE orders SET total=? WHERE id = ?`;
-				order = await querySync(sql, [order.total, order.id]).then(r => r).catch(e => {throw e});
+          // en caso que el producto si exista
+        } else {
+          // reto el total de item en el pedido
+          order.total = order.total - item.total;
 
-				if(order.affectedRows == 0)
-					throw "Error al ajustar el pedido";
-				
+          // sumo la cantidad solicitada y calculo el precio total
+          item.quantity = parseInt(item.quantity) + parseInt(body.quantity);
+          item.total = item.quantity * parseFloat(product.price);
 
-			}
-    
-    	}
+          order.total = order.total + item.total;
 
-		await commit();
+          // actualizo el item
+          sql = `UPDATE orders_items SET quantity=?, total=? WHERE id = ?`;
+          item = await querySync(sql, [item.quantity, item.total, item.id])
+            .then((r) => r)
+            .catch((e) => {
+              throw e;
+            });
 
-    	res.redirect(`/shop${product.id}`);
-    
+          if (item.affectedRows == 0)
+            throw "Error al agregar el articulo al carrito";
+
+          // actualizo el pedido
+          sql = `UPDATE orders SET total=? WHERE id = ?`;
+          order = await querySync(sql, [order.total, order.id])
+            .then((r) => r)
+            .catch((e) => {
+              throw e;
+            });
+
+          if (order.affectedRows == 0) throw "Error al ajustar el pedido";
+        }
+      }
+
+      await commit();
+
+      res.redirect(`/shop${product.id}`);
     } catch (e) {
-		await rollback();
-		console.error(e);
+      await rollback();
+      console.error(e);
     }
-    
-});
+  }
+);
 
 module.exports = router;
