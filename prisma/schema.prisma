@@ -127,13 +127,12 @@ model sessions {
   session_id String  @id @db.VarChar(128)
   expires    Int     @db.UnsignedInt
   data       String? @db.MediumText
-  car car
+  car car?
 }
 
 model car {
   session sessions @relation(fields: [session_id], references: [session_id])
   session_id String @unique
-  user users
 }
 
 model users {
