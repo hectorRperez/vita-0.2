@@ -1,14 +1,15 @@
-version: "2"
+version: '3.8'
 services:
-  cabin_db:
-    image: mysql:latest
-    volumes:
-      - "./.mysql-data/db:/var/lib/mysql"
-    restart: always
+  db:
+    image: postgres:latest
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - default-network
+networks:
+  default-network:
+    driver: bridge
