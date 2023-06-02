@@ -99,10 +99,12 @@ model ProductDescription {
 }
 
 model Session {
-  session_id String  @id @db.VarChar(128)
-  expires    Int
-  data       String?
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
 }
+
 
 model User {
   id       String   @id @default(uuid()) @db.Uuid

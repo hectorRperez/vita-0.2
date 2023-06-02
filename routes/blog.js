@@ -1,8 +1,7 @@
 const router = require("express").Router();
-const queryBuilder = require("../config/queryBuilder.js");
-const { querySync } = require("../config/querySync.js");
 const path = require("path");
 const fs = require("fs");
+const prisma = require("../config/database");
 
 // ruta inicial
 router.get(
@@ -14,30 +13,14 @@ router.get(
   },
   async (req, res) => {
     try {
-      let params = {};
-
-      // defino los selects
-      params.selects = [
-        { field: "id", condition: "posts.id" },
-        { field: "title", condition: "posts.title" },
-        { field: "content", condition: "posts.content" },
-        { field: "image", condition: "posts.image" },
-        { field: "user", condition: "users.name" },
-        { field: "created_at", condition: "posts.created_at" },
-      ];
-
-      // defino los joins
-      params.joins = [
-        { type: "INNER", join: ["users", "users.id", "=", "posts.user_id"] },
-      ];
-
-      // consulto
-      let posts = await queryBuilder("posts", params).catch((err) => {
-        throw err;
+      const posts = await prisma.post.findMany({
+        include: {
+          createdBy: true,
+        },
       });
 
       console.log(posts);
-
+      console.log(req.user);
       res.render("blog.ejs", { posts: posts, user: req.user });
     } catch (error) {
       console.error(error);

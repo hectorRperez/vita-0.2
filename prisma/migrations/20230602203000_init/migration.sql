@@ -109,11 +109,12 @@ CREATE TABLE "ProductDescription" (
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "session_id" VARCHAR(128) NOT NULL,
-    "expires" INTEGER NOT NULL,
-    "data" TEXT,
+    "id" TEXT NOT NULL,
+    "sid" TEXT NOT NULL,
+    "data" TEXT NOT NULL,
+    "expiresAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Session_pkey" PRIMARY KEY ("session_id")
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -134,6 +135,9 @@ CREATE TABLE "_OrderToProduct" (
     "A" UUID NOT NULL,
     "B" UUID NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Session_sid_key" ON "Session"("sid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
