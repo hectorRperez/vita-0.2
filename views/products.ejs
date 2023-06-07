@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
-</head>
+	<head>
+		<%- include('partials/head.ejs'); %>
+	</head>
 <body>
-    <h1>Bienvenido <%= user.name %> </h1>
-    <table>
+  <div class="container">
+    <h2>Bienvenido <%= user.name %> </h2>
+    <table class="table">
       <% for(var i=0; i < products.length; i++) { %>
            <tr>
              <td> ID:<%= products[i].id %></td>
@@ -20,15 +18,10 @@
            <% } %>
         </table>
         
-        <div>
-          <% for(var i=0; i < pagination_items; i++) { %>
-              <a href="/get_products<%=i+1%>"><%=i+1%></a>
-            <% } %>
-        </div>
-
+        <hr>
         <h2>Crear productos productos</h2>
 
-        <form action="/create_product" method="post"  enctype="multipart/form-data">
+        <form  class="form" action="/create_product" method="post"  enctype="multipart/form-data">
           <input type="text" name="name" id="" placeholder="Nombre">
           <input type="text" name="price" id="" placeholder="Precio">
           <textarea name="description" id="" cols="20" rows="5"></textarea>
@@ -68,9 +61,6 @@
           <input type="text" name="product_id" id="" placeholder="ID">
           <input type="submit" value="delete">
         </form>
-
-
-
-
+        </div>
 </body>
 </html>

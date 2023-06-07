@@ -2,31 +2,24 @@ const router = require("express").Router();
 const path = require("path");
 const fs = require("fs");
 const prisma = require("../config/database");
+const isAuth = require("../middleware/isAuth");
 
 // ruta inicial
-router.get(
-  "/blog",
-  (req, res, next) => {
-    if (req.isAuthenticated()) return next();
+router.get("/blog", isAuth, async (req, res) => {
+  try {
+    const posts = await prisma.post.findMany({
+      include: {
+        createdBy: true,
+      },
+    });
 
-    res.redirect("/login");
-  },
-  async (req, res) => {
-    try {
-      const posts = await prisma.post.findMany({
-        include: {
-          createdBy: true,
-        },
-      });
-
-      console.log(posts);
-      console.log(req.user);
-      res.render("blog.ejs", { posts: posts, user: req.user });
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(posts);
+    console.log(req.user);
+    res.render("blog.ejs", { posts: posts, user: req.user });
+  } catch (error) {
+    console.error(error);
   }
-);
+});
 
 router.get(
   "/new_post",

@@ -13,6 +13,26 @@ model Category {
   products Product[]
 }
 
+model Shopcart {
+  id        String         @id @default(uuid()) @db.Uuid
+  session   Session?       @relation(fields: [sessionId], references: [id])
+  sessionId String?        @unique
+  user      User?          @relation(fields: [userId], references: [id])
+  userId    String?        @unique @db.Uuid
+  items     ShopcartItem[]
+}
+
+model ShopcartItem {
+  id        String   @id @default(uuid()) @db.Uuid
+  productId String   @db.Uuid
+  car       Shopcart @relation(fields: [carId], references: [id])
+  carId     String   @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id])
+  count     Int
+
+  @@unique([carId, productId])
+}
+
 model ProductType {
   id           String               @id @default(uuid()) @db.Uuid
   name         String?
@@ -77,6 +97,7 @@ model Product {
   images       ProductImages[]
   orderItems   OrderItems[]
   descriptions ProductDescription[]
+  carItems     ShopcartItem[]
 }
 
 model ProductImages {
@@ -99,23 +120,24 @@ model ProductDescription {
 }
 
 model Session {
-  id        String   @id
-  sid       String   @unique
+  id        String    @id
+  sid       String    @unique
   data      String
+  carshop   Shopcart?
   expiresAt DateTime
 }
 
-
 model User {
-  id       String   @id @default(uuid()) @db.Uuid
+  id       String    @id @default(uuid()) @db.Uuid
   name     String
   lastname String
   image    String?
-  email    String   @unique()
+  email    String    @unique()
   password String
   orders   Order[]
   posts    Post[]
   type     UserType
+  car Shopcart?
 }
 
 enum UserType {

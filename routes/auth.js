@@ -11,7 +11,7 @@ router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/shop1");
+    res.redirect("/shop");
   }
 );
 
@@ -23,9 +23,9 @@ router.get("/signup", (req, res) => {
 // ruta para mostrar el formulario de registro de usuario
 router.post(
   "/signup",
-  passport.authenticate("local", { failureRedirect: "/signup" }),
+  passport.authenticate("local", { failureRedirect: "/signup?error=1" }),
   (req, res) => {
-    res.redirect("/shop1");
+    res.redirect("/shop");
   }
 );
 

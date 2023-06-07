@@ -4,24 +4,22 @@ const fs = require("fs");
 const path = require("path");
 const { product } = require("../config/database.js");
 const prisma = require("../config/database.js");
-const { UserType } = require("@prisma/client");
 const isAdmin = require("../middleware/isAdmin.js");
 
-// ruta que se carga de traer los productos
-router.get("/get_products:page?", async (req, res) => {
+router.get("/get_products/:page?", async (req, res) => {
   try {
     const { page } = req.params;
 
     const products = await prisma.product.findMany({
       include: { images: true },
       take: 10,
-      offset: page * 10,
+      skip: (page ?? 0) * 10,
     });
 
     res.render("products", {
       products: products,
-      pagination_items: num_items,
-      user: req.user,
+      pagination_items: products.length,
+      user: { name: "guest" },
     });
   } catch (error) {
     console.error(error);
@@ -72,8 +70,6 @@ router.post("/create_product", isAdmin, async (req, res) => {
 
     res.redirect("get_products");
   } catch (e) {
-    await rollback();
-
     console.error(e);
   }
 });
