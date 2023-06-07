@@ -3,163 +3,128 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
-model categories {
-  id       Int        @id @default(autoincrement())
-  name     String     @db.VarChar(50)
-  products products[]
+model Category {
+  id       String    @id @default(uuid()) @db.Uuid
+  name     String
+  products Product[]
 }
 
-model descriptions_types_products {
-  id                              Int                               @id @default(autoincrement())
-  name                            String?                           @db.VarChar(100)
-  created_at                      DateTime?                         @default(now()) @db.DateTime(0)
-  updated_at                      DateTime?                         @default(now()) @db.DateTime(0)
-  relations_descriptions_products relations_descriptions_products[]
+model ProductType {
+  id           String               @id @default(uuid()) @db.Uuid
+  name         String?
+  created_at   DateTime?            @default(now())
+  updated_at   DateTime?            @default(now())
+  descriptions ProductDescription[]
 }
 
-model home_info {
+model HomeInfo {
   id      Int    @id @default(autoincrement())
   mision  String @db.Text
   history String @db.Text
   vision  String @db.Text
 }
 
-model home_products {
-  id         Int      @id @default(autoincrement())
-  product_id Int
-  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "home_products_ibfk_1")
-
-  @@index([product_id], map: "product_id")
+model HomeProducts {
+  id        String  @id @default(uuid()) @db.Uuid
+  productId String  @db.Uuid
+  products  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model orders {
-  id             Int            @id @default(autoincrement())
-  total_products Int
-  total          Float
-  user_id        Int
-  state_id       Int
-  users          users          @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_ibfk_1")
-  orders_states  orders_states  @relation(fields: [state_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_ibfk_2")
-  orders_items   orders_items[]
-
-  @@index([state_id], map: "state_id")
-  @@index([user_id], map: "user_id")
+model Order {
+  id       String       @id @default(uuid()) @db.Uuid
+  userId   String       @db.Uuid
+  User     User         @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  state    OrderState
+  items    OrderItems[]
+  products Product[]
 }
 
-model orders_items {
-  id         Int      @id @default(autoincrement())
-  product_id Int
-  quantity   Int
-  total      Decimal  @db.Decimal(10, 2)
-  order_id   Int?
-  orders     orders?  @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_items_ibfk_1")
-  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_items_ibfk_2")
-
-  @@index([order_id], map: "order_id")
-  @@index([product_id], map: "product_id")
+model OrderItems {
+  id        String  @id @default(uuid()) @db.Uuid
+  productId String  @db.Uuid
+  quantity  Int
+  total     Decimal @db.Decimal(10, 2)
+  orderId   String  @db.Uuid
+  orders    Order?  @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  products  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model orders_states {
-  id     Int      @id @default(autoincrement())
-  state  String   @db.VarChar(50)
-  orders orders[]
-}
-
-model posts {
-  id         Int      @id @default(autoincrement())
-  user_id    Int
-  title      String   @db.VarChar(255)
+model Post {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  title      String
   content    String   @db.Text
-  image      String   @db.VarChar(255)
-  created_at DateTime @db.DateTime(0)
-  users      users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "posts_ibfk_1")
-
-  @@index([user_id], map: "user_id")
+  image      String
+  created_at DateTime
+  createdBy  User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model products {
-  id                              Int                               @id @default(autoincrement())
-  name                            String                            @db.VarChar(50)
-  description                     String                            @db.MediumText
-  price                           Float
-  quantity                        Int
-  assessment                      Int                               @default(1)
-  sales_quantity                  Int                               @default(0)
-  category_id                     Int
-  home_products                   home_products[]
-  orders_items                    orders_items[]
-  categories                      categories                        @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_ibfk_1")
-  products_images                 products_images[]
-  relations_descriptions_products relations_descriptions_products[]
-
-  @@index([category_id], map: "category_id")
+model Product {
+  id           String               @id @default(uuid()) @db.Uuid
+  name         String
+  description  String
+  price        Float
+  quantity     Int
+  assessment   Int                  @default(1)
+  category     Category             @relation(fields: [categoryId], references: [id])
+  categoryId   String               @db.Uuid
+  homeProducts HomeProducts[]
+  Orders       Order[]
+  images       ProductImages[]
+  orderItems   OrderItems[]
+  descriptions ProductDescription[]
 }
 
-model products_images {
-  id         Int      @id @default(autoincrement())
-  product_id Int
-  image      String   @db.VarChar(255)
-  is_first   Boolean
-  products   products @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "products_images_ibfk_1")
-
-  @@index([product_id], map: "product_id")
+model ProductImages {
+  id        String  @id @default(uuid()) @db.Uuid
+  productId String  @db.Uuid
+  image     String
+  isFirst   Boolean
+  products  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model relations_descriptions_products {
-  id                            Int                         @id @default(autoincrement())
-  product_id                    Int
-  descriptions_types_product_id Int
-  content                       String?                     @db.Text
-  created_at                    DateTime?                   @default(now()) @db.DateTime(0)
-  updated_at                    DateTime?                   @default(now()) @db.DateTime(0)
-  products                      products                    @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_descriptions_products_ibfk_1")
-  descriptions_types_products   descriptions_types_products @relation(fields: [descriptions_types_product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "relations_descriptions_products_ibfk_2")
-
-  @@index([descriptions_types_product_id], map: "descriptions_types_product_id")
-  @@index([product_id], map: "product_id")
+model ProductDescription {
+  id         String      @id @default(uuid()) @db.Uuid
+  productId  String      @db.Uuid
+  content    String?     @db.Text
+  created_at DateTime?   @default(now())
+  updated_at DateTime?   @default(now())
+  products   Product     @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  type       ProductType @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  typeId     String      @db.Uuid
 }
 
-model sessions {
-  session_id String  @id @db.VarChar(128)
-  expires    Int     @db.UnsignedInt
-  data       String? @db.MediumText
-  car car?
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
 }
 
-model car {
-  session sessions @relation(fields: [session_id], references: [session_id])
-  session_id String @unique
+
+model User {
+  id       String   @id @default(uuid()) @db.Uuid
+  name     String
+  lastname String
+  image    String?
+  email    String   @unique()
+  password String
+  orders   Order[]
+  posts    Post[]
+  type     UserType
 }
 
-model users {
-  id                Int                 @id @default(autoincrement())
-  name              String              @db.VarChar(50)
-  lastname          String              @db.VarChar(50)
-  image             String?             @db.VarChar(255)
-  email             String              @unique(map: "email") @db.VarChar(255)
-  password          String              @db.VarChar(255)
-  orders            orders[]
-  posts             posts[]
-  users_types_users users_types_users[]
+enum UserType {
+  ADMIN
+  CLIENT
 }
 
-model users_types {
-  id                Int                 @id @default(autoincrement())
-  type              String              @db.VarChar(50)
-  users_types_users users_types_users[]
-}
-
-model users_types_users {
-  id           Int         @id @default(autoincrement())
-  user_id      Int
-  user_type_id Int
-  users        users       @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_types_users_ibfk_1")
-  users_types  users_types @relation(fields: [user_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_types_users_ibfk_2")
-
-  @@index([user_id], map: "user_id")
-  @@index([user_type_id], map: "user_type_id")
+enum OrderState {
+  PENDING
+  GENERATED
+  PAID
 }

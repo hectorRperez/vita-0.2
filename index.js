@@ -1,11 +1,10 @@
-"use strict";
-
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const session = require("express-session");
-const MySQLStore = require("express-mysql-session")(session); //agregamos esta linea
+const cookieParser = require("cookie-parser");
+const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const passport = require("passport");
 const path = require("path");
+const prisma = require("./config/database.js");
 
 const app = express();
 
@@ -22,15 +21,10 @@ app.use(require("./config/storage.js"));
 app.use(cookieParser("5654534jk34kjnk346kjn652gf2"));
 
 // configuro el almacen de sesion de mysql
-const sessionStore = new MySQLStore({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DATABASE,
-  clearExpired: true,
-  checkExpirationInterval: 900000,
-  expiration: 3600000,
+const sessionStore = new PrismaSessionStore(prisma, {
+  checkPeriod: 2 * 60 * 1000,
+  dbRecordIdIsSessionId: true,
+  dbRecordIdFunction: undefined,
 });
 
 // configurando la sesion
@@ -39,8 +33,8 @@ app.use(
     secret: "ertt0923723kjnf29v762vl23ov8",
     cookie: { maxAge: 3600000, secure: false },
     store: sessionStore,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
