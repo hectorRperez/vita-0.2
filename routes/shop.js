@@ -1,51 +1,70 @@
 const router = require("express").Router();
-const { RenderProduct } = require("../config/render-view");
 const prisma = require("../config/database");
 
-// ruta que se carga si el usuario ha iniciado sesion
-router.get(
-  "/shop/:product_id?",
-  async (req, res) => {
-    try {
+router.get("/shop", async (req, res) => {
+  try {
+    const { product_id } = req.params;
 
-      if (req.params.product_id) product_id = req.params.product_id;
+    const products = await prisma.product.findMany({
+      include: {
+        images: true,
+        descriptions: true,
+      },
+    });
+    if (!products) return res.send(404);
 
-      const product = await prisma.product.findOne({
-        where: {
-          id: product_id,
-        },
-        include: {
-          images: true,
-          descriptions: true,
-        },
-      });
+    console.log(products);
 
-      const relatedProducts = await prisma.product.findMany({
-        where: {
-          NOT: {
-            id: product.id,
-          },
-          categoryId: product.categoryId,
-        },
-        include: {
-          images: true,
-        },
-      });
-
-      const view = RenderProduct(product);
-
-      console.log(product);
-
-      res.render(view, {
-        user: req.user,
-        product: product,
-        product_images: product.images,
-        products_related: relatedProducts,
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    res.render("view_products", {
+      user: req.user,
+      product: products,
+      products_related: [],
+    });
+  } catch (error) {
+    console.error(error);
+    return res.send(400);
   }
-);
+});
+
+router.get("/shop/:product_id?", async (req, res) => {
+  try {
+    const { product_id } = req.params;
+
+    const product = await prisma.product.findUnique({
+      where: {
+        ...(product_id && { id: product_id }),
+      },
+      include: {
+        images: true,
+        descriptions: true,
+      },
+    });
+    if (!product) return res.send(404);
+
+    const relatedProducts = await prisma.product.findMany({
+      where: {
+        NOT: {
+          id: product.id,
+        },
+        categoryId: product.categoryId,
+      },
+      include: {
+        images: true,
+      },
+    });
+
+    console.log(product);
+
+    res.render("view_product", {
+      user: req.user,
+      product: product,
+      product_images: product.images,
+      products_related: relatedProducts,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.send(400);
+  }
+});
 
 module.exports = router;

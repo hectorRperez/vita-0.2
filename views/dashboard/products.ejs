@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Simple Bootstrap Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Simple Bootstrap Dashboard</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Sections</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a href="/dashboard/products">Products</a>
+              </li>
+              <li class="list-group-item">
+                <a href="/dashboard/categories">Categories</a>
+              </li>
+              <li class="list-group-item">
+                <a href="/dashboard/users">Users</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <form action="/dashboard/products" method="post">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" class="form-control" id="price" name="price">
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity:</label>
+              <input type="number" class="form-control" id="quantity" name="quantity">
+            </div>
+            <div class="form-group">
+              <label for="assessment">Assessment:</label>
+              <input type="number" class="form-control" id="assessment" name="assessment">
+            </div>
+            <div class="form-group">
+              <label for="categoryId">Category:</label>
+              <select class="form-control" id="categoryId" name="categoryId">
+                <option value="">Select a category</option>
+                <% categories.forEach(category => { %>
+                  <option value="<%= category.id %>"><%= category.name %></option>
+                <% }); %>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        <div class="card">
+          <div class="card-header">
+            <h4>Products</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <% for(var i=0; i < products.length; i++) { %>
+                   <tr>
+                     <td> ID:<%= products[i].id %></td>
+                     <td> <img src="<%= products[i].image %>" width="100"></td>
+                     <td> Nombre: <%= products[i].name %></td>
+                     <td> Precio: <%= products[i].price %>$</td>
+                     <td> Cantidad: <%= products[i].quantity %></td>
+                   </tr>
+                   <% } %>
+                </table>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <script>
+    $(function() {
+      var chart1 = new Chart(document.getElementById("chart1"), {
+        type: "line",
+        data: {
+          labels: ["January", "February", "March", "April", "May", "June"],
+          datasets: [{
+            label: "Sales",
+            data: [100, 200, 300, 400, 500, 600]
+          }]
+        },
+        options: {
+          title: {
+            text: "Sales Chart"
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

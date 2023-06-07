@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Simple Bootstrap Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Simple Bootstrap Dashboard</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Recent Activity</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a href="/dashboard/products">Products</a>
+              </li>
+              <li class="list-group-item">
+                <a href="/dashboard/categories">Categories</a>
+              </li>
+              <li class="list-group-item">
+                <a href="/dashboard/users">Users</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <form action="/users" method="post">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">Lastname:</label>
+              <input type="text" class="form-control" id="lastname" name="lastname">
+            </div>
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <input type="file" class="form-control" id="image" name="image">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="form-group">
+              <label for="type">User Type:</label>
+              <select class="form-control" id="type" name="type">
+                <option value="ADMIN">ADMIN</option>
+                <option value="CLIENT">CLIENT</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        <div class="card">
+          <div class="card-header">
+            <h4>Users</h4>
+          </div>
+          <table class='table table-striped table-bordered table-hover'>
+            <thead>
+              <tr >
+              <th>ID</th>
+              <th>Name</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Type</th>
+              </tr>
+            </thead>
+            <% users.map( user => { %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.name %> </td>
+                  <td><%= user.lastname %> </td>
+                  <td><%= user.email %> </td>
+                  <td><%= user.type %></td>
+                </tr>
+                 <% }) %>
+              </table>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+</body>
+</html>

@@ -5,7 +5,7 @@
 		<!-- FIXME: -->
 		<!-- QUITAR LA REFERENCIA A ESTE ARCHIVO YA QUE NO APLICA NADA -->
 		<!-- <link rel="stylesheet" href="assets/css/styles_shop.css" /> -->
-		<link rel="stylesheet" href="assets/css/styles_view_product.css" />
+		<link rel="stylesheet" href="/assets/css/styles_view_product.css" />
 	</head>
 
 	<body>
@@ -37,32 +37,32 @@
 
 		<section class="section">
 			<div class="section__col-1">
-				<img src="./img/product10.jpg" class="prueba_img" id="ProductImg" />
+				<img src="/img/product10.jpg" class="prueba_img" id="ProductImg" />
 
 				<div class="section__col-1__img">
 					<div class="section__col-1__img_small">
-						<img src="./img/product10.jpg" class="small-img" />
+						<img src="/img/product10.jpg" class="small-img" />
 					</div>
 
 					<div class="section__col-1__img_small">
-						<img src="./img/product10.jpg" class="small-img" />
+						<img src="/img/product10.jpg" class="small-img" />
 					</div>
 
 					<div class="section__col-1__img_small">
-						<img src="./img/product10.jpg" class="small-img" />
+						<img src="/img/product10.jpg" class="small-img" />
 					</div>
 				</div>
 			</div>
 			<div class="section__col-2">
 				<div class="section__col-2__content">
-					<h2>Antioxidant Vitamin C Serum</h2>
+					<h2><%= product.name %></h2>
 					<p>Size: 1.0 fl. oz/30 ml</p>
-					<p class="section__col-2-price">$250</p>
+					<p class="section__col-2-price">$<%= product.price %></p>
 
 					<div class="section__col-2 section__col-2--flex">
-						<form action="/add_cart" method="post">
+						<form action="/shopping_cart/add" method="post">
 							<input type="number" value="1" / name="quantity">
-							<input type="hidden" name="product_id" />
+							<input type="hidden" name="product_id" value="<%= product.id %>" />
 							<button type="submit" class="section__col-2-btn"
 								>Add to card</button
 							>
@@ -70,7 +70,7 @@
 					</div>
 					<img
 						class="section__col-2__iconos"
-						src="./img/iconos_web.png"
+						src="/img/iconos_web.png"
 						alt=""
 					/>
 
@@ -251,7 +251,7 @@
 			<div class="products">
 				<ul>
 					<li>
-						<a href="#"> <img src="./img/product10.jpg" alt="" /> </a>
+						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
 						<p>Lorem, ipsum dolor sit amet consectetur</p>
 						<p>25$</p>
 						<div class="rating">
@@ -261,7 +261,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#"> <img src="./img/product10.jpg" alt="" /> </a>
+						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
 						<p>Lorem, ipsum dolor sit amet consectetur</p>
 						<p>25$</p>
 						<div class="rating">
@@ -271,7 +271,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#"> <img src="./img/product10.jpg" alt="" /> </a>
+						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
 						<p>Lorem, ipsum dolor sit amet consectetur</p>
 						<p>25$</p>
 						<div class="rating">
@@ -310,7 +310,7 @@
 
 					<div class="footer-col-2">
 						<a href="/skincare">
-							<img src="./img/logo vitaskincare arena.png" />
+							<img src="/img/logo vitaskincare arena.png" />
 						</a>
 					</div>
 
