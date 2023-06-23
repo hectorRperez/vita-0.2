@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const prisma = require("../config/database");
+const isAuth = require("../middleware/isAuth");
+const getShopcart = require("../utils/shopcart");
 
 router.get("/shop", async (req, res) => {
   try {
-    const { product_id } = req.params;
 
     const products = await prisma.product.findMany({
       include: {
@@ -12,12 +13,13 @@ router.get("/shop", async (req, res) => {
       },
     });
     if (!products) return res.send(404);
-
+    const car = await getShopcart(req);
     console.log(products);
 
     res.render("view_products", {
       user: req.user,
-      product: products,
+      car,
+      products,
       products_related: [],
     });
   } catch (error) {
@@ -29,7 +31,7 @@ router.get("/shop", async (req, res) => {
 router.get("/shop/:product_id?", async (req, res) => {
   try {
     const { product_id } = req.params;
-
+    const car = await getShopcart(req);
     const product = await prisma.product.findUnique({
       where: {
         ...(product_id && { id: product_id }),
@@ -53,11 +55,10 @@ router.get("/shop/:product_id?", async (req, res) => {
       },
     });
 
-    console.log(product);
-
     res.render("view_product", {
       user: req.user,
       product: product,
+      car,
       product_images: product.images,
       products_related: relatedProducts,
     });

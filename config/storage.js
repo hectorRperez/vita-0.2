@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     if (!fs.existsSync(dirPost)) fs.mkdirSync(dirPost, 7777);
     if (req.url === "/new_post") cb(null, dirPost);
 
-    if (req.url === "/create_product") cb(null, dirProducts);
+    if (req.url === "/dashboard/products") cb(null, dirProducts);
   },
 
   filename: function (req, file, cb) {
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
     if (req.url === "/new_post") cb(null, `post-${img}.jpeg`);
 
-    if (req.url === "/create_product") cb(null, `product-${img}.jpeg`);
+    if (req.url === "/dashboard/products/add") cb(null, `product-${img}.jpeg`);
   },
 });
 

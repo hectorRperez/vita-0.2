@@ -1,4 +1,5 @@
 const prisma = require("../config/database");
+const getShopcart = require("../utils/shopcart");
 
 const router = require("express").Router();
 
@@ -10,8 +11,9 @@ router.get("/skincare", async (req, res) => {
         images: true,
       },
     });
+    const car = await getShopcart(req);
 
-    res.render("skincare", { products: products, user: req.user });
+    res.render("skincare", { products: products, user: req.user, car });
   } catch (error) {
     console.error(error);
   }

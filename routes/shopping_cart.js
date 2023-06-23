@@ -1,27 +1,21 @@
 const prisma = require("../config/database");
+const getShopcart = require("../utils/shopcart");
 
 const router = require("express").Router();
 
 router.get("/", async function (req, res) {
-  if (req.isAuthenticated()) {
-    let shopcart = null;
-    if(req.user.car?.id)
-    shopcart = await prisma.shopcart.findUnique({
-      where: {
-        id: req.user.car.id,
-      },
-      include: { items: true },
-    });
-    if (!shopcart)
-      shopcart = await prisma.shopcart.create({
-        data: { userId: req.user.id },
-        include: {
-          items: true,
-        },
-      });
-    return res.status(200).json(shopcart);
-  }
-  return res.send(200);
+  console.log(req.session);
+ // console.log(req.sessionID);
+  const user = req.isAuthenticated() ? req.user : { name: "unknown"} ;
+  console.log(user);
+  const car =  await getShopcart(req);
+  return res.render("shopping_cart", { car, user });
+});
+
+
+router.get("/delete/:id" , async function (req, res) {
+  await prisma.shopcartItem.delete({ where: { id: req.params.id }})
+  return res.redirect("/shopping_cart/");
 });
 
 router.post("/add", async (req, res) => {
@@ -43,8 +37,9 @@ router.post("/add", async (req, res) => {
           carId: req.user.car.id,
         }
       });
+    
       console.log(item);
-      if(item) return res.status(200).json(item);
+      if(item) return res.redirect("/shopping_cart");
     }else {
       const item = await prisma.shopcartItem.create({
         data: {
@@ -60,7 +55,7 @@ router.post("/add", async (req, res) => {
           }
         },
       });
-      if(item) return res.status(200).json(item);
+      if(item) return res.redirect("/shoping_cart");
     }
   } else {
     let sessionCar = prisma.shopcart.findFirst({
@@ -79,7 +74,7 @@ router.post("/add", async (req, res) => {
           carId: sessionCar.id,
         },
       });
-      return res.redirect("/shop" + body.productId);
+      return res.redirect("/shop/" + body.productId);
     }
     res.send(200);
   }

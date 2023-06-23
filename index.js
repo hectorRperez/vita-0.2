@@ -34,7 +34,7 @@ app.use(
     cookie: { maxAge: 3600000, secure: false },
     store: sessionStore,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
   })
 );
 

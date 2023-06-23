@@ -25,82 +25,34 @@
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%- include('partials/header.ejs', {account: user.name, car: user.car}); %>
+			<%- include('partials/header.ejs', { account: user.name ?? "unknown", car }); %>
 		</div>
 		<!-- ------------------ End Header ------------------------ -->
 
 		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
-
-		<div class="content-product">
-			<div class="content-wrapper">
-				<!-- Elemento 1 -->
-				<div class="view-product">
-					<div class="col-2">
-						<img src="./img/product7.jpg" width="4px" id="ProductImg" />
-
-						<div class="small-img-row">
-							<div class="small-img-col">
-								<img src="./img/product8.jpg" class="small-img" />
-							</div>
-							<div class="small-img-col">
-								<img src="./img/product9.jpg" class="small-img" />
-							</div>
-							<div class="small-img-col">
-								<img src="./img/product10.jpg" class="small-img" />
-							</div>
-						</div>
+		<div class="container my-5 py-5">
+			<h1>Shopping Cart (<%=  car.id  %>)</h1>
+			<div class="row">
+			  <% for (var i = 0; i < car.items.length; i++) { %>
+				<div class="col-md-4">
+				  <div class="card">
+					<img src="<%= car.items[i].image %>" class="card-img-top">
+					<div class="card-body">
+						<%= car.item %>
+					  <h5 class="card-title"><%= car.items[i].product.name %></h5>
+					  <p class="card-text"><%= car.items[i].product.description %></p>
+					  <p class="card-text">Quantity: <%= car.items[i].count %></p>
+					  <p class="card-text">Price: <%= car.items[i].product.price %></p>
 					</div>
-				</div>
-
-				<!-- Elemento 2 -->
-				<div class="info-producto">
-					<h2>AMMATERRE BUNDLE - Day Cream, Night Cream and Eye Serum</h2>
-					<p class="product-price">$250</p>
-					<label class="size-product">Size</label>
-					<select>
-						<option>Select Size</option>
-						<option>.5m</option>
-						<option>1mm</option>
-					</select>
-					<input type="number" value="1" />
-					<a href="#" class="btn-product">Add to card</a>
-					<h3>Description</h3>
-					<p>
-						540 titanium over stainless steel micro-needles. Available in either
-						1.0mm for normal skin or .5mm for sensitive skin.
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<!--    Title -->
-		<div class="small-container-product">
-			<div class="row-product row-2">
-				<h2>Related Products</h2>
-			</div>
-		</div>
-
-		<!-- ----------------- Related products -----------------  -->
-		<section class="section">
-			<div class="title title-shop-skinscare"></div>
-			<div class="product-center container">
-				<% for(let i=0; i < products_related.length; i++) { %>
-				<div class="product">
-					<div class="img-cover">
-						<img src="<%= products_related[i].image %>" />
+					<div class="card-footer">
+						<a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">delete</a>
 					</div>
-					<p><%= products_related[i].name %></p>
-					<div class="rating">
-						<% for(var j=0; j < products_related[i].assessment; j++) { %>
-						<i class="bx bxs-star"></i>
-						<% } %>
-					</div>
-					<div class="price">$<%= products_related[i].price %></div>
-					<a href="/shop">aqui</a>
+				  </div>
 				</div>
-				<% } %>
+			  <% } %>
 			</div>
-		</section>
+		  </div>
+		
 
 		<!-- ------------------------  Footer ------------------------  -->
 		<div class="footer">
