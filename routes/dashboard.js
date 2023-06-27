@@ -2,13 +2,16 @@ const isAdmin = require("../middleware/isAdmin");
 
 const prisma = require("../config/database");
 const router = require("express").Router();
-
+const upload = require("../middleware/upload");
+const getShopcart = require("../utils/shopcart");
 router.use(isAdmin);
 
 // ruta inicial
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    res.render("dashboard");
+    const car = await getShopcart(req);
+
+    res.render("dashboard", { car, user: req.user });
   } catch (error) {
     console.error(error);
   }
@@ -17,7 +20,8 @@ router.get("/", (req, res) => {
 router.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
-    res.render("dashboard/users", { users: users });
+    const car = await getShopcart(req);
+    res.render("dashboard/users", { users: users, car, user: req.user });
   } catch (error) {
     console.error(error);
   }
@@ -26,7 +30,12 @@ router.get("/users", async (req, res) => {
 router.get("/categories", async (req, res) => {
   try {
     const categories = await prisma.category.findMany();
-    return res.render("dashboard/categories", { categories: categories });
+    const car = await getShopcart(req);
+    return res.render("dashboard/categories", {
+      categories: categories,
+      car,
+      user: req.user,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -49,15 +58,22 @@ router.get("/products", async (req, res) => {
   try {
     const categories = await prisma.category.findMany();
     const products = await prisma.product.findMany();
-    res.render("dashboard/products", { categories, products: products });
+    const car = await getShopcart(req);
+    res.render("dashboard/products", {
+      categories,
+      products: products,
+      user: req.user,
+      car,
+    });
   } catch (error) {
     console.error(error);
   }
 });
 
-router.post("/products", async (req, res) => {
+router.post("/products", upload.array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
+  console.log("/products");
   try {
     const product = await prisma.product.create({
       data: {
@@ -68,21 +84,22 @@ router.post("/products", async (req, res) => {
         categoryId: body.categoryId,
       },
     });
+    console.log(req.files);
 
     // defino las imagenes del producto
     if (files)
       for (let i = 0; i < files.length; i++) {
-        let image = `img/${files[i].filename}`;
-        prisma.productImages.create({
+        let image = `/img/products/${files[i].filename}`;
+        const imageProduct = await prisma.productImages.create({
           data: {
-            product_id: product.id,
+            productId: product.id,
             image: image,
+            isFirst: false,
           },
         });
+        console.log(imageProduct);
       }
-    const categories = await prisma.category.findMany();
-    const products = await prisma.product.findMany();
-    res.render("dashboard/products", { categories, products });
+    res.redirect("/dashboard/products");
   } catch (error) {
     console.error(error);
   }

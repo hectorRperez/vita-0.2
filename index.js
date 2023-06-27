@@ -14,9 +14,6 @@ require("dotenv").config();
 // configuracion de formulario
 app.use(express.urlencoded({ extended: true }));
 
-// la ruta de archivos de imagen
-app.use(require("./config/storage.js"));
-
 // configuracion de la cookies
 app.use(cookieParser("5654534jk34kjnk346kjn652gf2"));
 

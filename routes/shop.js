@@ -1,25 +1,35 @@
 const router = require("express").Router();
 const prisma = require("../config/database");
-const isAuth = require("../middleware/isAuth");
 const getShopcart = require("../utils/shopcart");
 
 router.get("/shop", async (req, res) => {
   try {
-
     const products = await prisma.product.findMany({
       include: {
         images: true,
         descriptions: true,
       },
     });
-    if (!products) return res.send(404);
+
+    const productsWithImage = products.map((product) => {
+      let image = null;
+      image = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+      image = !image && product.images.length > 0 ? product.images[0] : image;
+      const images = product.images.filter((element) => image != element);
+      return {
+        ...product,
+        images,
+        image,
+      };
+    });
+    if (!productsWithImage) return res.send(404);
     const car = await getShopcart(req);
-    console.log(products);
 
     res.render("view_products", {
       user: req.user,
       car,
-      products,
+      products: productsWithImage,
       products_related: [],
     });
   } catch (error) {
@@ -41,6 +51,14 @@ router.get("/shop/:product_id?", async (req, res) => {
         descriptions: true,
       },
     });
+
+    let image = null;
+    if (product.images)
+      image = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+    image = !image && product.images.length > 0 ? product.images[0] : image;
+    const images = product.images.filter((element) => image != element);
+
     if (!product) return res.send(404);
 
     const relatedProducts = await prisma.product.findMany({
@@ -55,12 +73,28 @@ router.get("/shop/:product_id?", async (req, res) => {
       },
     });
 
+    const relatedProductsWithImages = relatedProducts.map((product) => {
+      let imageR = null;
+      imageR = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+      imageR =
+        !imageR && product.images.length > 0 ? product.images[0] : imageR;
+      const images = product.images.filter((element) => imageR != element);
+      return {
+        ...product,
+        images,
+        image: imageR,
+      };
+    });
+    console.log(relatedProductsWithImages);
+
     res.render("view_product", {
       user: req.user,
       product: product,
       car,
-      product_images: product.images,
-      products_related: relatedProducts,
+      image,
+      product_images: images,
+      relatedProducts: relatedProductsWithImages,
     });
   } catch (error) {
     console.error(error);

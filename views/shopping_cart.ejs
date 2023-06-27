@@ -44,13 +44,18 @@
 					  <p class="card-text">Quantity: <%= car.items[i].count %></p>
 					  <p class="card-text">Price: <%= car.items[i].product.price %></p>
 					</div>
+				  
 					<div class="card-footer">
 						<a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">delete</a>
 					</div>
 				  </div>
 				</div>
 			  <% } %>
+			  
 			</div>
+			<div class="row p-3">
+				<a class="btn btn-success">Checkout</a> 
+			  </div>
 		  </div>
 		
 
