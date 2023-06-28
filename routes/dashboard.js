@@ -50,7 +50,7 @@ router.post("/categories", async (req, res) => {
     });
     const categories = await prisma.category.findMany();
     console.log(categories);
-    return res.render("dashboard/categories", { categories: categories });
+    return res.redirect("/dashboard/categories");
   }
 });
 
