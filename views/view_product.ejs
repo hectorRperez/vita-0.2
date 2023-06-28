@@ -29,7 +29,7 @@
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%- include('partials/header.ejs', {account: user.name }); %>
+			<%- include('partials/header.ejs', {account: user?.name ?? "", car }); %>
 		</div>
 		<!-- ------------------ End Header ------------------------ -->
 
@@ -37,20 +37,14 @@
 
 		<section class="section">
 			<div class="section__col-1">
-				<img src="/img/product10.jpg" class="prueba_img" id="ProductImg" />
+				<img src="<%= image.image %>" class="prueba_img" id="ProductImg" />
 
 				<div class="section__col-1__img">
+					<% for( const productImage of product.images ){ %>
 					<div class="section__col-1__img_small">
-						<img src="/img/product10.jpg" class="small-img" />
+						<img src="<%= productImage.image ?? "" %>" class="small-img" />
 					</div>
-
-					<div class="section__col-1__img_small">
-						<img src="/img/product10.jpg" class="small-img" />
-					</div>
-
-					<div class="section__col-1__img_small">
-						<img src="/img/product10.jpg" class="small-img" />
-					</div>
+					<% } %>
 				</div>
 			</div>
 			<div class="section__col-2">
@@ -75,210 +69,28 @@
 					/>
 
 					<p>
-						<strong>How to use: </strong>
-						Dispense one pump onto fingertips and apply to clean skin. Smooth
-						over entire face, focusing on wrinkle-prone areas.
-					</p>
-
-					<p>
-						<strong>Full Ingredient List:</strong>
-						Water (Agua), Carthamus Tinctorius (Organic Safflower) Oil,
-						Emulsifying Wax, Aloe Barbadensis (Organic Aloe) Leaf Juice,
-						Simmondsia Chinesis (Organic Jojoba) Oil, Xanthan Gum, Cocos
-						Nucifera (Organic Coconut) Oil, Tocopheryl Acetate (Vitamin E),
-						Glyceryl Linoleate, Retinyl Palmitate (Vitamin A), Retinol (Vitamin
-						A), Zinc Oxide, Lecithin, Sorbitol, Vanilla Planifolia Extract,
-						Butyrospermum Parkii (Organic Shea Butter), Sodium Hyaluronate
-						(Hyaluronic Acid), Sodium Ascorbate, Panthenol (Vitamin B5),
-						Palmitoyl Oligopeptide, Palmitoyl Tetrapeptide-7, Polysorbate 20,
-						Helianthus Annuus (Organic Sunflower) Oil, Phenoxyethanol, Glycerin,
-						Natural Fragrant Oil, Punica Granatum, (Organic Pomegranate) Oil.
-					</p>
-
-					<p>
-						<strong>Caution: </strong>
-						For external use only. Avoid contact with eyes and mouth. If
-						irritation occurs, discontinue use. Keep out of reach of children.
-						*This product has natural ingredients and cream/serum color will
-						change. We do not use bleaching agents to control the color/shade
-					</p>
-
-					<p>
-						<strong>Key Benefits:</strong>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
-						tempore odio quisquam officiis ipsam perspiciatis. Deserunt quisquam
-						id natus laboriosam aut nemo, porro ad et suscipit velit ducimus
-						odit nesciunt.
+						<%= product.description %>
 					</p>
 				</div>
 			</div>
 		</section>
-
-		<!-- TODO: BORRAR SE VA A RESTRUCTURA EL CODIGO -->
-		<!-- TODO: USAR ESTE CODIGO COMENTADO PARA MANIPULAR EL DOM -->
-		<!-- <div class="content-product">
-			<div class="content-wrapper">
-				<div class="view-product">
-
-					<div class="col-2">
-						<img src="./img/product10.jpg" width="4px" id="ProductImg" />
-
-						<div class="small-img-row">
-							<div class="small-img-col">
-								<img src="./img/product10.jpg" class="small-img" />
-							</div>
-
-							<div class="small-img-col">
-								<img src="./img/product10.jpg" class="small-img" />
-							</div>
-
-							<div class="small-img-col">
-								<img src="./img/product10.jpg" class="small-img" />
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="info-producto">
-					<h2>Antioxidant Vitamin C Serum</h2>
-					<p style="margin-top: 5px; margin-bottom: 15px"
-						>Size: 1.0 fl. oz/30 ml</p
-					>
-					<p class="product-price">$250</p>
-					<div class="container-flex">
-						<form action="/add_cart" method="post">
-							<input type="number" value="1" / name="quantity">
-							<input type="hidden" name="product_id" />
-							<button type="submit" class="button1">Add to card</button>
-						</form>
-					</div>
-
-					<div class="description-product">
-						<div class="iconos-vita">
-							<ul>
-								<li>
-									<img src="./img/prueba_1.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_2.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_3.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_5.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_6.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_7.png" alt="" />
-								</li>
-								<li>
-									<img src="./img/prueba_8.png" alt="" />
-								</li>
-							</ul>
-						</div>
-
-						<p>
-							<strong>How to use: </strong>
-							Dispense one pump onto fingertips and apply to clean skin. Smooth
-							over entire face, focusing on wrinkle-prone areas.
-						</p>
-
-						<p>
-							<strong>Full Ingredient List:</strong>
-							Water (Agua), Carthamus Tinctorius (Organic Safflower) Oil,
-							Emulsifying Wax, Aloe Barbadensis (Organic Aloe) Leaf Juice,
-							Simmondsia Chinesis (Organic Jojoba) Oil, Xanthan Gum, Cocos
-							Nucifera (Organic Coconut) Oil, Tocopheryl Acetate (Vitamin E),
-							Glyceryl Linoleate, Retinyl Palmitate (Vitamin A), Retinol
-							(Vitamin A), Zinc Oxide, Lecithin, Sorbitol, Vanilla Planifolia
-							Extract, Butyrospermum Parkii (Organic Shea Butter), Sodium
-							Hyaluronate (Hyaluronic Acid), Sodium Ascorbate, Panthenol
-							(Vitamin B5), Palmitoyl Oligopeptide, Palmitoyl Tetrapeptide-7,
-							Polysorbate 20, Helianthus Annuus (Organic Sunflower) Oil,
-							Phenoxyethanol, Glycerin, Natural Fragrant Oil, Punica Granatum,
-							(Organic Pomegranate) Oil.
-						</p>
-
-						<p>
-							<strong>Caution: </strong>
-							For external use only. Avoid contact with eyes and mouth. If
-							irritation occurs, discontinue use. Keep out of reach of children.
-							*This product has natural ingredients and cream/serum color will
-							change. We do not use bleaching agents to control the color/shade
-						</p>
-					</div>
-				</div>
-			</div>
-		</div> -->
-
-		<!-- Descrition end-->
-
-		<!--    Title -->
-		<!-- <div class="small-container-product">
-			<div class="row-product row-2">
-				<h2>Related Products</h2>
-			</div>
-		</div> -->
-
-		<!-- ----------------- Related products -----------------  -->
-		<!-- <section class="section">
-			<div class="title title-shop-skinscare"></div>
-			<div class="product-center container">
-				<% for(let i=0; i < products_related.length; i++) { %>
-				<div class="product">
-					<div class="img-cover">
-						<img src="<%= products_related[i].image %>" />
-					</div>
-					<p><%= products_related[i].name %></p>
-					<div class="rating">
-						<% for(var j=0; j < products_related[i].assessment; j++) { %>
-						<i class="bx bxs-star"></i>
-						<% } %>
-					</div>
-					<div class="price">$<%= products_related[i].price %></div>
-					<a href="/shop">aqui</a>
-				</div>
-				<% } %>
-			</div>
-		</section> -->
-
 		<div class="related-product">
-			<h2>related product</h2>
+			<h2>Related product</h2>
 			<div class="products">
 				<ul>
+					<% for (const productR of relatedProducts){ %>
 					<li>
-						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
-						<p>Lorem, ipsum dolor sit amet consectetur</p>
-						<p>25$</p>
+						<a href="#"> <img src="<%= productR.image.image %>" alt="no image" /> </a>
+						<p><%= productR.name %></p>
+						<p><%= productR.price %></p>
 						<div class="rating">
 							<i class="bx bxs-star"></i>
 							<i class="bx bxs-star"></i>
 							<i class="bx bxs-star"></i>
 						</div>
 					</li>
-					<li>
-						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
-						<p>Lorem, ipsum dolor sit amet consectetur</p>
-						<p>25$</p>
-						<div class="rating">
-							<i class="bx bxs-star"></i>
-							<i class="bx bxs-star"></i>
-							<i class="bx bxs-star"></i>
-						</div>
-					</li>
-					<li>
-						<a href="#"> <img src="/img/product10.jpg" alt="" /> </a>
-						<p>Lorem, ipsum dolor sit amet consectetur</p>
-						<p>25$</p>
-						<div class="rating">
-							<i class="bx bxs-star"></i>
-							<i class="bx bxs-star"></i>
-						</div>
-					</li>
+					<% } %>
+					
 				</ul>
 			</div>
 		</div>
@@ -351,7 +163,6 @@
 
 		<!-- TODO: TRABAJAR EN EL JS -->
 		<script>
-			console.log('hola mundo desde js');
 			var ProductImg = document.getElementById('ProductImg');
 
 			var SmallImg = document.getElementsByClassName('small-img');

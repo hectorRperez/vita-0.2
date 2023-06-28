@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Simple Bootstrap Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
+	<head>
+		<%- include('../partials/head.ejs'); %>
+	</head>
 <body>
-  <div class="container">
-    <h1>Simple Bootstrap Dashboard</h1>
+  <div class="header">
+    <%- include('../partials/header.ejs', {account: user?.name ?? "", car }); %>
+  </div>
+  <div class="container mt-5 pt-5">
+    <h1>Dashboard</h1>
     <div class="row">
       <div class="col-md-4">
         <div class="card">

@@ -28,9 +28,8 @@
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%if (user==undefined) { %> <%- include('partials/header.ejs', { account:
-			"LOGIN" }); %> <% } else { %> <%- include('partials/header.ejs', {
-			account: user.name}); %> <% } %>
+			<%-  include('partials/header.ejs', { account:
+			"LOGIN", car }); %>
 		</div>
 		<!-- ------------------ End Header ------------------------ -->
 

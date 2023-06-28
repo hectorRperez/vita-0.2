@@ -15,7 +15,6 @@ model Category {
 
 model Shopcart {
   id        String         @id @default(uuid()) @db.Uuid
-  session   Session?       @relation(fields: [sessionId], references: [id])
   sessionId String?        @unique
   user      User?          @relation(fields: [userId], references: [id])
   userId    String?        @unique @db.Uuid
@@ -105,7 +104,7 @@ model ProductImages {
   productId String  @db.Uuid
   image     String
   isFirst   Boolean
-  products  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model ProductDescription {
@@ -114,7 +113,7 @@ model ProductDescription {
   content    String?     @db.Text
   created_at DateTime?   @default(now())
   updated_at DateTime?   @default(now())
-  products   Product     @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product   Product     @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   type       ProductType @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   typeId     String      @db.Uuid
 }
@@ -123,7 +122,6 @@ model Session {
   id        String    @id
   sid       String    @unique
   data      String
-  carshop   Shopcart?
   expiresAt DateTime
 }
 

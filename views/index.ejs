@@ -27,9 +27,7 @@
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%if (user == undefined) { %> <%- include('partials/header.ejs', {
-			account: "LOGIN"}); %> <% } else { %> <%-
-			include('partials/header.ejs', { account: user.name}); %> <% } %>
+			<%- include('partials/header.ejs', {account: user?.name ?? "", car }); %>
 		</div>
 		<!-- ------------------ End Header ------------------------ -->
 
@@ -83,7 +81,7 @@
 					<a href = "<%= '/shop/' + products[i].id %>">
 						<div class="product">
 							<div class="img-cover">
-								<img src="<%= products[i].image %>" />
+								<img src="<%= products[i].image.image %>" alt="no image" />
 							</div>
 							<p><%= products[i].name %></p>
 							<div class="rating">

@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const prisma = require("../config/database");
 const isAuth = require("../middleware/isAuth");
+const getShopcart = require("../utils/shopcart");
 
 // ruta inicial
 router.get("/blog", isAuth, async (req, res) => {
@@ -12,10 +13,9 @@ router.get("/blog", isAuth, async (req, res) => {
         createdBy: true,
       },
     });
-
-    console.log(posts);
+    const car = await getShopcart(req);
     console.log(req.user);
-    res.render("blog.ejs", { posts: posts, user: req.user });
+    res.render("blog.ejs", { posts: posts, user: req.user, car });
   } catch (error) {
     console.error(error);
   }

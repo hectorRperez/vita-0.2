@@ -1,23 +1,35 @@
 const router = require("express").Router();
 const prisma = require("../config/database");
+const getShopcart = require("../utils/shopcart");
 
 router.get("/shop", async (req, res) => {
   try {
-    const { product_id } = req.params;
-
     const products = await prisma.product.findMany({
       include: {
         images: true,
         descriptions: true,
       },
     });
-    if (!products) return res.send(404);
 
-    console.log(products);
+    const productsWithImage = products.map((product) => {
+      let image = null;
+      image = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+      image = !image && product.images.length > 0 ? product.images[0] : image;
+      const images = product.images.filter((element) => image != element);
+      return {
+        ...product,
+        images,
+        image,
+      };
+    });
+    if (!productsWithImage) return res.send(404);
+    const car = await getShopcart(req);
 
     res.render("view_products", {
       user: req.user,
-      product: products,
+      car,
+      products: productsWithImage,
       products_related: [],
     });
   } catch (error) {
@@ -29,7 +41,7 @@ router.get("/shop", async (req, res) => {
 router.get("/shop/:product_id?", async (req, res) => {
   try {
     const { product_id } = req.params;
-
+    const car = await getShopcart(req);
     const product = await prisma.product.findUnique({
       where: {
         ...(product_id && { id: product_id }),
@@ -39,6 +51,14 @@ router.get("/shop/:product_id?", async (req, res) => {
         descriptions: true,
       },
     });
+
+    let image = null;
+    if (product.images)
+      image = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+    image = !image && product.images.length > 0 ? product.images[0] : image;
+    const images = product.images.filter((element) => image != element);
+
     if (!product) return res.send(404);
 
     const relatedProducts = await prisma.product.findMany({
@@ -53,13 +73,28 @@ router.get("/shop/:product_id?", async (req, res) => {
       },
     });
 
-    console.log(product);
+    const relatedProductsWithImages = relatedProducts.map((product) => {
+      let imageR = null;
+      imageR = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+      imageR =
+        !imageR && product.images.length > 0 ? product.images[0] : imageR;
+      const images = product.images.filter((element) => imageR != element);
+      return {
+        ...product,
+        images,
+        image: imageR,
+      };
+    });
+    console.log(relatedProductsWithImages);
 
     res.render("view_product", {
       user: req.user,
       product: product,
-      product_images: product.images,
-      products_related: relatedProducts,
+      car,
+      image,
+      product_images: images,
+      relatedProducts: relatedProductsWithImages,
     });
   } catch (error) {
     console.error(error);

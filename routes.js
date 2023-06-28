@@ -5,7 +5,6 @@ const dashboardRouter = require("./routes/dashboard");
 router.use("/dashboard", dashboardRouter);
 router.use(require("./routes/auth.js"));
 router.use(require("./routes/shop.js"));
-router.use(require("./routes/products.js"));
 router.use(require("./routes/home.js"));
 router.use(require("./routes/skincare.js"));
 router.use("/shopping_cart", require("./routes/shopping_cart.js"));
