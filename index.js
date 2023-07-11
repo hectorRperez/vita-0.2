@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const passport = require("passport");
 const path = require("path");
@@ -10,9 +11,6 @@ const app = express();
 
 // defino la variable de entorno
 require("dotenv").config();
-
-// configuracion de formulario
-app.use(express.urlencoded({ extended: true }));
 
 // configuracion de la cookies
 app.use(cookieParser("5654534jk34kjnk346kjn652gf2"));
@@ -35,6 +33,10 @@ app.use(
   })
 );
 
+app.use(bodyParser.json()); 
+
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
 // inizializando el passport
 app.use(passport.initialize());
 app.use(passport.session());

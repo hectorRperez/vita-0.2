@@ -21,4 +21,5 @@ document.querySelector(".menu + .close").onclick = (x) => {
 console.log("scroll");
 // scrollreveal APLICADO AL HOME Y A SKINCARE
 // scrollreveal se aplica directo a la clase section-scroll
-ScrollReveal().reveal(".section-scroll", { delay: 500 });
+
+//ScrollReveal()?.reveal(".section-scroll", { delay: 500 });

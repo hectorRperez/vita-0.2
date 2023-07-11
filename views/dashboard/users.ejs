@@ -8,7 +8,7 @@
     <%- include('../partials/header.ejs', {account: user?.name ?? "", car }); %>
   </div>
   <div class="container mt-5 pt-5">
-    <h1>Simple Bootstrap Dashboard</h1>
+    <h1>Dashboard</h1>
     <div class="row">
       <div class="col-md-4">
         <div class="card">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <form action="/users" method="post">
+        <form action="/users" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="name">Name:</label>
               <input type="text" class="form-control" id="name" name="name">
@@ -90,7 +90,6 @@
       </div>
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
+  <%- include('../partials/script.ejs'); %>
 </body>
 </html>

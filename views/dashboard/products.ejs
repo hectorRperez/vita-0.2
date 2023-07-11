@@ -4,6 +4,7 @@
 		<%- include('../partials/head.ejs'); %>
 	</head>
 <body>
+  <div id="preloader"></div>
   <div class="header">
     <%- include('../partials/header.ejs', {account: user?.name ?? "", car }); %>
   </div>
@@ -89,26 +90,6 @@
       </div>
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-  <script>
-    $(function() {
-      var chart1 = new Chart(document.getElementById("chart1"), {
-        type: "line",
-        data: {
-          labels: ["January", "February", "March", "April", "May", "June"],
-          datasets: [{
-            label: "Sales",
-            data: [100, 200, 300, 400, 500, 600]
-          }]
-        },
-        options: {
-          title: {
-            text: "Sales Chart"
-          }
-        }
-      });
-    });
-  </script>
+  <%- include('../partials/script.ejs'); %>
 </body>
 </html>

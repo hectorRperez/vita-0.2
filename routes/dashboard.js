@@ -4,6 +4,7 @@ const prisma = require("../config/database");
 const router = require("express").Router();
 const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
+
 router.use(isAdmin);
 
 // ruta inicial
@@ -42,16 +43,24 @@ router.get("/categories", async (req, res) => {
 });
 
 router.post("/categories", async (req, res) => {
+  console.log(req.body);
   if (req.body.name) {
     const category = await prisma.category.create({
       data: {
         name: req.body.name,
       },
     });
-    const categories = await prisma.category.findMany();
-    console.log(categories);
-    return res.redirect("/dashboard/categories");
+
+    return res.status(200).send({
+      message: "Category created successfully",
+      data: category,
+      code: 201,
+    });
   }
+  return res.status(400).send({
+    message: "Bad request",
+    data: req.body,
+  })
 });
 
 router.get("/products", async (req, res) => {
@@ -99,8 +108,17 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
         });
         console.log(imageProduct);
       }
-    res.redirect("/dashboard/products");
+    res.status(201).send({
+      data: product,
+      message: "Product created successfully",
+      code: 201,
+    });
   } catch (error) {
+    res.status(400).send({
+      data: error,
+      status: 400,
+      message: error.message
+    });
     console.error(error);
   }
 });

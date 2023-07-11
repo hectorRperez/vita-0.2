@@ -81,7 +81,7 @@
 					<a href = "<%= '/shop/' + products[i].id %>">
 						<div class="product">
 							<div class="img-cover">
-								<img src="<%= products[i].image.image %>" alt="no image" />
+								<img src="<%= products[i]?.image?.image %>" alt="no image" />
 							</div>
 							<p><%= products[i].name %></p>
 							<div class="rating">
