@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
-
+const SignupController = require("../controllers/Signup");
 // ruta que muestra el formulario de login
 router.get("/login", (req, res) => {
   res.render("login.ejs");
@@ -11,7 +11,8 @@ router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/shop");
+    if (req.user.type === "ADMIN") return res.redirect("/dashboard");
+    else return res.redirect("/shop");
   }
 );
 
@@ -21,12 +22,6 @@ router.get("/signup", (req, res) => {
 });
 
 // ruta para mostrar el formulario de registro de usuario
-router.post(
-  "/signup",
-  passport.authenticate("local", { failureRedirect: "/signup?error=1" }),
-  (req, res) => {
-    res.redirect("/shop");
-  }
-);
+router.post("/signup", SignupController.signup);
 
 module.exports = router;

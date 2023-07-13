@@ -104,7 +104,7 @@ model ProductImages {
   productId String  @db.Uuid
   image     String
   isFirst   Boolean
-  product  Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product   Product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model ProductDescription {
@@ -113,14 +113,14 @@ model ProductDescription {
   content    String?     @db.Text
   created_at DateTime?   @default(now())
   updated_at DateTime?   @default(now())
-  product   Product     @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product    Product     @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   type       ProductType @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   typeId     String      @db.Uuid
 }
 
 model Session {
-  id        String    @id
-  sid       String    @unique
+  id        String   @id
+  sid       String   @unique
   data      String
   expiresAt DateTime
 }
@@ -135,7 +135,7 @@ model User {
   orders   Order[]
   posts    Post[]
   type     UserType
-  car Shopcart?
+  car      Shopcart?
 }
 
 enum UserType {

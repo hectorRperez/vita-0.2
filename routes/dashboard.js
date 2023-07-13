@@ -60,7 +60,7 @@ router.post("/categories", async (req, res) => {
   return res.status(400).send({
     message: "Bad request",
     data: req.body,
-  })
+  });
 });
 
 router.get("/products", async (req, res) => {
@@ -117,7 +117,7 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
     res.status(400).send({
       data: error,
       status: 400,
-      message: error.message
+      message: error.message,
     });
     console.error(error);
   }

@@ -21,10 +21,12 @@ router.post("/add", async (req, res) => {
   const body = req.body;
 
   const car = await getShopcart(req);
-  const product = await prisma.product.findUnique( {
-    where:{
-      id : req.body.product_id, }});
-  if( body.quantity >  product.quantity) return res.send( "maximo permitido");
+  const product = await prisma.product.findUnique({
+    where: {
+      id: req.body.product_id,
+    },
+  });
+  if (body.quantity > product.quantity) return res.send("maximo permitido");
 
   await prisma.shopcartItem.upsert({
     where: {

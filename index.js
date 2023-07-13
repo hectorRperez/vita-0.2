@@ -33,10 +33,10 @@ app.use(
   })
 );
 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 // inizializando el passport
 app.use(passport.initialize());
 app.use(passport.session());
