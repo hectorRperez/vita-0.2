@@ -26,7 +26,9 @@ router.post("/add", async (req, res) => {
       id: req.body.product_id,
     },
   });
-  if (body.quantity > product.quantity) return res.send("maximo permitido");
+  if (body.quantity > product.quantity) return res.status(301).send({
+    message: "limit quantity of product",
+  } );
 
   await prisma.shopcartItem.upsert({
     where: {
@@ -44,7 +46,10 @@ router.post("/add", async (req, res) => {
       carId: car.id,
     },
   });
-  return res.redirect("/shopping_cart");
+  return res.json({
+    message: "Product added successfully",
+    data: car
+  });
 });
 
 module.exports = router;

@@ -5,23 +5,6 @@
 	</head>
 
 	<body>
-		<!--  ------------------ PROMO ------------------ -->
-		<div class="promo">
-			<span>
-				<a href="#">
-					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
-				</a></span
-			>
-			<span>Get 30% OFF This Christmas Holidays</span>
-			<span>
-				<ul class="media_social">
-					<li>
-						<a href="#"><i class="fab fa-facebook-square"></i></a>
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</li>
-				</ul>
-			</span>
-		</div>
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
@@ -31,16 +14,22 @@
 
 		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
 		<div class="container my-5 py-5">
-			<h1>Shopping Cart</h1>
+			<div class="row mt-5 bg-gray">
+			<div class="col-md-6">
+				<div class="row">
+					
+				</div>
+			</div>
+			<div class="col-md-6">
 			<div class="row">
+			
 			  <% for (var i = 0; i < car.items.length; i++) { %>
 				<div class="col-md-4">
 				  <div class="card">
-					<img src="<%= car.items[i].image %>" class="card-img-top">
+					<img src="<%= car.items[i].product.images[0].image %>" class="card-img-top">
 					<div class="card-body">
 						<%= car.item %>
 					  <h5 class="card-title"><%= car.items[i].product.name %></h5>
-					  <p class="card-text"><%= car.items[i].product.description %></p>
 					  <p class="card-text">Quantity: <%= car.items[i].count %></p>
 					  <p class="card-text">Price: <%= car.items[i].product.price %></p>
 					</div>
@@ -57,7 +46,8 @@
 				<a class="btn btn-success">Checkout</a> 
 			  </div>
 		  </div>
-		
+		</div>
+		</div>
 
 		<!-- ------------------------  Footer ------------------------  -->
 		<div class="footer">

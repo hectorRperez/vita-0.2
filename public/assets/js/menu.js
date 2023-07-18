@@ -4,14 +4,17 @@
 
 let openFlag = false;
 const menu = document.querySelector(".menu");
-console.log(document.querySelector(".hamburger"));
-document.querySelector(".hamburger").onclick = (x) => {
+const hamburger = document.querySelector(".hamburger");
+if(hamburger?.onclick)
+hamburger.onclick = (x) => {
   if (!openFlag) {
     menu.classList.add("opened");
     openFlag = !openFlag;
     document.body.classList.add("no-scroll");
   }
 };
+const closedMenu = document.querySelector(".menu + .close");
+if (closedMenu?.onclick)
 document.querySelector(".menu + .close").onclick = (x) => {
   menu.classList.remove("opened");
   openFlag = !openFlag;

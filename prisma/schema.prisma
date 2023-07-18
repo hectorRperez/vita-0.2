@@ -77,8 +77,8 @@ model Post {
   userId     String   @db.Uuid
   title      String
   content    String   @db.Text
-  image      String
-  created_at DateTime
+  image      String?
+  created_at DateTime @default(now())
   createdBy  User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 

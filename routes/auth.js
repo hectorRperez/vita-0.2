@@ -1,18 +1,25 @@
 const router = require("express").Router();
 const passport = require("passport");
 const SignupController = require("../controllers/Signup");
+const prisma = require("../config/database");
+const UserType = require("@prisma/client").UserType;
 // ruta que muestra el formulario de login
 router.get("/login", (req, res) => {
-  res.render("login.ejs");
+  if(req.user?.type == "ADMIN") return res.redirect("/dashboard");
+  if(req.user) return res.redirect("/shop");
+  return res.render("login.ejs");
 });
 
 // ruta que se encarga de iniciar sesion
 router.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
+  passport.authenticate("local"),
   function (req, res) {
-    if (req.user.type === "ADMIN") return res.redirect("/dashboard");
-    else return res.redirect("/shop");
+    console.log(req.body);
+    return res.json({
+      user: req.user,
+      redirect: req.user.type == UserType.ADMIN ? "/dashboard": "/shop",
+    });
   }
 );
 

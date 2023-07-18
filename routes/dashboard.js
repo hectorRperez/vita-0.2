@@ -4,6 +4,7 @@ const prisma = require("../config/database");
 const router = require("express").Router();
 const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
+const postSchema = require("../schemas/post");
 
 router.use(isAdmin);
 
@@ -79,6 +80,42 @@ router.get("/products", async (req, res) => {
   }
 });
 
+router.get("/posts", async (req, res) => {
+  try {
+    const posts = await prisma.post.findMany();
+    const car = await getShopcart(req);
+    res.render("dashboard/posts", {
+      posts,
+      user: req.user,
+      car,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+router.post("/posts", async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.user);
+    const postData = await postSchema.validateAsync(req.body,
+      { allowUnknown: true,
+        stripUnknown: true
+      });
+    const post  = await prisma.post.create({
+      data: {
+        ...postData,
+        userId: req.user.id,
+      }
+    });
+    return res.json({
+      data: post,
+      message: "Sucessfully created post",
+      status: 200,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
 router.post("/products", upload.array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;

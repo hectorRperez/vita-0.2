@@ -58,6 +58,11 @@ for (let form of forms) {
         let inputValue = form.elements[i].value;
         if (inputName) formData.push([inputName, inputValue]);
       }
+      const summernoteElement = $('#summernote');
+      if( summernoteElement && summernoteElement.summernote ){
+        const summernote = summernoteElement.summernote("code");
+        formData.push(["content",summernote]);
+      }
       formData = Object.fromEntries(formData);
     }
 
@@ -69,14 +74,16 @@ for (let form of forms) {
           "Content-Type": "application/json",
         },
       }),
-      body: JSON.stringify(formData),
+      body: json ?  JSON.stringify(formData) : formData,
+      redirect: "follow",
     })
       .then(async (response) => {
         if (response.ok) {
           console.log(response);
           const jsonData = await response.json();
-          Swal.fire("Success!", jsonData.message, "success");
-          //  window.location.href = response.url;
+          await Swal.fire("Success!", jsonData.message, "success");
+          if(jsonData?.redirect)window.location.href = jsonData.redirect;
+          else window.location.reload();
         } else {
           // Si hay algún error, mostrar un mensaje
           Swal.fire({

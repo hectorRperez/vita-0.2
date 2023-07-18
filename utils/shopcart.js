@@ -11,7 +11,11 @@ const getShopcart = async (req) => {
         include: {
           items: {
             include: {
-              product: true,
+              product: {
+                include:{
+                  images: true,
+                },
+              },
             },
           },
         },
@@ -22,7 +26,11 @@ const getShopcart = async (req) => {
         include: {
           items: {
             include: {
-              product: true,
+              product: {
+                include:{
+                  images: true,
+                },
+              },
             },
           },
         },
@@ -36,7 +44,11 @@ const getShopcart = async (req) => {
       include: {
         items: {
           include: {
-            product: true,
+            product: {
+              include:{
+                images: true,
+              },
+            },
           },
         },
       },
@@ -48,12 +60,17 @@ const getShopcart = async (req) => {
         include: {
           items: {
             include: {
-              product: true,
+              product: {
+                include:{
+                  images: true,
+                },
+              },
             },
           },
         },
       });
   }
+  console.log(JSON.stringify(shopcart));
   return shopcart;
 };
 

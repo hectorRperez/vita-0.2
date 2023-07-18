@@ -17,13 +17,22 @@ module.exports = (passport) => {
             email: req.body.email,
           },
         });
+        console.log(req.body);
         if (!user) {
-          return done("El usuario no existe", false);
+          return done("The user does not exist!", false);
         }
-        if (!bcrypt.compareSync(req.body.password, user.password)) {
-          return done("La contraseña no coincide", false);
+        try {	
+          const match = await bcrypt.compareSync(req.body.password, user.password);
+          if (match) {
+            return done(null, user);
+          } else {
+            return done("null");
+          }
+        } catch (e) {
+        
+          return done(e);
         }
-        done(null, user);
+        
       }
     )
   );
