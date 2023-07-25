@@ -35,8 +35,17 @@
   font-size: 30px;
 }
 
+.section__col-2__content h2 span{
+  font-weight: 100;
+}
+
 .section__col-2__content p {
   margin: 15px 5px;
+  font-size: 30px;
+}
+
+.section__col-2__content p strong{
+  font-weight: bold;
 }
 
 .section__col-2-price {
@@ -50,6 +59,14 @@
 }
 .section__col-2 form > * {
   margin: 2px 10px;
+}
+
+.key__benefits{
+  font-size: 18px;
+}
+
+.howToUse__content{
+  font-size: 18px !important;
 }
 
 .section__col-2-btn {
