@@ -810,6 +810,7 @@ Submenu
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgb(48, 47, 47);
   transition: all 0.5s;
+  height: 250px;
 }
 
 .single-blog:hover img {
