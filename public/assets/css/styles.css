@@ -810,6 +810,7 @@ Submenu
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgb(48, 47, 47);
   transition: all 0.5s;
+  height: 250px;
 }
 
 .single-blog:hover img {
@@ -1021,3 +1022,101 @@ ul {
 /* ESTA SECCION AUN APLICA PARA LAS VISTAS DE SERUM */
 /* ARREGLAR ESO */
 /* -------- SINGLE PRODUCT DETAILS -------------- */
+
+.jw-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  overflow: auto;
+}
+
+.jw-modal.open {
+  display: block;
+}
+
+.jw-modal-body {
+  width: 40%;
+  padding: 20px;
+  background: #eecdcd;
+  border-radius: 10px;
+  margin: auto;
+}
+
+body.jw-modal-open {
+  /* body overflow is hidden to hide main scrollbar when modal window is open */
+  overflow: hidden;
+}
+
+.header__modal{
+  display: flex;
+  justify-content: center;
+}
+
+.header__modal_title{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.body__modal{
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.body__modal_subtitle{
+  font-weight: bold;
+  color: #4b4848;
+}
+
+.body__modal_title{
+  font-size: 60px;
+  color: #4b4848;
+  font-weight: bold;
+}
+
+.body__modal_content{
+  text-align: center;
+  color: #616161;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.modal__form{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.modal__form input{
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  width: 180px;
+  outline: none;
+}
+
+.modal__form input::placeholder{
+  text-align: center;
+}
+
+.modal__form_btn{
+  background: transparent;
+  border: 1px solid rgba(112, 111, 111, 0.438);
+  padding: 5px;
+}
+
+.moda__btn_close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  font-size: 18px;
+  border: none;
+  color: #222;
+}

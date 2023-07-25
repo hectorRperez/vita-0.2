@@ -1,451 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include('partials/head.ejs'); %>
-	</head>
 
-	<body>
-		<div id="preloader"></div>
+<head>
+  <%- include('partials/head.ejs'); %>
+</head>
 
-		<!--  ------------------ PROMO ------------------ -->
-		<div class="promo">
-			<span>
-				<a href="#">
-					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
-				</a></span
-			>
-			<span>Get 30% OFF This Christmas Holidays</span>
-			<span>
-				<ul class="media_social">
-					<li>
-						<a href="#"><i class="fab fa-facebook-square"></i></a>
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</li>
-				</ul>
-			</span>
-		</div>
+<body>
+  <div id="preloader"></div>
 
-		<!-- ------------------ HEADER ------------------------ -->
-		<div class="header">
-			<%- include('partials/header.ejs', {account: user?.name ?? "", car }); %>
-		</div>
-		<!-- ------------------ End Header ------------------------ -->
+  <!--  ------------------ PROMO ------------------ -->
+  <div class="promo">
+    <span>
+      <a href="#">
+        <i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+      </a></span>
+    <span>Get 30% OFF This Christmas Holidays</span>
+    <span>
+      <ul class="media_social">
+        <li>
+          <a href="#"><i class="fab fa-facebook-square"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </li>
+      </ul>
+    </span>
+  </div>
 
-		<!-- -------------- Main ---------------->
-		<main>
-			<!-- Hero -->
-			<section class="hero">
-				<div class="glide" id="glide1">
-					<div class="glide__track" data-glide-el="track">
-						<ul class="glide__slides glide__hero">
-							<li class="glide__slide">
-								<div
-									class="
+  <!-- ------------------ HEADER ------------------------ -->
+  <div class="header">
+    <%- include('partials/header.ejs', {account: user?.name ?? "" , car }); %>
+  </div>
+  <!-- ------------------ End Header ------------------------ -->
+
+  <!-- -------------- Main ---------------->
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="glide" id="glide1">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides glide__hero">
+            <li class="glide__slide">
+              <div class="
 										banner
 										animate__animated animate__fadeInUp
-									"
-								>
-									<div class="banner-content">
-										<h1 class="firts_title">
-											DISCOVER OUR NEW SKIN
-										</h1>
-										<h1 class="firts_title">
-											CARE PRODUCTS
-										</h1>
-										<h3>Healthy skin start here</h3>
-										<div class="buttons-group">
-											<button>SHOP NOW</button>
-										</div>
-									</div>
-									<img
-										src="./img/banner_07.jpg"
-										class="special_01"
-										alt=""
-									/>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-		</main>
+									">
+                <div class="banner-content">
+                  <h1 class="firts_title">
+                    DISCOVER OUR NEW SKIN
+                  </h1>
+                  <h1 class="firts_title">
+                    CARE PRODUCTS
+                  </h1>
+                  <h3>Healthy skin start here</h3>
+                  <div class="buttons-group">
+                    <button>SHOP NOW</button>
+                  </div>
+                </div>
+                <img src="./img/banner_07.jpg" class="special_01" alt="" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-		<!-- Glidejs -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
+  <!-- Glidejs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
 
-		<!-- ----------- Sección de productos ------------- -->
-		<section class="section section-scroll">
-			<div class="product-center container">
-				<% for(let i=0; i < products.length; i++) { %>
-				<!-- Producto # <%= i + 1 %> -->
-					<a href = "<%= '/shop/' + products[i].id %>">
-						<div class="product">
-							<div class="img-cover">
-								<img src="<%= products[i]?.image?.image %>" alt="no image" />
-							</div>
-							<p><%= products[i].name %></p>
-							<div class="rating">
-								<% for(var j=0; j < products[i].assessment; j++) { %>
-									<i class="bx bxs-star"></i>
-								<% } %>
-							</div>
-							<div class="price">$<%= products[i].price %></div>
-						</div>
-					</a>
-				<% } %>
-			</div>
-		</section>
+  <!-- ----------- Sección de productos ------------- -->
+  <section class="section section-scroll">
+    <div class="product-center container">
+      <% for(let i=0; i < products.length; i++) { %>
+        <!-- Producto # <%= i + 1 %> -->
+        <a href="<%= '/shop/' + products[i].id %>">
+          <div class="product">
+            <div class="img-cover">
+              <img src="<%= products[i]?.image?.image %>" alt="no image" />
+            </div>
+            <p>
+              <%= products[i].name %>
+            </p>
+            <div class="rating">
+              <% for(var j=0; j < products[i].assessment; j++) { %>
+                <i class="bx bxs-star"></i>
+                <% } %>
+            </div>
+            <div class="price">$<%= products[i].price %>
+            </div>
+          </div>
+        </a>
+        <% } %>
+    </div>
+  </section>
 
-		<!-- ----------- Sección About Us------------- -->
-		<section class="section section-scroll">
-			<div class="title">
-				<h1>About us</h1>
-				<div>
-					<header class="header-container header-history">
-						<!-- - HISTORY ABOUT VITAHEALTHC - -->
-						<h2 class="title-back">Vita Health Center History</h2>
-						<hr />
-					</header>
-					<div class="title-paragraph paragraph-left">
-						<p>
-							Vita Health Center was born as a result of the love,
-							dedication, perseverance of a Venezuela woman who
-							came to this country, the United States, with a
-							focus and determination to study and train in the
-							area of acupuncture and thus be able to provide
-							knowledge in such a beautiful profession. Vita
-							Health Center is a clinical center created to
-							provide healing therapies through acupuncture and
-							traditional Chinese medicine. Vita is focused on
-							facial rejuvenation, fertility, neuro acupunture,
-							sports acupuncture, orthopedic acupuncture, and body
-							care. All oriented to integral well-being. Join me
-							to live this dream today.
-						</p>
-						<ul>
-							<li>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Eveniet ducimus numquam
-								dignissimos et tenetur delectus quisquam quaerat
-								facilis, eum, cum non aliquid ipsa dolor totam
-								provident deserunt, molestiae repellendus,
-								iusto.
-							</li>
-						</ul>
-					</div>
+  <!-- ----------- Sección About Us------------- -->
+  <section class="section section-scroll">
+    <div class="title">
+      <h1>About us</h1>
+      <div>
+        <header class="header-container header-history">
+          <!-- - HISTORY ABOUT VITAHEALTHC - -->
+          <h2 class="title-back">Vita Health Center History</h2>
+          <hr />
+        </header>
+        <div class="title-paragraph paragraph-left">
+          <p>
+            Vita Health Center was born as a result of the love,
+            dedication, perseverance of a Venezuela woman who
+            came to this country, the United States, with a
+            focus and determination to study and train in the
+            area of acupuncture and thus be able to provide
+            knowledge in such a beautiful profession. Vita
+            Health Center is a clinical center created to
+            provide healing therapies through acupuncture and
+            traditional Chinese medicine. Vita is focused on
+            facial rejuvenation, fertility, neuro acupunture,
+            sports acupuncture, orthopedic acupuncture, and body
+            care. All oriented to integral well-being. Join me
+            to live this dream today.
+          </p>
+          <ul>
+            <li>
+              Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eveniet ducimus numquam
+              dignissimos et tenetur delectus quisquam quaerat
+              facilis, eum, cum non aliquid ipsa dolor totam
+              provident deserunt, molestiae repellendus,
+              iusto.
+            </li>
+          </ul>
+        </div>
 
-					<p class="firma">Karla Andreina Colmenarez Angulo</p>
+        <p class="firma">Karla Andreina Colmenarez Angulo</p>
 
-					<header class="header-container">
-						<!-- - MISSION - -->
-						<h2 class="title-back">Mission</h2>
-						<hr />
-					</header>
-					<p class="title-paragraph">
-						Vita Health Center is an Acupuncture Clinic that
-						provides excellent service to our community. We want to
-						help our community to use alternative medicine to
-						prevent or treat health conditions by using different
-						techniques such as needle, moxa, cupping, gua sha,
-						electroacupuncture and others. Our specializations are
-						facial acupuncture, rejuvenation acupuncture, neuro
-						acupuncture, sport & orthopedic acupuncture, fertility,
-						and massage therapy. Our clinic is proud of Vita
-						skincare products because we want to make sure we can
-						give our clients vegan and organic skincare products and
-						better cosmetic acupuncture results.
-					</p>
+        <header class="header-container">
+          <!-- - MISSION - -->
+          <h2 class="title-back">Mission</h2>
+          <hr />
+        </header>
+        <p class="title-paragraph">
+          Vita Health Center is an Acupuncture Clinic that
+          provides excellent service to our community. We want to
+          help our community to use alternative medicine to
+          prevent or treat health conditions by using different
+          techniques such as needle, moxa, cupping, gua sha,
+          electroacupuncture and others. Our specializations are
+          facial acupuncture, rejuvenation acupuncture, neuro
+          acupuncture, sport & orthopedic acupuncture, fertility,
+          and massage therapy. Our clinic is proud of Vita
+          skincare products because we want to make sure we can
+          give our clients vegan and organic skincare products and
+          better cosmetic acupuncture results.
+        </p>
 
-					<header class="header-container">
-						<!-- - VISION - -->
-						<h2 class="title-back">Vision</h2>
-						<hr />
-					</header>
-					<p class="title-paragraph">
-						We strive to work with the community to improve the
-						lives of our patients and their families. We provide
-						Acupuncturist and Oriental Medicine expertise to our
-						community as well as other health professionals. We work
-						professionally with our referring Doctors and
-						Acupuncturist to help as needed. We work with
-						conventional doctors and incorporate western medical
-						practices to ensure the best outcome for our patients.
-						We use primarily Vita Skincare products. We support the
-						use of these products as well as provide professional
-						advice on how to use the products successfully
-					</p>
-				</div>
-			</div>
-		</section>
+        <header class="header-container">
+          <!-- - VISION - -->
+          <h2 class="title-back">Vision</h2>
+          <hr />
+        </header>
+        <p class="title-paragraph">
+          We strive to work with the community to improve the
+          lives of our patients and their families. We provide
+          Acupuncturist and Oriental Medicine expertise to our
+          community as well as other health professionals. We work
+          professionally with our referring Doctors and
+          Acupuncturist to help as needed. We work with
+          conventional doctors and incorporate western medical
+          practices to ensure the best outcome for our patients.
+          We use primarily Vita Skincare products. We support the
+          use of these products as well as provide professional
+          advice on how to use the products successfully
+        </p>
+      </div>
+    </div>
+  </section>
 
-		<!-- ---------------------- -->
-		<!-- Seccion OUR SERVICES -->
+  <!-- ---------------------- -->
+  <!-- Seccion OUR SERVICES -->
 
-		<section class="section services-container section-scroll">
-			<div class="title">
-				<h1>Our Services</h1>
-				<div>
-					<header class="header-container">
-						<h2 class="title-back">
-							Better Felling-Better Healing
-						</h2>
-						<hr />
-					</header>
-				</div>
-			</div>
-			<div>
-				<nav class="services">
-					<!-- Service 1 -->
-					<figure class="service-btn service1 active">
-						<img src="./img/Facial.jpg" alt="" />
-						<h3>Facial Acupuncture</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
+  <section class="section services-container section-scroll">
+    <div class="title">
+      <h1>Our Services</h1>
+      <div>
+        <header class="header-container">
+          <h2 class="title-back">
+            Better Felling-Better Healing
+          </h2>
+          <hr />
+        </header>
+      </div>
+    </div>
+    <div>
+      <nav class="services">
+        <!-- Service 1 -->
+        <figure class="service-btn service1 active">
+          <img src="./img/Facial.jpg" alt="" />
+          <h3>Facial Acupuncture</h3>
+          <i class="fas fa-sort-down"></i>
+        </figure>
 
-					<!-- Service 2 -->
-					<figure class="service-btn service2">
-						<img src="./img/Neuro.jpg" alt="" />
-						<h3>Neuro Acupuncture</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
+        <!-- Service 2 -->
+        <figure class="service-btn service2">
+          <img src="./img/Neuro.jpg" alt="" />
+          <h3>Neuro Acupuncture</h3>
+          <i class="fas fa-sort-down"></i>
+        </figure>
 
-					<!-- Service 3 -->
-					<figure class="service-btn service3">
-						<img src="./img/Sport & Orthopedic.jpg" alt="" />
-						<h3>Sport & Orthopedic Acupuncture</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
+        <!-- Service 3 -->
+        <figure class="service-btn service3">
+          <img src="./img/Sport & Orthopedic.jpg" alt="" />
+          <h3>Sport & Orthopedic Acupuncture</h3>
+          <i class="fas fa-sort-down"></i>
+        </figure>
 
-					<!-- Service 4 -->
-					<figure class="service-btn service4">
-						<img src="./img/Fertility.jpg" alt="" />
-						<h3>Fertility</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
+        <!-- Service 4 -->
+        <figure class="service-btn service4">
+          <img src="./img/Fertility.jpg" alt="" />
+          <h3>Fertility</h3>
+          <i class="fas fa-sort-down"></i>
+        </figure>
 
-					<!-- Service 5 -->
-					<figure class="service-btn service5">
-						<img src="./img/Masagge.jpg" alt="" />
-						<h3>Massage Therapy</h3>
-						<i class="fas fa-sort-down"></i>
-					</figure>
-				</nav>
+        <!-- Service 5 -->
+        <figure class="service-btn service5">
+          <img src="./img/Masagge.jpg" alt="" />
+          <h3>Massage Therapy</h3>
+          <i class="fas fa-sort-down"></i>
+        </figure>
+      </nav>
 
-				<div class="services-desc">
-					<!-- Services 1 -->
-					<article
-						class="
+      <div class="services-desc">
+        <!-- Services 1 -->
+        <article class="
 							service1-desc
 							animate__animated animate__slideInLeft
-						"
-						style="display: block"
-					>
-						<img
-							src="./img/FACIAL & REJUVENATION ACUPUNCTURE.jpg"
-							alt=""
-						/>
-					</article>
+						" style="display: block">
+          <img src="./img/FACIAL & REJUVENATION ACUPUNCTURE.jpg" alt="" />
+        </article>
 
-					<!-- Services 2 -->
-					<article
-						class="
+        <!-- Services 2 -->
+        <article class="
 							service2-desc
 							animate__animated animate__slideInLeft
-						"
-					>
-						<img src="./img/Neuro Acupuncture.jpg" alt="" />
-					</article>
+						">
+          <img src="./img/Neuro Acupuncture.jpg" alt="" />
+        </article>
 
-					<!-- Services 3 -->
-					<article
-						class="
+        <!-- Services 3 -->
+        <article class="
 							service3-desc
 							animate__animated animate__slideInLeft
-						"
-					>
-						<img
-							src="./img/SPORT & ORTHOPEDIC ACUPUNCTURE.jpg"
-							alt=""
-						/>
-					</article>
+						">
+          <img src="./img/SPORT & ORTHOPEDIC ACUPUNCTURE.jpg" alt="" />
+        </article>
 
-					<!-- Services 4 -->
-					<article
-						class="
+        <!-- Services 4 -->
+        <article class="
 							service4-desc
 							animate__animated animate__slideInLeft
-						"
-					>
-						<img src="./img/Fertility-plantilla.jpg" alt="" />
-					</article>
+						">
+          <img src="./img/Fertility-plantilla.jpg" alt="" />
+        </article>
 
-					<!-- Services 5 -->
-					<article
-						class="
+        <!-- Services 5 -->
+        <article class="
 							service5-desc
 							animate__animated animate__slideInLeft
-						"
-					>
-						<img src="./img/Massage Therapy.jpg" alt="" />
-					</article>
-				</div>
-			</div>
-		</section>
+						">
+          <img src="./img/Massage Therapy.jpg" alt="" />
+        </article>
+      </div>
+    </div>
+  </section>
 
-		<!-- ----------- Sección TESTIMONIALS ------------- -->
-		<section class="section section-scroll">
-			<div class="title">
-				<h1>Testimonials</h1>
-				<div>
-					<header class="header-container">
-						<h2 class="title-back">Clients</h2>
-						<hr />
-					</header>
-				</div>
-			</div>
-			<div class="container-testimonials">
-				<div class="slider">
-					<!-- Cliente #1 -->
-					<div class="slide active">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Inventore rem quam veritatis amet sed alias ab
-							aliquam harum accusamus blanditiis sunt nulla,
-							perferendis ad fugiat dolore eum tempore? Aliquam,
-							qui.
-						</p>
-						<div class="client-info">
-							<h3>Golge Gam</h3>
-							<span>CEO at Google</span>
-						</div>
-					</div>
+  <!-- ----------- Sección TESTIMONIALS ------------- -->
+  <section class="section section-scroll">
+    <div class="title">
+      <h1>Testimonials</h1>
+      <div>
+        <header class="header-container">
+          <h2 class="title-back">Clients</h2>
+          <hr />
+        </header>
+      </div>
+    </div>
+    <div class="container-testimonials">
+      <div class="slider">
+        <!-- Cliente #1 -->
+        <div class="slide active">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Inventore rem quam veritatis amet sed alias ab
+            aliquam harum accusamus blanditiis sunt nulla,
+            perferendis ad fugiat dolore eum tempore? Aliquam,
+            qui.
+          </p>
+          <div class="client-info">
+            <h3>Golge Gam</h3>
+            <span>CEO at Google</span>
+          </div>
+        </div>
 
-					<!-- Cliente #2 -->
-					<div class="slide">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Inventore rem quam veritatis amet sed alias ab
-							aliquam harum accusamus blanditiis sunt nulla,
-							perferendis ad fugiat dolore eum tempore? Aliquam,
-							qui.
-						</p>
-						<div class="client-info">
-							<h3>Kylie Jenner</h3>
-							<span>Empresaria</span>
-						</div>
-					</div>
+        <!-- Cliente #2 -->
+        <div class="slide">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Inventore rem quam veritatis amet sed alias ab
+            aliquam harum accusamus blanditiis sunt nulla,
+            perferendis ad fugiat dolore eum tempore? Aliquam,
+            qui.
+          </p>
+          <div class="client-info">
+            <h3>Kylie Jenner</h3>
+            <span>Empresaria</span>
+          </div>
+        </div>
 
-					<!-- Cliente #3 -->
-					<div class="slide">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Inventore rem quam veritatis amet sed alias ab
-							aliquam harum accusamus blanditiis sunt nulla,
-							perferendis ad fugiat dolore eum tempore? Aliquam,
-							qui.
-						</p>
-						<div class="client-info">
-							<h3>Carolina Herrera</h3>
-							<span>Diseñadora de moda</span>
-						</div>
-					</div>
-				</div>
+        <!-- Cliente #3 -->
+        <div class="slide">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Inventore rem quam veritatis amet sed alias ab
+            aliquam harum accusamus blanditiis sunt nulla,
+            perferendis ad fugiat dolore eum tempore? Aliquam,
+            qui.
+          </p>
+          <div class="client-info">
+            <h3>Carolina Herrera</h3>
+            <span>Diseñadora de moda</span>
+          </div>
+        </div>
+      </div>
 
-				<div class="slider-indicator">
-					<img
-						src="./img/client-01.png"
-						class="active"
-						alt=""
-						data-id="0"
-					/>
-					<img src="./img/client-04.png" alt="" data-id="1" />
-					<img src="./img/client-05.png" alt="" data-id="2" />
-				</div>
-			</div>
-		</section>
+      <div class="slider-indicator">
+        <img src="./img/client-01.png" class="active" alt="" data-id="0" />
+        <img src="./img/client-04.png" alt="" data-id="1" />
+        <img src="./img/client-05.png" alt="" data-id="2" />
+      </div>
+    </div>
+  </section>
 
-		<!-- ------------------------  LATEST BLOGS ------------------------  -->
-		<section class="section section-scroll">
-			<div class="title">
-				<h1>Blog</h1>
-				<div>
-					<header class="header-container">
-						<h2 class="title-back">Latest Articles</h2>
-						<hr />
-					</header>
-				</div>
-			</div>
-		</section>
+  <!-- ------------------------  LATEST BLOGS ------------------------  -->
+  <section class="section section-scroll">
+    <div class="title">
+      <h1>Blog</h1>
+      <div>
+        <header class="header-container">
+          <h2 class="title-back">Latest Articles</h2>
+          <hr />
+        </header>
+      </div>
+    </div>
+  </section>
 
-		<section class="section-blog">
-			<div class="container-blog">
-				<main class="main-blog">
-					<!-- Blog 1 -->
-					<div class="single-blog">
-						<img src="./img/blog_1.jpeg" class="img-blog" alt="" />
-						<div class="blog-content">
-							<h3>
-								Driven by a constant need to do better
-								<span>Vita Style</span>
-							</h3>
-							<p>
-								By <a href="#"></a> Hector Perez |
-								<a href="#"></a> Nov 21, 2018
-							</p>
-							<a href="/blog" class="btn">Read More</a>
-						</div>
-					</div>
+  <section class="section-blog">
+    <div class="container-blog">
+      <main class="main-blog">
+        <!-- Blog 1 -->
+        <div class="single-blog">
+          <img src="./img/blog_1.jpeg" class="img-blog" alt="" />
+          <div class="blog-content">
+            <h3>
+              Driven by a constant need to do better
+              <span>Vita Style</span>
+            </h3>
+            <p>
+              By <a href="#"></a> Hector Perez |
+              <a href="#"></a> Nov 21, 2018
+            </p>
+            <a href="/blog" class="btn">Read More</a>
+          </div>
+        </div>
 
-					<!-- Blog 2 -->
-					<div class="single-blog">
-						<img src="./img/blog_2.jpeg" class="img-blog" alt="" />
-						<div class="blog-content">
-							<h3>
-								We're changing the game <span>Vita Style</span>
-							</h3>
-							<p>
-								By <a href="#"></a> Hector Perez |
-								<a href="#"></a> Nov 21, 2018
-							</p>
-							<a href="/blog" class="btn">Read More</a>
-						</div>
-					</div>
+        <!-- Blog 2 -->
+        <div class="single-blog">
+          <img src="./img/blog_2.jpeg" class="img-blog" alt="" />
+          <div class="blog-content">
+            <h3>
+              We're changing the game <span>Vita Style</span>
+            </h3>
+            <p>
+              By <a href="#"></a> Hector Perez |
+              <a href="#"></a> Nov 21, 2018
+            </p>
+            <a href="/blog" class="btn">Read More</a>
+          </div>
+        </div>
 
-					<!-- Blog 3 -->
-					<div class="single-blog">
-						<img src="./img/blog_3.jpeg" class="img-blog" alt="" />
-						<div class="blog-content">
-							<h3>A chair of Million <span>Vita Style</span></h3>
-							<p>
-								By <a href="#"></a> Hector Perez |
-								<a href="#"></a> Nov 21, 2018
-							</p>
-							<a href="/blog" class="btn">Read More</a>
-						</div>
-					</div>
+        <!-- Blog 3 -->
+        <div class="single-blog">
+          <img src="./img/blog_3.jpeg" class="img-blog" alt="" />
+          <div class="blog-content">
+            <h3>A chair of Million <span>Vita Style</span></h3>
+            <p>
+              By <a href="#"></a> Hector Perez |
+              <a href="#"></a> Nov 21, 2018
+            </p>
+            <a href="/blog" class="btn">Read More</a>
+          </div>
+        </div>
 
-					<!-- Blog 4 -->
-					<div class="single-blog">
-						<img src="./img/blog_4.jpeg" class="img-blog" alt="" />
-						<div class="blog-content">
-							<h3>A chair of Million <span>Art</span></h3>
-							<p>
-								By <a href="#"></a> Hector Perez |
-								<a href="#"></a> Nov 21, 2018
-							</p>
-							<a href="/blog" class="btn">Read More</a>
-						</div>
-					</div>
-				</main>
-			</div>
-		</section>
+        <!-- Blog 4 -->
+        <div class="single-blog">
+          <img src="./img/blog_4.jpeg" class="img-blog" alt="" />
+          <div class="blog-content">
+            <h3>A chair of Million <span>Art</span></h3>
+            <p>
+              By <a href="#"></a> Hector Perez |
+              <a href="#"></a> Nov 21, 2018
+            </p>
+            <a href="/blog" class="btn">Read More</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
 
-		<!-- ------------------------  60 Day Guarantee ------------------------  -->
-		<!-- <section class="section">
+  <!-- ------------------------  60 Day Guarantee ------------------------  -->
+  <!-- <section class="section">
         <div class="title">
             <header class="header-container"> -->
-		<!-- - MISSION - -->
-		<!-- <h2 class="title-back">60 Day Guarantee</h2>
+  <!-- - MISSION - -->
+  <!-- <h2 class="title-back">60 Day Guarantee</h2>
                 <hr>
             </header>
             <p class="title-paragraph">If you are not 100% happy with our products or service, then we aren’t either. We
@@ -456,82 +431,115 @@
 
     </section> -->
 
-		<!-- ------------------------  Footer ------------------------  -->
-		<div class="footer">
-			<div class="container-footer">
-				<div class="row-footer">
-					<div class="footer-col-3">
-						<a href="/">
-							<h3>Vita Health Center</h3>
-						</a>
-						<ul>
-							<li>
-								<a href="/faq">FAQ</a>
-							</li>
-							<li>
-								<a href="/blog">Blogs Post</a>
-							</li>
-							<li>My Account</li>
-							<li>
-								<a href="/contact">Contact us</a>
-							</li>
-							<li>
-								<a href="/privacy_policies"
-									>Terms of Use — Privacy Policy</a
-								>
-							</li>
-						</ul>
-					</div>
+  <!-- ------------------------  Footer ------------------------  -->
+  <div class="footer">
+    <div class="container-footer">
+      <div class="row-footer">
+        <div class="footer-col-3">
+          <a href="/">
+            <h3>Vita Health Center</h3>
+          </a>
+          <ul>
+            <li>
+              <a href="/faq">FAQ</a>
+            </li>
+            <li>
+              <a href="/blog">Blogs Post</a>
+            </li>
+            <li>My Account</li>
+            <li>
+              <a href="/contact">Contact us</a>
+            </li>
+            <li>
+              <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
 
-					<div class="footer-col-2">
-						<a href="/">
-							<img src="./img/1.png" />
-						</a>
-					</div>
+        <div class="footer-col-2">
+          <a href="/">
+            <img src="./img/1.png" />
+          </a>
+        </div>
 
-					<div class="footer-col-3">
-						<a href="/skincare">
-							<h3>Vita Skincare</h3>
-						</a>
-						<ul>
-							<li class="li-footer"></li>
-							<li>
-								<a href="/blog">Blogs Post</a>
-							</li>
-							<li>My Account</li>
-							<li>instructions</li>
-							<li>
-								<a href="/returns_exchanges">Return Policy</a>
-							</li>
-							<li>
-								<a href="/privacy_policies"
-									>Terms of Use — Privacy Policy</a
-								>
-							</li>
-						</ul>
-					</div>
-					<div class="footer-col-4">
-						<h3>Follow us</h3>
-						<ul>
-							<li>Facebook</li>
-							<li>
-								<a
-									href="https://www.instagram.com/vitahealthc/"
-									target="_blank"
-									>Instagram</a
-								>
-							</li>
-							<li>Pinterest</li>
-						</ul>
-					</div>
-				</div>
-				<hr />
-				<p class="copyright">Copyright 2021 - Vita Inc</p>
-			</div>
-		</div>
+        <div class="footer-col-3">
+          <a href="/skincare">
+            <h3>Vita Skincare</h3>
+          </a>
+          <ul>
+            <li class="li-footer"></li>
+            <li>
+              <a href="/blog">Blogs Post</a>
+            </li>
+            <li>My Account</li>
+            <li>instructions</li>
+            <li>
+              <a href="/returns_exchanges">Return Policy</a>
+            </li>
+            <li>
+              <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow us</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>
+              <a href="https://www.instagram.com/vitahealthc/" target="_blank">Instagram</a>
+            </li>
+            <li>Pinterest</li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <p class="copyright">Copyright 2021 - Vita Inc</p>
+    </div>
+  </div>
 
-		<!-- Scripts-->
-		<script src="https://unpkg.com/scrollreveal"></script>
-		<%- include('partials/script.ejs'); %>
-	</body>
+  <div id="modal-1" class="jw-modal">
+    <div class="jw-modal-body animate__animated animate__fadeInDown">
+      <div class="header__modal">
+        <h2 class="header__modal_title">Vita Skincare</h2>
+      </div>
+      <div class="body__modal">
+        <h3 class="body__modal_subtitle">ENJOY</h3>
+        <h1 class="body__modal_title">15% OFF</h1>
+        <p class="body__modal_content">WHEN YOU SPEND $40 OR MORE FOR NEW SUBSCRIBERS ONLY WHEN SUBSCRIBERS WITH EMAIL
+        </p>
+        <form class="modal__form">
+          <input placeholder="email address" type="text">
+          <button class="modal__form_btn">Continue</button>
+        </form>
+        <p>By providing my email address, I expressly consent to be contacted through email with marketing
+          communications (including exclusive update on products and new products and offers) about Vita Skincare</p>
+      </div>
+      <button class="moda__btn_close" onclick="closeModal()">X</button>
+    </div>
+  </div>
+
+  <!-- Scripts-->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.classList.add('jw-modal-open');
+    }
+
+    window.addEventListener('load', function () {
+      // close modals on background click
+      setTimeout(() => {
+        openModal("modal-1")
+      }, 4000);
+    });
+
+    // close currently open modal
+    function closeModal() {
+      document.querySelector('.jw-modal.open').classList.remove('open');
+      document.body.classList.remove('jw-modal-open');
+    }
+  </script>
+  <%- include('partials/script.ejs'); %>
+</body>
+
 </html>
