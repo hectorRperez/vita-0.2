@@ -89,6 +89,11 @@ model Product {
   price        Float
   quantity     Int
   assessment   Int                  @default(1)
+  size         String               @db.VarChar(25) @default("1.0 fl. oz/30 ml")
+  keyBenefits  String?
+  howUse       String?
+  ingredients  String?
+  caution      String?
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
   homeProducts HomeProducts[]

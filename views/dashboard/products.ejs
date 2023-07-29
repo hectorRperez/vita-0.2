@@ -35,7 +35,7 @@
         <form action="/dashboard/products" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
               <label for="description">Description:</label>
@@ -43,11 +43,15 @@
             </div>
             <div class="form-group">
               <label for="price">Price:</label>
-              <input type="number" class="form-control" id="price" name="price">
+              <input type="number" class="form-control" id="price" name="price" required>
             </div>
             <div class="form-group">
               <label for="quantity">Quantity:</label>
-              <input type="number" class="form-control" id="quantity" name="quantity">
+              <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Size:</label>
+              <input type="text" class="form-control" id="size" name="size" maxlength="25" required>
             </div>
             <div class="form-group">
               <label for="assessment">Assessment:</label>
@@ -55,7 +59,7 @@
             </div>
             <div class="form-group">
               <label for="categoryId">Category:</label>
-              <select class="form-control" id="categoryId" name="categoryId">
+              <select class="form-control" id="categoryId" name="categoryId" required>
                 <option value="">Select a category</option>
                 <% categories.forEach(category => { %>
                   <option value="<%= category.id %>"><%= category.name %></option>
@@ -64,11 +68,28 @@
             </div>
             <div class="form-group">
               <label for="image">Images:</label>
-              <input type="file" name="images" multiple />
+              <input type="file" name="images" multiple required />
+            </div>
+            <div class="form-group">
+              <label for="keyBenefits">Key Benefits:</label>
+              <textarea class="form-control" id="keyBenefits" name="keyBenefits"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="howUse">How to use:</label>
+              <textarea class="form-control" id="howUse" name="howUse"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="ingredients">Full ingredients list:</label>
+              <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="caution">Caution:</label>
+              <textarea class="form-control" id="caution" name="caution"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        <div class="card">
+        </form>
+
+        <div class="card mt-2">
           <div class="card-header">
             <h4>Products</h4>
           </div>
@@ -76,11 +97,12 @@
             <table class="table table-striped">
               <% for(var i=0; i < products.length; i++) { %>
                    <tr>
-                     <td> ID:<%= products[i].id %></td>
-                     <td> <img src="<%= products[i].image %>" width="100"></td>
-                     <td> Nombre: <%= products[i].name %></td>
-                     <td> Precio: <%= products[i].price %>$</td>
-                     <td> Cantidad: <%= products[i].quantity %></td>
+                     <td><img src="<%= products[i].image %>" width="100"></td>
+                     <td>Name: <%= products[i].name %></td>
+                     <td>Price: <%= products[i].price %>$</td>
+                     <td>Quantity: <%= products[i].quantity %></td>
+                     <td>Size: <%= products[i].size %></td>
+                     <td>Assessment: <%= products[i].assessment %></td>
                    </tr>
                    <% } %>
                 </table>

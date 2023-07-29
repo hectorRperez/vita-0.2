@@ -116,10 +116,12 @@ router.post("/posts", async (req, res) => {
     console.error(error);
   }
 });
+
+// Product
 router.post("/products", upload.array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
-  console.log("/products");
+
   try {
     const product = await prisma.product.create({
       data: {
@@ -127,24 +129,28 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
         price: parseFloat(body.price),
         description: body.description,
         quantity: parseInt(body.quantity),
+        size: body.size,
+        keyBenefits: body.keyBenefits,
+        howUse: body.howUse,
+        ingredients: body.ingredients,
+        caution: body.caution,
         categoryId: body.categoryId,
       },
     });
-    console.log(req.files);
 
     // defino las imagenes del producto
     if (files)
       for (let i = 0; i < files.length; i++) {
         let image = `/img/products/${files[i].filename}`;
-        const imageProduct = await prisma.productImages.create({
+        await prisma.productImages.create({
           data: {
             productId: product.id,
             image: image,
             isFirst: false,
           },
         });
-        console.log(imageProduct);
       }
+
     res.status(201).send({
       data: product,
       message: "Product created successfully",
@@ -156,7 +162,6 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
       status: 400,
       message: error.message,
     });
-    console.error(error);
   }
 });
 
