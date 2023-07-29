@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Category {
-  id       String    @id @default(uuid()) @db.Uuid
+  id       String             @id @default(uuid()) @db.Uuid
   name     String
+  template CategoryTemplate   @default(TEMPLATE_ONE)
   products Product[]
 }
 
@@ -152,4 +153,9 @@ enum OrderState {
   PENDING
   GENERATED
   PAID
+}
+
+enum CategoryTemplate {
+  TEMPLATE_ONE
+  TEMPLATE_TWO
 }

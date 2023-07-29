@@ -48,6 +48,7 @@ router.get("/shop/:product_id?", async (req, res) => {
       },
       include: {
         images: true,
+        category: true,
         descriptions: true,
       },
     });
@@ -86,9 +87,10 @@ router.get("/shop/:product_id?", async (req, res) => {
         image: imageR,
       };
     });
-    console.log(relatedProductsWithImages);
 
-    res.render("view_product", {
+    const template = product.category.template.toLocaleLowerCase().replace('_', '-');
+
+    res.render(`shop/${template}`, {
       user: req.user,
       product: product,
       car,
@@ -97,7 +99,6 @@ router.get("/shop/:product_id?", async (req, res) => {
       relatedProducts: relatedProductsWithImages,
     });
   } catch (error) {
-    console.error(error);
     return res.send(400);
   }
 });

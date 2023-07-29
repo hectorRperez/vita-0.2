@@ -1,0 +1,65 @@
+<%- include('template-init', { template_name: 'DERMA' }); %>
+
+<section class="section">
+  <div class="section__col-1">
+    <img src="<%= image.image %>" class="prueba_img" id="ProductImg" />
+
+    <div class="section__col-1__img">
+      <% for( const productImage of product.images ){ %>
+      <div class="section__col-1__img_small">
+        <img src="<%= productImage.image ?? "" %>" class="small-img" />
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <div class="section__col-2">
+    <div class="section__col-2__content">
+      <h2><strong>Product:</strong> <span> <%= product.name %> </span></h2>
+      <p><strong>Size:</strong> <%= product.size %></p>
+      <p class="section__col-2-price">
+        <strong>Price: </strong> $<%= product.price %>
+      </p>
+
+      <div class="section__col-2 section__col-2--flex">
+        <form action="/shopping_cart/add" method="post">
+          <input type="number" value="1" / name="quantity">
+          <input type="hidden" name="product_id" value="<%= product.id %>" />
+          <button type="submit" class="section__col-2-btn">Add to card</button>
+        </form>
+      </div>
+      <img class="section__col-2__iconos" src="/img/iconos_web.png" alt="" />
+      <!-- <p> -->
+      <!-- <%= product.description %> -->
+      <!-- </p> -->
+
+      <div class="benefits__container">
+        <h3 class="benefits__header">
+          <strong>Key Benefits:</strong>
+        </h3>
+        <ul class="key__benefits">
+          <% if (product.keyBenefits) { %> <% for (const keyBenefit of
+          product.keyBenefits.split('\n')) { %>
+          <li><%= keyBenefit %></li>
+          <% } %> <% } %>
+        </ul>
+
+        <h3 class="howToUse__header">
+          <strong>How to use:</strong>
+        </h3>
+        <p class="howToUse__content"><%= product.howUse %></p>
+
+        <h3 class="benefits__header">
+          <strong>Full Ingredient List:</strong>
+        </h3>
+        <p class="howToUse__content"><%= product.ingredients %></p>
+
+        <h3 class="benefits__header">
+          <strong>Caution:</strong>
+        </h3>
+        <p class="howToUse__content"><%= product.caution %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('template-end'); %>

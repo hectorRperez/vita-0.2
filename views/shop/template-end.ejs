@@ -1,0 +1,138 @@
+<div class="related-product">
+    <h2>Related product</h2>
+    <div class="products">
+      <ul>
+        <% for (const productR of relatedProducts){ %>
+          <li>
+            <a href="#"> <img src="<%= productR.image.image %>" alt="no image" /> </a>
+            <p>
+              <%= productR.name %>
+            </p>
+            <p>
+              <%= productR.price %>
+            </p>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+          </li>
+          <% } %>
+
+      </ul>
+    </div>
+</div>
+
+<!-- ------------------------  Footer ------------------------  -->
+<div class="footer footer-skincare">
+  <div class="container-footer">
+    <div class="row-footer">
+      <div class="footer-col-3">
+        <a href="/">
+          <h3>Vita Health Center</h3>
+        </a>
+        <ul>
+          <li>
+            <a href="/faq">FAQ</a>
+          </li>
+          <li>
+            <a href="/blog">Blogs Post</a>
+          </li>
+          <li>My Account</li>
+          <li>
+            <a href="/contact">Contact us</a>
+          </li>
+          <li>
+            <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col-2">
+        <a href="/skincare">
+          <img src="/img/logo vitaskincare arena.png" />
+        </a>
+      </div>
+
+      <div class="footer-col-3">
+        <h3>Vita Skincare</h3>
+        <ul>
+          <li class="li-footer"></li>
+          <li>
+            <a href="/blog">Blogs Post</a>
+          </li>
+          <li>My Account</li>
+          <li>instructions</li>
+          <li>
+            <a href="/returns_exchanges">Return Policy</a>
+          </li>
+          <li>
+            <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col-4">
+        <h3>Follow us</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>Pinterest</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <p class="copyright" style="color: #fff"> Copyright 2021 - Vita Inc </p>
+  </div>
+</div>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- TODO: TRABAJAR EN EL JS -->
+<script>
+  var ProductImg = document.getElementById('ProductImg');
+
+  var SmallImg = document.getElementsByClassName('small-img');
+
+  SmallImg[0].onclick = function () {
+    ProductImg.src = SmallImg[0].src;
+    console.log(ProductImg);
+  };
+
+  SmallImg[1].onclick = function () {
+    ProductImg.src = SmallImg[1].src;
+  };
+
+  SmallImg[2].onclick = function () {
+    ProductImg.src = SmallImg[2].src;
+  };
+</script>
+<script>
+  let tabPanes = document
+    .getElementsByClassName('tab-header')[0]
+    .getElementsByTagName('div');
+
+  for (let i = 0; i < tabPanes.length; i++) {
+    tabPanes[i].addEventListener('click', function () {
+      document
+        .getElementsByClassName('tab-header')[0]
+        .getElementsByClassName('active')[0]
+        .classList.remove('active');
+      tabPanes[i].classList.add('active');
+
+      document
+        .getElementsByClassName('tab-content')[0]
+        .getElementsByClassName('active')[0]
+        .classList.remove('active');
+      document
+        .getElementsByClassName('tab-content')[0]
+        .getElementsByTagName('div')
+      [i].classList.add('active');
+    });
+  }
+</script>
+<%- include('../partials/script.ejs'); %>
+</body>
+
+</html>

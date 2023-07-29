@@ -31,28 +31,38 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="card">
+        <div class="card p-2">
             <form action="/dashboard/categories" method="post">
                 <div class="form-group">
                   <label for="name">Name:</label>
-                  <input type="text" class="form-control" name="name"/>
+                  <input type="text" class="form-control" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="categoryId">Template:</label>
+                  <select class="form-control" id="template" name="template" required>
+                    <option value="">Select a template</option>
+                      <% for (let i = 0; i < templates_keys.length; i++) { %>
+                        <option value="<%= templates_keys[i] %>"><%= templates[templates_keys[i]] %></option>
+                      <% } %>
+                  </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+            </form>
         </div> 
 
-        <div class="card">
+        <div class="card mt-2">
           <div class="card-header">
             <h4>Lista</h4>
           </div>
           <div class="card-body">
-            <ul class="list-group">
-                <% for (var i = 0; i < categories.length; i++) { %>
-                  <li class="list-group-item">
-                    <%= categories[i].name %>
-                  </li>
-                <% } %>
-              </ul>
+            <table class="table table-striped">
+              <% for (let i = 0; i < categories.length; i++) { %>
+                <tr>
+                  <td>Name: <%= categories[i].name %></td>
+                  <td>Template: <%= templates[categories[i].template] %></td>
+                </tr>
+              <% } %>
+            </table>
           </div>
         </div>
       </div>
