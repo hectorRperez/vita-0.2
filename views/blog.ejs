@@ -50,7 +50,7 @@
 
 						<div class="single-blog">
 							<img
-                src="./img/day-skincare-marula-oil-vegan_480x480.jpg"
+                				src="./img/day-skincare-marula-oil-vegan_480x480.jpg"
 								class="img-blog"
 								alt=""
 							/>
@@ -59,7 +59,7 @@
 									<%= posts[i].title %><span>Vita Style</span>
 								</h3>
 								<p>
-									By <a href="#"></a> <%= posts[i].user %> | <a href="#"></a> <%= posts[i].created_at %>
+									By <a href="#"></a> <%= `${posts[i].createdBy.name} ${posts[i].createdBy.lastname}` %> | <a href="#"></a> <%= posts[i].created_at %>
 								</p>
 								<a href="#" class="btn">Read More</a>
 							</div>

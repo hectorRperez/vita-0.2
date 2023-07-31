@@ -6,7 +6,7 @@ const isAuth = require("../middleware/isAuth");
 const getShopcart = require("../utils/shopcart");
 
 // ruta inicial
-router.get("/blog", isAuth, async (req, res) => {
+router.get("/blog", async (req, res) => {
   try {
     const posts = await prisma.post.findMany({
       include: {
@@ -14,8 +14,7 @@ router.get("/blog", isAuth, async (req, res) => {
       },
     });
     const car = await getShopcart(req);
-    console.log(req.user);
-    res.render("blog.ejs", { posts: posts, user: req.user, car });
+    res.render("blog.ejs", { posts: posts, car });
   } catch (error) {
     console.error(error);
   }
