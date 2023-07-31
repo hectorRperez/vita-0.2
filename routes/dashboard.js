@@ -5,6 +5,7 @@ const router = require("express").Router();
 const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
 const postSchema = require("../schemas/post");
+const categoryTemplate = require("../enums/categoryTemplate");
 
 router.use(isAdmin);
 
@@ -19,6 +20,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Users
 router.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
@@ -29,14 +31,18 @@ router.get("/users", async (req, res) => {
   }
 });
 
+// Categories
 router.get("/categories", async (req, res) => {
   try {
     const categories = await prisma.category.findMany();
     const car = await getShopcart(req);
+
     return res.render("dashboard/categories", {
       categories: categories,
       car,
       user: req.user,
+      templates: categoryTemplate,
+      templates_keys: Object.keys(categoryTemplate)
     });
   } catch (error) {
     console.error(error);
@@ -44,11 +50,11 @@ router.get("/categories", async (req, res) => {
 });
 
 router.post("/categories", async (req, res) => {
-  console.log(req.body);
   if (req.body.name) {
     const category = await prisma.category.create({
       data: {
         name: req.body.name,
+        template: req.body.template,
       },
     });
 
@@ -58,28 +64,14 @@ router.post("/categories", async (req, res) => {
       code: 201,
     });
   }
+
   return res.status(400).send({
     message: "Bad request",
     data: req.body,
   });
 });
 
-router.get("/products", async (req, res) => {
-  try {
-    const categories = await prisma.category.findMany();
-    const products = await prisma.product.findMany();
-    const car = await getShopcart(req);
-    res.render("dashboard/products", {
-      categories,
-      products: products,
-      user: req.user,
-      car,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
+// Posts
 router.get("/posts", async (req, res) => {
   try {
     const posts = await prisma.post.findMany();
@@ -93,6 +85,7 @@ router.get("/posts", async (req, res) => {
     console.error(error);
   }
 });
+
 router.post("/posts", async (req, res) => {
   try {
     console.log(req.body);
@@ -116,10 +109,28 @@ router.post("/posts", async (req, res) => {
     console.error(error);
   }
 });
+
+// Product
+router.get("/products", async (req, res) => {
+  try {
+    const categories = await prisma.category.findMany();
+    const products = await prisma.product.findMany();
+    const car = await getShopcart(req);
+    res.render("dashboard/products", {
+      categories,
+      products: products,
+      user: req.user,
+      car,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 router.post("/products", upload.array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
-  console.log("/products");
+
   try {
     const product = await prisma.product.create({
       data: {
@@ -127,24 +138,28 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
         price: parseFloat(body.price),
         description: body.description,
         quantity: parseInt(body.quantity),
+        size: body.size,
+        keyBenefits: body.keyBenefits,
+        howUse: body.howUse,
+        ingredients: body.ingredients,
+        caution: body.caution,
         categoryId: body.categoryId,
       },
     });
-    console.log(req.files);
 
     // defino las imagenes del producto
     if (files)
       for (let i = 0; i < files.length; i++) {
         let image = `/img/products/${files[i].filename}`;
-        const imageProduct = await prisma.productImages.create({
+        await prisma.productImages.create({
           data: {
             productId: product.id,
             image: image,
             isFirst: false,
           },
         });
-        console.log(imageProduct);
       }
+
     res.status(201).send({
       data: product,
       message: "Product created successfully",
@@ -156,7 +171,6 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
       status: 400,
       message: error.message,
     });
-    console.error(error);
   }
 });
 

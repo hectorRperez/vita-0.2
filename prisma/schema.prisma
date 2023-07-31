@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Category {
-  id       String    @id @default(uuid()) @db.Uuid
+  id       String             @id @default(uuid()) @db.Uuid
   name     String
+  template CategoryTemplate   @default(TEMPLATE_ONE)
   products Product[]
 }
 
@@ -89,6 +90,11 @@ model Product {
   price        Float
   quantity     Int
   assessment   Int                  @default(1)
+  size         String               @db.VarChar(25) @default("1.0 fl. oz/30 ml")
+  keyBenefits  String?
+  howUse       String?
+  ingredients  String?
+  caution      String?
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
   homeProducts HomeProducts[]
@@ -147,4 +153,9 @@ enum OrderState {
   PENDING
   GENERATED
   PAID
+}
+
+enum CategoryTemplate {
+  TEMPLATE_ONE
+  TEMPLATE_TWO
 }

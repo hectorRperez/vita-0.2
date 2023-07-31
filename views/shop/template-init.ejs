@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head.ejs'); %>
+    <!-- FIXME: -->
+    <!-- QUITAR LA REFERENCIA A ESTE ARCHIVO YA QUE NO APLICA NADA -->
+    <!-- <link rel="stylesheet" href="assets/css/styles_shop.css" /> -->
+    <link rel="stylesheet" href="/assets/css/styles_view_product.css" />
+</head>
+
+<body>
+  <!--  ------------------ PROMO ------------------ -->
+  <div class="promo">
+    <span>
+      <a href="#">
+        <i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
+      </a></span>
+    <span>ESTA ES LA VISTA DE LOS <%= template_name %></span>
+    <span>
+      <ul class="media_social">
+        <li>
+          <a href="#"><i class="fab fa-facebook-square"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </li>
+      </ul>
+    </span>
+  </div>
+
+  <!-- ------------------ HEADER ------------------------ -->
+  <div class="header">
+    <%- include('../partials/header.ejs', {account: user?.name ?? "" , car }); %>
+  </div>
+  <!-- ------------------ End Header ------------------------ -->
+
+  <!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
