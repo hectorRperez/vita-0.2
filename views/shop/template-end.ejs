@@ -4,7 +4,7 @@
       <ul>
         <% for (const productR of relatedProducts){ %>
           <li>
-            <a href="#"> <img src="<%= productR.image.image %>" alt="no image" /> </a>
+            <a href="<%= '/shop/' + productR.id %>"> <img src="<%= productR.image.image %>" alt="no image" /> </a>
             <p>
               <%= productR.name %>
             </p>
