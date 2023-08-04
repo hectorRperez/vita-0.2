@@ -1,65 +1,149 @@
 <%- include('template-init', { template_name: 'DERMA' }); %>
 
-<section class="section">
-  <div class="section__col-1">
-    <img src="<%= image.image %>" class="prueba_img" id="ProductImg" />
+  <section class="section">
+    <div class="section__col-1">
+      <img src="<%= image.image %>" class="prueba_img" id="ProductImg" />
 
-    <div class="section__col-1__img">
-      <% for( const productImage of product.images ){ %>
-      <div class="section__col-1__img_small">
-        <img src="<%= productImage.image ?? "" %>" class="small-img" />
-      </div>
-      <% } %>
-    </div>
-  </div>
-  <div class="section__col-2">
-    <div class="section__col-2__content">
-      <h2><strong>Product:</strong> <span> <%= product.name %> </span></h2>
-      <p><strong>Size:</strong> <%= product.size %></p>
-      <p class="section__col-2-price">
-        <strong>Price: </strong> $<%= product.price %>
-      </p>
-
-      <div class="section__col-2 section__col-2--flex">
-        <form action="/shopping_cart/add" method="post">
-          <input type="number" value="1" / name="quantity">
-          <input type="hidden" name="product_id" value="<%= product.id %>" />
-          <button type="submit" class="section__col-2-btn">Add to card</button>
-        </form>
-      </div>
-      <img class="section__col-2__iconos" src="/img/iconos_web.png" alt="" />
-      <!-- <p> -->
-      <!-- <%= product.description %> -->
-      <!-- </p> -->
-
-      <div class="benefits__container">
-        <h3 class="benefits__header">
-          <strong>Key Benefits:</strong>
-        </h3>
-        <ul class="key__benefits">
-          <% if (product.keyBenefits) { %> <% for (const keyBenefit of
-          product.keyBenefits.split('\n')) { %>
-          <li><%= keyBenefit %></li>
-          <% } %> <% } %>
-        </ul>
-
-        <h3 class="howToUse__header">
-          <strong>How to use:</strong>
-        </h3>
-        <p class="howToUse__content"><%= product.howUse %></p>
-
-        <h3 class="benefits__header">
-          <strong>Full Ingredient List:</strong>
-        </h3>
-        <p class="howToUse__content"><%= product.ingredients %></p>
-
-        <h3 class="benefits__header">
-          <strong>Caution:</strong>
-        </h3>
-        <p class="howToUse__content"><%= product.caution %></p>
+      <div class="section__col-1__img">
+        <% for( const productImage of product.images ){ %>
+          <div class="section__col-1__img_small">
+            <img src="<%= productImage.image ?? "" %>" class="small-img" />
+          </div>
+          <% } %>
       </div>
     </div>
-  </div>
-</section>
+    <div class="section__col-2">
+      <div class="section__col-2__content">
+        <h2><strong>Product:</strong> <span>
+            <%= product.name %>
+          </span></h2>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Size</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose an option</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <p class="section__col-2-price">
+          <strong>Price: </strong> $<%= product.price %>
+        </p>
 
-<%- include('template-end'); %>
+        <div class="section__col-2 section__col-2--flex">
+          <form action="/shopping_cart/add" method="post">
+            <input type="number" value="1" / name="quantity">
+            <input type="hidden" name="product_id" value="<%= product.id %>" />
+            <button type="submit" class="section__col-2-btn">Add to card</button>
+          </form>
+        </div>
+        <img class="section__col-2__iconos" src="/img/iconos_web.png" alt="" />
+        <div class="info__content">
+          <div class="description__content">
+            <h2>Description</h2>
+            <!-- Integrar backend en el aqui -->
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, itaque!</p>
+          </div>
+          <div class="additional__information">
+            <h2>Additional Information</h2>
+            <!-- Integrar backend en el aqui -->
+            <p>Weight: 3 oz</p>
+            <!-- Integrar backend en el aqui -->
+            <p>Dimensions: 6.5 x 1.5 x 1 in</p>
+            <!-- Integrar backend en el aqui -->
+            <p>Size: .5mm, 1 mm</p>
+          </div>
+          <div id="accordion">
+            <div class="card product__content">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+                    Instructions
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                  <ul class="instructions">
+                    <li>Remove the applicator from the packaging.</li>
+                    <li>Sanitize the top pf applicator about 10 minutes with 70% Isopropyl Alcohol. </li>
+                    <li>Wash your face keep clean and dry.</li>
+                    <li>Place serum in infuser bottle. Do not use thick serums, consistency should be like to olive oil.
+                    </li>
+                    <li>Not for use with prescription products.</li>
+                    <li>Shake the Hydra Roller several about 2-3 times from side to side.</li>
+                    <li>Do not use roller on lips. Eyelids or mucus membranes.</li>
+                    <li>Use gently at first until you know what your skin can tolerate.</li>
+                    <li>The treatment should not be painful and should not draw blood.</li>
+                    <li>Use every 2-3 days until your skin becomes accustomed, then use no more than once a day. </li>
+                    <li>Be sure the device is vertical for serum to come out evenly when rolling.</li>
+                    <li>IF you have serum left on the skin after treatment, rub serum into the skin.</li>
+                    <li>Please see our information and instructional video</li>
+                    <li>Roll 4 time in each direction.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card product__content">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    Precaution &amp; Possible Side Effects:
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <ul class="instructions">
+                    <li class="instructions__element">Remove the applicator from the packaging.</li>
+                    <li>Sanitize the top pf applicator about 10 minutes with 70% Isopropyl Alcohol. </li>
+                    <li>Wash your face keep clean and dry.</li>
+                    <li>Place serum in infuser bottle. Do not use thick serums, consistency should be like to olive oil.
+                    </li>
+                    <li>Not for use with prescription products.</li>
+                    <li>Shake the Hydra Roller several about 2-3 times from side to side.</li>
+                    <li>Do not use roller on lips. Eyelids or mucus membranes.</li>
+                    <li>Use gently at first until you know what your skin can tolerate.</li>
+                    <li>The treatment should not be painful and should not draw blood.</li>
+                    <li>Use every 2-3 days until your skin becomes accustomed, then use no more than once a day. </li>
+                    <li>Be sure the device is vertical for serum to come out evenly when rolling.</li>
+                    <li>IF you have serum left on the skin after treatment, rub serum into the skin.</li>
+                    <li>Please see our information and instructional video</li>
+                    <li>Roll 4 time in each direction.</li>
+                    Keep out of the reach of children.
+                    <li>Never share the roller with other people.</li>
+                    <li>Keep the applicator always clean.</li>
+                    <li>Do not use on sunburn, open cuts, herpes, pustule acne lesions or any other sore areas,
+                      inflamed or infected skin.
+                    </li>
+                    <li>Do not use on sunburn, open cuts, herpes, pustule acne lesions or any other sore areas,
+                      inflamed or infected skin.</li>
+                    <li>Do not use if you have a history of poor wound healing, skin disease, blood problems, are
+                      immunocompromised, are pregnant or lactating, are prone to keloid scarring or have diabetes.</li>
+                    <li>IF you are uncertain about your skin condition, please consult a dermatologist before using.
+                    </li>
+                    <li>Use of roller on open wounds may cause infection. If you develop any skin sensitivity after use,
+                      consult your physician.</li>
+                    <li>Your skin may redden after use this should go away within a few hours.</li>
+                    <li>You may experience some drying of the skin after use and/ or some flaking. If this happens, stop
+                      using the roller until the skin returns to normal.</li>
+                    <li>In some individuals, slight bleeding may occur, if this could happen, clean the are with warm
+                      soapy water, apply antiseptic ointment and allow area to heal before continuing use.</li>
+                    <li>Aspirin, Ibuprofen, vitamin E, other supplements and blood thinning drugs can cause increased
+                      bruising, please consult your physician if you are taking these medications.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('template-end'); %>
