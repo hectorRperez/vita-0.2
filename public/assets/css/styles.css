@@ -4,6 +4,11 @@
   --primary: #3595db;
   --primary-skinscare: rgb(156, 131, 109);
   --secundary-skinscare: rgb(125, 84, 56);
+  --skinscare-primary-theme: #ca9c85;
+  --skinscare-dark-primary-theme: #988577;
+  --skincare-dark-third: #bea890;
+  --skincare-darker-theme: #835e44;
+  --secondary-darker-theme:
 }
 
 *,

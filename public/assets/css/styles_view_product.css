@@ -341,3 +341,27 @@
     margin: auto;
   }
 }
+
+.product__content{
+  background: var(--skinscare-primary-theme);
+  color: black;
+  margin: 5px 0;
+}
+
+.product__content button{
+  color: white;
+  border: none;
+}
+
+.card-body{
+  color: white;
+}
+
+.instructions{
+  padding: 20px;
+}
+
+.instructions li{
+  list-style-type: disc;
+  padding: 10px;
+}
