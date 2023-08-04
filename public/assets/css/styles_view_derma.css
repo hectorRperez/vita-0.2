@@ -16,18 +16,6 @@
   grid-template-columns: 30% 70%;
 }
 
-/* .content-wrapper {
-	padding: 1.5rem;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-} */
-
-/* .content-wrapper .view-product {
-	min-width: 330px;
-	flex: 1 0 30%;
-} */
-
 .col-2 {
   height: 100%;
 }
