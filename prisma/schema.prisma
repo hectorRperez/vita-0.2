@@ -86,15 +86,27 @@ model Post {
 model Product {
   id           String               @id @default(uuid()) @db.Uuid
   name         String
-  description  String
+
+  // Derma o Roller
+  description  String?
+
   price        Float
   quantity     Int
   assessment   Int                  @default(1)
-  size         String               @db.VarChar(25) @default("1.0 fl. oz/30 ml")
+  sizes        String[]             @db.VarChar(100) @default(["1.0 fl. oz/30 ml"])
+
+  // Serum
   keyBenefits  String?
+  // Derma o Roller: howUse is equal to instructions
   howUse       String?
   ingredients  String?
+  // Derma o Roller: caution is equal to precaution & possible side effects
   caution      String?
+
+  // Derma o Roller
+  weight       String?              @db.VarChar(25)
+  dimensions   String?              @db.VarChar(25)
+
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
   homeProducts HomeProducts[]

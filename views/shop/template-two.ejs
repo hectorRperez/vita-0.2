@@ -14,20 +14,15 @@
     </div>
     <div class="section__col-2">
       <div class="section__col-2__content">
-        <h2><strong>Product:</strong> <span>
+        <h2>
+          <strong>Product:</strong>
+          <span>
             <%= product.name %>
-          </span></h2>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Size</label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose an option</option>
-            <!-- Agregar aqui backend -->
-            <option value="1">.5mm</option>
-            <option value="2">1 mm</option>
-          </select>
-        </div>
+          </span>
+        </h2>
+
+        <%- include('product-sizes'); %>
+
         <p class="section__col-2-price">
           <strong>Price: </strong> $<%= product.price %>
         </p>
@@ -43,15 +38,16 @@
         <div class="info__content">
           <div class="description__content">
             <h2>Description</h2>
-            <!-- Integrar backend en el aqui -->
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi, itaque!</p>
+            <% if (product.description) { %>
+              <% for (const description of product.description.split('\n')) { %>
+                <p><%= description %></p>
+              <% } %>
+            <% } %>
           </div>
           <div class="additional__information">
             <h2>Additional Information</h2>
-            <!-- Integrar backend en el aqui -->
-            <p>Weight: 3 oz</p>
-            <!-- Integrar backend en el aqui -->
-            <p>Dimensions: 6.5 x 1.5 x 1 in</p>
+            <p>Weight: <%= product.weight %></p>
+            <p>Dimensions: <%= product.weight %></p>
           </div>
           <div id="accordion">
             <div class="card product__content">
@@ -66,21 +62,11 @@
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
                   <ul class="instructions">
-                    <li>Remove the applicator from the packaging.</li>
-                    <li>Sanitize the top pf applicator about 10 minutes with 70% Isopropyl Alcohol. </li>
-                    <li>Wash your face keep clean and dry.</li>
-                    <li>Place serum in infuser bottle. Do not use thick serums, consistency should be like to olive oil.
-                    </li>
-                    <li>Not for use with prescription products.</li>
-                    <li>Shake the Hydra Roller several about 2-3 times from side to side.</li>
-                    <li>Do not use roller on lips. Eyelids or mucus membranes.</li>
-                    <li>Use gently at first until you know what your skin can tolerate.</li>
-                    <li>The treatment should not be painful and should not draw blood.</li>
-                    <li>Use every 2-3 days until your skin becomes accustomed, then use no more than once a day. </li>
-                    <li>Be sure the device is vertical for serum to come out evenly when rolling.</li>
-                    <li>IF you have serum left on the skin after treatment, rub serum into the skin.</li>
-                    <li>Please see our information and instructional video</li>
-                    <li>Roll 4 time in each direction.</li>
+                    <% if (product.howUse) { %>
+                      <% for (const howUse of product.howUse.split('\n')) { %>
+                        <li><%= howUse %></li>
+                      <% } %>
+                    <% } %>
                   </ul>
                 </div>
               </div>
@@ -98,42 +84,11 @@
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                   <ul class="instructions">
-                    <li class="instructions__element">Remove the applicator from the packaging.</li>
-                    <li>Sanitize the top pf applicator about 10 minutes with 70% Isopropyl Alcohol. </li>
-                    <li>Wash your face keep clean and dry.</li>
-                    <li>Place serum in infuser bottle. Do not use thick serums, consistency should be like to olive oil.
-                    </li>
-                    <li>Not for use with prescription products.</li>
-                    <li>Shake the Hydra Roller several about 2-3 times from side to side.</li>
-                    <li>Do not use roller on lips. Eyelids or mucus membranes.</li>
-                    <li>Use gently at first until you know what your skin can tolerate.</li>
-                    <li>The treatment should not be painful and should not draw blood.</li>
-                    <li>Use every 2-3 days until your skin becomes accustomed, then use no more than once a day. </li>
-                    <li>Be sure the device is vertical for serum to come out evenly when rolling.</li>
-                    <li>IF you have serum left on the skin after treatment, rub serum into the skin.</li>
-                    <li>Please see our information and instructional video</li>
-                    <li>Roll 4 time in each direction.</li>
-                    Keep out of the reach of children.
-                    <li>Never share the roller with other people.</li>
-                    <li>Keep the applicator always clean.</li>
-                    <li>Do not use on sunburn, open cuts, herpes, pustule acne lesions or any other sore areas,
-                      inflamed or infected skin.
-                    </li>
-                    <li>Do not use on sunburn, open cuts, herpes, pustule acne lesions or any other sore areas,
-                      inflamed or infected skin.</li>
-                    <li>Do not use if you have a history of poor wound healing, skin disease, blood problems, are
-                      immunocompromised, are pregnant or lactating, are prone to keloid scarring or have diabetes.</li>
-                    <li>IF you are uncertain about your skin condition, please consult a dermatologist before using.
-                    </li>
-                    <li>Use of roller on open wounds may cause infection. If you develop any skin sensitivity after use,
-                      consult your physician.</li>
-                    <li>Your skin may redden after use this should go away within a few hours.</li>
-                    <li>You may experience some drying of the skin after use and/ or some flaking. If this happens, stop
-                      using the roller until the skin returns to normal.</li>
-                    <li>In some individuals, slight bleeding may occur, if this could happen, clean the are with warm
-                      soapy water, apply antiseptic ointment and allow area to heal before continuing use.</li>
-                    <li>Aspirin, Ibuprofen, vitamin E, other supplements and blood thinning drugs can cause increased
-                      bruising, please consult your physician if you are taking these medications.</li>
+                    <% if (product.caution) { %>
+                      <% for (const caution of product.caution.split('\n')) { %>
+                        <li><%= caution %></li>
+                      <% } %>
+                    <% } %>
                   </ul>
                 </div>
               </div>

@@ -1,3 +1,6 @@
+const path = require("path");
+const fs = require("fs");
+
 const isAdmin = require("../middleware/isAdmin");
 
 const prisma = require("../config/database");
@@ -132,17 +135,21 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
   const files = req.files;
 
   try {
+    const sizes = body.sizes.split(',');
     const product = await prisma.product.create({
       data: {
         name: body.name,
         price: parseFloat(body.price),
         description: body.description,
         quantity: parseInt(body.quantity),
-        size: body.size,
+        sizes,
+        assessment: parseInt(body.assessment),
         keyBenefits: body.keyBenefits,
         howUse: body.howUse,
         ingredients: body.ingredients,
         caution: body.caution,
+        weight: body.weight,
+        dimensions: body.dimensions,
         categoryId: body.categoryId,
       },
     });
@@ -164,6 +171,51 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
       data: product,
       message: "Product created successfully",
       code: 201,
+    });
+  } catch (error) {
+    res.status(400).send({
+      data: error,
+      status: 400,
+      message: error.message,
+    });
+  }
+});
+
+router.delete("/products/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await prisma.product.findUnique({
+      where: {
+        id
+      },
+      include: {
+        images: true,
+      },
+    });
+
+    const deleteProductImages = prisma.productImages.deleteMany({
+      where: {
+        productId: id,
+      },
+    });
+
+    const deleteProduct = prisma.product.delete({
+      where: {
+        id
+      },
+    });
+
+    await prisma.$transaction([deleteProductImages, deleteProduct]);
+
+    // Delete file
+    product.images.map(productImage => {
+      fs.unlinkSync(path.join("public/", productImage.image));
+    });
+
+    res.status(200).send({
+      message: "Product deleted successfully",
+      code: 200,
     });
   } catch (error) {
     res.status(400).send({

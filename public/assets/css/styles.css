@@ -1125,3 +1125,11 @@ body.jw-modal-open {
   border: none;
   color: #222;
 }
+
+.bootstrap-tagsinput {
+  width: 100%;
+}
+
+.bootstrap-tagsinput input {
+  width: 15% !important;
+}

@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/head.ejs'); %>
+    <link rel="stylesheet" href="/assets/css/bootstrap-tagsinput.css" />
 	</head>
 <body>
   <div id="preloader"></div>
@@ -27,90 +28,191 @@
               <li class="list-group-item">
                 <a href="/dashboard/users">Users</a>
               </li>
+              <li class="list-group-item">
+                <a href="/dashboard/posts">Posts</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="col-md-8">
-        <form action="/dashboard/products" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea class="form-control" id="description" name="description"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="price">Price:</label>
-              <input type="number" class="form-control" id="price" name="price" required>
-            </div>
-            <div class="form-group">
-              <label for="quantity">Quantity:</label>
-              <input type="number" class="form-control" id="quantity" name="quantity" required>
-            </div>
-            <div class="form-group">
-              <label for="price">Size:</label>
-              <input type="text" class="form-control" id="size" name="size" maxlength="25" required>
-            </div>
-            <div class="form-group">
-              <label for="assessment">Assessment:</label>
-              <input type="number" class="form-control" id="assessment" name="assessment">
-            </div>
-            <div class="form-group">
-              <label for="categoryId">Category:</label>
-              <select class="form-control" id="categoryId" name="categoryId" required>
-                <option value="">Select a category</option>
-                <% categories.forEach(category => { %>
-                  <option value="<%= category.id %>"><%= category.name %></option>
-                <% }); %>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="image">Images:</label>
-              <input type="file" name="images" multiple required />
-            </div>
-            <div class="form-group">
-              <label for="keyBenefits">Key Benefits:</label>
-              <textarea class="form-control" id="keyBenefits" name="keyBenefits"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="howUse">How to use:</label>
-              <textarea class="form-control" id="howUse" name="howUse"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="ingredients">Full ingredients list:</label>
-              <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="caution">Caution:</label>
-              <textarea class="form-control" id="caution" name="caution"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="card p-2">
+          <form action="/dashboard/products" method="post" enctype="multipart/form-data" id="form-products">
+              <div class="form-group">
+                <label for="categoryId">Category:</label>
+                <select class="form-control" id="categoryId" name="categoryId" required>
+                  <option value="">Select a category</option>
+                  <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>" data-template="<%= category.template %>"><%= category.name %></option>
+                  <% }); %>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+              <div class="form-group d-none showDerma">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+              </div>
+              <div class="form-group">
+                <label for="price">Size:</label>
+                <input type="text" class="form-control" id="sizes" name="sizes" maxlength="100" required>
+              </div>
+              <div class="form-group">
+                <label for="assessment">Assessment:</label>
+                <input type="number" class="form-control" id="assessment" name="assessment" min="0">
+              </div>
+              <div class="form-group">
+                <label for="image">Images:</label>
+                <input type="file" name="images" multiple required />
+              </div>
+
+              <div class="form-group d-none showDerma">
+                <label for="name">Weight:</label>
+                <input type="text" class="form-control" id="weight" name="weight" maxlength="25">
+              </div>
+              <div class="form-group d-none showDerma">
+                <label for="name">Dimensions:</label>
+                <input type="text" class="form-control" id="dimensions" name="dimensions" maxlength="25">
+              </div>
+
+              <div class="form-group d-none showSerum">
+                <label for="keyBenefits">Key Benefits:</label>
+                <textarea class="form-control" id="keyBenefits" name="keyBenefits"></textarea>
+              </div>
+              <div class="form-group d-none showDerma showSerum">
+                <label for="howUse" id="text_howUse">How to use:</label>
+                <textarea class="form-control" id="howUse" name="howUse"></textarea>
+              </div>
+              <div class="form-group d-none showSerum">
+                <label for="ingredients">Full ingredients list:</label>
+                <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+              </div>
+              <div class="form-group d-none showDerma showSerum">
+                <label for="caution" id="text_caution">Caution:</label>
+                <textarea class="form-control" id="caution" name="caution"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
 
         <div class="card mt-2">
           <div class="card-header">
             <h4>Products</h4>
           </div>
-          <div class="card-body">
-            <table class="table table-striped">
-              <% for(var i=0; i < products.length; i++) { %>
-                   <tr>
-                     <td><img src="<%= products[i].image %>" width="100"></td>
-                     <td>Name: <%= products[i].name %></td>
-                     <td>Price: <%= products[i].price %>$</td>
-                     <td>Quantity: <%= products[i].quantity %></td>
-                     <td>Size: <%= products[i].size %></td>
-                     <td>Assessment: <%= products[i].assessment %></td>
-                   </tr>
-                   <% } %>
-            </table>
-          </div>
+          <table class='table table-striped table-bordered table-hover'>
+            <thead>
+              <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Sizes</th>
+              <th>Assessment</th>
+              <th>Weight</th>
+              <th>Dimensions</th>
+              <th>Action</th>
+              </tr>
+            </thead>
+            <% products.map(product => { %>
+              <tr>
+                <td id="<%= product.id %>-name"><%= product.name %></td>
+                <td><%= product.price %>$</td>
+                <td><%= product.quantity %></td>
+                <td><%= product.sizes %></td>
+                <td><%= product.assessment %></td>
+                <td><%= product.weight %></td>
+                <td><%= product.dimensions %></td>
+                <td>
+                  <button class="btn btn-danger" onclick="confirmDelete('<%= product.id %>')">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            <% }) %>
+          </table>
         </div>
       </div>
     </div>
   </div>
+
   <%- include('../partials/script.ejs'); %>
+  <script src="/assets/js/bootstrap-tagsinput.js"></script>
+
+  <script>
+$( document ).ready(function() {
+  $('#categoryId').on('change', function() {
+    const template = $(this).children('option:selected').data('template');
+
+    switch (template) {
+      case 'TEMPLATE_ONE':
+        $('.showDerma').addClass('d-none');
+        $('.showSerum').removeClass('d-none');
+        $('#text_howUse').text('How to use:');
+        $('#text_caution').text('Caution:');
+      break;
+      default:
+        $('.showSerum').addClass('d-none');
+        $('.showDerma').removeClass('d-none');
+        $('#text_howUse').text('Instructions:');
+        $('#text_caution').text('Precaution & Possible Side Effects:');
+    }
+  });
+
+  $('#sizes').tagsinput({
+    tagClass: 'badge bg-info',
+  });
+
+  $('#form-products').on('submit', function(e) {
+    e.preventDefault();
+
+    $('#sizes').val($("#sizes").tagsinput('items'));
+
+    $(this).submit();
+  });
+})
+
+function confirmDelete(id) {
+  const name = $(`#${id}-name`).text();
+  Swal.fire({
+    title: 'Are you sure?',
+    text: `Will remove the product: ${name}`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: `products/${id}`,
+        type: 'DELETE',
+        success: function(result) {
+          Swal.fire(
+            'Deleted!',
+            'Your product has been deleted.',
+            'success'
+          )
+
+          setTimeout(function () {
+            window.location.reload();
+          }, 300);
+        }
+      });
+    }
+  });
+}
+  </script>
+
 </body>
 </html>
