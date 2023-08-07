@@ -2,7 +2,6 @@
 <html lang="en">
 	<head>
 		<%- include('../partials/head.ejs'); %>
-    <link rel="stylesheet" href="/assets/css/bootstrap-tagsinput.css" />
 	</head>
 <body>
   <div id="preloader"></div>
@@ -64,9 +63,28 @@
                 <label for="quantity">Quantity:</label>
                 <input type="number" class="form-control" id="quantity" name="quantity" required>
               </div>
-              <div class="form-group">
-                <label for="price">Size:</label>
-                <input type="text" class="form-control" id="sizes" name="sizes" maxlength="100" required>
+              <div class="form-group row">
+                <div class="col-md-11">
+                  <label for="sizes">Size:</label>
+                  <input type="text" class="form-control" id="sizes" maxlength="10" />
+                </div>
+                <div class="col-md-1">
+                  <br />
+                  <div class="btn btn-success mt-2" onclick="addSize()">
+                    <i class="fas fa-plus"></i>
+                  </div>
+                </div>
+                <div class="col-md-12 d-none" id="box_sizes">
+                  <table class="table table-striped table-bordered table-hover mt-2" id="sizes-items">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
               </div>
               <div class="form-group">
                 <label for="assessment">Assessment:</label>
@@ -74,7 +92,7 @@
               </div>
               <div class="form-group">
                 <label for="image">Images:</label>
-                <input type="file" name="images" multiple required />
+                <input type="file" name="images" id="images" multiple required />
               </div>
 
               <div class="form-group d-none showDerma">
@@ -103,7 +121,8 @@
                 <textarea class="form-control" id="caution" name="caution"></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary" id="button_submit">Submit</button>
+              <div class="btn btn-secondary d-none" id="button_cancel" onclick="cancel()">Cancel</div>
           </form>
         </div>
 
@@ -134,6 +153,9 @@
                 <td><%= product.weight %></td>
                 <td><%= product.dimensions %></td>
                 <td>
+                  <button class="btn btn-success" onclick="showEdit('<%= product.id %>')">
+                    <i class="fas fa-edit"></i>
+                  </button>
                   <button class="btn btn-danger" onclick="confirmDelete('<%= product.id %>')">
                     <i class="fas fa-trash"></i>
                   </button>
@@ -147,40 +169,97 @@
   </div>
 
   <%- include('../partials/script.ejs'); %>
-  <script src="/assets/js/bootstrap-tagsinput.js"></script>
 
   <script>
+let currentSizes = [];
+let editId = null;
+
+// Obtener todos los elementos de formulario del documento
+let forms = document.querySelectorAll("form");
+
+// Recorrer cada elemento de formulario
+for (let form of forms) {
+  // Agregar un evento de submit al formulario
+  form.addEventListener("submit", function (event) {
+    // Prevenir el comportamiento por defecto de enviar el formulario
+    event.preventDefault();
+
+    if (currentSizes.length === 0) {
+      Swal.fire(
+        'Required field!',
+        'The required size field.',
+        'error'
+      )
+
+      return false;
+    }
+
+    // Obtener la URL del action del formulario
+    let action = form.getAttribute("action");
+
+    // Obtener los datos del formulario como un objeto FormData
+    let formData = new FormData(form);
+
+    const method = editId ? "PUT" : "POST";
+
+    currentSizes.forEach(currentSize => {
+      formData.append('sizes[]', currentSize);
+    });
+
+    if (editId) {
+      formData.append("id", editId);
+    }
+
+    fetch(action, {
+      method,
+      body: formData,
+      redirect: "follow",
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          currentSizes = [];
+          const jsonData = await response.json();
+          await Swal.fire("Success!", jsonData.message, "success");
+          if (jsonData?.redirect) window.location.href = jsonData.redirect;
+          else window.location.reload();
+        } else {
+          // Si hay algún error, mostrar un mensaje
+          Swal.fire({
+            text: response.statusText,
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        // Si hay algún error de red, mostrar un mensaje
+        alert("Error de red: " + error);
+      })
+  });
+}
+
 $( document ).ready(function() {
   $('#categoryId').on('change', function() {
     const template = $(this).children('option:selected').data('template');
 
-    switch (template) {
-      case 'TEMPLATE_ONE':
-        $('.showDerma').addClass('d-none');
-        $('.showSerum').removeClass('d-none');
-        $('#text_howUse').text('How to use:');
-        $('#text_caution').text('Caution:');
-      break;
-      default:
-        $('.showSerum').addClass('d-none');
-        $('.showDerma').removeClass('d-none');
-        $('#text_howUse').text('Instructions:');
-        $('#text_caution').text('Precaution & Possible Side Effects:');
-    }
-  });
-
-  $('#sizes').tagsinput({
-    tagClass: 'badge bg-info',
-  });
-
-  $('#form-products').on('submit', function(e) {
-    e.preventDefault();
-
-    $('#sizes').val($("#sizes").tagsinput('items'));
-
-    $(this).submit();
+    toggleShowInputs(template);
   });
 })
+
+function toggleShowInputs(template) {
+  switch (template) {
+    case 'TEMPLATE_ONE':
+      $('.showDerma').addClass('d-none');
+      $('.showSerum').removeClass('d-none');
+      $('#text_howUse').text('How to use:');
+      $('#text_caution').text('Caution:');
+    break;
+    default:
+      $('.showSerum').addClass('d-none');
+      $('.showDerma').removeClass('d-none');
+      $('#text_howUse').text('Instructions:');
+      $('#text_caution').text('Precaution & Possible Side Effects:');
+  }
+}
 
 function confirmDelete(id) {
   const name = $(`#${id}-name`).text();
@@ -211,6 +290,122 @@ function confirmDelete(id) {
       });
     }
   });
+}
+
+function showEdit(id) {
+  editId = id;
+
+  $.ajax({
+    url: `products/${id}`,
+    type: 'GET',
+    success: function(result) {
+      const product = result.data;
+
+      toggleShowInputs(product.category.template);
+
+      $('#categoryId').val(product.category.id).change();
+      $('#name').val(product.name);
+      $('#description').val(product.description);
+      $('#price').val(product.price);
+      $('#quantity').val(product.quantity);
+      $('#assessment').val(product.assessment);
+      $('#weight').val(product.weight);
+      $('#dimensions').val(product.dimensions);
+      $('#keyBenefits').val(product.keyBenefits);
+      $('#howUse').val(product.howUse);
+      $('#ingredients').val(product.ingredients);
+      $('#caution').val(product.caution);
+
+      $('#sizes-items tbody').html('');
+
+      currentSizes = [];
+
+      let index = 0;
+      product.sizes.forEach(size => {
+        if (size !== '') {
+          currentSizes.push(size);
+          $('#sizes-items tbody').html(
+            $('#sizes-items tbody').html() +
+            `<tr id="size-${index}">
+              <td>${size}</td>
+              <td>
+                <button class="btn btn-danger" onclick="deleteSize(${index})">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>`
+          );
+          index++;
+        }
+      });
+
+      $('#box_sizes').removeClass('d-none');
+
+      $('#button_submit').text('Update');
+      $('#button_cancel').removeClass('d-none');
+
+      $('#images').prop('required', false);
+    }
+  });
+}
+
+function cancel() {
+  editId = null;
+  $('#button_submit').text('Submit');
+  $('#button_cancel').addClass('d-none');
+  $('#images').prop('required', true);
+
+  $('#categoryId').val('').change();
+  $('#name').val('');
+  $('#description').val('');
+  $('#price').val('');
+  $('#quantity').val('');
+  $('#assessment').val('');
+  $('#weight').val('');
+  $('#dimensions').val('');
+  $('#keyBenefits').val('');
+  $('#howUse').val('');
+  $('#ingredients').val('');
+  $('#caution').val('');
+
+  $('#sizes-items tbody').html('');
+  currentSizes = [];
+
+  $('.showDerma').addClass('d-none');
+  $('.showSerum').addClass('d-none');
+}
+
+function addSize() {
+  const sizes = $('#sizes').val();
+
+  if ($.trim(sizes) !== '') {
+    currentSizes.push(sizes);
+    const index = currentSizes.length - 1;
+
+    $('#sizes-items tbody').html(
+      $('#sizes-items tbody').html() +
+      `<tr id="size-${index}">
+        <td>${sizes}</td>
+        <td>
+          <button class="btn btn-danger" onclick="deleteSize(${index})">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>`
+    );
+
+    $('#sizes').val('');
+    $('#box_sizes').removeClass('d-none');
+  }
+}
+
+function deleteSize(id) {
+  currentSizes.splice(id, 1);
+  $(`#size-${id}`).remove();
+
+  if (currentSizes.length === 0) {
+    $('#box_sizes').addClass('d-none');
+  }
 }
   </script>
 

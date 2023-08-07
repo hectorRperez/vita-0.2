@@ -130,12 +130,36 @@ router.get("/products", async (req, res) => {
   }
 });
 
+router.get("/products/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await prisma.product.findUnique({
+      where: {
+        id
+      },
+      include: {
+        category: true,
+        images: true,
+      },
+    });
+
+    res.status(200).send({
+      data: product,
+      message: "Product it was obtained successfully",
+      code: 200,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 router.post("/products", upload.array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
 
   try {
-    const sizes = body.sizes.split(',');
+    const sizes = body.sizes;
     const product = await prisma.product.create({
       data: {
         name: body.name,
@@ -171,6 +195,62 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
       data: product,
       message: "Product created successfully",
       code: 201,
+    });
+  } catch (error) {
+    res.status(400).send({
+      data: error,
+      status: 400,
+      message: error.message,
+    });
+  }
+});
+
+router.put("/products", upload.array("images", 10), async (req, res) => {
+  const body = req.body;
+  const files = req.files;
+  const id = body.id
+
+  try {
+    const sizes = body.sizes;
+
+    const product = await prisma.product.update({
+      where: {
+        id
+      },
+      data: {
+        name: body.name,
+        price: parseFloat(body.price),
+        description: body.description,
+        quantity: parseInt(body.quantity),
+        sizes,
+        assessment: parseInt(body.assessment),
+        keyBenefits: body.keyBenefits,
+        howUse: body.howUse,
+        ingredients: body.ingredients,
+        caution: body.caution,
+        weight: body.weight,
+        dimensions: body.dimensions,
+        categoryId: body.categoryId,
+      },
+    });
+
+    // defino las imagenes del producto
+    if (files)
+      for (let i = 0; i < files.length; i++) {
+        let image = `/img/products/${files[i].filename}`;
+        await prisma.productImages.create({
+          data: {
+            productId: product.id,
+            image: image,
+            isFirst: false,
+          },
+        });
+      }
+
+    res.status(200).send({
+      data: product,
+      message: "Product updated successfully",
+      code: 200,
     });
   } catch (error) {
     res.status(400).send({
