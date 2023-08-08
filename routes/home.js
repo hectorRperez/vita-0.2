@@ -9,9 +9,9 @@ router.get("/", async (req, res) => {
       include: {
         images: true,
       },
-      take: 4,
+      /* take: 4, */
     });
-    console.log(req.sessionID);
+
     const productsWithImage = products.map((product) => {
       let image = null;
       image = product.images.filter((image) => image.isFirst)[0] ?? null;
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     });
 
     const car = await getShopcart(req);
-    console.log(car);
+
     res.render("index.ejs", {
       products: productsWithImage,
       user: req.user,

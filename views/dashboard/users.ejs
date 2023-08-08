@@ -26,6 +26,9 @@
               <li class="list-group-item">
                 <a href="/dashboard/users">Users</a>
               </li>
+              <li class="list-group-item">
+                <a href="/dashboard/posts">Posts</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -76,20 +79,20 @@
               </tr>
             </thead>
             <% users.map( user => { %>
-                <tr>
-                  <td><%= user.id %></td>
-                  <td><%= user.name %> </td>
-                  <td><%= user.lastname %> </td>
-                  <td><%= user.email %> </td>
-                  <td><%= user.type %></td>
-                </tr>
-                 <% }) %>
-              </table>
-              
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %> </td>
+                <td><%= user.lastname %> </td>
+                <td><%= user.email %> </td>
+                <td><%= user.type %></td>
+              </tr>
+            <% }) %>
+          </table>
         </div>
       </div>
     </div>
   </div>
   <%- include('../partials/script.ejs'); %>
+  <script src="/assets/js/index.js"></script>
 </body>
 </html>
