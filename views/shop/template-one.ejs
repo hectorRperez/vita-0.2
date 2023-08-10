@@ -14,12 +14,15 @@
     </div>
     <div class="section__col-2">
       <div class="section__col-2__content">
-        <h2><strong>Product:</strong> <span>
+        <h2>
+          <strong>Product:</strong>
+          <span>
             <%= product.name %>
-          </span></h2>
-        <p><strong>Size:</strong>
-          <%= product.size %>
-        </p>
+          </span>
+        </h2>
+
+        <%- include('product-sizes'); %>
+
         <p class="section__col-2-price">
           <strong>Price: </strong> $<%= product.price %>
         </p>
@@ -32,9 +35,6 @@
           </form>
         </div>
         <img class="section__col-2__iconos" src="/img/iconos_web.png" alt="" />
-        <!-- <p> -->
-        <!-- <%= product.description %> -->
-        <!-- </p> -->
 
         <div class="benefits__container">
           <h3 class="benefits__header">
@@ -84,7 +84,7 @@
 
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae officiis eaque vero cum. Quam harum autem facere quod molestias!
+                  <%= product.caution %>
                 </div>
               </div>
             </div>

@@ -1,0 +1,19 @@
+<% if (product.sizes.length === 1) { %>
+<p>
+  <strong>Size:</strong>
+  <%= product.sizes[0] %>
+</p>
+
+<% } %> <% if (product.sizes.length > 1) { %>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Size</label>
+  </div>
+  <select class="custom-select" id="sizes">
+    <option selected required>Choose an option</option>
+    <% for (const size of product.sizes) { %>
+        <option value="<%= size %>"><%= size %></option>
+    <% } %>
+  </select>
+</div>
+<% } %>
