@@ -286,6 +286,13 @@ function confirmDelete(id) {
           setTimeout(function () {
             window.location.reload();
           }, 300);
+        },
+        error: function (request, status, error) {
+          Swal.fire(
+            'Failed to delete!',
+            request.responseJSON.message,
+            'error'
+          )
         }
       });
     }

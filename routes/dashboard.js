@@ -271,8 +271,17 @@ router.delete("/products/:id", async (req, res) => {
       },
       include: {
         images: true,
+        carItems: true,
       },
     });
+
+    if (product.carItems.length) {
+      return res.status(400).send({
+        data: null,
+        status: 400,
+        message: 'This product exists in a shopping cart, it cannot be removed',
+      });
+    }
 
     const deleteProductImages = prisma.productImages.deleteMany({
       where: {
@@ -290,7 +299,9 @@ router.delete("/products/:id", async (req, res) => {
 
     // Delete file
     product.images.map(productImage => {
-      fs.unlinkSync(path.join("public/", productImage.image));
+      if (fs.existsSync(path.join("public/", '/img/products/product-169144184062425.jpeg'))) {
+        fs.unlinkSync(path.join("public/", productImage.image));
+      }
     });
 
     res.status(200).send({
