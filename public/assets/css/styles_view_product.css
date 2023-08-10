@@ -33,6 +33,7 @@
 
 .section__col-2__content h2 {
   font-size: 30px;
+  color: var(--skinscare-primary-theme);
 }
 
 .section__col-2__content h2 span{
@@ -51,6 +52,7 @@
 .section__col-2-price {
   margin: 10px 0;
   font-size: 25px;
+  color: var(--skinscare-primary-theme);
 }
 
 .section__col-2 form {
@@ -63,6 +65,14 @@
 
 .key__benefits{
   font-size: 18px;
+}
+
+.benefits__header{
+  color: var(--skinscare-primary-theme);
+}
+
+.howToUse__header{
+  color: var(--skinscare-primary-theme);
 }
 
 .howToUse__content{
@@ -351,10 +361,12 @@
 .product__content button{
   color: white;
   border: none;
+  font-size: 18px;
 }
 
 .card-body{
   color: white;
+  font-size: 18px;
 }
 
 .instructions{
