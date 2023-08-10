@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
       include: {
         images: true,
       },
-      /* take: 4, */
+      take: 4,
     });
 
     const productsWithImage = products.map((product) => {
