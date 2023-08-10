@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 class SignupController {
   static async signup(req, res) {
     try {
-      console.log(req.body);
       if (req.body.password === req.body.password_confirm) {
         const userData = await UserSchema.validateAsync(req.body, {
           allowUnknown: true,
@@ -19,6 +18,7 @@ class SignupController {
           status: 200,
           message: "User created successfully",
           data: user,
+          redirect: 'login',
         });
       } else throw "Passwords does not match";
     } catch (e) {

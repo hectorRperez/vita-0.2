@@ -36,7 +36,6 @@ const getShopcart = async (req) => {
         },
       });
   } else {
-    console.log("here");
     shopcart = await prisma.shopcart.findFirst({
       where: {
         sessionId: req.sessionID,
@@ -53,7 +52,7 @@ const getShopcart = async (req) => {
         },
       },
     });
-    console.log(shopcart);
+
     if (!shopcart)
       shopcart = await prisma.shopcart.create({
         data: { sessionId: req.sessionID },
@@ -70,7 +69,7 @@ const getShopcart = async (req) => {
         },
       });
   }
-  console.log(JSON.stringify(shopcart));
+
   return shopcart;
 };
 
