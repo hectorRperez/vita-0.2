@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 class SignupController {
   static async signup(req, res) {
     try {
-      console.log(req.body);
       if (req.body.password === req.body.password_confirm) {
         const userData = await UserSchema.validateAsync(req.body, {
           allowUnknown: true,
@@ -15,6 +14,7 @@ class SignupController {
         const user = await prisma.user.create({
           data: { ...userData, password, type: "ADMIN" },
         });
+
         return res.json({
           status: 200,
           message: "User created successfully",
@@ -22,8 +22,7 @@ class SignupController {
         });
       } else throw "Passwords does not match";
     } catch (e) {
-      console.error(e);
-      res.status(400).json(e);
+      return res.send(401, { success: false, message: typeof e === 'string' ? e : null });
     }
   }
 }

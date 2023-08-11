@@ -91,12 +91,13 @@ router.get("/posts", async (req, res) => {
 
 router.post("/posts", async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.user);
-    const postData = await postSchema.validateAsync(req.body,
-      { allowUnknown: true,
+    const postData = await postSchema.validateAsync(
+      req.body,
+      {
+        allowUnknown: true,
         stripUnknown: true
-      });
+      }
+    );
     const post  = await prisma.post.create({
       data: {
         ...postData,
@@ -109,7 +110,12 @@ router.post("/posts", async (req, res) => {
       status: 200,
     });
   } catch (error) {
-    console.error(error);
+    if (
+      error?.details &&
+      error.details.length > 0
+    ) {
+      return res.send(400, { success: false, message: error.details[0].message });
+    }
   }
 });
 
