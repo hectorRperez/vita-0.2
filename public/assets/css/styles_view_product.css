@@ -44,13 +44,26 @@
   font-size: 30px;
 }
 
-.section__col-2__content p strong{
+.section__col-2__content strong{
+  color: var(--skinscare-primary-theme);
   font-weight: bold;
 }
 
 .section__col-2-price {
   margin: 10px 0;
   font-size: 25px;
+}
+
+.section__col-2-price strong{
+  color: var(--skinscare-primary-theme);
+}
+
+.description__content h2{
+  color: var(--skinscare-primary-theme);
+}
+
+.additional__information h2{
+  color: var(--skinscare-primary-theme);
 }
 
 .section__col-2 form {
@@ -63,6 +76,14 @@
 
 .key__benefits{
   font-size: 18px;
+}
+
+.benefits__header{
+  color: var(--skinscare-primary-theme);
+}
+
+.howToUse__header{
+  color: var(--skinscare-primary-theme);
 }
 
 .howToUse__content{
@@ -351,10 +372,12 @@
 .product__content button{
   color: white;
   border: none;
+  font-size: 18px;
 }
 
 .card-body{
   color: white;
+  font-size: 18px;
 }
 
 .instructions{

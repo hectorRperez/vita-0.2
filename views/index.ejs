@@ -9,21 +9,7 @@
   <div id="preloader"></div>
 
   <!--  ------------------ PROMO ------------------ -->
-  <div class="promo">
-    <span>
-      <a href="#">
-        <i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
-      </a></span>
-    <span>Get 30% OFF This Christmas Holidays</span>
-    <span>
-      <ul class="media_social">
-        <li>
-          <a href="#"><i class="fab fa-facebook-square"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </li>
-      </ul>
-    </span>
-  </div>
+  <%- include('partials/banner.ejs')%>
 
   <!-- ------------------ HEADER ------------------------ -->
   <div class="header">
@@ -52,7 +38,7 @@
                   </h1>
                   <h3>Healthy skin start here</h3>
                   <div class="buttons-group">
-                    <button>SHOP NOW</button>
+                    <a href="/shop">SHOP NOW</a>
                   </div>
                 </div>
                 <img src="./img/banner_07.jpg" class="special_01" alt="" />
@@ -415,87 +401,9 @@
     </div>
   </section>
 
-  <!-- ------------------------  60 Day Guarantee ------------------------  -->
-  <!-- <section class="section">
-        <div class="title">
-            <header class="header-container"> -->
-  <!-- - MISSION - -->
-  <!-- <h2 class="title-back">60 Day Guarantee</h2>
-                <hr>
-            </header>
-            <p class="title-paragraph">If you are not 100% happy with our products or service, then we aren’t either. We
-                offer a risk-free, 60-day, 100% full-refund return policy. If you are not satisfied with your order,
-                contact us and we’ll assist you in processing your return.
-            </p>
-        </div>
-
-    </section> -->
-
   <!-- ------------------------  Footer ------------------------  -->
-  <div class="footer">
-    <div class="container-footer">
-      <div class="row-footer">
-        <div class="footer-col-3">
-          <a href="/">
-            <h3>Vita Health Center</h3>
-          </a>
-          <ul>
-            <li>
-              <a href="/faq">FAQ</a>
-            </li>
-            <li>
-              <a href="/blog">Blogs Post</a>
-            </li>
-            <li>My Account</li>
-            <li>
-              <a href="/contact">Contact us</a>
-            </li>
-            <li>
-              <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-col-2">
-          <a href="/">
-            <img src="./img/1.png" />
-          </a>
-        </div>
-
-        <div class="footer-col-3">
-          <a href="/skincare">
-            <h3>Vita Skincare</h3>
-          </a>
-          <ul>
-            <li class="li-footer"></li>
-            <li>
-              <a href="/blog">Blogs Post</a>
-            </li>
-            <li>My Account</li>
-            <li>instructions</li>
-            <li>
-              <a href="/returns_exchanges">Return Policy</a>
-            </li>
-            <li>
-              <a href="/privacy_policies">Terms of Use — Privacy Policy</a>
-            </li>
-          </ul>
-        </div>
-        <div class="footer-col-4">
-          <h3>Follow us</h3>
-          <ul>
-            <li>Facebook</li>
-            <li>
-              <a href="https://www.instagram.com/vitahealthc/" target="_blank">Instagram</a>
-            </li>
-            <li>Pinterest</li>
-          </ul>
-        </div>
-      </div>
-      <hr />
-      <p class="copyright">Copyright 2021 - Vita Inc</p>
-    </div>
-  </div>
+  <%- include('partials/footer.ejs'); %>
+  
 
   <div id="modal-1" class="jw-modal">
     <div class="jw-modal-body animate__animated animate__fadeInDown">
