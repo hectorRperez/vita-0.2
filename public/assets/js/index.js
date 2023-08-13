@@ -66,7 +66,6 @@ for (let form of forms) {
       formData = Object.fromEntries(formData);
     }
 
-    console.log(JSON.stringify(formData));
     fetch(action, {
       method: "POST",
       ...(json && {
@@ -79,15 +78,16 @@ for (let form of forms) {
     })
       .then(async (response) => {
         if (response.ok) {
-          console.log(response);
           const jsonData = await response.json();
           await Swal.fire("Success!", jsonData.message, "success");
           if(jsonData?.redirect)window.location.href = jsonData.redirect;
           else window.location.reload();
         } else {
           // Si hay algún error, mostrar un mensaje
+          const error = await response?.json();
+
           Swal.fire({
-            text: response.statusText,
+            text: error?.message ?? response.statusText,
             icon: "error",
           });
         }

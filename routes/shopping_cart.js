@@ -4,10 +4,7 @@ const getShopcart = require("../utils/shopcart");
 const router = require("express").Router();
 
 router.get("/", async function (req, res) {
-  console.log(req.session);
-  // console.log(req.sessionID);
   const user = req.isAuthenticated() ? req.user : { name: "unknown" };
-  console.log(user);
   const car = await getShopcart(req);
   return res.render("shopping_cart", { car, user });
 });
@@ -27,7 +24,7 @@ router.post("/add", async (req, res) => {
     },
   });
   if (body.quantity > product.quantity) return res.status(301).send({
-    message: "limit quantity of product",
+    message: "Limit quantity of product",
   } );
 
   await prisma.shopcartItem.upsert({
