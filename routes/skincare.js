@@ -10,10 +10,25 @@ router.get("/skincare", async (req, res) => {
       include: {
         images: true,
       },
+      take: 4,
     });
+
+    const productsWithImage = products.map((product) => {
+      let image = null;
+      image = product.images.filter((image) => image.isFirst)[0] ?? null;
+
+      image = !image && product.images.length > 0 ? product.images[0] : image;
+      const images = product.images.filter((element) => image != element);
+      return {
+        ...product,
+        images,
+        image,
+      };
+    });
+
     const car = await getShopcart(req);
 
-    res.render("skincare", { products: products, user: req.user, car });
+    res.render("skincare", { products: productsWithImage, user: req.user, car });
   } catch (error) {
     console.error(error);
   }
