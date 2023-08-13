@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "init-db": "node config/migrations.js"
+    "init-db": "node config/migrations.js",
+    "seed": "node prisma/seed.js"
   },
   "repository": {
     "type": "git",
