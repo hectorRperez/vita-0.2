@@ -427,7 +427,7 @@ Submenu
   margin-bottom: 1em;
 }
 
-.buttons-group button {
+.buttons-group a {
   display: inline-block;
   background-color: transparent;
   border: 1px solid var(--primary);
@@ -441,18 +441,17 @@ Submenu
   transition: all 300ms ease-in-out;
 }
 
-.buttons-group button {
+.buttons-group a {
   background-color: var(--primary);
-  color: var(--white);
+  color: white;
   border: none;
 }
 
-.shop-buttons-now button {
+.shop-buttons-now a {
   background-color: #fff;
-  color: var(--primary-skinscare);
 }
 
-.buttons-group button:hover {
+.buttons-group a:hover {
   background-color: #d9c4ac;
   color: var(--black);
 }
@@ -936,9 +935,12 @@ Submenu
 }
 
 .footer-skincare {
-  color: var(--primary-skinscare);
-  background-color: var(--secundary-skinscare);
+  background-color: var(--skincare-darker-theme);
+  color: var(--white);
+  font-size: 14px;
+  padding: 60px 0 20px;
 }
+
 
 .footer p {
   color: var(--primary);
