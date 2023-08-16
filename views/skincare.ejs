@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<%- include('partials/head.ejs'); %>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 	</head>
 
 	<body>
@@ -9,22 +10,7 @@
 		<div id="preloader"></div>
 
 		<!--  ------------------ PROMO ------------------ -->
-		<div class="promo">
-			<span>
-				<a href="#">
-					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
-				</a></span
-			>
-			<span>ENJOY 15% OFF WHEN YOU SPEND $40 OR MORE FOR NEW SUBSCRIBERS ONLY WHEN SUBSCRIBERS WITH EMAIL</span>
-			<span>
-				<ul class="media_social">
-					<li>
-						<a href="#"><i class="fab fa-facebook-square"></i></a>
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</li>
-				</ul>
-			</span>
-		</div>
+		<%- include('partials/banner.ejs'); %>
 
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
@@ -44,7 +30,7 @@
 								<div class="banner animate__animated animate__fadeInUp">
 									<div class="banner-content shop-now_btn">
 										<div class="buttons-group shop-buttons-now">
-											<button>
+											<button class="skincare-btn-now">
 												<a href="#skincare-section">SHOP NOW</a>
 											</button>
 										</div>
@@ -235,53 +221,21 @@
 			</div>
 			<div class="container-testimonials">
 				<div class="slider">
-					<!-- Cliente #1 -->
-					<div class="slide active">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
-						</p>
-						<div class="client-info">
-							<h3>Golge Gam</h3>
-							<span>CEO at Google</span>
-						</div>
-					</div>
-
-					<!-- Cliente #2 -->
-					<div class="slide">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
-						</p>
-						<div class="client-info">
-							<h3>Kylie Jenner</h3>
-							<span>Empresaria</span>
-						</div>
-					</div>
-
-					<!-- Cliente #3 -->
-					<div class="slide">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-							rem quam veritatis amet sed alias ab aliquam harum accusamus
-							blanditiis sunt nulla, perferendis ad fugiat dolore eum tempore?
-							Aliquam, qui.
-						</p>
-						<div class="client-info">
-							<h3>Carolina Herrera</h3>
-							<span>Diseñadora de moda</span>
-						</div>
-					</div>
+					
+          <!-- Cliente #4 -->
+          <div class="slide active">
+            <p>
+              Hello, I’m Karla Colmenarez I created this  company with so much love that I am leaving this space here for you to comment on how wonderfully this product has changed your skin, just like it did for me.
+            </p>
+            <div class="client-info">
+              <h3>Karla Colmenarez </h3>
+              <span>CEO of Vita Health Center and Vita Skincare</span>
+            </div>
+          </div>
 				</div>
 
 				<div class="slider-indicator">
-					<img src="./img/client-01.png" class="active" alt="" data-id="0" />
-					<img src="./img/client-04.png" alt="" data-id="1" />
-					<img src="./img/client-05.png" alt="" data-id="2" />
+          <img src="./img/client-06.png" class="active" alt="" data-id="0" />
 				</div>
 			</div>
 		</section>

@@ -88,6 +88,7 @@
 
 .howToUse__content{
   font-size: 18px !important;
+  text-align: justify;
 }
 
 .section__col-2-btn {
@@ -387,4 +388,9 @@
 .instructions li{
   list-style-type: disc;
   padding: 10px;
+}
+
+.btn-accordion:hover{
+  color: white;
+  outline: none;
 }

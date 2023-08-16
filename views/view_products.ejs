@@ -12,23 +12,8 @@
 		<div id="preloader"></div>
 
 		<!--  ------------------ PROMO ------------------ -->
-		<div class="promo">
-			<span>
-				<a href="#">
-					<i class="fas fa-envelope"></i> contactvitahealthc@gmail.com
-				</a></span
-			>
-			<span>ENJOY 15% OFF WHEN YOU SPEND $40 OR MORE FOR NEW SUBSCRIBERS ONLY WHEN SUBSCRIBERS WITH EMAIL</span>
-			<span>
-				<ul class="media_social">
-					<li>
-						<a href="#"><i class="fab fa-facebook-square"></i></a>
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</li>
-				</ul>
-			</span>
-		</div>
-
+		<%- include('partials/banner.ejs'); %>
+		
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
 			<%if (user === undefined) { %> <%- include('partials/header.ejs', {
