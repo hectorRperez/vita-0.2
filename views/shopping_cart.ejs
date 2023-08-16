@@ -1,116 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include('partials/head.ejs'); %>
-	</head>
 
-	<body>
+<head>
+  <%- include('partials/head.ejs'); %>
+</head>
 
-		<!-- ------------------ HEADER ------------------------ -->
-		<div class="header">
-			<%- include('partials/header.ejs', { account: user.name ?? "unknown", car }); %>
-		</div>
-		<!-- ------------------ End Header ------------------------ -->
+<body>
 
-		<!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
-		<div class="container my-5 py-5">
-			<div class="row mt-5 bg-gray">
-			<div class="col-md-6">
-				<div class="row">
-					
-				</div>
-			</div>
-			<div class="col-md-6">
-			<div class="row">
-			
-			  <% for (var i = 0; i < car.items.length; i++) { %>
-				<div class="col-md-4">
-				  <div class="card">
-					<img src="<%= car.items[i].product.images[0].image %>" class="card-img-top">
-					<div class="card-body">
-						<%= car.item %>
-					  <h5 class="card-title"><%= car.items[i].product.name %></h5>
-					  <p class="card-text">Quantity: <%= car.items[i].count %></p>
-					  <p class="card-text">Price: <%= car.items[i].product.price %></p>
-					</div>
-				  
-					<div class="card-footer">
-						<a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">delete</a>
-					</div>
-				  </div>
-				</div>
-			  <% } %>
-			  
-			</div>
-			<div class="row p-3">
-				<a class="btn btn-success">Checkout</a> 
-			  </div>
-		  </div>
-		</div>
-		</div>
+  <!-- ------------------ HEADER ------------------------ -->
+  <div class="header">
+    <%- include('partials/header.ejs', { account: user.name ?? "unknown" , car }); %>
+  </div>
+  <!-- ------------------ End Header ------------------------ -->
 
-		<!-- ------------------------  Footer ------------------------  -->
-		<div class="footer">
-			<div class="container-footer">
-				<div class="row-footer">
-					<div class="footer-col-3">
-						<h3>Vita Health Center</h3>
-						<ul>
-							<li class="li-footer"></li>
-							<li>FAQ</li>
-							<li>Blogs Post</li>
-							<li>My Account</li>
-							<li>Contact us</li>
-							<li>Terms of Use — Privacy Policy</li>
-						</ul>
-					</div>
-					<div class="footer-col-2">
-						<img src="./img/1.png" />
-					</div>
-					<div class="footer-col-3">
-						<h3>Vita Skincare</h3>
-						<ul>
-							<li class="li-footer"></li>
-							<li>Blogs Post</li>
-							<li>My Account</li>
-							<li>instructions</li>
-							<li>Return Policy</li>
-							<li>Terms of Use — Privacy Policy</li>
-						</ul>
-					</div>
-					<div class="footer-col-4">
-						<h3>Follow us</h3>
-						<ul>
-							<li>Facebook</li>
-							<li>Instagram</li>
-							<li>Pinterest</li>
-						</ul>
-					</div>
-				</div>
-				<hr />
-				<p class="copyright">Copyright 2021 - Vita Inc</p>
-			</div>
-		</div>
-		<script>
-			console.log('hola mundo desde js');
-			var ProductImg = document.getElementById('ProductImg');
+  <!-- ----------------- SINGLE PRODUCT DETAILS ------------- -->
+  <div class="container my-5 py-5">
+    <% if (payment === 'true') { %>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="alert alert-success" role="alert">
+            Your purchase was successful. We will contact you soon.
+          </div>
+        </div>
+      </div>
+    <% } %>
 
-			var SmallImg = document.getElementsByClassName('small-img');
+    <% if (payment === 'false') { %>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="alert alert-danger" role="alert">
+            Your purchase was not successful. Try again.
+          </div>
+        </div>
+      </div>
+    <% } %>
 
-			SmallImg[0].onclick = function () {
-				ProductImg.src = SmallImg[0].src;
-				console.log(ProductImg);
-			};
+    <div class="row mt-5 bg-gray">
+      <div class="col-md-6">
+        <div class="row"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
 
-			SmallImg[1].onclick = function () {
-				ProductImg.src = SmallImg[1].src;
-			};
+          <% for (var i=0; i < car.items.length; i++) { %>
+            <div class="col-md-4">
+              <div class="card">
+                <img src="<%= car.items[i].product.images[0].image %>" class="card-img-top">
+                <div class="card-body">
+                  <%= car.item %>
+                    <h5 class="card-title">
+                      <%= car.items[i].product.name %>
+                    </h5>
+                    <p class="card-text">Quantity: <%= car.items[i].count %>
+                    </p>
+                    <p class="card-text">Size: <%= car.items[i].size %>
+                    </p>
+                    <p class="card-text">Price: <%= car.items[i].product.price %>
+                    </p>
+                </div>
+                <div class="card-footer">
+                  <a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+              </div>
+            </div>
+            <% } %>
 
-			SmallImg[2].onclick = function () {
-				ProductImg.src = SmallImg[2].src;
-			};
-		</script>
-		<%- include('partials/script.ejs'); %>
-		<script src="/assets/js/index.js"></script>
-	</body>
+        </div>
+        <div class="row p-3">
+          <button class="btn btn-success" onclick="checkout()" id="btn-checkout">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------------------  Footer ------------------------  -->
+  <div class="footer">
+    <div class="container-footer">
+      <div class="row-footer">
+        <div class="footer-col-3">
+          <h3>Vita Health Center</h3>
+          <ul>
+            <li class="li-footer"></li>
+            <li>FAQ</li>
+            <li>Blogs Post</li>
+            <li>My Account</li>
+            <li>Contact us</li>
+            <li>Terms of Use — Privacy Policy</li>
+          </ul>
+        </div>
+        <div class="footer-col-2">
+          <img src="./img/1.png" />
+        </div>
+        <div class="footer-col-3">
+          <h3>Vita Skincare</h3>
+          <ul>
+            <li class="li-footer"></li>
+            <li>Blogs Post</li>
+            <li>My Account</li>
+            <li>instructions</li>
+            <li>Return Policy</li>
+            <li>Terms of Use — Privacy Policy</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow us</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>Pinterest</li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <p class="copyright">Copyright 2021 - Vita Inc</p>
+    </div>
+  </div>
+  <script>
+    var ProductImg = document.getElementById('ProductImg');
+
+    var SmallImg = document.getElementsByClassName('small-img');
+
+    if (SmallImg[0]) {
+      SmallImg[0].onclick = function () {
+        ProductImg.src = SmallImg[0].src;
+        console.log(ProductImg);
+      };
+    }
+
+    if (SmallImg[1]) {
+      SmallImg[1].onclick = function () {
+        ProductImg.src = SmallImg[1].src;
+      };
+    }
+
+    if (SmallImg[2]) {
+      SmallImg[2].onclick = function () {
+        ProductImg.src = SmallImg[2].src;
+      };
+    }
+
+    function checkout() {
+      const btnCheckout = $('#btn-checkout');
+      btnCheckout.text('Checkout ...');
+      btnCheckout.attr('disabled', true);
+
+      fetch('shopping_cart/payment', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+      })
+        .then(async (response) => {
+          const jsonData = await response.json();
+
+          if (jsonData?.redirect) {
+            window.location.href = jsonData.redirect;
+          }
+
+          if (jsonData?.errors) {
+            let errors = '';
+            jsonData.errors.forEach(item => {
+              errors += '- ' + item.message + '<br />';
+            });
+
+            Swal.fire({
+              html: errors,
+              icon: "error",
+            });
+          }
+        })
+        .catch((error) => {
+          Swal.fire({
+            html: `<pre>${error?.message ?? response.statusText}</pre>`,
+            icon: "error",
+          });
+        })
+        .finally(() => {
+          btnCheckout.text('Checkout');
+          btnCheckout.attr('disabled', false);
+        });
+    }
+  </script>
+  <%- include('partials/script.ejs'); %>
+    <script src="/assets/js/index.js"></script>
+</body>
+
 </html>

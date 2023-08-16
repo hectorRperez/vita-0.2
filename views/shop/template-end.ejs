@@ -40,41 +40,118 @@
     console.log(ProductImg);
   };
 
-  SmallImg[1].onclick = function () {
-    ProductImg.src = SmallImg[1].src;
-  };
+  if (SmallImg[1]) {
+    SmallImg[1].onclick = function () {
+      ProductImg.src = SmallImg[1].src;
+    };
+  }
 
-  SmallImg[2].onclick = function () {
-    ProductImg.src = SmallImg[2].src;
-  };
+  if (SmallImg[2]) {
+    SmallImg[2].onclick = function () {
+      ProductImg.src = SmallImg[2].src;
+    };
+  }
 </script>
 
 <script>
-  let tabPanes = document
-    .getElementsByClassName('tab-header')[0]
-    .getElementsByTagName('div');
+  let tabPanes = document.getElementsByClassName('tab-header')[0];
 
-  for (let i = 0; i < tabPanes.length; i++) {
-    tabPanes[i].addEventListener('click', function () {
-      document
-        .getElementsByClassName('tab-header')[0]
-        .getElementsByClassName('active')[0]
-        .classList.remove('active');
-      tabPanes[i].classList.add('active');
+  if (tabPanes) {
+    tabPanes = tabPanes.getElementsByTagName('div');
 
-      document
-        .getElementsByClassName('tab-content')[0]
-        .getElementsByClassName('active')[0]
-        .classList.remove('active');
-      document
-        .getElementsByClassName('tab-content')[0]
-        .getElementsByTagName('div')
-      [i].classList.add('active');
-    });
+    for (let i = 0; i < tabPanes.length; i++) {
+      tabPanes[i].addEventListener('click', function () {
+        document
+          .getElementsByClassName('tab-header')[0]
+          .getElementsByClassName('active')[0]
+          .classList.remove('active');
+        tabPanes[i].classList.add('active');
+
+        document
+          .getElementsByClassName('tab-content')[0]
+          .getElementsByClassName('active')[0]
+          .classList.remove('active');
+        document
+          .getElementsByClassName('tab-content')[0]
+          .getElementsByTagName('div')
+        [i].classList.add('active');
+      });
+    }
   }
 </script>
 
 <%- include('../partials/script.ejs'); %>
-<script src="/assets/js/index.js"></script>
+<script>
+const nav = document.querySelector(".nav-menu");
+const navigation = document.querySelector(".navigation");
+const openBtn = document.querySelector(".hamburger");
+const closeBtn = document.querySelector(".close");
+
+// Obtener todos los elementos de formulario del documento
+let forms = document.querySelectorAll("form");
+
+// Recorrer cada elemento de formulario
+for (let form of forms) {
+  // Agregar un evento de submit al formulario
+  form.addEventListener("submit", function (event) {
+    // Prevenir el comportamiento por defecto de enviar el formulario
+    event.preventDefault();
+
+    if (document.getElementById('sizes').value === '') {
+      Swal.fire(
+        'Required field!',
+        'The required size field.',
+        'error'
+      )
+
+      return false;
+    }
+
+    // Obtener la URL del action del formulario
+    let action = form.getAttribute("action");
+
+    let json = false;
+    // Obtener los datos del formulario como un objeto FormData
+    let formData;
+
+    const product_id = document.getElementById('product_id').value;
+    const size = document.getElementById('sizes').value;
+    const quantity = Number(document.getElementById('quantity').value);
+
+    fetch(action, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product_id,
+        size,
+        quantity,
+      }),
+      redirect: "follow",
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          const jsonData = await response.json();
+          await Swal.fire("Success!", jsonData.message, "success");
+          if (jsonData?.redirect) window.location.href = jsonData.redirect;
+          else window.location.reload();
+        } else {
+          // Si hay algún error, mostrar un mensaje
+          const error = await response?.json();
+
+          Swal.fire({
+            text: error?.message ?? response.statusText,
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        // Si hay algún error de red, mostrar un mensaje
+        alert("Error de red: " + error);
+      });
+  });
+}
+</script>
 </body>
 </html>
