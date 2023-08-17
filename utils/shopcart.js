@@ -7,6 +7,7 @@ const getShopcart = async (req) => {
       shopcart = await prisma.shopcart.findUnique({
         where: {
           id: req.user.car.id,
+          isPaid: false
         },
         include: {
           items: {
@@ -39,6 +40,7 @@ const getShopcart = async (req) => {
     shopcart = await prisma.shopcart.findFirst({
       where: {
         sessionId: req.sessionID,
+        isPaid: false
       },
       include: {
         items: {

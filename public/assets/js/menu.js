@@ -21,7 +21,6 @@ document.querySelector(".menu + .close").onclick = (x) => {
   document.body.classList.remove("no-scroll");
 };
 
-console.log("scroll");
 // scrollreveal APLICADO AL HOME Y A SKINCARE
 // scrollreveal se aplica directo a la clase section-scroll
 

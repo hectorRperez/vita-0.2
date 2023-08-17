@@ -29,8 +29,8 @@
 
         <div class="section__col-2 section__col-2--flex">
           <form action="/shopping_cart/add" method="post">
-            <input type="number" value="1" / name="quantity">
-            <input type="hidden" name="product_id" value="<%= product.id %>" />
+            <input type="number" value="1" name="quantity" id="quantity" max="<%= product.quantity %>" />
+            <input type="hidden" name="product_id" value="<%= product.id %>" id="product_id" />
             <button type="submit" class="section__col-2-btn">Add to card</button>
           </form>
         </div>

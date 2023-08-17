@@ -1,16 +1,43 @@
 const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
+const PaymentController = require("../controllers/payment");
 
 const router = require("express").Router();
 
 router.get("/", async function (req, res) {
   const user = req.isAuthenticated() ? req.user : { name: "unknown" };
   const car = await getShopcart(req);
-  return res.render("shopping_cart", { car, user });
+
+  return res.render(
+    "shopping_cart", {
+      car,
+      user,
+      payment: req.query?.payment ?? null
+    }
+  );
 });
 
 router.get("/delete/:id", async function (req, res) {
-  await prisma.shopcartItem.delete({ where: { id: req.params.id } });
+  const shopcartItem = await prisma.shopcartItem.findUnique({
+    where: {
+      id: req.params.id,
+    },
+    include: {
+      car: true
+    },
+  });
+
+  if (
+    shopcartItem &&
+    shopcartItem?.car?.isPaid === false
+  ) {
+    await prisma.shopcartItem.delete({
+      where: {
+        id: req.params.id
+      }
+    });
+  }
+
   return res.redirect("/shopping_cart/");
 });
 
@@ -25,7 +52,7 @@ router.post("/add", async (req, res) => {
   });
   if (body.quantity > product.quantity) return res.status(301).send({
     message: "Limit quantity of product",
-  } );
+  });
 
   await prisma.shopcartItem.upsert({
     where: {
@@ -41,12 +68,18 @@ router.post("/add", async (req, res) => {
       productId: body.product_id,
       count: parseInt(body.quantity),
       carId: car.id,
+      size: body.size,
     },
   });
+
   return res.json({
     message: "Product added successfully",
     data: car
   });
 });
+
+// Payment
+router.post("/payment", PaymentController.createSession);
+router.get("/success/:id", PaymentController.success);
 
 module.exports = router;
