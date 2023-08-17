@@ -6,8 +6,17 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
   try {
     const products = await prisma.product.findMany({
+      where: {
+        category: {
+          name: {
+            equals: 'serum',
+            mode: 'insensitive'
+          }
+        }
+      },
       include: {
         images: true,
+        category: true
       },
       take: 4,
     });
