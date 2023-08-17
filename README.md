@@ -15,3 +15,7 @@ npx prisma migrate dev
 # Create migration
 
 npx prisma migrate dev --name <name>
+
+# Run seeder
+
+npx prisma db seed
