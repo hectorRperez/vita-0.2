@@ -99,9 +99,14 @@ a {
   padding: 0.5rem 1.5rem;
 }
 
+.media_social{
+  display: flex;
+  margin-left: 40px;
+  justify-content: start;
+  gap: 10px;
+}
 .media_social li {
   font-size: 20px;
-  /*padding-right: 170px;*/
 }
 
 @media (min-width: 733px) {
@@ -447,8 +452,9 @@ Submenu
   border: none;
 }
 
-.shop-buttons-now a {
+.shop-buttons-now .skincare-btn-now a {
   background-color: #fff;
+  color: var(--skincare-darker-theme);
 }
 
 .buttons-group a:hover {
