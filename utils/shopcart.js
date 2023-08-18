@@ -4,7 +4,7 @@ const getShopcart = async (req) => {
   let shopcart = { items: [] };
   if (req.isAuthenticated()) {
     if (req.user.car?.id)
-      shopcart = await prisma.shopcart.findUnique({
+      shopcart = await prisma.shopcart.findFirst({
         where: {
           id: req.user.car.id,
           isPaid: false
