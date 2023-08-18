@@ -17,19 +17,19 @@ module.exports = (passport) => {
             email: req.body.email,
           },
         });
-        console.log(req.body);
+
         if (!user) {
           return done("The user does not exist!", false);
         }
-        try {	
+
+        try {
           const match = await bcrypt.compareSync(req.body.password, user.password);
           if (match) {
             return done(null, user);
-          } else {
-            return done("null");
           }
+
+          return done("null");
         } catch (e) {
-        
           return done(e);
         }
         
@@ -43,8 +43,7 @@ module.exports = (passport) => {
 
   passport.deserializeUser(async (id, done) => {
     const user = await prisma.user.findUnique({
-      where: { id },
-      include: { car: true },
+      where: { id }
     });
     done(null, user);
   });

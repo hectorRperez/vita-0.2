@@ -1178,4 +1178,10 @@ body.jw-modal-open {
   background-color: var(--skinscare-primary-theme);
   color: white;
   border: none;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

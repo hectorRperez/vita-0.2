@@ -7,9 +7,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 class PaymentController {
   static async createSession(req, res) {
     try {
+      let condictionWhere = { sessionId: req.sessionID };
+
+      if (req.isAuthenticated()) {
+        condictionWhere = { userId: req.user.id, };
+      }
+
       const shopcart = await prisma.shopcart.findFirst({
         where: {
-          sessionId: req.sessionID,
+          ...condictionWhere,
           isPaid: false
         },
         include: {

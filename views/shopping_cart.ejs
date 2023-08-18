@@ -61,7 +61,7 @@
                         </p>
                         <p class="card-text shopping__size">Price: <%= car.items[i].product.price %>
                         </p>
-                    </div>    
+                    </div>
                   </div>
                 </div>
                 <div class="py-2">
@@ -73,7 +73,14 @@
 
         </div>
         <div class="row py-3 d-flex justify-content-end">
-          <button class="shopping__checkout" onclick="checkout()" id="btn-checkout">Checkout</button>
+          <button
+            class="shopping__checkout <%= car.items.length ? '' : 'disabled' %>"
+            onclick="checkout()"
+            id="btn-checkout"
+            <%= car.items.length ? '' : 'disabled' %>
+          >
+            Checkout
+          </button>
         </div>
       </div>
     </div>

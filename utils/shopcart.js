@@ -2,51 +2,40 @@ const prisma = require("../config/database");
 
 const getShopcart = async (req) => {
   let shopcart = { items: [] };
+
   if (req.isAuthenticated()) {
-    if (req.user.car?.id)
-      shopcart = await prisma.shopcart.findFirst({
-        where: {
-          id: req.user.car.id,
-          isPaid: false
-        },
-        include: {
-          items: {
-            include: {
-              product: {
-                include:{
-                  images: true,
-                },
-              },
-            },
-          },
-        },
-      });
-    else
-      shopcart = await prisma.shopcart.create({
-        data: { userId: req.user.id },
-        include: {
-          items: {
-            include: {
-              product: {
-                include:{
-                  images: true,
-                },
-              },
-            },
-          },
-        },
-      });
-  } else {
     shopcart = await prisma.shopcart.findFirst({
       where: {
-        sessionId: req.sessionID,
-        isPaid: false
+        userId: req.user.id,
+        isPaid: false,
       },
       include: {
         items: {
           include: {
             product: {
-              include:{
+              include: {
+                images: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!shopcart) {
+      shopcart = createShopcart(req);
+    }
+  } else {
+    shopcart = await prisma.shopcart.findFirst({
+      where: {
+        sessionId: req.sessionID,
+        isPaid: false,
+      },
+      include: {
+        items: {
+          include: {
+            product: {
+              include: {
                 images: true,
               },
             },
@@ -62,7 +51,7 @@ const getShopcart = async (req) => {
           items: {
             include: {
               product: {
-                include:{
+                include: {
                   images: true,
                 },
               },
@@ -74,5 +63,22 @@ const getShopcart = async (req) => {
 
   return shopcart;
 };
+
+async function createShopcart(req) {
+  return await prisma.shopcart.create({
+    data: { userId: req.user.id },
+    include: {
+      items: {
+        include: {
+          product: {
+            include: {
+              images: true,
+            },
+          },
+        },
+      },
+    },
+  });
+}
 
 module.exports = getShopcart;
