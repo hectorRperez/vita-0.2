@@ -37,84 +37,51 @@
 
     <div class="row mt-5 bg-gray">
       <div class="col-md-6">
-        <div class="row"></div>
+        <h1 class="py-4">Shopping cart</h1>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="row">
-
           <% for (var i=0; i < car.items.length; i++) { %>
-            <div class="col-md-4">
-              <div class="card">
-                <img src="<%= car.items[i].product.images[0].image %>" class="card-img-top">
-                <div class="card-body">
-                  <%= car.item %>
-                    <h5 class="card-title">
-                      <%= car.items[i].product.name %>
-                    </h5>
-                    <p class="card-text">Quantity: <%= car.items[i].count %>
-                    </p>
-                    <p class="card-text">Size: <%= car.items[i].size %>
-                    </p>
-                    <p class="card-text">Price: <%= car.items[i].product.price %>
-                    </p>
+            <div class="col-md-12 shopping__container">
+              <div class="shopping__item">
+                <div class="row">
+                  <div class="col-2">
+                    <img src="<%= car.items[i].product.images[0].image %>">
+                  </div>
+                  <div class="col-10">
+                    <div class="card-body">
+                      <%= car.item %>
+                        <h5 class="card-title shopping__title">
+                          <%= car.items[i].product.name %>
+                        </h5>
+                        </p>
+                        <p class="card-text shopping__quantity">Quantity: <%= car.items[i].count %>
+                        </p>
+                        <p class="card-text shopping__size">Size: <%= car.items[i].size %>
+                        </p>
+                        <p class="card-text shopping__size">Price: <%= car.items[i].product.price %>
+                        </p>
+                    </div>    
+                  </div>
                 </div>
-                <div class="card-footer">
-                  <a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">Delete</a>
+                <div class="py-2">
+                  <a href="/shopping_cart/delete/<%= car.items[i].id %>" class="btn btn-danger btn-sm">Remove item</a>
                 </div>
               </div>
             </div>
             <% } %>
 
         </div>
-        <div class="row p-3">
-          <button class="btn btn-success" onclick="checkout()" id="btn-checkout">Checkout</button>
+        <div class="row py-3 d-flex justify-content-end">
+          <button class="shopping__checkout" onclick="checkout()" id="btn-checkout">Checkout</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ------------------------  Footer ------------------------  -->
-  <div class="footer">
-    <div class="container-footer">
-      <div class="row-footer">
-        <div class="footer-col-3">
-          <h3>Vita Health Center</h3>
-          <ul>
-            <li class="li-footer"></li>
-            <li>FAQ</li>
-            <li>Blogs Post</li>
-            <li>My Account</li>
-            <li>Contact us</li>
-            <li>Terms of Use — Privacy Policy</li>
-          </ul>
-        </div>
-        <div class="footer-col-2">
-          <img src="./img/1.png" />
-        </div>
-        <div class="footer-col-3">
-          <h3>Vita Skincare</h3>
-          <ul>
-            <li class="li-footer"></li>
-            <li>Blogs Post</li>
-            <li>My Account</li>
-            <li>instructions</li>
-            <li>Return Policy</li>
-            <li>Terms of Use — Privacy Policy</li>
-          </ul>
-        </div>
-        <div class="footer-col-4">
-          <h3>Follow us</h3>
-          <ul>
-            <li>Facebook</li>
-            <li>Instagram</li>
-            <li>Pinterest</li>
-          </ul>
-        </div>
-      </div>
-      <hr />
-      <p class="copyright">Copyright 2021 - Vita Inc</p>
-    </div>
-  </div>
+  <%- include('partials/skincare-footer.ejs'); %>
+
   <script>
     var ProductImg = document.getElementById('ProductImg');
 
