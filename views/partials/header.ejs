@@ -1,15 +1,13 @@
 <!-- NAVIGATION -->
-<nav class="nav container">
+<nav class="nav">
   <div class="navigation">
     <!-- Elemento 1 -->
 
     <!-- Elemento 2 -->
     <div class="menu">
-      <div class="hamburger">
-        <i class="bx bx-menu menu-open"></i>
-      </div>
 
       <ul class="nav-list d-flex">
+
         <li class="nav-item">
           <a href="/" class="nav-link"> HOME </a>
         </li>
@@ -42,12 +40,45 @@
             <%= account %> <i class="fas fa-user"></i>
           </a>
         </li>
+
         <li class="nav-item">
-          <a href="/shopping_cart" class="nav-link"> <i class="fas fa-shopping-bag"></i><span class="h5">(<%=
-                car.items.length %>)</span></a>
+          <a href="/shopping_cart" class="nav-link">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="h5">(<%= car.items.length %>)</span>
+          </a>
         </li>
       </ul>
     </div>
-    <div class="close"></div>
+
+    <!-- Top Navigation Menu mobile -->
+    <div class="topnav">
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+      <div id="myLinks">
+        <a href="/" class="nav-link"> HOME </a>
+        <a href="/skincare" class="nav-link">
+          SKINCARE
+        </a>
+        <a href="/shop" class="nav-link">
+          SHOP
+        </a>
+        <a href="/shopping_cart" class="nav-link">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="h5">(<%= car.items.length %>)</span>
+        </a>
+      </div>
+    </div>
   </div>
 </nav>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
