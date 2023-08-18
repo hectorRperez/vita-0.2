@@ -80,23 +80,21 @@ a {
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 1200px) {
-  .container {
-    padding: 0 3rem;
-  }
-}
-
 /* ------------- PROMO ------------------ */
 .promo {
-  /* padding-left: 20px; */
-  /* padding-right: 20px; */
-  /* padding-bottom: 5px; */
   display: flex;
   justify-content: space-between;
   background-color: var(--primary);
   text-align: center;
   color: var(--white);
   padding: 0.5rem 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .promo{
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .media_social{
@@ -132,9 +130,6 @@ a {
   z-index: 1;
 }
 
-.nav {
-  padding-left: 4%;
-}
 
 .hamburger {
   display: none;
@@ -371,6 +366,41 @@ Submenu
   }
 }
 
+.topnav{
+  overflow: hidden;
+  position: relative;
+}
+
+.topnav #myLinks {
+  display: none;
+  background-color: #ca9c85;
+}
+
+.topnav a {
+  color: var(--skincare-darker-theme);
+  padding: 2px 5px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  position: relative;
+  font-size: 25px;
+}
+
+
+@media (max-width: 750px) {
+  .menu{
+    display: none;
+  }
+}
+
+@media (min-width: 750px) {
+  .topnav{
+    display: none;
+  }
+}
+
+
+
 /* Hero */
 .hero,
 .glide__hero,
@@ -545,7 +575,6 @@ Submenu
 }
 
 .header-container hr {
-  position: absolute;
   top: 2rem;
   width: 100%;
   z-index: -2;
@@ -1060,7 +1089,11 @@ ul {
   border-radius: 10px;
   margin: auto;
 }
-
+@media (max-width: 900px) {
+  .jw-modal-body{
+    width: 100%;
+  }
+}
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
