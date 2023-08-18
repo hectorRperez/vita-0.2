@@ -452,9 +452,12 @@ Submenu
   border: none;
 }
 
+.shop-buttons-now .skincare-btn-now{
+  border: none;
+}
 .shop-buttons-now .skincare-btn-now a {
-  background-color: #fff;
-  color: var(--skincare-darker-theme);
+  background-color: var(--skincare-darker-theme);
+  color: white;
 }
 
 .buttons-group a:hover {
@@ -1140,4 +1143,39 @@ body.jw-modal-open {
 
 .bootstrap-tagsinput input {
   width: 15% !important;
+}
+
+.shopping__container{
+  border-top: 1px solid rgb(165, 155, 155);
+  padding: 10px 0;
+}
+
+.shopping__item img{
+  width: 240px;
+  border-radius: 10px;
+}
+
+.shopping__title{
+  font-size: 24px;
+}
+
+.shopping__quantity{
+  font-size: 18px;
+}
+
+.shopping__size{
+  font-size: 18px;
+}
+
+.shopping__size{
+  font-size: 18px;
+}
+
+.shopping__checkout{
+  border-style: solid;
+  width: 160px;
+  padding: 15px;
+  background-color: var(--skinscare-primary-theme);
+  color: white;
+  border: none;
 }
