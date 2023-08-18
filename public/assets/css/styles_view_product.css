@@ -394,3 +394,53 @@
   color: white;
   outline: none;
 }
+
+.product__title{
+  font-size: 20px;
+}
+
+.product__preice{
+  font-size: 20px;
+  font-weight: bold;
+}
+.product__link{
+  position: relative;
+}
+
+.product__category{
+  position: absolute;
+  top: 10px;
+  right: 35px;
+  width: 50px;
+  text-align: center;
+  padding: 8px;
+  background-color: #efccbb;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+}
+
+.card-img-top{
+  border-radius: 10px;
+}
+
+.product__link a{
+  color: var(--skinscare-primary-theme);
+}
+.product__link a:hover{
+  text-decoration: none;
+  color: var(--primary-skinscare);
+}
+
+.product__link .product__btn{
+  background: var(--skinscare-primary-theme);
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.product__link .product__btn:hover{
+  background-color: var(--skincare-dark-third);
+  color: white;
+}
