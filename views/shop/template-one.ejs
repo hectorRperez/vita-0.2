@@ -54,7 +54,11 @@
             <strong>How to use:</strong>
           </h3>
           <p class="howToUse__content">
-            <%= product.howUse %>
+            <% if (product.howUse) { %>
+              <% for (const howUse of product.howUse.split('\n')) { %>
+                <%= howUse %><br />
+              <% } %>
+            <% } %>
           </p>
           <div id="accordion">
             <div class="card product__content">
@@ -68,7 +72,13 @@
               </div>
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
-                  <%= product.ingredients %>
+                  <ul class="instructions">
+                    <% if (product.ingredients) { %>
+                      <% for (const ingredients of product.ingredients.split('\n')) { %>
+                        <li><%= ingredients %></li>
+                      <% } %>
+                    <% } %>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -84,7 +94,13 @@
 
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  <%= product.caution %>
+                  <ul class="instructions">
+                    <% if (product.caution) { %>
+                      <% for (const caution of product.caution.split('\n')) { %>
+                        <li><%= caution %></li>
+                      <% } %>
+                    <% } %>
+                  </ul>
                 </div>
               </div>
             </div>
