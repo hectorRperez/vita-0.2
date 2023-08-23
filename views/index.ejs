@@ -66,6 +66,7 @@
             <p>
               <%= products[i].name %>
             </p>
+            <p class="product_label_home"><%= product_label[products[i].label] %></p>
             <div class="rating">
               <% for(var j=0; j < products[i].assessment; j++) { %>
                 <i class="bx bxs-star"></i>

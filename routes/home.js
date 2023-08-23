@@ -1,6 +1,8 @@
+const router = require("express").Router();
+
 const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
-const router = require("express").Router();
+const productLabel = require("../enums/productLabel");
 
 // ruta inicial
 router.get("/", async (req, res) => {
@@ -40,6 +42,7 @@ router.get("/", async (req, res) => {
       products: productsWithImage,
       user: req.user,
       car,
+      product_label: productLabel
     });
   } catch (error) {
     console.error(error);

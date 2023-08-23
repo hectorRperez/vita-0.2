@@ -28,14 +28,14 @@
               <div class="col-md-4 product__link">
                 <a href="/shop/<%=product.id%>/">
                 <div class="product__category">
-                  New
+                  <%= product_label[product.label] %>
                 </div>
               <div>
                 <img class="card-img-top" src="<%= product.image?.image ?? 'https://placehold.co/400x300' %>" alt="Card image cap">
                 <div class="product__body py-4">
                   <% for(var i=0; i < product.assessment; i++) { %>
                     <i class="bx bxs-star"></i>
-                  <% } %>    
+                  <% } %>
                   <div class="row">
                     <div class="col-6">
                       <h5 class="product__title card-title"><%= product.name %></h5>

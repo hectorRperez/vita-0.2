@@ -1,6 +1,8 @@
 const router = require("express").Router();
+
 const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
+const productLabel = require("../enums/productLabel");
 
 router.get("/shop", async (req, res) => {
   try {
@@ -23,6 +25,7 @@ router.get("/shop", async (req, res) => {
         image,
       };
     });
+
     if (!productsWithImage) return res.send(404);
     const car = await getShopcart(req);
 
@@ -31,6 +34,7 @@ router.get("/shop", async (req, res) => {
       car,
       products: productsWithImage,
       products_related: [],
+      product_label: productLabel
     });
   } catch (error) {
     console.error(error);
@@ -97,6 +101,7 @@ router.get("/shop/:product_id?", async (req, res) => {
       image,
       product_images: images,
       relatedProducts: relatedProductsWithImages,
+      product_label: productLabel
     });
   } catch (error) {
     return res.send(400);

@@ -48,6 +48,16 @@
               </div>
 
               <div class="form-group">
+                <label for="label">Label:</label>
+                <select class="form-control" id="label" name="label" required>
+                  <option value="">Select a label</option>
+                  <% Object.keys(product_label).forEach(label => { %>
+                    <option value="<%= label %>"><%= product_label[label] %></option>
+                  <% }); %>
+                </select>
+              </div>
+
+              <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
               </div>
@@ -88,7 +98,7 @@
               </div>
               <div class="form-group">
                 <label for="assessment">Assessment:</label>
-                <input type="number" class="form-control" id="assessment" name="assessment" min="0">
+                <input type="number" class="form-control" id="assessment" name="assessment" min="0" value="0" required>
               </div>
               <div class="form-group">
                 <label for="image">Images:</label>
@@ -311,6 +321,7 @@ function showEdit(id) {
       toggleShowInputs(product.category.template);
 
       $('#categoryId').val(product.category.id).change();
+      $('#label').val(product.label).change();
       $('#name').val(product.name);
       $('#description').val(product.description);
       $('#price').val(product.price);
@@ -363,6 +374,7 @@ function cancel() {
   $('#images').prop('required', true);
 
   $('#categoryId').val('').change();
+  $('#label').val('').change();
   $('#name').val('');
   $('#description').val('');
   $('#price').val('');
