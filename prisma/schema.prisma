@@ -112,6 +112,8 @@ model Product {
   weight       String?              @db.VarChar(25)
   dimensions   String?              @db.VarChar(25)
 
+  label        ProductLabel         @default(NEW)
+
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
   homeProducts HomeProducts[]
@@ -175,4 +177,10 @@ enum OrderState {
 enum CategoryTemplate {
   TEMPLATE_ONE
   TEMPLATE_TWO
+}
+
+enum ProductLabel {
+  SALE
+  NEW
+  SOLD_OUT
 }

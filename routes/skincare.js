@@ -1,7 +1,8 @@
+const router = require("express").Router();
+
 const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
-
-const router = require("express").Router();
+const productLabel = require("../enums/productLabel");
 
 // ruta que se carga de traer los productos
 router.get("/skincare", async (req, res) => {
@@ -28,7 +29,12 @@ router.get("/skincare", async (req, res) => {
 
     const car = await getShopcart(req);
 
-    res.render("skincare", { products: productsWithImage, user: req.user, car });
+    res.render("skincare", {
+      products: productsWithImage,
+      user: req.user,
+      car,
+      product_label: productLabel
+    });
   } catch (error) {
     console.error(error);
   }

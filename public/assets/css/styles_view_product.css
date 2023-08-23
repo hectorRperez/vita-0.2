@@ -410,7 +410,7 @@
   position: absolute;
   top: 10px;
   right: 35px;
-  width: 50px;
+  min-width: 50px;
   text-align: center;
   padding: 8px;
   background-color: #efccbb;

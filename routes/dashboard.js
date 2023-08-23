@@ -9,6 +9,7 @@ const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
 const postSchema = require("../schemas/post");
 const categoryTemplate = require("../enums/categoryTemplate");
+const productLabel = require("../enums/productLabel");
 
 router.use(isAdmin);
 
@@ -125,11 +126,13 @@ router.get("/products", async (req, res) => {
     const categories = await prisma.category.findMany();
     const products = await prisma.product.findMany();
     const car = await getShopcart(req);
+
     res.render("dashboard/products", {
       categories,
       products: products,
       user: req.user,
       car,
+      product_label: productLabel,
     });
   } catch (error) {
     console.error(error);
@@ -181,6 +184,7 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
         weight: body.weight,
         dimensions: body.dimensions,
         categoryId: body.categoryId,
+        label: body.label,
       },
     });
 
@@ -237,6 +241,7 @@ router.put("/products", upload.array("images", 10), async (req, res) => {
         weight: body.weight,
         dimensions: body.dimensions,
         categoryId: body.categoryId,
+        label: body.label,
       },
     });
 
