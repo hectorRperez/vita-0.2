@@ -4,3 +4,5 @@ Thumbs.db
 *.jpeg
 *.gif
 *.webm
+!vita-logo.png
+!icons/*

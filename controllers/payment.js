@@ -1,11 +1,16 @@
 const Stripe = require("stripe");
+const sgMail = require("@sendgrid/mail");
+const path = require("path");
+const ejs = require("ejs");
 
 const prisma = require("../config/database");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 class PaymentController {
-  static async createSession(req, res) {
+  createSession = async (req, res) => {
     try {
       let condictionWhere = { sessionId: req.sessionID };
 
@@ -89,7 +94,7 @@ class PaymentController {
     }
   }
 
-  static async success(req, res) {
+  success = async (req, res) => {
     try {
       const shopcart = await prisma.shopcart.findFirst({
         where: {
@@ -100,7 +105,15 @@ class PaymentController {
           }
         },
         include: {
-          items: true,
+          items: {
+            include: {
+              product: {
+                include: {
+                  images: true,
+                },
+              },
+            },
+          },
         },
       });
 
@@ -115,9 +128,21 @@ class PaymentController {
       const email = session.customer_details.email;
 
       const transactions = [];
+      let totalPaid = 0;
+      let items = [];
 
       // Actualizar las cantidades de los productos.
       shopcart.items.forEach(item => {
+        totalPaid += item.product.price * item.count;
+
+        items.push({
+          name: item.product.name,
+          quantity: item.count,
+          amount: item.product.price * item.count,
+          size: item.size,
+          image: item.product.images[0].image,
+        });
+
         const shopcartItemUpdate = prisma.product.update({
           where: {
             id: item.productId,
@@ -131,7 +156,6 @@ class PaymentController {
 
         transactions.push(shopcartItemUpdate);
       });
-
 
       // Indicate that it was paid
       const shopcartUpdate = prisma.shopcart.update({
@@ -149,12 +173,68 @@ class PaymentController {
 
       await prisma.$transaction(transactions);
 
+      // Send email
+      // Customer
+      this.sendEmailPurchaseMade({
+        to: email,
+        templateFile: "purchase_made_for_customer",
+        templateData: {
+          totalPaid,
+          items,
+        }
+      });
+      // Admin
+      this.sendEmailPurchaseMade({
+        to: process.env.SENDGRID_FROM,
+        templateFile: "purchase_made_for_admin",
+        templateData: {
+          totalPaid,
+          items,
+          customer: name,
+          email,
+        }
+      });
+
       return res.redirect("/shopping_cart?payment=true");
     } catch (error) {
       console.log(error.message);
       return res.redirect("/shopping_cart?payment=false");
     }
   }
+
+  sendEmailPurchaseMade = (data) => {
+    const {
+      to,
+      templateFile,
+      templateData
+    } = data;
+    let emailTemplate;
+
+    ejs
+      .renderFile(path.join(__dirname, `../views/template/email/${templateFile}.ejs`), {
+        url: process.env.APP_URL,
+        ...templateData,
+      })
+      .then(result => {
+        emailTemplate = result;
+
+        const msg = {
+          to,
+          from: process.env.SENDGRID_FROM,
+          subject: process.env.SENDGRID_SUBJECT,
+          html: emailTemplate,
+        };
+    
+        sgMail
+          .send(msg)
+          .then((response) => {
+            console.log(response[0].statusCode)
+          })
+          .catch((error) => {
+            console.error(error?.response?.body)
+          });
+      });
+  }
 }
 
-module.exports = PaymentController;
+module.exports = new PaymentController();
