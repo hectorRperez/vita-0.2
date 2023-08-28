@@ -132,7 +132,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary" id="button_submit">Submit</button>
-              <div class="btn btn-secondary d-none" id="button_cancel" onclick="cancel()">Cancel</div>
+              <button class="btn btn-secondary d-none" id="button_cancel" onclick="cancel()">Cancel</button>
           </form>
         </div>
 
@@ -143,14 +143,14 @@
           <table class='table table-striped table-bordered table-hover'>
             <thead>
               <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Sizes</th>
-              <th>Assessment</th>
-              <th>Weight</th>
-              <th>Dimensions</th>
-              <th>Action</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sizes</th>
+                <th>Assessment</th>
+                <th>Weight</th>
+                <th>Dimensions</th>
+                <th class="text-center">Action</th>
               </tr>
             </thead>
             <% products.map(product => { %>
@@ -162,7 +162,7 @@
                 <td><%= product.assessment %></td>
                 <td><%= product.weight %></td>
                 <td><%= product.dimensions %></td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-success" onclick="showEdit('<%= product.id %>')">
                     <i class="fas fa-edit"></i>
                   </button>

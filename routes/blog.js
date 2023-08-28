@@ -25,7 +25,11 @@ router.get("/blog", async (req, res) => {
 
     const car = await getShopcart(req);
 
-    res.render("blog.ejs", { posts: posts, car });
+    res.render("blog.ejs", {
+      posts: posts,
+      user: req.user,
+      car
+    });
   } catch (error) {
     console.error(error);
   }
@@ -48,9 +52,20 @@ router.get("/blog/:id", async (req, res) => {
       return res.redirect("/blog");
     }
 
+    const createdAt = new Date(post.created_at)
+
+    let month = createdAt.getMonth() + 1;
+    if (month < 10) month = `0${month}`;
+
+    post.created_at = `${month}/${createdAt.getDate()}/${createdAt.getFullYear()}`;
+
     const car = await getShopcart(req);
 
-    res.render("view_blog.ejs", { post: post, car });
+    res.render("view_blog.ejs", {
+      post: post,
+      user: req.user,
+      car
+    });
   } catch (error) {
     console.error(error);
   }

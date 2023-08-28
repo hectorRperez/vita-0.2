@@ -10,7 +10,7 @@
 		
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%- include('partials/header.ejs', { account: "LOGIN", car }); %>
+			<%- include('partials/header.ejs', { account: user?.name, car }); %>
 		</div>
 
 		<!-- ------------------------  LATEST BLOGS ------------------------  -->
@@ -44,7 +44,7 @@
 									<%= posts[i].title %><span>Vita Style</span>
 								</h3>
 								<p>
-									By <a href="#"></a> <%= `${posts[i].createdBy.name} ${posts[i].createdBy.lastname}` %> | <a href="#"></a> <%= posts[i].created_at %>
+									By <%= `${posts[i].createdBy.name} ${posts[i].createdBy.lastname}` %> | <a href="#"></a> <%= posts[i].created_at %>
 								</p>
 								<a href="blog/<%= posts[i].id %>" class="btn">Read More</a>
 							</div>

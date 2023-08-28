@@ -1248,3 +1248,10 @@ body.jw-modal-open {
   display: block;
   margin: 0 auto;
 }
+
+.image-cover-post {
+  height: 40em;
+  width: 95%;
+  margin: 0 auto;
+  display: block;
+}

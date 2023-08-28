@@ -79,6 +79,9 @@ router.post("/categories", async (req, res) => {
 // Posts
 router.get("/posts", DashboardPostController.list);
 router.post("/posts", upload("posts").single("image"), DashboardPostController.create);
+router.get("/posts/:id", DashboardPostController.getOne);
+router.put("/posts", upload("posts").single("image"), DashboardPostController.update);
+router.delete("/posts/:id", DashboardPostController.delete);
 
 // Product
 router.get("/products", async (req, res) => {
@@ -270,7 +273,7 @@ router.delete("/products/:id", async (req, res) => {
 
     // Delete file
     product.images.map(productImage => {
-      if (fs.existsSync(path.join("public/", '/img/products/product-169144184062425.jpeg'))) {
+      if (fs.existsSync(path.join("public/", productImage.image))) {
         fs.unlinkSync(path.join("public/", productImage.image));
       }
     });
