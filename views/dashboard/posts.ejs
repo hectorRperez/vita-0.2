@@ -37,17 +37,26 @@
         </div>
       </div>
       <div class="col-md-8">
-        <form action="/dashboard/posts" method="post">
-            <div class="form-group">
-              <label for="title">Title:</label>
-              <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-              <div id="summernote"><p>...</p></div>
-            </div>
+        <div class="card p-2">
+          <form action="/dashboard/posts" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+              </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="form-group">
+                <label for="image">Cover image:</label>
+                <input type="file" name="image" id="image" required />
+              </div>
+    
+              <div class="form-group">
+                <div id="summernote"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+        </div>
+
         <div class="card mt-2">
           <div class="card-header">
             <h4>Posts</h4>
@@ -70,11 +79,62 @@
   </div>
 
   <%- include('../partials/script.ejs'); %>
-  <script src="/assets/js/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script>
+    // Obtener todos los elementos de formulario del documento
+let forms = document.querySelectorAll("form");
+
+// Recorrer cada elemento de formulario
+for (let form of forms) {
+  // Agregar un evento de submit al formulario
+  form.addEventListener("submit", function (event) {
+    // Prevenir el comportamiento por defecto de enviar el formulario
+    event.preventDefault();
+
+    // Obtener la URL del action del formulario
+    let action = form.getAttribute("action");
+
+    // Obtener los datos del formulario como un objeto FormData
+    let formData = new FormData(form);
+
+    const summernoteElement = $('#summernote');
+
+    if (summernoteElement && summernoteElement.summernote) {
+      const summernote = summernoteElement.summernote("code");
+      formData.append("content", summernote);
+    }
+
+    fetch(action, {
+      method: "POST",
+      body: formData,
+      redirect: "follow",
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          const jsonData = await response.json();
+          await Swal.fire("Success!", jsonData.message, "success");
+          if (jsonData?.redirect) window.location.href = jsonData.redirect;
+          else window.location.reload();
+        } else {
+          // Si hay algún error, mostrar un mensaje
+          const error = await response?.json();
+
+          Swal.fire({
+            text: error?.message ?? response.statusText,
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        // Si hay algún error de red, mostrar un mensaje
+        alert("Error de red: " + error);
+      });
+  });
+}
+  </script>
+  <script>
     $(document).ready(function() {
-        $('#summernote').summernote();
+      $('#summernote').summernote();
     });
   </script>
 </body>
