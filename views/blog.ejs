@@ -10,7 +10,7 @@
 		
 		<!-- ------------------ HEADER ------------------------ -->
 		<div class="header">
-			<%- include('partials/header.ejs', { account: "LOGIN", car }); %>
+			<%- include('partials/header.ejs', { account: user?.name, car }); %>
 		</div>
 
 		<!-- ------------------------  LATEST BLOGS ------------------------  -->
@@ -35,7 +35,7 @@
 
 						<div class="single-blog">
 							<img
-                				src="./img/day-skincare-marula-oil-vegan_480x480.jpg"
+								src="<%= posts[i]?.image ?? "./img/day-skincare-marula-oil-vegan_480x480.jpg" %>"
 								class="img-blog"
 								alt=""
 							/>
@@ -44,9 +44,9 @@
 									<%= posts[i].title %><span>Vita Style</span>
 								</h3>
 								<p>
-									By <a href="#"></a> <%= `${posts[i].createdBy.name} ${posts[i].createdBy.lastname}` %> | <a href="#"></a> <%= posts[i].created_at %>
+									By <%= `${posts[i].createdBy.name} ${posts[i].createdBy.lastname}` %> | <a href="#"></a> <%= posts[i].created_at %>
 								</p>
-								<a href="#" class="btn">Read More</a>
+								<a href="blog/<%= posts[i].id %>" class="btn">Read More</a>
 							</div>
 						</div>
 						<% } %>

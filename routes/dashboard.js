@@ -10,6 +10,7 @@ const getShopcart = require("../utils/shopcart");
 const postSchema = require("../schemas/post");
 const categoryTemplate = require("../enums/categoryTemplate");
 const productLabel = require("../enums/productLabel");
+const DashboardPostController = require("../controllers/dashboardPost");
 
 router.use(isAdmin);
 
@@ -76,49 +77,11 @@ router.post("/categories", async (req, res) => {
 });
 
 // Posts
-router.get("/posts", async (req, res) => {
-  try {
-    const posts = await prisma.post.findMany();
-    const car = await getShopcart(req);
-    res.render("dashboard/posts", {
-      posts,
-      user: req.user,
-      car,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-router.post("/posts", async (req, res) => {
-  try {
-    const postData = await postSchema.validateAsync(
-      req.body,
-      {
-        allowUnknown: true,
-        stripUnknown: true
-      }
-    );
-    const post  = await prisma.post.create({
-      data: {
-        ...postData,
-        userId: req.user.id,
-      }
-    });
-    return res.json({
-      data: post,
-      message: "Sucessfully created post",
-      status: 200,
-    });
-  } catch (error) {
-    if (
-      error?.details &&
-      error.details.length > 0
-    ) {
-      return res.send(400, { success: false, message: error.details[0].message });
-    }
-  }
-});
+router.get("/posts", DashboardPostController.list);
+router.post("/posts", upload("posts").single("image"), DashboardPostController.create);
+router.get("/posts/:id", DashboardPostController.getOne);
+router.put("/posts", upload("posts").single("image"), DashboardPostController.update);
+router.delete("/posts/:id", DashboardPostController.delete);
 
 // Product
 router.get("/products", async (req, res) => {
@@ -163,7 +126,7 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
-router.post("/products", upload.array("images", 10), async (req, res) => {
+router.post("/products", upload("products").array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
 
@@ -215,7 +178,7 @@ router.post("/products", upload.array("images", 10), async (req, res) => {
   }
 });
 
-router.put("/products", upload.array("images", 10), async (req, res) => {
+router.put("/products", upload("products").array("images", 10), async (req, res) => {
   const body = req.body;
   const files = req.files;
   const id = body.id
@@ -310,7 +273,7 @@ router.delete("/products/:id", async (req, res) => {
 
     // Delete file
     product.images.map(productImage => {
-      if (fs.existsSync(path.join("public/", '/img/products/product-169144184062425.jpeg'))) {
+      if (fs.existsSync(path.join("public/", productImage.image))) {
         fs.unlinkSync(path.join("public/", productImage.image));
       }
     });

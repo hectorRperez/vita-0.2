@@ -58,11 +58,14 @@ for (let form of forms) {
         let inputValue = form.elements[i].value;
         if (inputName) formData.push([inputName, inputValue]);
       }
+
       const summernoteElement = $('#summernote');
-      if( summernoteElement && summernoteElement.summernote ){
+
+      if (summernoteElement && summernoteElement.summernote) {
         const summernote = summernoteElement.summernote("code");
-        formData.push(["content",summernote]);
+        formData.push(["content", summernote]);
       }
+
       formData = Object.fromEntries(formData);
     }
 
