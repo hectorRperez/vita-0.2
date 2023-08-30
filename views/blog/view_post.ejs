@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      <%- include('partials/head.ejs'); %>
+      <%- include('../partials/head.ejs'); %>
       <link rel="stylesheet" href="assets/css/styles_blog.css" />
     </head>
     <body>
     <!--  ------------------ PROMO ------------------ -->
-    <%- include('partials/banner.ejs'); %>
+    <%- include('../partials/banner.ejs'); %>
         
       <!-- ------------------ HEADER ------------------------ -->
       <div class="header">
-          <%- include('partials/header.ejs', { account: user?.name, car }); %>
+          <%- include('../partials/header.ejs', { account: user?.name, car }); %>
       </div>
       <!-- ------------------------  Article ------------------------  -->
       <section class="section">
@@ -28,9 +28,20 @@
           </div>
           <hr>
         </article>
+
+        <div class="related-post">
+          <h2>Related post</h2>
+          <section>
+            <div class="container-blog">
+              <main class="main-blog">
+                <%- include('list_posts.ejs', { dir: '' }); %>
+              </main>
+            </div>
+          </section>
+        </div>
       </section>
 
         <!-- ------------------------  Footer ------------------------  -->
-        <%- include('partials/skincare-footer.ejs'); %>
+        <%- include('../partials/skincare-footer.ejs'); %>
     </body>
 </html>

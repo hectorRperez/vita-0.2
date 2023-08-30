@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head.ejs'); %>
+		<link rel="stylesheet" href="assets/css/styles_blog.css" />
+	</head>
+	<body>
+    <!--  ------------------ PROMO ------------------ -->
+    <%- include('../partials/banner.ejs'); %>
+		
+		<!-- ------------------ HEADER ------------------------ -->
+		<div class="header">
+			<%- include('../partials/header.ejs', { account: user?.name, car }); %>
+		</div>
+
+		<!-- ------------------------  LATEST BLOGS ------------------------  -->
+		<section class="section">
+			<div class="title">
+				<h1>Blog</h1>
+				<div>
+					<header class="header-container">
+						<h2 class="title-back">Latest Articles</h2>
+						<hr />
+					</header>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-blog">
+			<div class="container-blog">
+				<main class="main-blog">
+					<%- include('list_posts.ejs', { dir: 'blog/' }); %>
+				</main>
+			</div>
+			
+		</section>
+
+		<!-- ------------------------  Footer ------------------------  -->
+		<%- include('../partials/skincare-footer.ejs'); %>
+	</body>
+</html>

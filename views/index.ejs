@@ -306,62 +306,7 @@
   <section class="section-blog">
     <div class="container-blog">
       <main class="main-blog">
-        <!-- Blog 1 -->
-        <div class="single-blog">
-          <img src="./img/blog_1.jpeg" class="img-blog" alt="" />
-          <div class="blog-content">
-            <h3>
-              Driven by a constant need to do better
-              <span>Vita Style</span>
-            </h3>
-            <p>
-              By <a href="#"></a> Hector Perez |
-              <a href="#"></a> Nov 21, 2018
-            </p>
-            <a href="/blog" class="btn">Read More</a>
-          </div>
-        </div>
-
-        <!-- Blog 2 -->
-        <div class="single-blog">
-          <img src="./img/blog_2.jpeg" class="img-blog" alt="" />
-          <div class="blog-content">
-            <h3>
-              We're changing the game <span>Vita Style</span>
-            </h3>
-            <p>
-              By <a href="#"></a> Hector Perez |
-              <a href="#"></a> Nov 21, 2018
-            </p>
-            <a href="/blog" class="btn">Read More</a>
-          </div>
-        </div>
-
-        <!-- Blog 3 -->
-        <div class="single-blog">
-          <img src="./img/blog_3.jpeg" class="img-blog" alt="" />
-          <div class="blog-content">
-            <h3>A chair of Million <span>Vita Style</span></h3>
-            <p>
-              By <a href="#"></a> Hector Perez |
-              <a href="#"></a> Nov 21, 2018
-            </p>
-            <a href="/blog" class="btn">Read More</a>
-          </div>
-        </div>
-
-        <!-- Blog 4 -->
-        <div class="single-blog">
-          <img src="./img/blog_4.jpeg" class="img-blog" alt="" />
-          <div class="blog-content">
-            <h3>A chair of Million <span>Art</span></h3>
-            <p>
-              By <a href="#"></a> Hector Perez |
-              <a href="#"></a> Nov 21, 2018
-            </p>
-            <a href="/blog" class="btn">Read More</a>
-          </div>
-        </div>
+        <%- include('blog/list_posts.ejs', { dir: 'blog/' }); %>
       </main>
     </div>
   </section>

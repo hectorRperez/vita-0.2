@@ -2,30 +2,18 @@ const router = require("express").Router();
 
 const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
+const listPost = require("../utils/posts");
 
 // ruta inicial
 router.get("/blog", async (req, res) => {
   try {
-    let posts = await prisma.post.findMany({
-      include: {
-        createdBy: true,
-      },
-    });
+    // Posts
+    const posts = await listPost();
 
-    posts = posts.map(post => {
-      const createdAt = new Date(post.created_at)
-
-      let month = createdAt.getMonth() + 1;
-      if (month < 10) month = `0${month}`;
-
-      post.created_at = `${month}/${createdAt.getDate()}/${createdAt.getFullYear()}`;
-
-      return post;
-    });
-
+    // Shopcart
     const car = await getShopcart(req);
 
-    res.render("blog.ejs", {
+    res.render("blog/index.ejs", {
       posts: posts,
       user: req.user,
       car
@@ -59,12 +47,17 @@ router.get("/blog/:id", async (req, res) => {
 
     post.created_at = `${month}/${createdAt.getDate()}/${createdAt.getFullYear()}`;
 
+    // Shopcart
     const car = await getShopcart(req);
 
-    res.render("view_blog.ejs", {
+    // Posts
+    const posts = await listPost(undefined, [id]);
+
+    res.render("blog/view_post.ejs", {
       post: post,
       user: req.user,
-      car
+      car,
+      posts
     });
   } catch (error) {
     console.error(error);
