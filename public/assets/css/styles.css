@@ -1249,9 +1249,60 @@ body.jw-modal-open {
   margin: 0 auto;
 }
 
-.image-cover-post {
-  height: 40em;
-  width: 95%;
+.blog_section{
+  margin-top: 80px;
+}
+
+.blog__header{
+  height: 600px;
+  width: 70%;
   margin: 0 auto;
-  display: block;
+}
+
+.image-cover-post {
+  background-size: contain;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.blog_content{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.blog__title{
+  padding: 20px;
+  font-size: 60px;
+  text-align: center;
+  color: var(--skincare-darker-theme);
+}
+
+.blog__date{
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn__back{
+  background-color: var(--skincare-darker-theme);
+  color: white;
+  transition: all 300ms ease-in-out;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.btn__back:hover{
+  text-decoration: none;
+  color: var(--skincare-darker-theme);
+  background-color: var(--skincare-dark-third);
+}
+
+.back__blog{
+  margin: 80px 50px;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .blog__title{
+    font-size: 30px;
+  }  
 }
