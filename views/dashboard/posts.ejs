@@ -126,6 +126,11 @@ for (let form of forms) {
 
     if (editId) {
       formData.append("id", editId);
+      formData.delete("files");
+
+      if ($("#image").val() === "") {
+        formData.delete("image");
+      }
     }
 
     fetch(action, {
@@ -222,7 +227,6 @@ function cancel() {
   $('#image').prop('required', true);
 
   $('#title').val('');
-  $('#image').val('');
 
   $('#summernote').summernote('code', '');
 }

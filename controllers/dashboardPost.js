@@ -106,7 +106,7 @@ class DashboardPostController {
       });
 
       // File
-      let image = null;
+      let image = postOld?.image ?? null;
 
       if (file) {
         image = `/img/posts/${file.filename}`;
