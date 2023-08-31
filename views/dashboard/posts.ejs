@@ -124,9 +124,10 @@ for (let form of forms) {
       formData.append("content", summernote);
     }
 
+    formData.delete("files");
+
     if (editId) {
       formData.append("id", editId);
-      formData.delete("files");
 
       if ($("#image").val() === "") {
         formData.delete("image");
