@@ -8,22 +8,21 @@ datasource db {
 }
 
 model Category {
-  id       String             @id @default(uuid()) @db.Uuid
+  id       String           @id @default(uuid()) @db.Uuid
   name     String
-  template CategoryTemplate   @default(TEMPLATE_ONE)
+  template CategoryTemplate @default(TEMPLATE_ONE)
   products Product[]
 }
 
 model Shopcart {
-  id                String         @id @default(uuid()) @db.Uuid
-  sessionId         String?
-  paymentSessionId  String?        @unique
-  isPaid            Boolean        @default(false)
-  nameClient        String?
-  emailClient       String?
-  user              User?          @relation(fields: [userId], references: [id])
-  userId            String?        @db.Uuid
-  items             ShopcartItem[]
+  id               String            @id @default(uuid()) @db.Uuid
+  sessionId        String?
+  paymentSessionId String?           @unique
+  isPaid           Boolean           @default(false)
+  user             User?             @relation(fields: [userId], references: [id])
+  userId           String?           @db.Uuid
+  items            ShopcartItem[]
+  PaymentShopcart  PaymentShopcart[]
 }
 
 model ShopcartItem {
@@ -33,7 +32,7 @@ model ShopcartItem {
   carId     String   @db.Uuid
   product   Product  @relation(fields: [productId], references: [id])
   count     Int
-  size      String @db.VarChar(20)
+  size      String   @db.VarChar(20)
 
   @@unique([carId, productId])
 }
@@ -89,30 +88,30 @@ model Post {
 }
 
 model Product {
-  id           String               @id @default(uuid()) @db.Uuid
-  name         String
+  id   String @id @default(uuid()) @db.Uuid
+  name String
 
   // Derma o Roller
-  description  String?
+  description String?
 
-  price        Float
-  quantity     Int
-  assessment   Int                  @default(1)
-  sizes        String[]             @db.VarChar(100) @default(["1.0 fl. oz/30 ml"])
+  price      Float
+  quantity   Int
+  assessment Int      @default(1)
+  sizes      String[] @default(["1.0 fl. oz/30 ml"]) @db.VarChar(100)
 
   // Serum
-  keyBenefits  String?
+  keyBenefits String?
   // Derma o Roller: howUse is equal to instructions
-  howUse       String?
-  ingredients  String?
+  howUse      String?
+  ingredients String?
   // Derma o Roller: caution is equal to precaution & possible side effects
-  caution      String?
+  caution     String?
 
   // Derma o Roller
-  weight       String?              @db.VarChar(25)
-  dimensions   String?              @db.VarChar(25)
+  weight     String? @db.VarChar(25)
+  dimensions String? @db.VarChar(25)
 
-  label        ProductLabel         @default(NEW)
+  label ProductLabel @default(NEW)
 
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
@@ -151,16 +150,31 @@ model Session {
 }
 
 model User {
-  id       String    @id @default(uuid()) @db.Uuid
+  id       String     @id @default(uuid()) @db.Uuid
   name     String
   lastname String
   image    String?
-  email    String    @unique()
+  email    String     @unique()
   password String
   type     UserType
   orders   Order[]
   posts    Post[]
   car      Shopcart[]
+}
+
+model PaymentShopcart {
+  id         String   @id @default(uuid()) @db.Uuid
+  name       String
+  email      String
+  phone      String?
+  city       String
+  country    String
+  line1      String
+  line2      String?
+  postalCode String?
+  state      String
+  shopcart   Shopcart @relation(fields: [shopcartId], references: [id])
+  shopcartId String   @db.Uuid
 }
 
 enum UserType {
