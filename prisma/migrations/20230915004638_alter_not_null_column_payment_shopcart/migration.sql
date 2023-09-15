@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "PaymentShopcart" ALTER COLUMN "phone" DROP NOT NULL,
+ALTER COLUMN "line2" DROP NOT NULL,
+ALTER COLUMN "postalCode" DROP NOT NULL;

@@ -75,6 +75,10 @@ class PaymentController {
         mode: "payment",
         success_url: `${process.env.APP_URL}/shopping_cart/success/${shopcart.id}`,
         cancel_url: `${process.env.APP_URL}/shopping_cart`,
+        billing_address_collection: 'required',
+        phone_number_collection: {
+          enabled: true,
+        },
       });
 
       // Set Payment Session Id in shopcart
@@ -126,6 +130,31 @@ class PaymentController {
 
       const name = session.customer_details.name;
       const email = session.customer_details.email;
+      const phone = session.customer_details.phone;
+      const address = {
+        city: session.customer_details.address.city,
+        country: session.customer_details.address.country,
+        line1: session.customer_details.address.line1,
+        line2: session.customer_details.address.line2,
+        postalCode: session.customer_details.address.postal_code,
+        state: session.customer_details.address.state,
+      };
+
+      // Create
+      await prisma.paymentShopcart.create({
+        data: {
+          name: name,
+          email: email,
+          phone: phone,
+          city: address.city,
+          country: address.country,
+          line1: address.line1,
+          line2: address.line2,
+          postalCode: address.postalCode,
+          state: address.state,
+          shopcartId: shopcart.id
+        }
+      });
 
       const transactions = [];
       let totalPaid = 0;
@@ -152,7 +181,7 @@ class PaymentController {
               decrement: item.count
             }
           },
-        });;
+        });
 
         transactions.push(shopcartItemUpdate);
       });
@@ -163,9 +192,7 @@ class PaymentController {
           id: shopcart.id,
         },
         data: {
-          isPaid: true,
-          nameClient: name,
-          emailClient: email,
+          isPaid: true
         },
       });
 
@@ -192,6 +219,8 @@ class PaymentController {
           items,
           customer: name,
           email,
+          phone,
+          address
         }
       });
 
