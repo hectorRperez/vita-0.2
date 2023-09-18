@@ -1,0 +1,63 @@
+<div id="modal-1" class="jw-modal">
+    <div class="jw-modal-body animate__animated animate__fadeInDown">
+        <div class="header__modal">
+            <h2 class="header__modal_title">Vita Skincare</h2>
+        </div>
+        <div class="body__modal">
+            <h3 class="body__modal_subtitle">ENJOY</h3>
+            <h1 class="body__modal_title">15% OFF</h1>
+            <p class="body__modal_content">
+                You can apply your discount percentage if you have already subscribed, do you want to validate your subscription?
+            </p>
+            <form class="modal__form" method="POST" action="subscriptions/validate">
+                <input placeholder="Email address" type="email" name="email" id="subscription-email" required />
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="modal__form_btn">Validate subscription</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="modal__form_btn btn-continue" onclick="payContinue()">Continue</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button class="moda__btn_close" onclick="closeModal()">X</button>
+    </div>
+</div>
+
+<style>
+.modal__form input {
+    width: 20em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
+
+.modal__form_btn {
+    width: 15em;
+}
+
+.btn-continue {
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+}
+</style>
+
+<script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.classList.add('jw-modal-open');
+    }
+
+    // close currently open modal
+    function closeModal() {
+      document.querySelector('.jw-modal.open').classList.remove('open');
+      document.body.classList.remove('jw-modal-open');
+    }
+
+    function payContinue() {
+      const email = document.getElementById('subscription-email').value;
+      checkout(false, email)
+    }
+</script>
