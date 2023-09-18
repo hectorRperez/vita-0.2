@@ -325,8 +325,8 @@
         <h1 class="body__modal_title">15% OFF</h1>
         <p class="body__modal_content">WHEN YOU SPEND $40 OR MORE FOR NEW SUBSCRIBERS ONLY WHEN SUBSCRIBERS WITH EMAIL
         </p>
-        <form class="modal__form">
-          <input placeholder="Email address" type="email" required />
+        <form class="modal__form" method="POST" action="subscriptions">
+          <input placeholder="Email address" type="email" name="email" required />
           <button class="modal__form_btn">Continue</button>
         </form>
         <p>By providing my email address, I expressly consent to be contacted through email with marketing
@@ -339,6 +339,59 @@
   <!-- Scripts-->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
+    // Obtener todos los elementos de formulario del documento
+    let forms = document.querySelectorAll("form");
+
+    // Recorrer cada elemento de formulario
+    for (let form of forms) {
+      // Agregar un evento de submit al formulario
+      form.addEventListener("submit", function (event) {
+        // Prevenir el comportamiento por defecto de enviar el formulario
+        event.preventDefault();
+
+        // Obtener la URL del action del formulario
+        let action = form.getAttribute("action");
+
+        // Obtener los datos del formulario como un objeto FormData
+        let formData = [];
+        for (i = 0; i < form.elements.length; i++) {
+          let inputName = form.elements[i].name;
+          let inputValue = form.elements[i].value;
+          if (inputName) formData.push([inputName, inputValue]);
+        }
+
+        formData = Object.fromEntries(formData);
+
+        fetch(action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          redirect: "follow",
+        })
+          .then(async (response) => {
+            if (response.ok) {
+              closeModal();
+              const jsonData = await response.json();
+              await Swal.fire("Success!", jsonData.message, "success");
+            } else {
+              // Si hay algún error, mostrar un mensaje
+              const error = await response?.json();
+
+              Swal.fire({
+                text: error?.message ?? response.statusText,
+                icon: "error",
+              });
+            }
+          })
+          .catch((error) => {
+            // Si hay algún error de red, mostrar un mensaje
+            alert("Error de red: " + error);
+          });
+      });
+    }
+
     function openModal(id) {
       document.getElementById(id).classList.add('open');
       document.body.classList.add('jw-modal-open');
@@ -358,7 +411,6 @@
     }
   </script>
   <%- include('partials/script.ejs'); %>
-  <script src="/assets/js/index.js"></script>
 </body>
 
 </html>

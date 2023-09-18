@@ -15,24 +15,28 @@ model Category {
 }
 
 model Shopcart {
-  id               String            @id @default(uuid()) @db.Uuid
-  sessionId        String?
-  paymentSessionId String?           @unique
-  isPaid           Boolean           @default(false)
-  user             User?             @relation(fields: [userId], references: [id])
-  userId           String?           @db.Uuid
-  items            ShopcartItem[]
-  PaymentShopcart  PaymentShopcart[]
+  id                   String                         @id @default(uuid()) @db.Uuid
+  sessionId            String?
+  paymentSessionId     String?                        @unique
+  isPaid               Boolean                        @default(false)
+  applyDiscount        Boolean                        @default(false)
+  created_at           DateTime?                      @default(now())
+  user                 User?                          @relation(fields: [userId], references: [id])
+  userId               String?                        @db.Uuid
+  items                ShopcartItem[]
+  PaymentShopcart      PaymentShopcart[]
+  discountSubscription ShopcartDiscountSubscription[]
 }
 
 model ShopcartItem {
-  id        String   @id @default(uuid()) @db.Uuid
-  productId String   @db.Uuid
-  car       Shopcart @relation(fields: [carId], references: [id])
-  carId     String   @db.Uuid
-  product   Product  @relation(fields: [productId], references: [id])
-  count     Int
-  size      String   @db.VarChar(20)
+  id         String    @id @default(uuid()) @db.Uuid
+  productId  String    @db.Uuid
+  car        Shopcart  @relation(fields: [carId], references: [id])
+  carId      String    @db.Uuid
+  product    Product   @relation(fields: [productId], references: [id])
+  count      Int
+  size       String    @db.VarChar(20)
+  created_at DateTime? @default(now())
 
   @@unique([carId, productId])
 }
@@ -113,6 +117,8 @@ model Product {
 
   label ProductLabel @default(NEW)
 
+  created_at DateTime? @default(now())
+
   category     Category             @relation(fields: [categoryId], references: [id])
   categoryId   String               @db.Uuid
   homeProducts HomeProducts[]
@@ -163,7 +169,7 @@ model User {
 }
 
 model PaymentShopcart {
-  id         String   @id @default(uuid()) @db.Uuid
+  id         String    @id @default(uuid()) @db.Uuid
   name       String
   email      String
   phone      String?
@@ -173,8 +179,28 @@ model PaymentShopcart {
   line2      String?
   postalCode String?
   state      String
-  shopcart   Shopcart @relation(fields: [shopcartId], references: [id])
-  shopcartId String   @db.Uuid
+  created_at DateTime? @default(now())
+  shopcart   Shopcart  @relation(fields: [shopcartId], references: [id])
+  shopcartId String    @db.Uuid
+}
+
+model DiscountSubscription {
+  id                           String                         @id @default(uuid()) @db.Uuid
+  email                        String
+  used                         Boolean                        @default(false)
+  created_at                   DateTime?                      @default(now())
+  ShopcartDiscountSubscription ShopcartDiscountSubscription[]
+}
+
+model ShopcartDiscountSubscription {
+  id                     String               @id @default(uuid()) @db.Uuid
+  created_at             DateTime?            @default(now())
+  shopcart               Shopcart             @relation(fields: [shopcartId], references: [id])
+  shopcartId             String               @db.Uuid
+  discountSubscription   DiscountSubscription @relation(fields: [discountSubscriptionId], references: [id])
+  discountSubscriptionId String               @db.Uuid
+
+  @@unique([shopcartId, discountSubscriptionId])
 }
 
 enum UserType {

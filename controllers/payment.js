@@ -11,6 +11,9 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 class PaymentController {
   createSession = async (req, res) => {
+    const email = req.body.email;
+    let applyDiscount = false;
+
     try {
       let condictionWhere = { sessionId: req.sessionID };
 
@@ -34,6 +37,7 @@ class PaymentController {
 
       const line_items = [];
       const errors = [];
+      let totalPay = 0;
 
       shopcart.items.forEach(item => {
         if (item.count > item.product.quantity) {
@@ -50,6 +54,7 @@ class PaymentController {
             message: `The requested quantity of the product ${item.product.name} is greater than the existing one. You can apply: ${item.product.quantity}`
           });
         } else {
+          totalPay += item.count * item.product.price;
           line_items.push({
             price_data: {
               product_data: {
@@ -69,6 +74,35 @@ class PaymentController {
         });
       }
 
+      // Discount
+      let discounts = [];
+      const discountSubscription = await prisma.discountSubscription.findFirst({
+        where: {
+          email,
+          used: false
+        }
+      });
+
+      if (discountSubscription && totalPay >= 40) {
+        applyDiscount = true;
+
+        const coupon = await stripe.coupons.create({
+          percent_off: 15,
+          duration: 'once',
+        });
+
+        discounts = [{
+          coupon: coupon.id,
+        }];
+
+        await prisma.shopcartDiscountSubscription.create({
+          data: {
+            shopcartId: shopcart.id,
+            discountSubscriptionId: discountSubscription.id
+          }
+        });
+      }
+
       // Create checkout sessions in stripe
       const session = await stripe.checkout.sessions.create({
         line_items,
@@ -79,6 +113,7 @@ class PaymentController {
         phone_number_collection: {
           enabled: true,
         },
+        discounts,
       });
 
       // Set Payment Session Id in shopcart
@@ -87,7 +122,8 @@ class PaymentController {
           id: shopcart.id,
         },
         data: {
-          paymentSessionId: session.id
+          paymentSessionId: session.id,
+          applyDiscount
         },
       });
 
@@ -157,6 +193,29 @@ class PaymentController {
       });
 
       const transactions = [];
+
+      // Discount
+      if (shopcart.applyDiscount) {
+        const shopcartDiscountSubscription = await prisma.shopcartDiscountSubscription.findFirst({
+          where: {
+            shopcartId: shopcart.id
+          }
+        });
+
+        if (shopcartDiscountSubscription) {
+          const discountSubscriptionUpdate = prisma.discountSubscription.update({
+            where: {
+              id: shopcartDiscountSubscription.discountSubscriptionId,
+            },
+            data: {
+              used: true
+            },
+          });
+
+          transactions.push(discountSubscriptionUpdate);
+        }
+      }
+
       let totalPaid = 0;
       let items = [];
 
@@ -220,7 +279,8 @@ class PaymentController {
           customer: name,
           email,
           phone,
-          address
+          address,
+          applyDiscount: shopcart.applyDiscount
         }
       });
 

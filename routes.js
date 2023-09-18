@@ -14,5 +14,6 @@ router.use(require("./routes/blog.js"));
 router.use(require("./routes/returns_exchanges.js"));
 router.use(require("./routes/terms_of_services.js"));
 router.use(require("./routes/privacy_policies.js"));
+router.use(require("./routes/subscriptions.js"));
 
 module.exports = router;

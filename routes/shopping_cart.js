@@ -7,12 +7,23 @@ const router = require("express").Router();
 router.get("/", async function (req, res) {
   const user = req.isAuthenticated() ? req.user : { name: "unknown" };
   const car = await getShopcart(req);
+  let applyDiscount = false;
+  let totalPay = 0;
+
+  car.items.forEach(item => {
+    totalPay += item.count * item.product.price;
+
+    if (totalPay >= 40) {
+      applyDiscount = true;
+    }
+  });
 
   return res.render(
-    "shopping_cart", {
+    "shoppingCart/index", {
       car,
       user,
-      payment: req.query?.payment ?? null
+      payment: req.query?.payment ?? null,
+      applyDiscount
     }
   );
 });
