@@ -7,7 +7,6 @@ const prisma = require("../config/database");
 const router = require("express").Router();
 const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
-const postSchema = require("../schemas/post");
 const categoryTemplate = require("../enums/categoryTemplate");
 const productLabel = require("../enums/productLabel");
 const DashboardPostController = require("../controllers/dashboardPost");

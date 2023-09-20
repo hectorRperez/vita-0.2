@@ -17,7 +17,7 @@ app.use(cookieParser("5654534jk34kjnk346kjn652gf2"));
 
 // configuro el almacen de sesion de mysql
 const sessionStore = new PrismaSessionStore(prisma, {
-  checkPeriod: 2 * 60 * 1000,
+  checkPeriod: 7 * 60 * 60 * 1000, // 7 hours
   dbRecordIdIsSessionId: true,
   dbRecordIdFunction: undefined,
 });
@@ -26,7 +26,10 @@ const sessionStore = new PrismaSessionStore(prisma, {
 app.use(
   session({
     secret: "ertt0923723kjnf29v762vl23ov8",
-    cookie: { maxAge: 3600000, secure: false },
+    cookie: {
+      maxAge: 7 * 60 * 60 * 1000, // 7 hours
+      secure: false
+    },
     store: sessionStore,
     resave: false,
     saveUninitialized: true,
