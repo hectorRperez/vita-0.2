@@ -13,7 +13,7 @@ router.get("/", async function (req, res) {
   car.items.forEach(item => {
     totalPay += item.count * item.product.price;
 
-    if (totalPay >= 40) {
+    if (totalPay >= process.env.APPLY_DISCOUNT_FOR_THE_AMOUNT_OF) {
       applyDiscount = true;
     }
   });

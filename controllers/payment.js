@@ -83,7 +83,7 @@ class PaymentController {
         }
       });
 
-      if (discountSubscription && totalPay >= 40) {
+      if (discountSubscription && totalPay >= process.env.APPLY_DISCOUNT_FOR_THE_AMOUNT_OF) {
         applyDiscount = true;
 
         const coupon = await stripe.coupons.create({
