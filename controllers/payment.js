@@ -223,12 +223,20 @@ class PaymentController {
       shopcart.items.forEach(item => {
         totalPaid += item.product.price * item.count;
 
+        let image = item.product.images.filter(itemImage => itemImage.isFirst);
+
+        if (image && image.length > 0) {
+          image = image[0];
+        } else {
+          image = item.product.images[0].image;
+        }
+
         items.push({
           name: item.product.name,
           quantity: item.count,
           amount: item.product.price * item.count,
           size: item.size,
-          image: item.product.images[0].image,
+          image,
         });
 
         const shopcartItemUpdate = prisma.product.update({
