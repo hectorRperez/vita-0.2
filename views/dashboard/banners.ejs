@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/head.ejs'); %>
+	</head>
+<body>
+  <div class="header">
+    <%- include('../partials/header.ejs', {account: user?.name ?? "", car }); %>
+  </div>
+  <div class="container mt-5 pt-5">
+    <h1>Dashboard</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Recent Activity</h4>
+          </div>
+          <%- include('menu.ejs'); %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card p-2">
+            <div>
+                <div class="form-group">
+                    <label for="image">Home image:</label>
+                    <img src="<%= banners[0].imageHome %>" alt="Home image" id="imageHome-img" />
+                    <input type="file" id="imageHome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="image">Skincare image:</label>
+                    <img src="<%= banners[0].imageSkincare %>" alt="Skincare image" id="imageSkincare-img" />
+                    <input type="file" id="imageSkincare" class="form-control" />
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/script.ejs'); %>
+  <script src="/assets/js/index.js"></script>
+  <script>
+$( document ).ready(function() {
+  $('#imageHome').on('change', function() {
+    updateImageInServe('imageHome', this);
+  });
+
+  $('#imageSkincare').on('change', function() {
+    updateImageInServe('imageSkincare', this);
+  });
+})
+
+function updateImageInServe(id, input) {
+  let formData = new FormData();
+
+  formData.append("id", id);
+  formData.append('image', input.files[0]);
+
+  $.ajax({
+    url: `banners/images`,
+    type: 'PUT',
+    data: formData,
+    processData: false,
+    contentType: false,
+    dataType: 'json',
+    success: function() {
+      Swal.fire(
+        'Updated!',
+        'Your image has been updated.',
+        'success'
+      )
+
+      updateImage(input, id);
+    },
+    error: function (request) {
+      Swal.fire(
+        'Failed to delete!',
+        request.responseJSON.message,
+        'error'
+      )
+    }
+  });
+}
+
+function updateImage(input, id) {
+  readURL(input, `${id}-img`);
+
+  $(`#${id}`).val('');
+}
+
+function readURL(input, imageId) {
+  if (input.files && input.files[0]) {
+    let reader = new FileReader();
+
+    reader.onload = function(e) {
+      // Asignamos el atributo src a la tag de imagen
+      $(`#${imageId}`).attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+  </script>
+</body>
+</html>

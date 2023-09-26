@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
-const SignupController = require("../controllers/Signup");
+/* const SignupController = require("../controllers/Signup"); */
 const UserType = require("@prisma/client").UserType;
 // ruta que muestra el formulario de login
 router.get("/login", (req, res) => {
@@ -41,11 +41,11 @@ function sendAuthenticationFailed(res) {
 }
 
 // ruta para mostrar el formulario de registro de usuario
-router.get("/signup", (req, res) => {
+/* router.get("/signup", (req, res) => {
   res.render("signup.ejs");
 });
 
 // ruta para mostrar el formulario de registro de usuario
-router.post("/signup", SignupController.signup);
+router.post("/signup", SignupController.signup); */
 
 module.exports = router;

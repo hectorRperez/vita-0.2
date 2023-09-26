@@ -6,6 +6,7 @@ const upload = require("../middleware/upload");
 const getShopcart = require("../utils/shopcart");
 const categoryTemplate = require("../enums/categoryTemplate");
 const DashboardPostController = require("../controllers/dashboardPost");
+const DashboardBannerController = require("../controllers/dashboardBanner");
 const DashboardProductController = require("../controllers/dashboardProduct");
 
 router.use(isAdmin);
@@ -87,5 +88,9 @@ router.put("/products", upload("products").array("images", 10), DashboardProduct
 router.delete("/products/:id", DashboardProductController.delete);
 router.delete("/products/:id/images/:idImage", DashboardProductController.deleteImage);
 router.put("/products/:id/images/:idImage", upload("products").single("image"), DashboardProductController.updateImage);
+
+// Banners
+router.get("/banners", DashboardBannerController.list);
+router.put("/banners/images", upload("banners").single("image"), DashboardBannerController.updateImage);
 
 module.exports = router;
