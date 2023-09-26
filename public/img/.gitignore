@@ -6,3 +6,5 @@ Thumbs.db
 *.webm
 !vita-logo.png
 !icons/*
+!banners/home.jpg
+!banners/skincare.jpg

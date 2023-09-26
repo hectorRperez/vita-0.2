@@ -10,6 +10,7 @@ const getShopcart = require("../utils/shopcart");
 const categoryTemplate = require("../enums/categoryTemplate");
 const productLabel = require("../enums/productLabel");
 const DashboardPostController = require("../controllers/dashboardPost");
+const DashboardBannerController = require("../controllers/dashboardBanner");
 
 router.use(isAdmin);
 
@@ -289,5 +290,9 @@ router.delete("/products/:id", async (req, res) => {
     });
   }
 });
+
+// Banners
+router.get("/banners", DashboardBannerController.list);
+router.put("/banners/images", upload("banners").single("image"), DashboardBannerController.updateImage);
 
 module.exports = router;
