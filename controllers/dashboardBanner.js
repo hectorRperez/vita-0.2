@@ -1,17 +1,14 @@
 const path = require("path");
 const fs = require("fs");
 
-const prisma = require("../config/database");
 const getShopcart = require("../utils/shopcart");
 
 class DashboardBannerController {
   list = async (req, res) => {
     try {
-      const banners = await prisma.banner.findMany();
       const car = await getShopcart(req);
 
       res.render("dashboard/banners", {
-        banners,
         user: req.user,
         car,
       });
